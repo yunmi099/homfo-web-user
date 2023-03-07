@@ -5,5 +5,5 @@ export default defineConfig({
     build: {
         outDir: 'build',
     }, 
-    plugin: [reactRefresh()],
+    plugins: [reactRefresh()],
 })
