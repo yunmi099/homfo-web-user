@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import styles from './styles.module.scss';
 import questionList from './questionList.json';
 import { useNavigate } from 'react-router-dom';
@@ -15,14 +15,6 @@ function Hbti() {
     const [TFscore, setTFscore] = useState(0);
     const navigate = useNavigate();
     const containerRef = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-        const container = containerRef.current;
-        container?.classList.add(styles.slideIn);
-        return () => {
-            container?.classList.remove(styles.slideIn);
-        };
-    }, []);
 
     const updateScore = (score: number) => {
         if (count >= 0 && count <= 2) {
@@ -47,9 +39,9 @@ function Hbti() {
 
     const handleButtonClick = (score: number) => {
         if (count === 8) {
-            finalScore(score);
-            return;
+            return finalScore(score);
         }
+
         updateScore(score);
         setCount((prev) => prev + 1);
         const container = containerRef.current;
@@ -57,9 +49,11 @@ function Hbti() {
         void container?.offsetWidth;
         container?.classList.add(styles.slideIn);
     };
+
     const { question, anwser } = questionList[count];
+
     return (
-        <div className={styles.container} ref={containerRef}>
+        <div className={`${styles.container} ${styles.slideIn}`} ref={containerRef}>
             <div className={styles.progressBar}>
                 <div>{count + 1}/9</div>
                 <div className={styles.progressBg}></div>
@@ -79,7 +73,7 @@ function Hbti() {
                         key={index}
                         onClick={() => handleButtonClick(anwser.score)}
                     >
-                        "{anwser.detail}"
+                        {anwser.detail}
                     </div>
                 ))}
             </div>
