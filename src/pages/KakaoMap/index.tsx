@@ -1,21 +1,34 @@
-import React from 'react';
-import { Map, MarkerClusterer, MapMarker } from 'react-kakao-maps-sdk';
+import React, { useState } from 'react';
+import { Map, MarkerClusterer, MapMarker, CustomOverlayMap } from 'react-kakao-maps-sdk';
+import AreaInfoOverlay from './\bAreaInfoOverlay';
+import clusterPositionsData from './clusterPositionsData.json';
 
 function KakaoMap() {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const onClickCluster = () => {
+        setIsOpen(true);
+    };
+
     return (
-        <div>
+        <>
             <Map
-                center={{ lat: 36.2683, lng: 127.6358 }}
-                style={{ width: '100%', height: '360px' }}
-                level={14}
+                center={{ lat: 37.332495, lng: 127.112503 }}
+                style={{ width: '100%', height: '100vh' }}
+                level={8}
             >
-                <MarkerClusterer averageCenter={true} minLevel={10}>
-                    {/* {clusterPositionsData.positions.map((pos) => (
+                <MarkerClusterer averageCenter={true} minLevel={5} onClusterclick={onClickCluster}>
+                    {clusterPositionsData.positions.map((pos) => (
                         <MapMarker key={`${pos.lat}-${pos.lng}`} position={pos} />
-                    ))} */}
+                    ))}
                 </MarkerClusterer>
             </Map>
-        </div>
+            {isOpen && (
+                <div>
+                    <AreaInfoOverlay setIsOpen={setIsOpen} />
+                </div>
+            )}
+        </>
     );
 }
 
