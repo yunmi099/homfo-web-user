@@ -9,6 +9,8 @@ function App() {
                 <Route path="/" element={<router.home />} />
                 <Route path="/hbti" element={<router.hbti />} />
                 <Route path="/hbti/result" element={<router.hbtiResult />} />
+
+                <Route path="/map" element={<router.kakaomap />} />
             </Routes>
         </>
     );

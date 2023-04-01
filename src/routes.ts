@@ -4,3 +4,5 @@ export const home = lazy(() => import('./pages/Home'));
 
 export const hbti = lazy(() => import('./pages/Hbti'));
 export const hbtiResult = lazy(() => import('./pages/HbtiResult'));
+
+export const kakaomap = lazy(() => import('./pages/KakaoMap'));
