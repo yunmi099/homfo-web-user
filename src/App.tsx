@@ -1,15 +1,16 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import Hbti from './pages/Hbti';
-import HbtiResult from './pages/HbtiResult';
+import * as router from './routes';
+
 function App() {
     return (
         <>
             <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/hbti" element={<Hbti/>} />
-                <Route path="/hbti/result" element={<HbtiResult/>} />
+                <Route path="/" element={<router.home />} />
+                <Route path="/hbti" element={<router.hbti />} />
+                <Route path="/hbti/result" element={<router.hbtiResult />} />
+
+                <Route path="/map" element={<router.kakaomap />} />
             </Routes>
         </>
     );

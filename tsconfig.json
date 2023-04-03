@@ -6,7 +6,10 @@
       "dom.iterable",
       "esnext"
     ],
-    "types": ["vite/client"],
+    "types": [
+      "vite/client",
+      "kakao.maps.d.ts"
+    ],
     "allowJs": false,
     "skipLibCheck": false,
     "esModuleInterop": false,
