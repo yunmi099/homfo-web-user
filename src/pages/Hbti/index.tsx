@@ -61,7 +61,7 @@ function Hbti() {
                     className={styles.progress}
                     style={{ width: `${((count + 1) / 9) * 100}%` }}
                 ></div>
-            </div>
+            </div>                                              
             <div className={styles.questionContainer}>
                 <div>Q{count + 1}.</div>
                 <div>{question}</div>

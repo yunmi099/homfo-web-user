@@ -1,8 +1,7 @@
-import { lazy } from 'react';
+import loadable from '@loadable/component'
 
-export const home = lazy(() => import('./pages/Home'));
 
-export const hbti = lazy(() => import('./pages/Hbti'));
-export const hbtiResult = lazy(() => import('./pages/HbtiResult'));
-
-export const kakaomap = lazy(() => import('./pages/KakaoMap'));
+export const home = loadable(() => import('./pages/Home'));
+export const hbti  = loadable(() => import('./pages/Hbti'));
+export const hbtiResult  = loadable(() => import('./pages/HbtiResult'));
+export const kakaomap  = loadable(() => import('./pages/KakaoMap'));
