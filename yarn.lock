@@ -6502,7 +6502,7 @@ jsonpointer@^5.0.0:
     array-includes "^3.1.5"
     object.assign "^4.1.3"
 
-kakao.maps.d.ts@^0.1.34:
+kakao.maps.d.ts@^0.1.34, kakao.maps.d.ts@^0.1.35:
   version "0.1.35"
   resolved "https://registry.npmjs.org/kakao.maps.d.ts/-/kakao.maps.d.ts-0.1.35.tgz"
   integrity sha512-qBSlE68TmY2y6XS8dea5xoB1boHciV7bm9+MLcIZCsHtB5ohbT8x009rWz1D3mhXag1Si/B5CLqtP+Ka3eNrRA==
