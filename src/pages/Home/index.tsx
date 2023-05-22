@@ -6,9 +6,11 @@ function Home() {
     const navigate = useNavigate();
     return(
     <div style={{width:"100vw", height:"100vh"}}>
+    <div></div>
      <BottomTab/>
     </div>);
     // <div style={{textAlign:"center",width:"100vw", fontSize:30 }} onClick={()=>navigate('/hbti')}>hbti</div>;
 }
+
 
 export default Home;
