@@ -1,0 +1,28 @@
+.container{
+    position: fixed;
+    top:0;
+    left: 0;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: 0;
+    width: 100%;
+    height: 20.6%;
+    background-color: rgba(0,0,0,0);
+    z-index: 99;
+}
+.image{
+    position: fixed;
+    left:5vw;
+    width:3.6vw;
+    height: 2.9vh;
+}
+.title{
+    position: fixed;
+    // left:15vw;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.25em;
+    line-height: 3.3%;
+}
