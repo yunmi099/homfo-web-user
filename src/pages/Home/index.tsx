@@ -3,7 +3,7 @@ import styles from './styles.module.scss';
 import { useNavigate } from 'react-router-dom';
 import BottomTab from '../../components/layout/bottomtabs';
 import SearchBar from './searchBar';
-
+import * as homeIcon from '../../assets/icons/home/homeIcon';
 function Home() {
     const navigate = useNavigate();
     return(
@@ -20,7 +20,7 @@ function Home() {
             <div >자취방 찾자</div>
         </div>
         <div className={styles.areaBox}>
-            <img src="assets/icons/home/areaLinker.png"/>
+            <img src={homeIcon.areaLinker}/>
             <div>자취구역 보기</div>
         </div>
      </div>
