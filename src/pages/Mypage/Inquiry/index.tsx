@@ -8,7 +8,7 @@ function Inquiry() {
     return(
     <div className={styles.container}>
         <Header title="문의하기"/>  
-        {mode ?<inquiry.form /> : <inquiry.list setMode={setMode}/>}
+        {mode ?<inquiry.form setMode={setMode}/> : <inquiry.list setMode={setMode}/>}
     </div>);
 }
 

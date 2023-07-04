@@ -1,0 +1,23 @@
+.textinput{
+    width: 80vw;
+    background-color: transparent;
+    border-color: transparent;
+    line-height: 4.8vh;
+    font-size: 1.2em;
+    font-weight: 400;
+    margin-left: 15px;
+}
+.img {
+    width: 42px;
+    height: 40px;
+}
+.container{
+    display: flex;
+    justify-content: space-between;
+    width: 90vw;
+    height: 5.44vh;
+    border-radius: 40px;
+    position:relative;
+    margin-left: 5vw;
+
+}

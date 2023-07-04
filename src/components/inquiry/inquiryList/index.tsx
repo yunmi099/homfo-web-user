@@ -68,28 +68,28 @@ function InquiryList({setMode} : React.Dispatch<React.SetStateAction<boolean>>) 
       useEffect(()=>{getInquiryList()},[])
     return(
     <div className={styles.container}>
-        {data!==undefined ? data.map((content, key)=>{
+        {data!==undefined ? data.map((content)=>{
             return (       
-            <div style={{margin: 20}}>
+            <div style={{margin: 20}} key={content.errorId}>
                 <div  style={{display:'flex', justifyContent:'space-between'}}>
-                    <div key={key}>
+                    <div>
                         {content.errorTitle}
                     </div>
                     {content.isAnswered===0?<div>
-                        <span>수정/</span>
+                        <span>수정 | </span>
                         <span>삭제</span>
                     </div>:null}
                 </div>
-                <div key={key}>
+                <div>
                     문의일: {formatDate(content.createdAt)}
                 </div>
                 {
                     (content.createdAt === content.updatedAt ? null :             
-                    <div key={key}>
+                    <div>
                         수정일: {formatDate(content.updatedAt)}
                     </div>)
                 }
-                <div key={key}>
+                <div>
                     상태: {content.isAnswered===1?"답변 완료":"답변 준비중"}
                 </div>
                 <InquiryDetail errorId={content.errorId}/>

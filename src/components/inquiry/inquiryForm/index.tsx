@@ -4,7 +4,7 @@ import axios from 'axios';
 import downarrow from '../../../assets/icons/inquiry/downarrow1.png'
 import { SERVER_DEPOLY_URL } from '../../../utils/axios';
 
-function InquiryForm() {
+function InquiryForm({setMode} : React.Dispatch<React.SetStateAction<boolean>>) {
     const [categoryList, setCategoryList] = useState([
         "문의분류2",
         "문의분류test",
@@ -45,6 +45,7 @@ function InquiryForm() {
             alert("내용을 작성해주세요");
         } else {
             submitInquiry(title, category, content);
+            setMode(false);
         }
         
     }
