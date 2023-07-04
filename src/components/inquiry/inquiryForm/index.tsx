@@ -4,13 +4,9 @@ import axios from 'axios';
 import downarrow from '../../../assets/icons/inquiry/downarrow1.png'
 import { SERVER_DEPOLY_URL } from '../../../utils/axios';
 
-function InquiryForm({setMode} : React.Dispatch<React.SetStateAction<boolean>>) {
-    const [categoryList, setCategoryList] = useState([
-        "문의분류2",
-        "문의분류test",
-        "문의분류임당"
-    ]);
-    const [selectedCategory, setSelectedCategory] = useState<string>(categoryList[0]);
+function InquiryForm({ setMode }: { setMode: React.Dispatch<React.SetStateAction<boolean>> }) {
+    const [categoryList, setCategoryList] = useState<Array<string>|undefined>();
+    const [selectedCategory, setSelectedCategory] = useState<string|undefined>();
     const [openCategory, setOpenCategory] = useState<boolean>(false);
     const [title,setTitle] = useState<string>();
     const [content, setContent] = useState<string>();
@@ -21,6 +17,7 @@ function InquiryForm({setMode} : React.Dispatch<React.SetStateAction<boolean>>) 
           .then(async (res) => {
             if (res.status === 200) {
                 setCategoryList(res.data.errorType);
+                setSelectedCategory(res.data.errorType[0])
             }
           })
           .catch((e) => {
@@ -51,17 +48,19 @@ function InquiryForm({setMode} : React.Dispatch<React.SetStateAction<boolean>>) 
     }
     return(
     <div className={styles.container}>
-        <div>제목</div>   
-        <input type="text" maxLength="50" placeholder="제목을 입력해주세요." value={title} onChange={(e)=>setTitle(e.target.value)}/>
-        <div>분류</div>
-        <div style={{display:'flex'}}>
+        <div className={styles.title}>제목</div>   
+        <input className={styles.titleinput} type="text" maxLength="50" placeholder="제목을 입력해주세요." value={title} onChange={(e)=>setTitle(e.target.value)}/>
+            <div className={styles.underline}></div> 
+        <div className={styles.title}>분류</div>
+        <div className={styles.category}>
             <div>{selectedCategory}</div> 
             <img src={downarrow} width={12} height={10} onClick={()=>setOpenCategory(!openCategory)}/>
         </div>
-        {openCategory?categoryList.map((key,index)=>{return<div key={index} onClick={()=>{setSelectedCategory(key);setOpenCategory(false);}}>{key}</div>}):null}
-        <div >내용</div> 
-        <input type="text" maxLength="200" placeholder="내용을 입력해주세요(200자 이내)" value={content} onChange={(e)=>setContent(e.target.value)}/>
-        <button onClick={()=>handleErrorContent(title,selectedCategory,content)}>제출</button>
+        <div className={styles.underline}></div> 
+        {openCategory&&categoryList!==undefined?categoryList.map((key,index)=>{return<div key={index} onClick={()=>{setSelectedCategory(key);setOpenCategory(false);}}>{key}</div>}):null}
+        <div className={styles.title}>내용</div> 
+        <input className={styles.contentinput}type="text" maxLength="200" placeholder="내용을 입력해주세요(200자 이내)" value={content} onChange={(e)=>setContent(e.target.value)}/>
+        <button className={styles.button} onClick={()=>selectedCategory!==undefined&&handleErrorContent(title,selectedCategory,content)}>제출</button>
     </div>);
 }
 

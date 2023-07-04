@@ -24,24 +24,8 @@ interface OriginalData {
     updatedAt: string;
   }
   
-function InquiryList({setMode} : React.Dispatch<React.SetStateAction<boolean>>) {
-    const [data, setData] = useState([
-        { "errorId": 1,
-          "errorTitle": "문의제목입니다.",
-          "isAnswered": 1,
-          "createdAt": "2023-06-25T12:45:21.373Z",
-          "updatedAt": "2023-06-25T12:45:21.373Z"
-
-        },
-          {
-          "errorId": 2,
-          "errorTitle": "문의제목입니다.",
-          "isAnswered": 0,
-          "createdAt": "2023-06-25T12:45:21.373Z",  
-          "updatedAt": "2023-06-30T09:53:33.393Z"
-
-        }
-      ])
+  function InquiryList({ setMode }: { setMode: React.Dispatch<React.SetStateAction<boolean>> }) {
+    const [data, setData] = useState<Array<FilteredData>|undefined>()
       function filterData(data: OriginalData[]): FilteredData[] {
         return data.map(({ errorId, errorTitle, isAnswered, createdAt,updatedAt }) => ({
           errorId,
@@ -70,7 +54,7 @@ function InquiryList({setMode} : React.Dispatch<React.SetStateAction<boolean>>) 
     <div className={styles.container}>
         {data!==undefined ? data.map((content)=>{
             return (       
-            <div style={{margin: 20}} key={content.errorId}>
+            <div style={{margin: 20,backgroundColor:'white'}} key={content.errorId}>
                 <div  style={{display:'flex', justifyContent:'space-between'}}>
                     <div>
                         {content.errorTitle}
@@ -95,7 +79,7 @@ function InquiryList({setMode} : React.Dispatch<React.SetStateAction<boolean>>) 
                 <InquiryDetail errorId={content.errorId}/>
            </div>)
         }):null}
-        <button onClick={()=>setMode(true)}>새 문의 작성하기</button>
+        <button className={styles.button} onClick={()=>setMode(true)}>새 문의 작성하기</button>
     </div>);
 }
 

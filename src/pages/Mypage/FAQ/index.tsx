@@ -22,31 +22,26 @@ interface FAQLIST {
     answer: string;
     isPublic: number;
   }
-const FAQElement = ({content}: FAQLIST)=>{
-    const [open, setOpen] =useState<boolean>(false);
-    return content.isPublic===1&&
-        <div key={content.faqId} style={{margin:15, width:'90vw'}}>
-            <div style={{display:'flex', justifyContent:'space-between'}}>
-                <div>Q.{content.question}</div><img src={openAnwser} width={15} height={10} onClick={()=>setOpen(!open)}/>
-            </div>
-            {open?<div>{content.answer}</div>:null}
+  const FAQElement: React.FC<{ content: FAQLIST }> = ({ content }) => {
+    const [open, setOpen] = useState<boolean>(false);
+  
+    return content.isPublic === 1 ? (
+      <div key={content.faqId} style={{ margin: 15, width: '90vw' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <div>Q.{content.question}</div>
+          <img
+            src={openAnwser}
+            width={15}
+            height={10}
+            onClick={() => setOpen(!open)}
+          />
         </div>
-}
+        {open && <div>{content.answer}</div>}
+      </div>
+    ) : null;
+  };
 function FAQ() {
-    const [faqList,setFaqList] =useState([
-        {
-          "faqId": 1,
-          "question": "요청서는 언제 답변이 오나요?",
-          "answer": "요청서 답변은 2-3일 이내로 옵니다.",
-          "isPublic": 1,
-        },   
-        {
-            "faqId": 2,
-            "question": "회원탈퇴는 어디서하나요?",
-            "answer": "개인정보 > 회원탈퇴 버튼을 누르시면 됩니다.",
-            "isPublic": 1,
-          }
-      ]);
+    const [faqList,setFaqList] =useState<Array<FAQLIST>|undefined>();
 
       function filterData(data: ORIGIN_FAQ[]): FAQLIST[] {
         return data.map(({ faqId, question, answer, isPublic }) => ({
@@ -68,10 +63,10 @@ function FAQ() {
       useEffect(()=>{getFAQlist()},[])
     return(
     <div className={styles.container}>
-        <Header title=""/>    
+        <Header title="FAQ"/>    
         {/* <div>무엇을 찾고 계시나요?</div> */}
         <SearchBar/>
-        {faqList!==undefined&&faqList.map((content)=><FAQElement content={content}/>)}
+        {faqList===undefined?<div>faq가 없습니다.</div>:faqList.map((content)=><FAQElement content={content}/>)}
     </div>);
 }
 
