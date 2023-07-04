@@ -3,7 +3,6 @@ import styles from './styles.module.scss';
 import axios from 'axios';
 import downarrow from '../../../assets/icons/inquiry/downarrow1.png'
 const SERVER_DEPOLY_URL = 'https://dev.ajou-only-five.shop/api/v1';
-const SERVER_TEST_URL = 'https://dev.ajou-only-five.shop';
 
 function InquiryForm() {
     const [categoryList, setCategoryList] = useState([
@@ -18,7 +17,7 @@ function InquiryForm() {
 
     const getCategoryList= async () => {
         await axios
-          .get(`${SERVER_TEST_URL}/errors/type`)
+          .get(`${SERVER_DEPOLY_URL}/errors/type`)
           .then(async (res) => {
             if (res.status === 200) {
                 setCategoryList(res.data.errorType);
@@ -35,7 +34,7 @@ function InquiryForm() {
         data.append('errorTitle', title);
         data.append('errorType', category);
         data.append('errorContent', content);
-        await axios.post(`${SERVER_TEST_URL}/errors`, data).then((res) => {
+        await axios.post(`${SERVER_DEPOLY_URL}/errors`, data).then((res) => {
             console.log(res.data);
           });
     }
