@@ -1,0 +1,19 @@
+@import '/src/utils/utils';
+.container{
+    width: 100vw;
+    height: 100vh;
+    background-color:#F5F5F5;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.button{
+    background-color: $key-color;
+    height: 7.25vh;
+    position: absolute;
+    bottom:0;
+    border-radius: 10px;
+    width: 96vw;
+    color:white;
+    border-color: $key-color;
+}   

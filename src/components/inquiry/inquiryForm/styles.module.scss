@@ -1,0 +1,47 @@
+@import '/src/utils/utils';
+
+.container{
+    width: 100vw;
+    height: 100vh;
+    // background-color: white;
+    display: flex;
+    flex-direction: column;
+}
+.underline{
+    width: 88.4vw;
+    height: 0;
+    margin-left: 5.78vw;
+    border: 1px solid #7E7E7E;
+}
+.title{
+    font-weight: 700;
+    font-size: 1em;
+    margin: 10px;
+}
+.titleinput{
+    width: 88.4vw;
+    background-color: transparent;
+    border-color: transparent;
+    font-size: 0.9em;
+    margin-left: 5.78vw;
+}
+.contentinput{
+    width: 88.4vw;
+    height: 37.5vh;
+    margin-left: 5.78vw;
+}
+.category{
+    width: 88.4vw;
+    margin-left: 5.78vw;
+    display: flex;
+    justify-content: space-between;
+}
+.button{
+    background-color: $key-color;
+    height: 7.25vh;
+    position: absolute;
+    bottom:0;
+    width: 100vw;
+    color:white;
+    border-color: $key-color;
+}   

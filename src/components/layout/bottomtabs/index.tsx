@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './styles.module.scss';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Home, NHome, Map, NMap, Request, NRequest, RequestBox, NRequestBox } from './bottomtab';
+import * as bottomtabIcon from '../../../assets/icons/bottomtab/bottomtab';
 
 function BottomTab() {
   const location = useLocation();
@@ -10,22 +10,22 @@ function BottomTab() {
   const tabData = [
     {
       path: '/',
-      image: location.pathname === '/' ? Home : NHome,
+      image: location.pathname === '/' ? bottomtabIcon.Home : bottomtabIcon.NHome,
       title: '홈',
     },
     {
       path: '/map',
-      image: location.pathname === '/map' ? Map : NMap,
+      image: location.pathname === '/map' ? bottomtabIcon.Map : bottomtabIcon.NMap,
       title: '지도',
     },
     {
       path: '/request',
-      image: location.pathname === '/request' ? Request : NRequest,
+      image: location.pathname === '/request' ? bottomtabIcon.Request :bottomtabIcon.NRequest,
       title: '요청하기',
     },
     {
       path: '/requestbox',
-      image: location.pathname === '/requestbox' ? RequestBox : NRequestBox,
+      image: location.pathname === '/requestbox' ? bottomtabIcon.RequestBox : bottomtabIcon.NRequestBox,
       title: '요청서함',
     },
   ];

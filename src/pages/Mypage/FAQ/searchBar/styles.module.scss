@@ -3,23 +3,20 @@
     background-color: transparent;
     border-color: transparent;
     line-height: 4.8vh;
-    font-size: 1.2em;
     font-weight: 400;
     margin-left: 15px;
 }
 .img {
-    position:absolute;
-    top:1.3vh;
-    left: 81vw;
-    width: 3vh;
-    height: 3vh;
+    width: 30px;
+    height: 30px;
 }
 .container{
+    display: flex;
+    justify-content: space-between;
     width: 90vw;
     height: 5.44vh;
-    background-color: white;
     border-radius: 40px;
-    margin-top: 9vh;
     position:relative;
     margin-left: 5vw;
+
 }

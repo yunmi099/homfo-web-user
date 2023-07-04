@@ -1,13 +1,12 @@
 import React from 'react';
 import styles from './styles.module.scss';
 import { useNavigate } from 'react-router-dom';
-import * as homeIcon from '../../../assets/icons/home/homeIcon';
+import search from '../../../../assets/icons/inquiry/faqsearch.png'
 function SearchBar() {
-    const navigate = useNavigate();
     return(
     <div className={styles.container}>
-         <input className={styles.textinput}/>
-         <img src={homeIcon.search} className={styles.img}/>
+         <input className={styles.textinput} placeholder='검색어를 작성해주세요.'/>
+         <img src={search} className={styles.img}/>
     </div>);
 }
 
