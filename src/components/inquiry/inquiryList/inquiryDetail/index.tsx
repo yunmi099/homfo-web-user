@@ -50,11 +50,17 @@ function InquiryDetail({errorId}: {errorId:number}) {
     return(
     <div>
         <img src={openDetail? closedetail:opendetail} width={20} height={20} style={{marginLeft:"90vw"}} onClick={()=>handleInquiryDetail()}/> 
-        {openDetail && detailContent!==undefined && detailContent.question.isAnswered===1 && 
+        {openDetail && detailContent!==undefined && 
         <div>
-            <div>관리자</div>
-            <div>{detailContent!==undefined&&detailContent.answer.answerContent}</div>
-        </div> }
+            <div>
+                <div>{detailContent.question.errorType}</div>
+                <div>{detailContent.question.errorContent}</div>
+            </div> 
+            {detailContent.question.isAnswered===1&&<div>
+                <div>관리자</div>
+                <div>{detailContent.answer.answerContent}</div>
+            </div> }
+        </div>}
     </div>);
 }
 
