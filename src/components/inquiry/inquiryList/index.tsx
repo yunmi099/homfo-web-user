@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import styles from './styles.module.scss';
 import axios from 'axios';
 import { formatDate } from '../../../utils/getDate';
-const SERVER_DEPOLY_URL = 'https://dev.ajou-only-five.shop/api/v1';
+import InquiryDetail from './inquiryDetail';
+import { SERVER_DEPOLY_URL } from '../../../utils/axios';
 interface OriginalData {
     errorId: number;
     userId: number;
@@ -16,6 +17,7 @@ interface OriginalData {
   }
   
   interface FilteredData {
+    errorId: number;
     errorTitle: string;
     isAnswered: number;
     createdAt: string;
@@ -24,7 +26,7 @@ interface OriginalData {
   
 function InquiryList({setMode} : React.Dispatch<React.SetStateAction<boolean>>) {
     const [data, setData] = useState([
-        {
+        { "errorId": 1,
           "errorTitle": "문의제목입니다.",
           "isAnswered": 1,
           "createdAt": "2023-06-25T12:45:21.373Z",
@@ -32,6 +34,7 @@ function InquiryList({setMode} : React.Dispatch<React.SetStateAction<boolean>>) 
 
         },
           {
+          "errorId": 2,
           "errorTitle": "문의제목입니다.",
           "isAnswered": 1,
           "createdAt": "2023-06-25T12:45:21.373Z",  
@@ -40,7 +43,8 @@ function InquiryList({setMode} : React.Dispatch<React.SetStateAction<boolean>>) 
         }
       ])
       function filterData(data: OriginalData[]): FilteredData[] {
-        return data.map(({ errorTitle, isAnswered, createdAt,updatedAt }) => ({
+        return data.map(({ errorId, errorTitle, isAnswered, createdAt,updatedAt }) => ({
+          errorId,
           errorTitle,
           isAnswered,
           createdAt,
@@ -80,8 +84,9 @@ function InquiryList({setMode} : React.Dispatch<React.SetStateAction<boolean>>) 
                     </div>)
                 }
                 <div key={key}>
-                    상태: {content.isAnswered===1?"답변 준비 중":"답변완료"}
+                    상태: {content.isAnswered===1?"답변 완료":"답변 준비중"}
                 </div>
+                <InquiryDetail errorId={content.errorId}/>
            </div>)
         }):null}
         <button onClick={()=>setMode(true)}>새 문의 작성하기</button>

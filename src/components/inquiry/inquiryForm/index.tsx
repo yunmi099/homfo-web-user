@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 import axios from 'axios';
 import downarrow from '../../../assets/icons/inquiry/downarrow1.png'
-const SERVER_DEPOLY_URL = 'https://dev.ajou-only-five.shop/api/v1';
+import { SERVER_DEPOLY_URL } from '../../../utils/axios';
 
 function InquiryForm() {
     const [categoryList, setCategoryList] = useState([
