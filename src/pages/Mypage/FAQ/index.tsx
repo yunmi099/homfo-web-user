@@ -5,7 +5,8 @@ import Header from '../../../components/layout/header';
 function FAQ() {
     return(
     <div className={styles.container}>
-        <Header title=""/>      
+        <Header title=""/>    
+        <div>무엇을 찾고 계시나요?</div>
     </div>);
 }
 

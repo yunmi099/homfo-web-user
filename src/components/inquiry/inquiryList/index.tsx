@@ -36,7 +36,7 @@ function InquiryList({setMode} : React.Dispatch<React.SetStateAction<boolean>>) 
           {
           "errorId": 2,
           "errorTitle": "문의제목입니다.",
-          "isAnswered": 1,
+          "isAnswered": 0,
           "createdAt": "2023-06-25T12:45:21.373Z",  
           "updatedAt": "2023-06-30T09:53:33.393Z"
 
@@ -71,8 +71,14 @@ function InquiryList({setMode} : React.Dispatch<React.SetStateAction<boolean>>) 
         {data!==undefined ? data.map((content, key)=>{
             return (       
             <div style={{margin: 20}}>
-                <div key={key}>
-                    {content.errorTitle}
+                <div  style={{display:'flex', justifyContent:'space-between'}}>
+                    <div key={key}>
+                        {content.errorTitle}
+                    </div>
+                    {content.isAnswered===0?<div>
+                        <span>수정/</span>
+                        <span>삭제</span>
+                    </div>:null}
                 </div>
                 <div key={key}>
                     문의일: {formatDate(content.createdAt)}

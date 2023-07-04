@@ -46,11 +46,11 @@ function InquiryDetail({errorId}: number) {
     return(
     <div>
         <img src={openDetail? closedetail:opendetail} width={20} height={20} style={{marginLeft:"90vw"}} onClick={()=>handleInquiryDetail()}/> 
-        {openDetail && detailContent!==undefined && detailContent.question.isAnswered===1 ? 
+        {openDetail && detailContent!==undefined && detailContent.question.isAnswered===1 && 
         <div>
             <div>관리자</div>
             <div>{detailContent.answer.answerContent}</div>
-        </div> : null}
+        </div> }
     </div>);
 }
 
