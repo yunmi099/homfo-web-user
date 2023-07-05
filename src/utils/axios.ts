@@ -30,4 +30,4 @@
 //   config.headers['access_token'] = accessToken;
 //   return config;
 // }
-export const SERVER_DEPOLY_URL = 'https://dev.ajou-only-five.shop/api/v1';
+export const SERVER_DEPOLY_URL = 'https://dev.ajou-only-five.shop/api';
