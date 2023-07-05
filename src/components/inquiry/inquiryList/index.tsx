@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from './styles.module.scss';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { formatDate } from '../../../utils/getDate';
 import InquiryDetail from './inquiryDetail';
 import { SERVER_DEPOLY_URL } from '../../../utils/axios';
@@ -36,19 +36,18 @@ interface OriginalData {
         }));
       }
       
-    const getInquiryList= async () => {
+      const getInquiryList = async (): Promise<void> => {
         const id = 2;
-        await axios
-          .get(`${SERVER_DEPOLY_URL}/errors/users/${id}`)
-          .then(async (res) => {
-            if (res.status === 200) {
-                setData(filterData(res.data));
-            }
-          })
-          .catch((e) => {
-            console.log(e);
-          });
+        try {
+          const res: AxiosResponse = await axios.get(`${SERVER_DEPOLY_URL}/errors/users/${id}`);
+          if (res.status === 200) {
+            setData(filterData(res.data));
+          }
+        } catch (e:any) {
+          console.log(e);
+        }
       };
+      
       useEffect(()=>{getInquiryList()},[])
     return(
     <div className={styles.container}>

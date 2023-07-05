@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from 'react';
 import styles from './styles.module.scss';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import opendetail from '../../../../assets/icons/inquiry/downarrow2.png'
 import closedetail from '../../../../assets/icons/inquiry/uparrow1.png'
 import { SERVER_DEPOLY_URL } from '../../../../utils/axios';
@@ -31,18 +31,17 @@ interface DETAIL {
 function InquiryDetail({errorId}: {errorId:number}) {
     const [openDetail,setOpenDetail]=useState<boolean>(false);
     const [detailContent, setDetailContent] =useState<DETAIL|undefined>();
-    const getInquiryDetail= async (id) => {
-        await axios
-          .get(`${SERVER_DEPOLY_URL}/errors/${id}/detail`)
-          .then(async (res) => {
-            if (res.status === 200) {
-                setDetailContent(res.data);
-            }
-          })
-          .catch((e) => {
-            console.log(e);
-          });
+    const getInquiryDetail = async (id: number): Promise<void> => {
+        try {
+          const res: AxiosResponse = await axios.get(`${SERVER_DEPOLY_URL}/errors/${id}/detail`);
+          if (res.status === 200) {
+            setDetailContent(res.data);
+          }
+        } catch (e) {
+          console.log(e);
+        }
       };
+      
     const handleInquiryDetail= ()=>{
         getInquiryDetail(errorId);
         setOpenDetail(!openDetail);

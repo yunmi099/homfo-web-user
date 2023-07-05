@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './styles.module.scss';
 import Header from '../../../components/layout/header';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { SERVER_DEPOLY_URL } from '../../../utils/axios';
 import SearchBar from './searchBar';
 import openAnwser from '../../../assets/icons/inquiry/downarrow3.png'
@@ -48,18 +48,17 @@ function FAQ() {
             faqId, question, answer, isPublic
         }));
       }
-    const getFAQlist= async () => {
-        await axios
-          .get(`${SERVER_DEPOLY_URL}/faq`)
-          .then(async (res) => {
-            if (res.status === 200) {
-                setFaqList(filterData(res.data.faq));
-            }
-          })
-          .catch((e) => {
-            console.log(e);
-          });
+      const getFAQlist = async (): Promise<void> => {
+        try {
+          const res: AxiosResponse = await axios.get(`${SERVER_DEPOLY_URL}/faq`);
+          if (res.status === 200) {
+            setFaqList(filterData(res.data.faq));
+          }
+        } catch (e) {
+          console.log(e);
+        }
       };
+      
       useEffect(()=>{getFAQlist()},[])
     return(
     <div className={styles.container}>
