@@ -10,7 +10,9 @@
 
 # production
 /build
-
+# Ignore package-lock.json and node_modules directory
+package.json
+node_modules
 # misc
 .DS_Store
 .env.local
