@@ -30,7 +30,7 @@ function BottomTab() {
     },
   ];
 
-  const handleClick = (path) => {
+  const handleClick = (path: string) => {
     navigate(path);
   };
 
