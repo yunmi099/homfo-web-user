@@ -10,7 +10,7 @@ function App() {
                 <Route path="/map"Component={router.kakaomap} />
                 <Route path="/mypage"Component={router.mypage} />
                 <Route path="/mypage/setting" Component={router.setting} />
-                <Route path="/mypage/personalinfo" Component={router.setting} />
+                <Route path="/mypage/personalinfo" Component={router.personalInfo} />
                 <Route path="/faq" Component={router.faq} />
                 <Route path="/inquiry" Component={router.inquiry} />
             </Routes>

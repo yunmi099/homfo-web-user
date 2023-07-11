@@ -24,9 +24,8 @@ interface FAQLIST {
   }
   const FAQElement: React.FC<{ content: FAQLIST }> = ({ content }) => {
     const [open, setOpen] = useState<boolean>(false);
-  
     return content.isPublic === 1 ? (
-      <div key={content.faqId} style={{ margin: 15, width: '90vw' }}>
+      <div style={{ margin: 15, width: '90vw' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <div>Q.{content.question}</div>
           <img
@@ -65,7 +64,7 @@ function FAQ() {
         <Header title="FAQ"/>    
         {/* <div>무엇을 찾고 계시나요?</div> */}
         <SearchBar/>
-        {faqList===undefined?<div>faq가 없습니다.</div>:faqList.map((content)=><FAQElement content={content}/>)}
+        {faqList===undefined?<div>faq가 없습니다.</div>:faqList.map((content)=><FAQElement key={content.faqId} content={content}/>)}
     </div>);
 }
 
