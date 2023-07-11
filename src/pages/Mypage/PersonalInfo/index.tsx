@@ -5,7 +5,7 @@ import axios, { AxiosResponse } from 'axios';
 import { SERVER_DEPOLY_URL } from '../../../utils/axios';
 import { formatDate } from '../../../utils/getDate';
 
-interface PersonalInfo {
+interface Personal_Info {
   dateOfBirth: string;
   gender: string;
   hbtiType: null;
@@ -29,11 +29,11 @@ function renderInfo(key: string, value: string, underline?: boolean) {
   }
   
 function PersonalInfo() {
-  const [info, setInfo] = useState<PersonalInfo | undefined>(undefined);
+  const [info, setInfo] = useState<Personal_Info | undefined>(undefined);
 
   const getPersonalInfo = async (id: number): Promise<void> => {
     try {
-      const res: AxiosResponse<PersonalInfo> = await axios.get(`${SERVER_DEPOLY_URL}/users/${id}/info`);
+      const res: AxiosResponse<Personal_Info> = await axios.get(`${SERVER_DEPOLY_URL}/users/${id}/info`);
       if (res.status === 200) {
         setInfo(res.data);
       }

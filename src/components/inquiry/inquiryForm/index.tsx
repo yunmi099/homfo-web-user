@@ -66,9 +66,9 @@ function InquiryForm({ setMode, modify,id, setModify}: { setMode: React.Dispatch
         }
         try {
             if(modify){
+                console.log(data);
                 const res: AxiosResponse = await axios.patch(`${SERVER_DEPOLY_URL}/errors/${id}`, data);
             } else {
-                console.log(data)
                 const res: AxiosResponse = await axios.post(`${SERVER_DEPOLY_URL}/errors`, data);
             }
            
