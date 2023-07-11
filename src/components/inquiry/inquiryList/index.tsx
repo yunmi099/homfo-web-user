@@ -4,6 +4,7 @@ import axios, { AxiosResponse } from 'axios';
 import { formatDate } from '../../../utils/getDate';
 import InquiryDetail from './inquiryDetail';
 import { SERVER_DEPOLY_URL } from '../../../utils/axios';
+
 interface OriginalData {
     errorId: number;
     userId: number;
@@ -24,7 +25,7 @@ interface OriginalData {
     updatedAt: string;
   }
   
-  function InquiryList({ setMode }: { setMode: React.Dispatch<React.SetStateAction<boolean>> }) {
+  function InquiryList({ setMode, setModify ,setId }: { setMode: React.Dispatch<React.SetStateAction<boolean>>, setModify:React.Dispatch<React.SetStateAction<boolean>>,setId:React.Dispatch<React.SetStateAction<number>>  }) {
     const [data, setData] = useState<Array<FilteredData>|undefined>()
       function filterData(data: OriginalData[]): FilteredData[] {
         return data.map(({ errorId, errorTitle, isAnswered, createdAt,updatedAt }) => ({
@@ -59,7 +60,7 @@ interface OriginalData {
                         {content.errorTitle}
                     </div>
                     {content.isAnswered===0?<div>
-                        <span>수정 | </span>
+                        <span onClick={()=>{setMode(true);setModify(true);setId(content.errorId)}}>수정 | </span>
                         <span>삭제</span>
                     </div>:null}
                 </div>
