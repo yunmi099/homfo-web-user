@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './styles.module.scss';
 import axios, { AxiosResponse } from 'axios';
-import { formatDate } from '../../../utils/getDate';
+import { formatDateTime } from '../../../utils/getDate';
 import InquiryDetail from './inquiryDetail';
 import { SERVER_DEPOLY_URL } from '../../../utils/axios';
 
@@ -65,12 +65,12 @@ interface OriginalData {
                     </div>:null}
                 </div>
                 <div>
-                    문의일: {formatDate(content.createdAt)}
+                    문의일: {formatDateTime(content.createdAt)}
                 </div>
                 {
                     (content.createdAt === content.updatedAt ? null :             
                     <div>
-                        수정일: {formatDate(content.updatedAt)}
+                        수정일: {formatDateTime(content.updatedAt)}
                     </div>)
                 }
                 <div>

@@ -1,3 +1,5 @@
+@import '/src/utils/utils';
+ 
 .container{
     width: 100vw;
     height: 100vh;
@@ -6,3 +8,21 @@
     align-items: center;
     flex-direction: column;
 }
+.key{
+    font-size: 18px;
+    font-weight: 700;
+    margin:10px;
+}
+.value{
+    font-size: 15px;
+    margin:12px;
+}
+.button{
+    background-color: $key-color;
+    height: 7.25vh;
+    position: absolute;
+    bottom:0;
+    width: 100vw;
+    color:white;
+    border-color: $key-color;
+}   
