@@ -3,29 +3,7 @@ import styles from './styles.module.scss';
 import axios, {AxiosResponse} from 'axios';
 import downarrow from '../../../assets/icons/inquiry/downarrow1.png'
 import { SERVER_DEPOLY_URL } from '../../../utils/axios';
-interface QUESTION{
-    errorId: number;
-    userId: number;
-    errorTitle: string;
-    errorContent: string;
-    errorType: string;
-    status : string;
-    isAnswered:number;
-    createdAt: string;
-    updatedAt: string;
-}
-interface ANSWER{
-    answerId: number;
-    answererId: number;
-    answerContent: string;
-    answeredAt:string;
-    updatedAt: string;
-    status: string;
-}
-interface DETAIL {
-    question: QUESTION;
-    answer: ANSWER;
-  }
+import '../../../store/type/inquiry&faq/interface';
 function InquiryForm({ setMode, modify,id, setModify}: { setMode: React.Dispatch<React.SetStateAction<boolean>>, setModify:React.Dispatch<React.SetStateAction<boolean>>,modify: boolean , id:number}) {
     const [categoryList, setCategoryList] = useState<Array<string>|undefined>();
     const [selectedCategory, setSelectedCategory] = useState<string|undefined>();

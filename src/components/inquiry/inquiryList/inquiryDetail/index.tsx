@@ -4,30 +4,8 @@ import axios, { AxiosResponse } from 'axios';
 import opendetail from '../../../../assets/icons/inquiry/downarrow2.png'
 import closedetail from '../../../../assets/icons/inquiry/uparrow1.png'
 import { SERVER_DEPOLY_URL } from '../../../../utils/axios';
-interface QUESTION{
-    errorId: number;
-    userId: number;
-    errorTitle: string;
-    errorContent: string;
-    errorType: string;
-    status : string;
-    isAnswered:number;
-    createdAt: string;
-    updatedAt: string;
-}
-interface ANSWER{
-    answerId: number;
-    answererId: number;
-    answerContent: string;
-    answeredAt:string;
-    updatedAt: string;
-    status: string;
-}
-interface DETAIL {
-    question: QUESTION;
-    answer: ANSWER;
-  }
-  
+import '../../../../store/type/inquiry&faq/interface'
+
 function InquiryDetail({errorId}: {errorId:number}) {
     const [openDetail,setOpenDetail]=useState<boolean>(false);
     const [detailContent, setDetailContent] =useState<DETAIL|undefined>();

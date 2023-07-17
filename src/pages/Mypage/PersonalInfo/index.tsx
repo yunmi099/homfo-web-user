@@ -4,19 +4,7 @@ import Header from '../../../components/layout/header';
 import axios, { AxiosResponse } from 'axios';
 import { SERVER_DEPOLY_URL } from '../../../utils/axios';
 import { formatDate } from '../../../utils/getDate';
-
-interface Personal_Info {
-  dateOfBirth: string;
-  gender: string;
-  hbtiType: null;
-  job: string;
-  nickName: string;
-  refreshToken: null;
-  status: string;
-  userAccount: string;
-  userId: number;
-  userPhoneNum: string;
-}
+import '../../../store/type/memberInfo/interface'
 function renderInfo(key: string, value: string, underline?: boolean) {
     return (
       <div>

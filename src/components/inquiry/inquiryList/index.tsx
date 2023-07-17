@@ -4,27 +4,7 @@ import axios, { AxiosResponse } from 'axios';
 import { formatDateTime } from '../../../utils/getDate';
 import InquiryDetail from './inquiryDetail';
 import { SERVER_DEPOLY_URL } from '../../../utils/axios';
-
-interface OriginalData {
-    errorId: number;
-    userId: number;
-    errorTitle: string;
-    errorContent: string;
-    errorType: string;
-    status: string;
-    isAnswered: number;
-    createdAt: string;
-    updatedAt: string;
-  }
-  
-  interface FilteredData {
-    errorId: number;
-    errorTitle: string;
-    isAnswered: number;
-    createdAt: string;
-    updatedAt: string;
-  }
-  
+import '../../../store/type/inquiry&faq/interface'
   function InquiryList({ setMode, setModify ,setId }: { setMode: React.Dispatch<React.SetStateAction<boolean>>, setModify:React.Dispatch<React.SetStateAction<boolean>>,setId:React.Dispatch<React.SetStateAction<number>>  }) {
     const [data, setData] = useState<Array<FilteredData>|undefined>()
       function filterData(data: OriginalData[]): FilteredData[] {
