@@ -5,6 +5,7 @@ import { formatDateTime } from '../../../utils/getDate';
 import InquiryDetail from './inquiryDetail';
 import { SERVER_DEPOLY_URL } from '../../../utils/axios';
 import '../../../store/type/inquiry&faq/interface'
+import { FilteredData, OriginalData } from '../../../store/type/inquiry&faq/interface';
   function InquiryList({ setMode, setModify ,setId }: { setMode: React.Dispatch<React.SetStateAction<boolean>>, setModify:React.Dispatch<React.SetStateAction<boolean>>,setId:React.Dispatch<React.SetStateAction<number>>  }) {
     const [data, setData] = useState<Array<FilteredData>|undefined>()
       function filterData(data: OriginalData[]): FilteredData[] {

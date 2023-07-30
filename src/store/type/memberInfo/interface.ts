@@ -1,4 +1,5 @@
-interface Personal_Info {
+export {type PersonalInfo};
+interface PersonalInfo  {
     dateOfBirth: string;
     gender: string;
     hbtiType: null;

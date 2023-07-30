@@ -1,3 +1,4 @@
+export { type FAQLIST, type QUESTION, type ANSWER, type DETAIL, type OriginalData , type FilteredData, type ORIGIN_FAQ };
 interface QUESTION{
     errorId: number;
     userId: number;
@@ -32,7 +33,6 @@ interface OriginalData {
     createdAt: string;
     updatedAt: string;
   }
-  
 interface FilteredData {
     errorId: number;
     errorTitle: string;
@@ -50,7 +50,6 @@ interface ORIGIN_FAQ {
     createdAt: string;
     updatedAt: string;
   }
-  
 interface FAQLIST {
     faqId: number;
     question: string;
