@@ -47,8 +47,12 @@ function PersonalInfoPage() {
         setMessage("사용가능한 닉네임입니다.")
         setColor("blue")}
     } catch (e) {
-      setMessage("중복된 닉네임입니다.")
-      setColor("red");
+      if (nickName.length<8||nickName.length>15){
+        setColor("red");
+      } else {
+        setMessage("중복된 닉네임입니다.")
+        setColor("red");
+      }
     }
   }
   useEffect(() => {
@@ -84,7 +88,7 @@ function PersonalInfoPage() {
               <div className={styles.key} >닉네임</div>
               <div style={{display:'flex', justifyContent:'space-between'}}>
                 <input className={styles.value} type="text" placeholder={pastInfo.nickName} value={nickName} onChange={(e)=>modifyData("nickName", e.target.value)}/>
-                <button onClick={()=>doubleCheck()} >중복확인</button>
+                <button onClick={()=>doubleCheck()} >확인</button>
               </div>
               <div className={styles.underline}></div>
               <div className={styles.value} style={{fontSize:12,color:color}}>{message}</div>
