@@ -6,6 +6,7 @@ import { SERVER_DEPOLY_URL } from '../../../utils/axios';
 import { formatDate } from '../../../utils/getDate';
 import {PersonalInfo} from '../../../store/type/memberInfo/interface';
 import DateScrollPicker from './DateScrollPicker';
+
 function PersonalInfoPage() {
   const [pastInfo, setPastInfo] = useState<PersonalInfo>({
     dateOfBirth: "",
@@ -40,7 +41,7 @@ function PersonalInfoPage() {
   };
 
   useEffect(() => {
-    getPersonalInfo(6);
+    getPersonalInfo(2);
   }, []);
 
   const fetchModityInfo = async ()=>{
@@ -54,8 +55,6 @@ function PersonalInfoPage() {
       console.log(e);
     }
   }
- const handleCancel=()=>{}
- const handleSelect=()=>{}
   return (
     <div className={styles.container}>
       <Header title="개인정보"/>
@@ -124,10 +123,9 @@ function PersonalInfoPage() {
 
           <div className={styles.blockUnit}>
             <div className={styles.key}>생년월일</div>
-            <div className={styles.value}>{formatDate(dateOfBirth)}</div>
-            <DateScrollPicker />
+            <DateScrollPicker dateOfBirth={dateOfBirth} setDateOfBirth={setInfo}/>
+            <div className={styles.underline}></div>
           </div>
-          <div className={styles.underline}></div>
         </div>
         )}
       <button className={styles.button} onClick={()=>fetchModityInfo()}>수정하기</button>
