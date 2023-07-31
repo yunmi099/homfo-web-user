@@ -3,7 +3,6 @@ import styles from './styles.module.scss';
 import Header from '../../../components/layout/header';
 import axios, { AxiosResponse } from 'axios';
 import { SERVER_DEPOLY_URL } from '../../../utils/axios';
-import { formatDate } from '../../../utils/getDate';
 import {PersonalInfo} from '../../../store/type/memberInfo/interface';
 import DateScrollPicker from './DateScrollPicker';
 
@@ -80,7 +79,7 @@ function PersonalInfoPage() {
 
           <div className={styles.blockUnit}>
               <div className={styles.key}>비밀번호</div>
-              <button style={{marginLeft:"86%"}}>재설정</button>
+              <button style={{marginLeft:"85%"}}>재설정</button>
               <div className={styles.underline}></div>
           </div>
       

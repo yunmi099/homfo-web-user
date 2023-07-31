@@ -12,7 +12,11 @@ interface DatePickerProps{
   }>>;
 }
 const DateScrollPicker: React.FC<DatePickerProps> =({dateOfBirth, setDateOfBirth}) => {
-  const [date, setDate] = useState(new Date());
+  const todayDate = new Date();
+  const year = todayDate.getFullYear();
+  const adultYear = year - 19;
+  const maxDate = new Date(adultYear, 11, 31);
+
   const [isOpen, setIsOpen] = useState(false);
   const [device, setDevice] = useState("");
   
@@ -34,7 +38,13 @@ const DateScrollPicker: React.FC<DatePickerProps> =({dateOfBirth, setDateOfBirth
   };
 
   const handleSelect = (date: Date) => {
-    setDate(date);
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    setDateOfBirth((prevFormData) => ({
+      ...prevFormData,
+      "dateOfBirth": `${year}-${month}-${day}`,
+    }));
     setIsOpen(false);
   };
 
@@ -42,8 +52,9 @@ const DateScrollPicker: React.FC<DatePickerProps> =({dateOfBirth, setDateOfBirth
   return (<>
       <div onClick={()=>handleClick()}>{formatDate(dateOfBirth)}</div> 
       <DatePicker
-        value={date}
+        value={new Date(dateOfBirth)}
         isOpen={isOpen}
+        max={maxDate}
         onSelect={handleSelect}
         onCancel={handleCancel}
         isPopup={true}
