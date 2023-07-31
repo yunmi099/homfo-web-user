@@ -18,9 +18,12 @@ const ModifyPassword = ()=>{
       // 영문 대/소문자, 숫자, 특수 기호를 모두 포함하는 정규표현식
     const pattern = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/;
     useEffect(()=>{
-        if (newPassword.length<8 || newPassword.length>15){
+        if ((0< newPassword.length&&newPassword.length<8) || newPassword.length>15){
             onChangeMessage("errorMessage", "영문, 숫자, 특수기호를 포함하여 8~15글자의 비밀번호를 입력해주세요.");
             setColor('#777777');
+        } else if (newPassword.length === 0){
+            console.log(message.errorMessage)
+            onChangeMessage("errorMessage", "");
         } else {
             if (pattern.test(newPassword)){
                 onChangeMessage("errorMessage","사용가능한 비밀번호 입니다.");
