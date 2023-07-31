@@ -44,12 +44,16 @@ function PersonalInfoPage() {
   }, []);
 
   const fetchModityInfo = async ()=>{
-    let id = 7;
-    const data = {
-
-    };
     try {
-        const res: AxiosResponse = await axios.patch(`${SERVER_DEPOLY_URL}/errors/${id}`, data);
+      let id = 2
+      let data;
+      if(updateInfo.nickName===""){
+        data = {...updateInfo, nickName: pastInfo.nickName}
+      } else {
+        data = updateInfo;
+      }
+      const res: AxiosResponse = await axios.patch(`${SERVER_DEPOLY_URL}/users/${id}/info`, data);
+      console.log(res.data);
     } catch (e: any) {
       console.log(e);
     }
@@ -63,7 +67,7 @@ function PersonalInfoPage() {
               <div className={styles.key} >닉네임</div>
               <div style={{display:'flex', justifyContent:'space-between'}}>
                 <input className={styles.value} type="text" placeholder={pastInfo.nickName} value={nickName} onChange={(e)=>modifyData("nickName", e.target.value)}/>
-                <button>수정</button>
+                <button>중복확인</button>
               </div>
               <div className={styles.underline}></div>
               <div className={styles.value}>영문(대소문자가능),숫자,한글 가능 8~15글자<br/>닉네임을 입력해주세요.</div>
