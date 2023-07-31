@@ -5,23 +5,7 @@ import axios, { AxiosResponse } from 'axios';
 import { SERVER_DEPOLY_URL } from '../../../utils/axios';
 import SearchBar from './searchBar';
 import openAnwser from '../../../assets/icons/inquiry/downarrow3.png'
-interface ORIGIN_FAQ {
-    faqId: number;
-    writerId: number;
-    question: string;
-    answer: string;
-    isPublic: number;
-    status: string;
-    createdAt: string;
-    updatedAt: string;
-  }
-  
-interface FAQLIST {
-    faqId: number;
-    question: string;
-    answer: string;
-    isPublic: number;
-  }
+import {FAQLIST, ORIGIN_FAQ} from '../../../store/type/inquiry&faq/interface'
   const FAQElement: React.FC<{ content: FAQLIST }> = ({ content }) => {
     const [open, setOpen] = useState<boolean>(false);
     return content.isPublic === 1 ? (
