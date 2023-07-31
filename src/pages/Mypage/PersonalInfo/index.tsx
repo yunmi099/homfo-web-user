@@ -23,6 +23,8 @@ function PersonalInfoPage() {
   const [detailJob, setDetailJob] = useState<string>("");
   const {nickName, gender, job, dateOfBirth} = updateInfo;
   const [numberReset, setNumberReset] = useState(false);
+  const [message, setMessage] = useState<string>("영문(대소문자가능),숫자,한글 가능 8~15글자\n닉네임을 입력해주세요.");
+  const [color, setColor]= useState<string>('black');
   const modifyData = (key: string, value:string)=>{
     setInfo((prev)=>({...updateInfo, [key]:value}))
   }
@@ -38,11 +40,26 @@ function PersonalInfoPage() {
       console.log(e);
     }
   };
-
+  const doubleCheck = async (): Promise<void> => {
+    try {
+      const res: AxiosResponse<PersonalInfo> = await axios.get(`${SERVER_DEPOLY_URL}/users/auth/duplicate/nickname/${nickName}`);
+      if (res.status === 200) {
+        setMessage("사용가능한 닉네임입니다.")
+        setColor("blue")}
+    } catch (e) {
+      setMessage("중복된 닉네임입니다.")
+      setColor("red");
+    }
+  }
   useEffect(() => {
     getPersonalInfo(2);
   }, []);
-
+ useEffect(() => {
+    if (nickName===""){
+      setMessage("영문(대소문자가능),숫자,한글 가능 8~15글자\n닉네임을 입력해주세요.");
+      setColor('black');
+    };
+  }, [nickName]);
   const fetchModityInfo = async ()=>{
     try {
       let id = 2
@@ -67,10 +84,10 @@ function PersonalInfoPage() {
               <div className={styles.key} >닉네임</div>
               <div style={{display:'flex', justifyContent:'space-between'}}>
                 <input className={styles.value} type="text" placeholder={pastInfo.nickName} value={nickName} onChange={(e)=>modifyData("nickName", e.target.value)}/>
-                <button>중복확인</button>
+                <button onClick={()=>doubleCheck()} >중복확인</button>
               </div>
               <div className={styles.underline}></div>
-              <div className={styles.value}>영문(대소문자가능),숫자,한글 가능 8~15글자<br/>닉네임을 입력해주세요.</div>
+              <div className={styles.value} style={{fontSize:12,color:color}}>{message}</div>
           </div>
       
 
