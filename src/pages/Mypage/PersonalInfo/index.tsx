@@ -24,7 +24,7 @@ function PersonalInfoPage() {
   const [detailJob, setDetailJob] = useState<string>("");
   const {nickName, gender, job, dateOfBirth} = updateInfo;
   const [numberReset, setNumberReset] = useState(false);
-  const [message, setMessage] = useState<string>("영문(대소문자가능),숫자,한글 가능 8~15글자\n닉네임을 입력해주세요.");
+  const [message, setMessage] = useState<string>("닉네임을 입력해주세요.\n 영문(대소문자가능),숫자,한글로 15글자이내로 입력해주세요.");
   const [color, setColor]= useState<string>('black');
   const modifyData = (key: string, value:string)=>{
     setInfo((prev)=>({...updateInfo, [key]:value}))
@@ -53,19 +53,17 @@ function PersonalInfoPage() {
     }
   }
   const handleNicknameCheck = ()=>{
-    if (nickName.length<8||nickName.length>15){
-      setColor("red");
-    } else {
+    if(nickName.length>0){
       doubleCheck();
     }
   }
-
   useEffect(() => {
     getPersonalInfo(2);
   }, []);
+
  useEffect(() => {
     if (nickName===""){
-      setMessage("영문(대소문자가능),숫자,한글 가능 8~15글자\n닉네임을 입력해주세요.");
+      setMessage("닉네임을 입력해주세요.\n 영문(대소문자가능),숫자,한글로 15글자이내로 입력해주세요.");
       setColor('black');
     };
   }, [nickName]);
@@ -90,10 +88,10 @@ function PersonalInfoPage() {
       {pastInfo && (
         <div className={styles.modifyBox}>
           <div className={styles.blockUnit}>
-              <div className={styles.key} >닉네임</div>
+              <div className={styles.key}>닉네임</div>
               <div style={{display:'flex', justifyContent:'space-between'}}>
-                <input className={styles.value} type="text" placeholder={pastInfo.nickName} value={nickName} onChange={(e)=>modifyData("nickName", e.target.value)}/>
-                <button onClick={()=>handleNicknameCheck()} >확인</button>
+                <input className={styles.value} type="text" maxLength={15} placeholder={pastInfo.nickName} value={nickName} onChange={(e)=>modifyData("nickName", e.target.value)}/>
+                <button onClick={()=>handleNicknameCheck()}>중복 확인</button>
               </div>
               <div className={styles.underline}></div>
               <div className={styles.value} style={{fontSize:12,color:color}}>{message}</div>
@@ -131,7 +129,7 @@ function PersonalInfoPage() {
                 <option value="주부">주부</option>
                 <option value="기타">기타</option>
                 </select>
-              {job === '기타' && <input className={styles.value} placeholder="20자 이내로 작성해주세요" maxLength={20} value={detailJob} onChange={(e)=>setDetailJob(e.target.value)}/>}
+              {job === '기타' && <input className={styles.value} placeholder="15자 이내로 작성해주세요" maxLength={15} value={detailJob} onChange={(e)=>setDetailJob(e.target.value)}/>}
               <div className={styles.underline}></div>
           </div>
    
