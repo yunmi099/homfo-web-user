@@ -3,7 +3,7 @@
 .container{
     width: 100vw;
     height: 100vh;
-    background-color:#F5F5F5;
+    background-color:white;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -31,7 +31,6 @@
     font-size: 15px;
     border: 0px;
     white-space: pre-line;
-    background-color:#F5F5F5;
 }
 .button{
     background-color: $key-color;
@@ -42,9 +41,3 @@
     color:white;
     border-color: $key-color;
 }   
-.textButton{
-    font-size: 13px;
-    margin-top: 20px;
-    text-decoration: underline;
-    color:#6D6D6D;
-}
