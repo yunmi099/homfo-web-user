@@ -3,7 +3,7 @@
 .container{
     width: 100vw;
     height: 100vh;
-    background-color:#F5F5F5;
+    background-color:white;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -30,8 +30,7 @@
     margin-top: 10px;
     font-size: 15px;
     border: 0px;
-    white-space: nowrap;
-    background-color:#F5F5F5;
+    white-space: pre-line;
 }
 .button{
     background-color: $key-color;

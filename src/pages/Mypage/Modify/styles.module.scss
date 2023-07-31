@@ -1,0 +1,39 @@
+.container{
+    width: 100vw;
+    height: 100vh;
+    background-color:white;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.inputBox{
+    display: flex;
+    margin-top: 10vh;
+    align-items: center;
+    flex-direction: column;
+}
+.input{
+    width: 88vw;
+    height: 5vh;
+    color: #D3D3D3;
+    margin:2px;
+    border:1px solid;
+    border-color: #D3D3D3;
+}
+
+.button{
+    color:white;
+    font-weight: 700;
+    font-size:1em;
+    margin-top: 5vh;
+    width: 89vw;
+    height: 5vh;
+    background: linear-gradient(180deg, #842CFF 0%, #7674F5 100%);
+    border:0px;
+}
+.textButton{
+    font-size: 13px;
+    margin-top: 13px;
+    text-decoration: underline;
+    color:#6D6D6D;
+}

@@ -5,8 +5,9 @@ import axios, { AxiosResponse } from 'axios';
 import { SERVER_DEPOLY_URL } from '../../../utils/axios';
 import {PersonalInfo} from '../../../store/type/memberInfo/interface';
 import DateScrollPicker from './DateScrollPicker';
-
+import { useNavigate } from 'react-router-dom';
 function PersonalInfoPage() {
+  const navigate = useNavigate();
   const [pastInfo, setPastInfo] = useState<PersonalInfo>({
     dateOfBirth: "",
     gender: "",
@@ -23,6 +24,8 @@ function PersonalInfoPage() {
   const [detailJob, setDetailJob] = useState<string>("");
   const {nickName, gender, job, dateOfBirth} = updateInfo;
   const [numberReset, setNumberReset] = useState(false);
+  const [message, setMessage] = useState<string>("닉네임을 입력해주세요.\n 영문(대소문자가능),숫자,한글로 15글자이내로 입력해주세요.");
+  const [color, setColor]= useState<string>('black');
   const modifyData = (key: string, value:string)=>{
     setInfo((prev)=>({...updateInfo, [key]:value}))
   }
@@ -38,11 +41,32 @@ function PersonalInfoPage() {
       console.log(e);
     }
   };
-
+  const doubleCheck = async (): Promise<void> => {
+    try {
+      const res: AxiosResponse<PersonalInfo> = await axios.get(`${SERVER_DEPOLY_URL}/users/auth/duplicate/nickname/${nickName}`);
+      if (res.status === 200) {
+        setMessage("사용가능한 닉네임입니다.")
+        setColor("green")}
+    } catch (e) {
+        setMessage("중복된 닉네임입니다.")
+        setColor("red");
+    }
+  }
+  const handleNicknameCheck = ()=>{
+    if(nickName.length>0){
+      doubleCheck();
+    }
+  }
   useEffect(() => {
     getPersonalInfo(2);
   }, []);
 
+ useEffect(() => {
+    if (nickName===""){
+      setMessage("닉네임을 입력해주세요.\n 영문(대소문자가능),숫자,한글로 15글자이내로 입력해주세요.");
+      setColor('black');
+    };
+  }, [nickName]);
   const fetchModityInfo = async ()=>{
     try {
       let id = 2
@@ -64,29 +88,26 @@ function PersonalInfoPage() {
       {pastInfo && (
         <div className={styles.modifyBox}>
           <div className={styles.blockUnit}>
-              <div className={styles.key} >닉네임</div>
+              <div className={styles.key}>닉네임</div>
               <div style={{display:'flex', justifyContent:'space-between'}}>
-                <input className={styles.value} type="text" placeholder={pastInfo.nickName} value={nickName} onChange={(e)=>modifyData("nickName", e.target.value)}/>
-                <button>중복확인</button>
+                <input className={styles.value} type="text" maxLength={15} placeholder={pastInfo.nickName} value={nickName} onChange={(e)=>modifyData("nickName", e.target.value)}/>
+                <button onClick={()=>handleNicknameCheck()}>중복 확인</button>
               </div>
               <div className={styles.underline}></div>
-              <div className={styles.value}>영문(대소문자가능),숫자,한글 가능 8~15글자<br/>닉네임을 입력해주세요.</div>
+              <div className={styles.value} style={{fontSize:12,color:color}}>{message}</div>
           </div>
       
-
           <div className={styles.blockUnit}>
               <div className={styles.key}>아이디</div>
               <div className={styles.value}>{pastInfo.userAccount}</div>
               <div className={styles.underline}></div>
           </div>
        
-
           <div className={styles.blockUnit}>
               <div className={styles.key}>비밀번호</div>
-              <button style={{marginLeft:"85%"}}>재설정</button>
+              <button style={{marginLeft:"85%"}} onClick={()=>navigate('/user/password')}>재설정</button>
               <div className={styles.underline}></div>
           </div>
-      
 
           <div className={styles.blockUnit}>
               <div className={styles.key}>성별</div>
@@ -97,7 +118,6 @@ function PersonalInfoPage() {
               <div className={styles.underline}></div>
           </div>
       
-
           <div className={styles.blockUnit}>
               <div className={styles.key}>직업</div>
               <div className={styles.value}>{pastInfo.job}</div>
@@ -109,16 +129,15 @@ function PersonalInfoPage() {
                 <option value="주부">주부</option>
                 <option value="기타">기타</option>
                 </select>
-              {job === '기타' && <input className={styles.value} placeholder="20자 이내로 작성해주세요" maxLength={20} value={detailJob} onChange={(e)=>setDetailJob(e.target.value)}/>}
+              {job === '기타' && <input className={styles.value} placeholder="15자 이내로 작성해주세요" maxLength={15} value={detailJob} onChange={(e)=>setDetailJob(e.target.value)}/>}
               <div className={styles.underline}></div>
           </div>
    
-
           <div className={styles.blockUnit}>
             <div className={styles.key}>전화번호</div>
             <div style={{display:'flex', justifyContent:'space-between'}}>
                 <div className={styles.value}>{pastInfo.userPhoneNum}</div> 
-                <button onClick={()=>setNumberReset(true)}>재설정</button>
+                <button onClick={()=>{setNumberReset(true);navigate('/user/phonenumber')}}>재설정</button>
             </div>
             <div className={styles.underline}></div>
           </div>   
