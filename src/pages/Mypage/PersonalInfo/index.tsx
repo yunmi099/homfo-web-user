@@ -5,8 +5,9 @@ import axios, { AxiosResponse } from 'axios';
 import { SERVER_DEPOLY_URL } from '../../../utils/axios';
 import {PersonalInfo} from '../../../store/type/memberInfo/interface';
 import DateScrollPicker from './DateScrollPicker';
-
+import { useNavigate } from 'react-router-dom';
 function PersonalInfoPage() {
+  const navigate = useNavigate();
   const [pastInfo, setPastInfo] = useState<PersonalInfo>({
     dateOfBirth: "",
     gender: "",
@@ -45,16 +46,20 @@ function PersonalInfoPage() {
       const res: AxiosResponse<PersonalInfo> = await axios.get(`${SERVER_DEPOLY_URL}/users/auth/duplicate/nickname/${nickName}`);
       if (res.status === 200) {
         setMessage("사용가능한 닉네임입니다.")
-        setColor("blue")}
+        setColor("green")}
     } catch (e) {
-      if (nickName.length<8||nickName.length>15){
-        setColor("red");
-      } else {
         setMessage("중복된 닉네임입니다.")
         setColor("red");
-      }
     }
   }
+  const handleNicknameCheck = ()=>{
+    if (nickName.length<8||nickName.length>15){
+      setColor("red");
+    } else {
+      doubleCheck();
+    }
+  }
+
   useEffect(() => {
     getPersonalInfo(2);
   }, []);
@@ -88,26 +93,23 @@ function PersonalInfoPage() {
               <div className={styles.key} >닉네임</div>
               <div style={{display:'flex', justifyContent:'space-between'}}>
                 <input className={styles.value} type="text" placeholder={pastInfo.nickName} value={nickName} onChange={(e)=>modifyData("nickName", e.target.value)}/>
-                <button onClick={()=>doubleCheck()} >확인</button>
+                <button onClick={()=>handleNicknameCheck()} >확인</button>
               </div>
               <div className={styles.underline}></div>
               <div className={styles.value} style={{fontSize:12,color:color}}>{message}</div>
           </div>
       
-
           <div className={styles.blockUnit}>
               <div className={styles.key}>아이디</div>
               <div className={styles.value}>{pastInfo.userAccount}</div>
               <div className={styles.underline}></div>
           </div>
        
-
           <div className={styles.blockUnit}>
               <div className={styles.key}>비밀번호</div>
-              <button style={{marginLeft:"85%"}}>재설정</button>
+              <button style={{marginLeft:"85%"}} onClick={()=>navigate('/user/password')}>재설정</button>
               <div className={styles.underline}></div>
           </div>
-      
 
           <div className={styles.blockUnit}>
               <div className={styles.key}>성별</div>
@@ -118,7 +120,6 @@ function PersonalInfoPage() {
               <div className={styles.underline}></div>
           </div>
       
-
           <div className={styles.blockUnit}>
               <div className={styles.key}>직업</div>
               <div className={styles.value}>{pastInfo.job}</div>
@@ -134,12 +135,11 @@ function PersonalInfoPage() {
               <div className={styles.underline}></div>
           </div>
    
-
           <div className={styles.blockUnit}>
             <div className={styles.key}>전화번호</div>
             <div style={{display:'flex', justifyContent:'space-between'}}>
                 <div className={styles.value}>{pastInfo.userPhoneNum}</div> 
-                <button onClick={()=>setNumberReset(true)}>재설정</button>
+                <button onClick={()=>{setNumberReset(true);navigate('/user/phonenumber')}}>재설정</button>
             </div>
             <div className={styles.underline}></div>
           </div>   
