@@ -11,10 +11,8 @@ function AccountInfoPage() {
   const [pastInfo, setPastInfo] = useState<PersonalInfo>({
     dateOfBirth: "",
     gender: "",
-    hbtiType: null,
     job: "",
     nickName: "",
-    refreshToken: null,
     status: "",
     userAccount: "",
     userId: 0,
@@ -41,7 +39,7 @@ function AccountInfoPage() {
   useEffect(() => {
     getPersonalInfo(2);
   }, []);
-  
+
   const doubleCheck = async (nickname: string): Promise<void> => {
     try {
       const res: AxiosResponse<PersonalInfo> = await axios.get(`${SERVER_DEPOLY_URL}/users/auth/duplicate/nickname/${nickname}`);
@@ -70,15 +68,10 @@ const regex = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\|]/;
   }
  }, [debouncedNickname]);
 
-  const fetchModifyInfo = async ()=>{
+  const fetchModifyInfo = async (data: {})=>{
     try {
       let id = 2
-      let data;
-      if(updateInfo.nickName===""){
-        data = {...updateInfo, nickName: pastInfo.nickName}
-      } else {
-        data = updateInfo;
-      }
+      console.log(data)
       const res: AxiosResponse = await axios.patch(`${SERVER_DEPOLY_URL}/users/${id}/info`, data);
       console.log(res.data);
     } catch (e: any) {
@@ -99,7 +92,8 @@ const regex = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\|]/;
               <div className={styles.key}>닉네임</div>
               <div style={{display:'flex', justifyContent:'space-between'}}>
                 <input className={styles.value} type="text" maxLength={15} placeholder={pastInfo.nickName} value={nickName} onChange={(e)=>modifyData("nickName", e.target.value)}/>
-                <button >수정</button>
+                <button onClick={()=>fetchModifyInfo({"nickName": nickName})} style={{ backgroundColor: color === 'green' ? "purple" : "white" }}>수정</button>
+
               </div>
               <div className={styles.underline}></div>
               <div className={styles.value} style={{fontSize:12,color:color}}>{message}</div>
@@ -111,7 +105,6 @@ const regex = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\|]/;
           </div>
         </>
         )}
-      <button className={styles.button} onClick={()=>fetchModifyInfo()}>수정하기</button>
     </div>
   );
 }

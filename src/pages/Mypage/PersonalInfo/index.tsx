@@ -11,10 +11,8 @@ function PersonalInfoPage() {
   const [pastInfo, setPastInfo] = useState<PersonalInfo>({
     dateOfBirth: "",
     gender: "",
-    hbtiType: null,
     job: "",
     nickName: "",
-    refreshToken: null,
     status: "",
     userAccount: "",
     userId: 0,
@@ -31,6 +29,7 @@ function PersonalInfoPage() {
     try {
       const res: AxiosResponse<PersonalInfo> = await axios.get(`${SERVER_DEPOLY_URL}/users/${id}/info`);
       if (res.status === 200) {
+        console.log(res.data)
         setPastInfo(res.data);
         setInfo((prev)=>({...updateInfo, gender:res.data.gender, job:res.data.job, dateOfBirth:res.data.dateOfBirth}))
       }
