@@ -4,8 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import BottomTab from '../../components/layout/bottomtabs';
 import SearchBar from './searchBar';
 import * as homeIcon from '../../assets/icons/home/homeIcon';
-import { useUserStore } from '../../store/context/useUserStore';
-
+import useUserStore from '../../store/context/useUserStore';
 function Home() {
     const navigate = useNavigate();
     const { fetch } = useUserStore();

@@ -9,7 +9,7 @@ interface UserStoreState {
   modify: (id: number, newData: Partial<PersonalInfo>) => Promise<void>;
 }
 
-export const useUserStore = create<UserStoreState>((set) => ({
+ const useUserStore = create<UserStoreState>((set) => ({
   userInfo: {
     dateOfBirth: '',
     gender: '',
@@ -39,3 +39,4 @@ export const useUserStore = create<UserStoreState>((set) => ({
     }
   },
 }));
+export default useUserStore;

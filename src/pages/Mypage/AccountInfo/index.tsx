@@ -6,7 +6,7 @@ import { SERVER_DEPOLY_URL } from '../../../utils/axios';
 import {PersonalInfo} from '../../../store/type/memberInfo/interface';
 import { useNavigate } from 'react-router-dom';
 import { useDebounce } from '../../../hooks/useDebounce';
-import { useUserStore } from '../../../store/context/useUserStore';
+import useUserStore from '../../../store/context/useUserStore';
 function AccountInfoPage() {
   const navigate = useNavigate();
   const {userInfo, modify} = useUserStore((state)=>state);
