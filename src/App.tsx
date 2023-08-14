@@ -11,6 +11,7 @@ function App() {
                 <Route path="/mypage"Component={router.mypage} />
                 <Route path="/mypage/setting" Component={router.setting} />
                 <Route path="/mypage/personalinfo" Component={router.personalInfo} />
+                <Route path="/mypage/accountinfo" Component={router.accountInfo} />
                 <Route path="/faq" Component={router.faq} />
                 <Route path="/inquiry" Component={router.inquiry} />
 
