@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 import Header from '../../../components/layout/header';
 import { useNavigate } from 'react-router-dom';
-import { useUserStore } from '../../../store/context/useUserStore';
+import useUserStore from '../../../store/context/useUserStore';
 function PersonalInfoPage() {
   const navigate = useNavigate();
   const {userInfo, modify} = useUserStore((state)=>state);

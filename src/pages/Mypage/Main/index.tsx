@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './styles.module.scss';
 import Header from '../../../components/layout/header';
 import { useNavigate } from 'react-router-dom';
-import { useUserStore } from '../../../store/context/useUserStore';
+import useUserStore from '../../../store/context/useUserStore';
 function Mypage() {
     const navigate = useNavigate();
     const {userInfo} = useUserStore((state) => state);
