@@ -5,6 +5,7 @@ import axios, { AxiosResponse } from 'axios';
 import { SERVER_DEPOLY_URL } from '../../../utils/axios';
 import {PersonalInfo} from '../../../store/type/memberInfo/interface';
 import { useNavigate } from 'react-router-dom';
+import { useDebounce } from '../../../hooks/useDebounce';
 function AccountInfoPage() {
   const navigate = useNavigate();
   const [pastInfo, setPastInfo] = useState<PersonalInfo>({
@@ -37,36 +38,38 @@ function AccountInfoPage() {
       console.log(e);
     }
   };
-  
   useEffect(() => {
     getPersonalInfo(2);
   }, []);
-  const doubleCheck = async (): Promise<void> => {
+  
+  const doubleCheck = async (nickname: string): Promise<void> => {
     try {
-      const res: AxiosResponse<PersonalInfo> = await axios.get(`${SERVER_DEPOLY_URL}/users/auth/duplicate/nickname/${nickName}`);
+      const res: AxiosResponse<PersonalInfo> = await axios.get(`${SERVER_DEPOLY_URL}/users/auth/duplicate/nickname/${nickname}`);
       if (res.status === 200) {
         setMessage("사용가능한 닉네임입니다.")
         setColor("green")}
-    } catch (e) {
-        setMessage("중복된 닉네임입니다.")
+    } catch (e:any) {
+        setMessage(e.response.data.message);
         setColor("red");
     }
   }
-  const handleNicknameCheck = ()=>{
-    if(nickName.length>0){
-      doubleCheck();
+
+const regex = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\|]/;
+ const debouncedNickname = useDebounce(nickName, 500);
+ useEffect(() => {
+  if(debouncedNickname.length===0){
+      setMessage("닉네임을 입력해주세요.\n 영문(대소문자가능),숫자,한글로 15글자이내로 입력해주세요.");
+      setColor("black");
+  } else if (debouncedNickname.length<=15){
+    if (regex.test(nickName)){
+      setMessage("영문(대소문자가능),숫자,한글로 15글자이내로 입력해주세요.");
+      setColor("red");
+    } else {
+      doubleCheck(debouncedNickname);
     }
   }
-const regex = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\|]/;
- useEffect(() => {
-    if (nickName===""){
-      setMessage("닉네임을 입력해주세요.\n 영문(대소문자가능),숫자,한글로 15글자이내로 입력해주세요.");
-      setColor('black');
-    }; 
-    if (regex.test(nickName)){
-     
-    }
-  }, [nickName]);
+ }, [debouncedNickname]);
+
   const fetchModifyInfo = async ()=>{
     try {
       let id = 2
@@ -96,7 +99,7 @@ const regex = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\|]/;
               <div className={styles.key}>닉네임</div>
               <div style={{display:'flex', justifyContent:'space-between'}}>
                 <input className={styles.value} type="text" maxLength={15} placeholder={pastInfo.nickName} value={nickName} onChange={(e)=>modifyData("nickName", e.target.value)}/>
-                <button onClick={()=>handleNicknameCheck()}>중복 확인</button>
+                <button >수정</button>
               </div>
               <div className={styles.underline}></div>
               <div className={styles.value} style={{fontSize:12,color:color}}>{message}</div>
