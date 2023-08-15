@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import styles from './styles.module.scss';
 import Header from '../../../components/layout/header';
-import { SERVER_DEPOLY_URL } from '../../../utils/axios';
-import axios,{AxiosResponse} from 'axios';  
+import { fetchFromApi } from '../../../utils/axios';
 import { useNavigate } from 'react-router-dom';
 function AppSetting() {
     const navigate = useNavigate();
@@ -10,7 +9,7 @@ function AppSetting() {
         let id = 4;
             try {
                if (window.confirm('회원을 탈퇴 하시겠습니까?')) {
-               const res: AxiosResponse = await axios.patch(`${SERVER_DEPOLY_URL}/users/${id}/withdrawal`);
+               const res = await fetchFromApi('PATCH',`/users/${id}/withdrawal`);
                console.log(res.data);
                alert("회원이 탈퇴되었습니다.");
                navigate('/')

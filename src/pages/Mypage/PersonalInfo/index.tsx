@@ -3,6 +3,7 @@ import styles from './styles.module.scss';
 import Header from '../../../components/layout/header';
 import { useNavigate } from 'react-router-dom';
 import useUserStore from '../../../store/context/useUserStore';
+// import DateScrollPicker from './DateScrollPicker';
 function PersonalInfoPage() {
   const navigate = useNavigate();
   const {userInfo, modify} = useUserStore((state)=>state);
@@ -62,8 +63,7 @@ function PersonalInfoPage() {
           <div className={styles.blockUnit}>
             <div className={styles.key}>생년월일</div>
             <div>{userInfo.dateOfBirth}</div>
-            {/* <DateScrollPicker dateOfBirth={dateOfBirth} setDateOfBirth={setInfo}/> */} 
-  
+            {/* <DateScrollPicker dateOfBirth={dateOfBirth} setDateOfBirth={setInfo}/>  */}
             <div className={styles.underline}></div>
           </div>
           

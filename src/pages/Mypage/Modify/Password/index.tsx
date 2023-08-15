@@ -2,8 +2,7 @@ import React,{useState,useEffect} from "react";
 import Header from "../../../../components/layout/header";
 import styles from '../styles.module.scss'
 import { useNavigate } from "react-router-dom";
-import axios, { AxiosResponse } from "axios";
-import { SERVER_DEPOLY_URL } from "../../../../utils/axios";
+import { fetchFromApi } from "../../../../utils/axios";
 const ModifyPassword = ()=>{
     const navigate = useNavigate();
     const [password, setPassword]=useState({currentPassword:"", newPassword:"", checkPassword:"",});
@@ -21,7 +20,7 @@ const ModifyPassword = ()=>{
         try {
           let id = 2;
           let data = {currentPassword: currentPassword, newPassword:newPassword}
-          const res: AxiosResponse = await axios.patch(`${SERVER_DEPOLY_URL}/users/${id}/password`, data);
+          const res = await fetchFromApi('PATCH',`/users/${id}/password`, data);
           if (res.status === 200) {
             alert("비밀번호가 변경되었습니다.");
             navigate(-1);}

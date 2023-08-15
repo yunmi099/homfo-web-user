@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import styles from './styles.module.scss';
-import axios, { AxiosResponse } from 'axios';
 import { formatDateTime } from '../../../utils/getDate';
 import InquiryDetail from './inquiryDetail';
-import { SERVER_DEPOLY_URL } from '../../../utils/axios';
 import '../../../store/type/inquiry&faq/interface'
+import { fetchFromApi } from '../../../utils/axios';
 import { FilteredData, OriginalData } from '../../../store/type/inquiry&faq/interface';
   function InquiryList({ setMode, setModify ,setId }: { setMode: React.Dispatch<React.SetStateAction<boolean>>, setModify:React.Dispatch<React.SetStateAction<boolean>>,setId:React.Dispatch<React.SetStateAction<number>>  }) {
     const [data, setData] = useState<Array<FilteredData>|undefined>()
@@ -21,7 +20,7 @@ import { FilteredData, OriginalData } from '../../../store/type/inquiry&faq/inte
       const getInquiryList = async (): Promise<void> => {
         const id = 2;
         try {
-          const res: AxiosResponse = await axios.get(`${SERVER_DEPOLY_URL}/errors/users/${id}`);
+          const res = await fetchFromApi('GET',`/errors/users/${id}`);
           if (res.status === 200) {
             setData(filterData(res.data));
           }
