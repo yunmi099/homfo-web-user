@@ -4,7 +4,7 @@ interface TimerStoreState {
   isRunning: boolean;
   remainingTime: number;
   startTimer: () => void;
-  stopTimer: () => void;
+  resetTimer: () => void;
 }
 
 const useTimerStore = create<TimerStoreState>((set) => ({
@@ -25,7 +25,7 @@ const useTimerStore = create<TimerStoreState>((set) => ({
     }, 1000);
   },
 
-  stopTimer: () => {
+  resetTimer: () => {
     set({ isRunning: false, remainingTime: 5 * 60 });
   },
 }));
