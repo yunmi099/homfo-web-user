@@ -10,6 +10,7 @@ const ModifyPhonenumber = ()=>{
     const [verifyNumber, setVerifyNumber] = useState<string>("")
     const [count, setCount] = useState<number>(0); 
     const navigate = useNavigate();
+    const [errorMessage, setErrorMessage]=useState<boolean>(false);
     const { isRunning, remainingTime, startTimer, resetTimer} = useTimerStore();
     const authenticationRequest = async (): Promise<void> => {
         let data = {'userPhoneNum': phonenumber}
@@ -78,8 +79,16 @@ const ModifyPhonenumber = ()=>{
         }
     }
     const handleVerifySubmit = ()=>{
-        authenticationVerify();
+            authenticationVerify();   
     }
+    useEffect(()=>{
+        const length = verifyNumber.length ;
+        if (!(length ===0 || length === 4)){
+            setErrorMessage(true);
+        } else {
+            setErrorMessage(false);
+        }
+    },[verifyNumber])
     return(    
     <div className={styles.container}>
         <Header title="전화번호 변경" color="white"/>
@@ -93,7 +102,8 @@ const ModifyPhonenumber = ()=>{
             inputMode="numeric" placeholder="인증번호를 입력하세요"/>}
         </div>
        {isRunning&&<p style={{color:'red'}}>{formatTime(remainingTime)}</p>}
-        <button className={styles.button} onClick={()=>handleVerifySubmit()}>전화번호 변경</button>
+        {errorMessage&&<div style={{color:'red'}}>인증 번호는 4자리 입니다.</div>}
+        {!errorMessage&&<button className={styles.button} onClick={()=>handleVerifySubmit()}>전화번호 변경</button>}
         <div className={styles.textButton} onClick={()=>navigate(-1)}>다음에 변경하기</div>
 
     </div>)
