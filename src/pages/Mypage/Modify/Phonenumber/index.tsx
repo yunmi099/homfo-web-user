@@ -2,12 +2,12 @@ import React,{useState,useEffect} from "react";
 import Header from "../../../../components/layout/header";
 import styles from '../styles.module.scss'
 import { useNavigate } from "react-router-dom";
-import { useDebounce } from "../../../../hooks/useDebounce";
 import { fetchFromApi } from "../../../../utils/axios";
 import useTimerStore from "../../../../store/context/useTimerStore";
 const ModifyPhonenumber = ()=>{
     const [open, setOpen] = useState<boolean>(false)
     const [phonenumber, setPhonenumber] = useState<string>("") 
+    const [verifyNumber, setVerifyNumber] = useState<string>("")
     const [count, setCount] = useState<number>(0); 
     const navigate = useNavigate();
     const { isRunning, remainingTime, startTimer, resetTimer} = useTimerStore();
@@ -16,13 +16,10 @@ const ModifyPhonenumber = ()=>{
         try {
             setOpen(true)
             setCount((prev)=>prev+1);
-            resetTimer();
-            startTimer();
             const res = await fetchFromApi('POST', `/users/sms-auth`,data);
             if (res.status === 200) {
                 resetTimer();
-                startTimer();
-                console.log(res.data);
+                startTimer();                
             }
         } catch (e:any) {
             console.log(e.response.data.message)
@@ -31,15 +28,20 @@ const ModifyPhonenumber = ()=>{
     };
     const authenticationVerify = async (): Promise<void> => {
         let data = {
-            "cacheKey":"",
-            "authNum": "",
+            "userPhoneNum":phonenumber,
+            "authNumber": verifyNumber,
           }
         try {
             const res = await fetchFromApi('POST', `/users/sms-auth/verify`,data);
             if (res.status === 200) {
-
+                alert("전화번호가 변경되었습니다.");
+                resetTimer();
+                setOpen(false);
+                setPhonenumber("");               
+                setVerifyNumber("");
             }
         } catch (e:any) {
+            console.log(e.response.data.message);
         }
         
     };
@@ -75,6 +77,9 @@ const ModifyPhonenumber = ()=>{
             alert("000-0000-0000 형식으로 작성해주세요.")
         }
     }
+    const handleVerifySubmit = ()=>{
+        authenticationVerify();
+    }
     return(    
     <div className={styles.container}>
         <Header title="전화번호 변경" color="white"/>
@@ -83,10 +88,12 @@ const ModifyPhonenumber = ()=>{
                 <input style={{width:"59vw"}} value ={phonenumber} onChange={(e)=>setPhonenumber(e.target.value)} inputMode="numeric" type="text" placeholder="000-0000-0000 형식으로 입력하세요."/>
                 <button className={styles.verifyButton} onClick={()=>handleRequest()}>인증 요청</button>
             </div>
-            {open&&<input className={styles.input} type="text"  inputMode="numeric" placeholder="인증번호를 입력하세요"/>}
+            {open&&<input className={styles.input} type="text"  
+            value={verifyNumber} onChange={(e)=>setVerifyNumber(e.target.value)}
+            inputMode="numeric" placeholder="인증번호를 입력하세요"/>}
         </div>
        {isRunning&&<p style={{color:'red'}}>{formatTime(remainingTime)}</p>}
-        <button className={styles.button}>전화번호 변경</button>
+        <button className={styles.button} onClick={()=>handleVerifySubmit()}>전화번호 변경</button>
         <div className={styles.textButton} onClick={()=>navigate(-1)}>다음에 변경하기</div>
 
     </div>)
