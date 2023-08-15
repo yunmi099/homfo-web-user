@@ -1,6 +1,5 @@
 import { create } from 'zustand';
-import axios, { AxiosResponse } from 'axios';
-import { SERVER_DEPOLY_URL } from '../../utils/axios';
+import { fetchFromApi } from '../../utils/axios';
 import { PersonalInfo } from '../type/memberInfo/interface';
 
 interface UserStoreState {
@@ -22,7 +21,7 @@ interface UserStoreState {
   },
   fetch: async (id: number): Promise<void> => {
     try {
-      const res: AxiosResponse<PersonalInfo> = await axios.get(`${SERVER_DEPOLY_URL}/users/${id}/info`);
+      const res = await fetchFromApi('GET',`/users/${id}/info`);
       if (res.status === 200) {
         set({ userInfo: res.data });
       }
@@ -32,7 +31,7 @@ interface UserStoreState {
   },
   modify: async (id: number, newData: Partial<PersonalInfo>): Promise<void> => {
     try {
-      const res: AxiosResponse = await axios.patch(`${SERVER_DEPOLY_URL}/users/${id}/info`, newData);
+      const res = await fetchFromApi('PATCH',`/users/${id}/info`, newData);
       set({ userInfo: res.data });
     } catch (e: any) {
       console.log(e);

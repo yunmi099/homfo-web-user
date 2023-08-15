@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './styles.module.scss';
 import Header from '../../../components/layout/header';
-import axios, { AxiosResponse } from 'axios';
-import { SERVER_DEPOLY_URL } from '../../../utils/axios';
+import { fetchFromApi } from '../../../utils/axios';
 import SearchBar from './searchBar';
 import openAnwser from '../../../assets/icons/inquiry/downarrow3.png'
 import {FAQLIST, ORIGIN_FAQ} from '../../../store/type/inquiry&faq/interface'
@@ -33,7 +32,7 @@ function FAQ() {
       }
       const getFAQlist = async (): Promise<void> => {
         try {
-          const res: AxiosResponse = await axios.get(`${SERVER_DEPOLY_URL}/faq`);
+          const res = await fetchFromApi('GET',`/faq`);
           if (res.status === 200) {
             setFaqList(filterData(res.data.faq));
           }

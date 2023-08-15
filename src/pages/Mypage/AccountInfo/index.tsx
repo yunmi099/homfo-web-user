@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 import Header from '../../../components/layout/header';
-import axios, { AxiosResponse } from 'axios';
-import { SERVER_DEPOLY_URL } from '../../../utils/axios';
-import {PersonalInfo} from '../../../store/type/memberInfo/interface';
+import {fetchFromApi } from '../../../utils/axios';
 import { useNavigate } from 'react-router-dom';
 import { useDebounce } from '../../../hooks/useDebounce';
 import useUserStore from '../../../store/context/useUserStore';
+
 function AccountInfoPage() {
   const navigate = useNavigate();
   const {userInfo, modify} = useUserStore((state)=>state);
@@ -16,15 +15,17 @@ function AccountInfoPage() {
 
   const doubleCheck = async (nickname: string): Promise<void> => {
     try {
-      const res: AxiosResponse<PersonalInfo> = await axios.get(`${SERVER_DEPOLY_URL}/users/auth/duplicate/nickname/${nickname}`);
-      if (res.status === 200) {
-        setMessage("사용가능한 닉네임입니다.")
-        setColor("green")}
+        const res = await fetchFromApi('GET', `/users/auth/duplicate/nickname/${nickname}`);
+        if (res.status === 200) {
+            setMessage("사용 가능한 닉네임입니다.");
+            setColor("green");
+        }
     } catch (e:any) {
         setMessage(e.response.data.message);
         setColor("red");
     }
-  }
+    
+};
 
  const regex = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\|]/;
  const debouncedNickname = useDebounce(nickName, 500);

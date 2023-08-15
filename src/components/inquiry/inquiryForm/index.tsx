@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
-import axios, { AxiosResponse } from 'axios';
 import downarrow from '../../../assets/icons/inquiry/downarrow1.png';
-import { SERVER_DEPOLY_URL } from '../../../utils/axios';
+import { fetchFromApi } from '../../../utils/axios';
 import '../../../store/type/inquiry&faq/interface';
 
 function InquiryForm({
@@ -28,7 +27,7 @@ function InquiryForm({
 
   const getInquiryDetail = async (id: number): Promise<void> => {
     try {
-      const res: AxiosResponse = await axios.get(`${SERVER_DEPOLY_URL}/errors/${id}/detail`);
+      const res = await fetchFromApi('GET',`/errors/${id}/detail`);
       if (res.status === 200) {
         setFormData({
           ...formData,
@@ -44,7 +43,7 @@ function InquiryForm({
 
   const getCategoryList = async (): Promise<void> => {
     try {
-      const res: AxiosResponse = await axios.get(`${SERVER_DEPOLY_URL}/errors/type`);
+      const res = await fetchFromApi('GET',`/errors/type`);
       if (res.status === 200) {
         setFormData({
           ...formData,
@@ -71,10 +70,9 @@ function InquiryForm({
     };
     try {
       if (modify) {
-        console.log(data);
-        const res: AxiosResponse = await axios.patch(`${SERVER_DEPOLY_URL}/errors/${id}`, data);
+        await fetchFromApi('PATCH',`/errors/${id}`, data);
       } else {
-        const res: AxiosResponse = await axios.post(`${SERVER_DEPOLY_URL}/errors`, data);
+       await fetchFromApi('POST',`/errors`, data);
       }
     } catch (e: any) {
       console.log(e);

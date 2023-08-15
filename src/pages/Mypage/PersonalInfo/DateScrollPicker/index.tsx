@@ -5,8 +5,6 @@ import { isIOS, isAndroid } from 'react-device-detect';
 interface DatePickerProps{
   dateOfBirth: string;
   setDateOfBirth: React.Dispatch<React.SetStateAction<{
-    nickName: string;
-    gender: string;
     job: string;
     dateOfBirth: string;
   }>>;

@@ -9,7 +9,7 @@ function Home() {
     const navigate = useNavigate();
     const { fetch } = useUserStore();
   
-    useEffect(()=>{fetch(2)},[])
+    useEffect(()=>{fetch(2)},[fetch])
     
     return(
     <div className={styles.container}>
