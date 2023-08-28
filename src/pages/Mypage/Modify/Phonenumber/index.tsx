@@ -10,6 +10,7 @@ const ModifyPhonenumber = ()=>{
     const [verifyNumber, setVerifyNumber] = useState<string>("")
     const [count, setCount] = useState<number>(0); 
     const navigate = useNavigate();
+    
     const [errorMessage, setErrorMessage]=useState<boolean>(false);
     const { isRunning, remainingTime, startTimer, resetTimer} = useTimerStore();
     const authenticationRequest = async (): Promise<void> => {
@@ -42,7 +43,7 @@ const ModifyPhonenumber = ()=>{
                 setVerifyNumber("");
             }
         } catch (e:any) {
-            console.log(e.response.data.message);
+            alert(e.response.data.message);
         }
         
     };
@@ -56,7 +57,7 @@ const ModifyPhonenumber = ()=>{
         if (pattern.test(phonenumber)){
             switch (true) {
                 case count >= 1 && count <= 5:
-                    if (remainingTime>240){
+                    if (remainingTime>120){
                       alert("요청은 1분 후 부터 보낼 수 있습니다.")
                     } else {
                       authenticationRequest();
@@ -67,7 +68,7 @@ const ModifyPhonenumber = ()=>{
                     break;
                 case count > 5:
                     if (remainingTime>0){
-                        alert("요청은 5분 후 부터 보낼 수 있습니다.")
+                        alert("요청은 3분 후 부터 보낼 수 있습니다.")
                       } else {
                         authenticationRequest();
                     }
@@ -79,7 +80,13 @@ const ModifyPhonenumber = ()=>{
         }
     }
     const handleVerifySubmit = ()=>{
-            authenticationVerify();   
+        if (verifyNumber.length>0) {
+            authenticationVerify();
+            // 여기 인증부분 에러 처리 다시    
+        } else {
+            alert("인증 번호를 입력해주세요.");
+        }
+            
     }
     useEffect(()=>{
         const length = verifyNumber.length ;
@@ -94,16 +101,21 @@ const ModifyPhonenumber = ()=>{
         <Header title="전화번호 변경" color="white"/>
         <div className={styles.inputBox}>
             <div style={{display:'flex'}}>
-                <input style={{width:"59vw"}} value ={phonenumber} onChange={(e)=>setPhonenumber(e.target.value)} inputMode="numeric" type="text" placeholder="000-0000-0000 형식으로 입력하세요."/>
+                <input style={{width:"59vw"}} value ={phonenumber} onChange={(e)=>setPhonenumber(e.target.value)} 
+                inputMode="numeric" type="text" placeholder="000-0000-0000 형식으로 입력하세요."/>
                 <button className={styles.verifyButton} onClick={()=>handleRequest()}>인증 요청</button>
-            </div>
-            {open&&<input className={styles.input} type="text"  
+            </div>   
+            {open&&
+            <div style={{display:'flex'}}>
+                 <input style={{width:"59vw"}}  type="text"  
             value={verifyNumber} onChange={(e)=>setVerifyNumber(e.target.value)}
-            inputMode="numeric" placeholder="인증번호를 입력하세요"/>}
-        </div>
+            inputMode="numeric" placeholder="인증번호를 입력하세요"/>
+                <button className={styles.verifyButton} onClick={()=>handleVerifySubmit()}>인증 확인</button>
+                </div>}
+            </div>
        {isRunning&&<p style={{color:'red'}}>{formatTime(remainingTime)}</p>}
         {errorMessage&&<div style={{color:'red'}}>인증 번호는 4자리 입니다.</div>}
-        {!errorMessage&&<button className={styles.button} onClick={()=>handleVerifySubmit()}>전화번호 변경</button>}
+            <button className={styles.button}>전화번호 변경</button>
         <div className={styles.textButton} onClick={()=>navigate(-1)}>다음에 변경하기</div>
 
     </div>)

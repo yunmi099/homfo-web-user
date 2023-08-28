@@ -9,7 +9,7 @@ interface TimerStoreState {
 
 const useTimerStore = create<TimerStoreState>((set) => ({
   isRunning: false,
-  remainingTime: 5 * 60,
+  remainingTime: 3 * 60,
 
   startTimer: () => {
     set({ isRunning: true });
@@ -19,14 +19,14 @@ const useTimerStore = create<TimerStoreState>((set) => ({
           return { remainingTime: state.remainingTime - 1 };
         } else {
           clearInterval(interval);
-          return { isRunning: false, remainingTime: 5 * 60 };
+          return { isRunning: false, remainingTime: 3 * 60 };
         }
       });
     }, 1000);
   },
 
   resetTimer: () => {
-    set({ isRunning: false, remainingTime: 5 * 60 });
+    set({ isRunning: false, remainingTime: 3 * 60 });
   },
 }));
 

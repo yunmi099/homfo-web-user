@@ -1,0 +1,20 @@
+.totalBox{
+    display: flex;
+    position: absolute;
+    top: 40px;
+    left: 30px;
+}
+.coloredCircle{
+    background-color:#AC00FF;
+    width: 20px;
+    height: 10px;
+    border-radius: 100px;
+    margin:1px;
+}
+.circle{
+    background-color:#E4E4E4;
+    width: 10px;
+    height: 10px;
+    margin:1px;
+    border-radius: 100px;
+}
