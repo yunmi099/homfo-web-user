@@ -1,0 +1,31 @@
+.answer{
+    width: 45vw;
+    height: 40px;
+    margin:10px 25px;
+    text-align: center;
+    line-height: 40px;
+    color:#282D2F;
+    border-radius: 25px;
+    background-color:#EBEBEB;
+}
+.answerContainer{
+    width: 100vw;
+    margin-top: 10%;
+    flex-direction: column;
+}
+.question{
+    margin: 10vh 0 0 25px;
+    white-space:pre-line;
+    font-weight: 700;
+    font-size: 25px;
+    span {
+        color: #9D11FF;
+    }
+    b {
+        color: black;
+        font-size: 18px;
+    }
+}
+.hightlighted{
+    color:red;
+}

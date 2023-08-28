@@ -1,9 +1,8 @@
 .container{
     width: 100vw;
     height: 100vh;
-    background-color:#white;
+    background-color:white;
     display: flex;
-    align-items: center;
     flex-direction: column;
 }
 .initialNotice{
@@ -12,6 +11,7 @@
     width: 100vw;
     position: absolute;
     bottom: 40vh;
+    line-height: 1.5em;
     span {
         color:#842CFF;
     }
@@ -20,6 +20,7 @@
     position: absolute;
     bottom: 20vh;
     width: 93.4vw;
+    margin-left: 3.3vw;
     height: 7vh;
     background-color: #842CFF;
     border-radius: 48px;

@@ -1,4 +1,5 @@
 import React from "react";
+import styles from './styles.module.scss'
 interface HeaderProps {
   title: string;
   auth?:boolean;
@@ -7,7 +8,7 @@ interface HeaderProps {
 
 const ConfirmButton = ({ title, auth,onClick}: HeaderProps) => {
   return (
-    <div onClick={()=>auth?onClick:null} > 
+    <div onClick={onClick} className={styles.button}> 
       {title}
     </div>
   );
