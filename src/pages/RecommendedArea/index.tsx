@@ -3,7 +3,7 @@ import styles from './styles.module.scss';
 import InitialPage from './InitialPage';
 import ProgressStepTracker from '../../components/progressStepTracker';
 import SelectedProgress from '../../components/selecedProgree';
-import { hompoQuestionList } from '../../components/selecedProgree/hompoQuestionList';
+import { hompoQuestionList } from './hompoQuestionList';
 function RecommendedArea(){
     const [count, setCount] = useState(0);
     return (<div className={styles.container}>
