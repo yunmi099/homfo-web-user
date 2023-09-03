@@ -38,7 +38,13 @@ const SelectedProgress = (props: SelectedProgressProps) => {
             {key}
           </div>
         ))}
-      </div>:<><Filter/></>}
+      </div>:
+      Object.keys(currentQuestion.filter).map((key,index)=>
+      <Filter 
+      title={key} 
+      min={currentQuestion.filter[key][0]}
+      max={currentQuestion.filter[key][1]}
+      onewayOption={false}/>)}
       <ConfirmButton
         title="다음"
         onClick={() =>{props.count<hompoQuestionList.length&&props.setCount(props.count + 1)}}
