@@ -11,7 +11,7 @@ const Filter = ({onewayOption = false,title,min,max}:FilterProps)=>{
     let fixedMinValue = min;
     let fixedMaxValue = max;
     const [rangeMinValue, setRangeMinValue] = useState(fixedMinValue); 
-    const [rangeMaxValue, setRangeMaxValue] = useState(fixedMinValue);
+    const [rangeMaxValue, setRangeMaxValue] = useState(fixedMaxValue);
     let gap=0;
     if (onewayOption){
       gap=0
@@ -26,7 +26,7 @@ const Filter = ({onewayOption = false,title,min,max}:FilterProps)=>{
         setRangeMaxValue(parseInt(e.target.value));
       };
       const twoRangeHandler = () => {
-        if (rangeMaxValue - rangeMinValue < 0) {
+        if (rangeMaxValue - rangeMinValue < gap) {
           setRangeMaxValue(rangeMinValue => rangeMinValue + gap);
           setRangeMinValue(rangeMaxValue => rangeMaxValue - gap);
         } 

@@ -1,9 +1,9 @@
-import React, { CSSProperties } from 'react';
+import React, {useState, CSSProperties } from 'react';
 import styles from './styles.module.scss';
 
 interface AnswerData {
   question: string;
-  answer: string[];
+  answer:{ title: string; value: any; }[]|null;
   mode: string;
   double: boolean;
   filter: null | {
@@ -17,6 +17,8 @@ interface MultipleChoiceProps {
 }
 
 const MultipleChoice: React.FC<MultipleChoiceProps> = ({ currentQuestion }) => {
+  // const [data,setData] = useState();
+  // const [count,setCount] = useState<number>(0);
   const isRowMode = currentQuestion.mode === 'row';
   const isColumnMode = currentQuestion.mode === 'column';
 
@@ -32,16 +34,17 @@ const MultipleChoice: React.FC<MultipleChoiceProps> = ({ currentQuestion }) => {
 
   return (
     <div className={styles.answerContainer} style={containerStyles}>
-      {currentQuestion.answer.map((key: string) => (
+      {currentQuestion.answer!==null&&currentQuestion.answer.map((key) => (
         <div
           className={styles.answer}
           style={answerStyles}
-          key={key}
+          key={key.title}
           onClick={() => {
             console.log(key);
+            // setData(key.value);
           }}
         >
-          {key}
+          {key.title}
         </div>
       ))}
     </div>
