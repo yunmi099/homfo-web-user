@@ -2,7 +2,7 @@ import React,{useState, useEffect} from 'react';
 import styles from './styles.module.scss';
 import InitialPage from './InitialPage';
 import ProgressStepTracker from '../../components/progressStepTracker';
-import SelectedProgress from '../../components/selecedProgree';
+import SelectedProgress from '../../components/selecedProgress';
 import { hompoQuestionList } from './hompoQuestionList';
 function RecommendedArea(){
     const [count, setCount] = useState(0);
@@ -11,7 +11,7 @@ function RecommendedArea(){
     <InitialPage count={count} setCount={setCount}/>
     :<>
         <ProgressStepTracker count={count} totalCount={hompoQuestionList.length}/>
-        <SelectedProgress count={count} setCount={setCount}/>
+        <SelectedProgress count={count} setCount={setCount} />
     </>
     }    
     </div>)
