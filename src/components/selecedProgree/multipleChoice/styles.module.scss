@@ -1,0 +1,17 @@
+.answer{
+    width: 45vw;
+    height: 40px;
+    margin:5px;
+    text-align: center;
+    line-height: 40px;
+    color:#282D2F;
+    border-radius: 25px;
+    background-color:#EBEBEB;
+}
+.answerContainer{
+    display: flex;
+    width: 100vw;
+    margin-top: 10%;
+    flex-wrap: wrap; 
+}
+

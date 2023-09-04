@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import DatePicker from "react-mobile-datepicker";
 import { formatDate } from "../../../../utils/getDate";
-import { isIOS, isAndroid } from 'react-device-detect';
+import { isIOS, isAndroid} from 'react-device-detect';
 interface DatePickerProps{
   dateOfBirth: string;
   setDateOfBirth: React.Dispatch<React.SetStateAction<{

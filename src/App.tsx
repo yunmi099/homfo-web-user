@@ -14,9 +14,10 @@ function App() {
                 <Route path="/mypage/accountinfo" Component={router.accountInfo} />
                 <Route path="/faq" Component={router.faq} />
                 <Route path="/inquiry" Component={router.inquiry} />
-
+                <Route path="/request" Component={router.request} />
                 <Route path="/user/password" Component={router.modifyPassword} />
                 <Route path="/user/phonenumber" Component={router.modifyPhonenumber} />
+                <Route path="/mypage/hompo-recommendedArea" Component={router.hompoRecommendedArea} />
             </Routes>
         </>
     );

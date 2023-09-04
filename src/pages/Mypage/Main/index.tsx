@@ -13,7 +13,7 @@ function Mypage() {
         <div><span>{userInfo.nickName}</span>님의 슬기로운</div>
         <div>자취 생활을 늘 응원합니다!</div>
         <div className={styles.menuBox}>
-            <div onClick={()=>navigate('/')}>홈포 추천 구역</div>
+            <div onClick={()=>navigate('/mypage/hompo-recommendedArea')}>홈포 추천 구역</div>
             <div onClick={()=>navigate('/mypage/personalinfo')}>개인정보 및 수정</div> 
             <div onClick={()=>navigate('/mypage/accountinfo')}>계정정보 및 수정</div>
             <div onClick={()=>navigate('/')}>즐겨찾기</div>
