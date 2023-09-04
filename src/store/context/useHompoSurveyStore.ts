@@ -47,7 +47,7 @@ const useHompoSurveyStore = create<HompoStoreState>((set)=>({
           const res = await fetchFromApi('POST', `/users/${id}/recommended-area`, data);
           set((state) => ({
             ...state,
-            result: res.data, // Assuming 'res.data' contains the new result data
+            result: res.data,
           }));
         } catch (e: any) {
           console.log(e);
