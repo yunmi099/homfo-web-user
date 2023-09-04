@@ -1,4 +1,4 @@
-import React, {useState, CSSProperties } from 'react';
+import React, {useState, CSSProperties, useEffect} from 'react';
 import styles from './styles.module.scss';
 
 interface AnswerData {
@@ -17,8 +17,8 @@ interface MultipleChoiceProps {
 }
 
 const MultipleChoice: React.FC<MultipleChoiceProps> = ({ currentQuestion }) => {
-  // const [data,setData] = useState();
-  // const [count,setCount] = useState<number>(0);
+  const [data,setData] = useState<any>([]);
+  const [count,setCount] = useState<number>(0);
   const isRowMode = currentQuestion.mode === 'row';
   const isColumnMode = currentQuestion.mode === 'column';
 
@@ -31,17 +31,32 @@ const MultipleChoice: React.FC<MultipleChoiceProps> = ({ currentQuestion }) => {
   const answerStyles: CSSProperties = {
     width: isColumnMode ? '45vw' : '42vw',
   };
-
+  const handleSelectAnswer = (answer: any)=>{
+    if (currentQuestion.double){
+      setData([...data,answer]);
+    } else {
+      setData([answer]);
+    }
+  }
+  const handleCancelAnswer = (answer:any)=>{
+    setData((prevData:any) => prevData.filter((value:any) => value !== answer));
+  }
+  console.log(data);
   return (
     <div className={styles.answerContainer} style={containerStyles}>
       {currentQuestion.answer!==null&&currentQuestion.answer.map((key) => (
         <div
-          className={styles.answer}
+          className={`${styles.answerButton} ${
+            data.includes(key.value) ? styles.activeAnswerButton : styles.nonactiveAnswerButton
+          }`}
           style={answerStyles}
           key={key.title}
           onClick={() => {
-            console.log(key);
-            // setData(key.value);
+            if (data.includes(key.value)){
+              handleCancelAnswer(key.value);
+            } else {
+              handleSelectAnswer(key.value);
+            }
           }}
         >
           {key.title}
