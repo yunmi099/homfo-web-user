@@ -39,12 +39,21 @@ const SelectedProgress = (props: SelectedProgressProps) => {
           </div>
         ))}
       </div>:
-      Object.keys(currentQuestion.filter).map((key,index)=>
-      <Filter 
-      title={key} 
-      min={currentQuestion.filter[key][0]}
-      max={currentQuestion.filter[key][1]}
-      onewayOption={false}/>)}
+    <div style={{marginTop: '10%'}}>
+      {Object.keys(currentQuestion.filter.data).map((key,index)=>{
+      return(      
+      <>
+        <Filter 
+          title={key} 
+          min={currentQuestion.filter.data[key][0][0]}
+          max={currentQuestion.filter.data[key][0][1]}
+          onewayOption={true}/>
+        <div className={styles.filterIntervalBox}>
+          {currentQuestion.filter.data[key][1].map((info)=><div className={styles.filterInterval}>{info}</div>)}
+        </div>
+      </>
+    );})
+    }</div>}
       <ConfirmButton
         title="다음"
         onClick={() =>{props.count<hompoQuestionList.length&&props.setCount(props.count + 1)}}

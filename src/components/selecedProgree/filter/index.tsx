@@ -5,27 +5,28 @@ interface FilterProps{
    title: string;
    min: number;
    max:number;
+   mode?: string;
 }
 const Filter = ({onewayOption = false,title,min,max}:FilterProps)=>{
     let fixedMinValue = min;
     let fixedMaxValue = max;
-    let gap =0;
-    if (onewayOption === true){
-      gap = 0;
-    } else {
-      gap =1;
-    }
     const [rangeMinValue, setRangeMinValue] = useState(fixedMinValue); 
-    const [rangeMaxValue, setRangeMaxValue] = useState(fixedMaxValue);
-    const ValueRangeMinValueHandler = (e:any) => { 
+    const [rangeMaxValue, setRangeMaxValue] = useState(fixedMinValue);
+    let gap=0;
+    if (onewayOption){
+      gap=0
+    } else {
+      gap=1
+    }
+    const minValueHandler = (e:any) => { 
         {onewayOption!==true&&setRangeMinValue(parseInt(e.target.value))};
       };
       
-      const ValueRangeMaxValueHandler = (e:any) => {
+      const maxValueHandler = (e:any) => {
         setRangeMaxValue(parseInt(e.target.value));
       };
       const twoRangeHandler = () => {
-        if (rangeMaxValue - rangeMinValue < gap) {
+        if (rangeMaxValue - rangeMinValue < 0) {
           setRangeMaxValue(rangeMinValue => rangeMinValue + gap);
           setRangeMinValue(rangeMaxValue => rangeMaxValue - gap);
         } 
@@ -33,17 +34,16 @@ const Filter = ({onewayOption = false,title,min,max}:FilterProps)=>{
       useEffect(() => {
         twoRangeHandler();
       }, [rangeMinValue, rangeMaxValue]);
+
       const rangeMinPercent = useMemo(() => ((rangeMinValue-fixedMinValue)/(fixedMaxValue-fixedMinValue)) * 100, [rangeMinValue, fixedMaxValue,fixedMinValue]);
       const rangeMaxPercent = useMemo(() => ((fixedMaxValue-rangeMaxValue)/(fixedMaxValue-fixedMinValue))*100, [rangeMaxValue, fixedMaxValue, fixedMinValue]);
-      console.log(`max:${fixedMaxValue}`);
-      console.log( `currentMax: ${rangeMaxValue}`);
       return(
     <div className={styles.container}>
       <div className={styles.filterInfo}>
-        <div>
+        <div className={styles.title}>
           {title}
         </div>
-        <div>
+        <div className={styles.result}>
           {rangeMaxValue}분 이내
         </div>
       </div>
@@ -58,7 +58,7 @@ const Filter = ({onewayOption = false,title,min,max}:FilterProps)=>{
                     step="1"
                     value={rangeMinValue}
                     onChange={(e:any) => {
-                        ValueRangeMinValueHandler(e);
+                       minValueHandler(e);
                       }}
                     ></input>
                     <input className={styles.filterRangeMax} 
@@ -68,10 +68,10 @@ const Filter = ({onewayOption = false,title,min,max}:FilterProps)=>{
                     step="1"
                     value={rangeMaxValue}
                     onChange={(e:any) => {
-                      ValueRangeMaxValueHandler(e);
+                     maxValueHandler(e);
                     }}
                     ></input>
-                 </div>
+          </div>
         </div>
     </div>)
 
