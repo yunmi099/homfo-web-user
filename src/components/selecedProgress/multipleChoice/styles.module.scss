@@ -1,12 +1,19 @@
-.answer{
+.answerButton{
     width: 45vw;
     height: 40px;
     margin:5px;
     text-align: center;
     line-height: 40px;
-    color:#282D2F;
     border-radius: 25px;
     background-color:#EBEBEB;
+}
+.nonactiveAnswerButton{
+    background-color:#EBEBEB;
+    color:#282D2F;
+}
+.activeAnswerButton{
+    background-color: #0D1315;
+    color: #FFFFFF;
 }
 .answerContainer{
     display: flex;
