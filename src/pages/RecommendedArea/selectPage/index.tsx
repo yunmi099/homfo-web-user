@@ -1,28 +1,27 @@
 import React, { CSSProperties } from 'react';
-import { hompoQuestionList } from '../../pages/RecommendedArea/hompoQuestionList';
+import { hompoQuestionList } from '../hompoQuestionList';
 import styles from './styles.module.scss';
-import ConfirmButton from '../button/ConfirmButton';
-import Filter from './filter';
-import MultipleChoice from './multipleChoice';
-import Question from './question';
+import ConfirmButton from '../../../components/button/ConfirmButton';
+import Filter from '../../../components/selecedProgress/filter';
+import MultipleChoice from '../../../components/selecedProgress/multipleChoice';
+import Question from '../../../components/selecedProgress/question';
+import useHompoSurveyStore from '../../../store/context/useHompoSurveyStore';
 interface SelectedProgressProps {
   count: number;
   setCount: React.Dispatch<React.SetStateAction<number>>;
-
-
 }
-
-const SelectedProgress = (props: SelectedProgressProps) => {
+const SelectedHompoSurvey = (props: SelectedProgressProps) => {
   const currentQuestion = hompoQuestionList[props.count - 1];
+  const {info, setSurveyInfo} = useHompoSurveyStore();
   return (
     <>
     <Question question={currentQuestion.question}/>
       {currentQuestion.filter===null?
-    <MultipleChoice currentQuestion={currentQuestion}/>:
+    <MultipleChoice currentQuestion={currentQuestion} />:
     <div style={{marginTop: '10%'}}>
       {Object.keys(currentQuestion.filter.data).map((key,index)=>{
       return(      
-      <>
+      <div key={index}>
         <Filter 
           title={key} 
           min={currentQuestion.filter.data[key][0][0]}
@@ -31,7 +30,7 @@ const SelectedProgress = (props: SelectedProgressProps) => {
         <div className={styles.filterIntervalBox}>
           {currentQuestion.filter.data[key][1].map((info)=><div className={styles.filterInterval}>{info}</div>)}
         </div>
-      </>
+      </div>
     );})
     }</div>}
       <ConfirmButton
@@ -43,4 +42,4 @@ const SelectedProgress = (props: SelectedProgressProps) => {
   );
 };
 
-export default SelectedProgress;
+export default SelectedHompoSurvey;

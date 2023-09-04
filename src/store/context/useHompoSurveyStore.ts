@@ -66,4 +66,5 @@ const useHompoSurveyStore = create<HompoStoreState>((set)=>({
                 score: null,
             },
         ],
-    }))     
+ }))     
+ export default useHompoSurveyStore;
