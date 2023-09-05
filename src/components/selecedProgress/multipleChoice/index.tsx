@@ -1,27 +1,16 @@
 import React, {useState, CSSProperties, useEffect} from 'react';
 import styles from './styles.module.scss';
-
-interface AnswerData {
-  question: string;
-  answer:{ title: string; value: any; }[]|null;
-  mode: string;
-  double: boolean;
-  filter: null | {
-    unit: string;
-    data: { [key: string]: [number[], string[]] };
-  };
-}
-
+import { HompoAnswer } from '../../../store/type/hompoRecommend/interface';
 interface MultipleChoiceProps {
-  currentQuestion: AnswerData;
+  currentQuestion: HompoAnswer;
+  data:any;
+  setData: React.Dispatch<React.SetStateAction<any>>;
 }
 
-const MultipleChoice: React.FC<MultipleChoiceProps> = ({ currentQuestion }) => {
-  const [data,setData] = useState<any>([]);
-  const [count,setCount] = useState<number>(0);
+const MultipleChoice: React.FC<MultipleChoiceProps> = ({ currentQuestion,data, setData }) => {
   const isRowMode = currentQuestion.mode === 'row';
   const isColumnMode = currentQuestion.mode === 'column';
-
+  const questionType = currentQuestion.question.type;
   const containerStyles: CSSProperties = {
     flexDirection: isRowMode ? 'row' : 'column',
     justifyContent: isRowMode ? 'space-evenly' : 'flex-start',
@@ -33,26 +22,30 @@ const MultipleChoice: React.FC<MultipleChoiceProps> = ({ currentQuestion }) => {
   };
   const handleSelectAnswer = (answer: any)=>{
     if (currentQuestion.double){
-      setData([...data,answer]);
+      setData((prev:any) => ({...prev, [questionType]: [...prev[questionType], answer] }));
     } else {
-      setData([answer]);
+      setData((prev:any) => ({...prev,[questionType] : [answer]}));
     }
   }
-  const handleCancelAnswer = (answer:any)=>{
-    setData((prevData:any) => prevData.filter((value:any) => value !== answer));
-  }
-  console.log(data);
+  const handleCancelAnswer = (answer: any) => {
+      setData((prevData: any) => ({
+        ...prevData,
+        [questionType]: prevData[questionType].filter(
+          (value: any) => value !== answer
+        ),
+      }));
+  };
   return (
     <div className={styles.answerContainer} style={containerStyles}>
       {currentQuestion.answer!==null&&currentQuestion.answer.map((key) => (
         <div
           className={`${styles.answerButton} ${
-            data.includes(key.value) ? styles.activeAnswerButton : styles.nonactiveAnswerButton
+            data[questionType].includes(key.value) ? styles.activeAnswerButton : styles.nonactiveAnswerButton
           }`}
           style={answerStyles}
           key={key.title}
           onClick={() => {
-            if (data.includes(key.value)){
+            if (data[questionType].includes(key.value)){
               handleCancelAnswer(key.value);
             } else {
               handleSelectAnswer(key.value);

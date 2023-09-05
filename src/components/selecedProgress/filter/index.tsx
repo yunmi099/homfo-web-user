@@ -70,7 +70,7 @@ const Filter = ({onewayOption = false,title,min,max}:FilterProps)=>{
                     onChange={(e:any) => {
                      maxValueHandler(e);
                     }}
-                    ></input>
+              ></input>
           </div>
         </div>
     </div>)
