@@ -6,9 +6,12 @@ interface HeaderProps {
   onClick?: () => void;
 }
 
-const ConfirmButton = ({ title, auth,onClick}: HeaderProps) => {
+const ConfirmButton = ({ title,auth=false,onClick}: HeaderProps) => {
   return (
-    <div onClick={onClick} className={styles.button}> 
+    <div onClick={auth ? onClick : undefined} 
+    className={`${styles.button} ${
+     auth?styles.active:styles.noneactive
+    }`}> 
       {title}
     </div>
   );

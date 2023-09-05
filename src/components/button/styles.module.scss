@@ -3,10 +3,16 @@
     bottom: 0;
     width:100vw;
     height: 7.25vh;
-    background-color:#842CFF;
     text-align: center;
     line-height: 7.25vh;
-    color: white;
     font-size: 1em;
     font-weight: 600;
+    color: white;
+}
+.noneactive{
+    background-color: #767676;
+}
+
+.active{
+   background-color:#842CFF;
 }
