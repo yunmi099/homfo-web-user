@@ -7,7 +7,7 @@ export const hompoQuestionList = [
     "filter":null,
  },
  {
-    "question":{"contents":`🚐 선호하는 <span>통학수단은</span>\n무엇인가요?<b>(복수선택 가능)</b>`,"type":"transportsType"},
+    "question":{"contents":`🚐 선호하는 <span>통학수단은</span>\n무엇인가요?<b>(복수선택 가능)</b>`,"type":"transports"},
     "answer":[ {"title":"도보 🚶", "value":"WALKING"}, {"title":"자전거(킥보드) 🚲","value":"BIKE",},{"title":"버스 🚌","value":"BUS",}],
     "mode":"column",
     "double":true,
@@ -15,19 +15,17 @@ export const hompoQuestionList = [
 
 },
 {
-    "question":{"contents":`🚐 선호하는 <span>통학수단은</span>\n무엇인가요?`,"type":"transportsSeconds"},
+    "question":{"contents":`🚐 선호하는 <span>통학수단은</span>\n무엇인가요?`,"type":"transports"},
     "answer":null,
     "mode":"column",
     "double":true,
     "filter": {
-        "unit": "분",
         "data": {
           "WALKING": [[15, 60], ["15분 이내", "30분 이내", "1시간 이상"], "🚶 도보"],
           "BIKE": [[5, 30], ["5분 이내", "10분 이내", "20분 이내", "30분 이상"], "🚲 자전거"],
           "BUS": [[5, 30], ["5분 이내", "10분 이내", "20분 이내", "30분 이상"], "🚌 버스"]
         } 
       }as {
-        unit: string;
         data: {
           [key: string]: [number[], string[],string];
         };

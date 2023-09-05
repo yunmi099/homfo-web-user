@@ -1,13 +1,18 @@
 import React,{useState, useEffect, useMemo} from "react";
 import styles from './styles.module.scss'
+import { HompoEditData } from "../../../store/type/hompoRecommend/interface";
 interface FilterProps{
    onewayOption?: boolean;
    title: string;
+   unit: string;
    min: number;
+   data:{[key:string]:number[]}|undefined;
+   setData:React.Dispatch<React.SetStateAction<{[key: string]: number[];
+} | undefined>>
    max:number;
    mode?: string;
 }
-const Filter = ({onewayOption = false,title,min,max}:FilterProps)=>{
+const Filter = ({onewayOption = false,title,min,max,unit,data,setData}:FilterProps)=>{
     let fixedMinValue = min;
     let fixedMaxValue = max;
     const [rangeMinValue, setRangeMinValue] = useState(fixedMinValue); 
@@ -33,8 +38,9 @@ const Filter = ({onewayOption = false,title,min,max}:FilterProps)=>{
       };
       useEffect(() => {
         twoRangeHandler();
+        setData(prev=>({...prev,[unit]:[rangeMinValue,rangeMaxValue]}));
       }, [rangeMinValue, rangeMaxValue]);
-
+ 
       const rangeMinPercent = useMemo(() => ((rangeMinValue-fixedMinValue)/(fixedMaxValue-fixedMinValue)) * 100, [rangeMinValue, fixedMaxValue,fixedMinValue]);
       const rangeMaxPercent = useMemo(() => ((fixedMaxValue-rangeMaxValue)/(fixedMaxValue-fixedMinValue))*100, [rangeMaxValue, fixedMaxValue, fixedMinValue]);
       return(

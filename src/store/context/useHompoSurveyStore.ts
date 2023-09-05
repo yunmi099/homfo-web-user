@@ -1,16 +1,18 @@
 import {create} from 'zustand';
 import { fetchFromApi } from '../../utils/axios';
+import { HompoEditData } from '../type/hompoRecommend/interface';
+type AreaType = {
+  areaId: number;
+  name: string;
+  type: string;
+  radius: number;
+  lat: number;
+  lng: number;
+};
+
+type ScoreType = number;
 interface HompoStoreState {
-    info:
-    {
-        universityPeople: boolean | null;
-        transports: null|[{type: string, seconds:number}];
-        hobbyInHome: boolean | null;
-        facilities: string[]|null;
-        
-    },
-    setSurveyInfo: (key: keyof HompoStoreState['info'], value: any) => void;
-    postHompoRecommendInfo: (id: number) => Promise<void>;
+    postHompoRecommendInfo: (id: number, data: HompoEditData, filterData:{[key:string]:number[]}|undefined) => Promise<void>;
     result:
     [{
         area: {
@@ -23,34 +25,36 @@ interface HompoStoreState {
         },
         score: null|number,
     }]
-}
-  
+} 
 const useHompoSurveyStore = create<HompoStoreState>((set)=>({
-    info :{
-        universityPeople: null,
-        transports: null,
-        hobbyInHome: null,
-        facilities: null,
-    },
-    setSurveyInfo: (key, value) => {
-        set((state) => ({
-          info: {
-            ...state.info,
-            [key]: value,
-          },
+    postHompoRecommendInfo: async (id: number, data:HompoEditData, filterData: {[key:string]:number[]}|undefined): Promise<void> => {
+      try {
+        let totalData={};
+        totalData = Object.keys(data).reduce((obj:any, index:any)=>{
+          if (data[index].length === 1) {
+            obj[index] = data[index][0];
+          } else {
+            obj[index] = data[index];
+          }
+          return obj;
+        },{})
+        if (filterData !== undefined) {
+          const transportsData = Object.entries(filterData).map(([type, [start, end]]) => ({
+            type,
+            seconds: end * 60,
+          }));
+          totalData = {...totalData, "transports": transportsData}
+        }
+        const res = await fetchFromApi('POST', `/users/${id}/recommended-area`,totalData);
+        const resultArray = res.data.data.map((item: any) => ({
+          area: item.area as AreaType,
+          score: item.score as ScoreType,
         }));
-      },
-    postHompoRecommendInfo: async (id: number): Promise<void> => {
-        const state = useHompoSurveyStore.getState();
-        const data = { ...state.info, userId: id };
-        try {
-          const res = await fetchFromApi('POST', `/users/${id}/recommended-area`, data);
           set((state) => ({
             ...state,
-            result: res.data,
+            result: resultArray,
           }));
         } catch (e: any) {
-          console.log(e);
         }
     },
     result: [
@@ -66,5 +70,6 @@ const useHompoSurveyStore = create<HompoStoreState>((set)=>({
                 score: null,
             },
         ],
+    
  }))     
  export default useHompoSurveyStore;
