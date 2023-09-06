@@ -18,6 +18,7 @@ function App() {
                 <Route path="/user/password" Component={router.modifyPassword} />
                 <Route path="/user/phonenumber" Component={router.modifyPhonenumber} />
                 <Route path="/mypage/hompo-recommendedArea" Component={router.hompoRecommendedArea} />
+                <Route path="/real-estate-knowledge" Component={router.realEstateKnowledge} />
             </Routes>
         </>
     );

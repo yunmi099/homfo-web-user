@@ -1,6 +1,5 @@
 import React,{useState, useEffect, useMemo} from "react";
 import styles from './styles.module.scss'
-import { HompoEditData } from "../../../store/type/hompoRecommend/interface";
 interface FilterProps{
    onewayOption?: boolean;
    title: string;

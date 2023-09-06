@@ -39,7 +39,7 @@ const MultipleChoice: React.FC<MultipleChoiceProps> = ({ currentQuestion,data, s
     <div className={styles.answerContainer} style={containerStyles}>
       {currentQuestion.answer!==null&&currentQuestion.answer.map((key) => (
         <div
-          className={`${styles.answerButton} ${
+          className={`${
             data[questionType].includes(key.value) ? styles.activeAnswerButton : styles.nonactiveAnswerButton
           }`}
           style={answerStyles}

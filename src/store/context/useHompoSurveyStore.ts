@@ -1,6 +1,6 @@
 import {create} from 'zustand';
-import { fetchFromApi } from '../../utils/axios';
 import { HompoEditData } from '../type/hompoRecommend/interface';
+import { fetchFromApi } from '../../utils/axios';
 type AreaType = {
   areaId: number;
   name: string;

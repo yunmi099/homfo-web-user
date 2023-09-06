@@ -5,13 +5,14 @@
     text-align: center;
     line-height: 40px;
     border-radius: 25px;
-    background-color:#EBEBEB;
 }
 .nonactiveAnswerButton{
+    @extend .answerButton;
     background-color:#EBEBEB;
     color:#282D2F;
 }
 .activeAnswerButton{
+    @extend .answerButton;
     background-color: #0D1315;
     color: #FFFFFF;
 }

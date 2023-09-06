@@ -22,8 +22,7 @@ const SelectedHompoSurvey = (props: SelectedProgressProps) => {
     facilities: [],
   });
   const [filterValue,setFilterValue] = useState<{[key:string]:number[]}|undefined>();
-  const {postHompoRecommendInfo, result} = useHompoSurveyStore();
-  console.log(result);
+  const {postHompoRecommendInfo} = useHompoSurveyStore();
   return (
     <>
       <Question question={currentQuestion.question.contents} />
