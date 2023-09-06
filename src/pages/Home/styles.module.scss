@@ -1,3 +1,4 @@
+@import '/src/styles/utils/utils';
 .container{
     width:100vw;
     height: 100vh;
@@ -48,11 +49,10 @@
 
 .customTitle{
     font-weight: 700;
-    text-shadow: 4px 4px 4px 4px red;
 }
 .areaBox{
     display:flex;
-    width: 43.75vw;
+    width: 55vw;
     height: 4.83vh;
     background-color: white;
     align-items: center;
@@ -83,4 +83,31 @@
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
     border-radius: 20px;
     margin: 1vh 5vw;
+}
+.locationContainer{
+    margin: {
+        top: 8vh;
+    }
+    display: flex;
+    justify-content: space-evenly;
+}
+.locationBox{
+    @include centerContainer;
+    flex-direction: column;
+    margin:5px;
+    background-color:white;
+    border: 1px solid;
+    border: {
+        radius: 10px;
+        color:white;
+    }
+    width: 25vw;
+    height: 25vw;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.locationFont{
+    font: {
+        size: 11px;
+    }
 }

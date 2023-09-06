@@ -10,15 +10,11 @@ function Home() {
     const { fetch } = useUserStore();
   
     useEffect(()=>{fetch(2)},[fetch])
-    
     return(
     <div className={styles.container}>
      <div className={styles.topContainer}>
-        <div className={styles.mypageLinker} onClick={()=>navigate('/mypage')}>
-        </div>
-        <SearchBar/>
         <div className={styles.message}>
-            <div >
+            <div style={{  marginTop:"13vh"}}>
             🏠<span className={styles.customTitle}>홈포로 </span>
                 <span>간편하게</span>
             </div>
@@ -26,24 +22,24 @@ function Home() {
         </div>
         <div className={styles.areaBox}>
             <img src={homeIcon.areaLinker}/>
-            <div>자취구역 보기</div>
+            <div>홈포가 추천하는 구역</div>
         </div>
      </div>
      <div className={styles.bottomContainer}>
         <div className={styles.news}></div>
         <div className={styles.newsTitle}></div>
         <div className={styles.locationContainer}>
-            <div>
-                <img src={homeIcon.areaLinker2}/>
-                <div>자취구역보기</div>
+            <div className={styles.locationBox}>
+                <img src={homeIcon.dictionary} height="33px"  style={{marginBottom:5}}/>
+                <div className={styles.locationFont} onClick={()=>navigate('/real-estate-knowledge')}>부동산 상식</div>
             </div>
-            <div>
-                <img src={homeIcon.paperplane}/>
-                <div>요청하기</div>
+            <div className={styles.locationBox}>
+                <img src={homeIcon.paperplane} width="37px"  style={{marginBottom:5}}/>
+                <div className={styles.locationFont}>요청하기</div>
             </div>
-            <div>
-                <img src={homeIcon.dictionary}/>
-                <div>부동산 상식</div>
+            <div className={styles.locationBox}>
+                <img width="52px" src={homeIcon.areaLinker2} style={{marginBottom:5}}/>
+                <div className={styles.locationFont}>자취구역보기</div>
             </div>
         </div>
      </div> 

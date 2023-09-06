@@ -19,14 +19,14 @@ function BottomTab() {
       title: '지도',
     },
     {
-      path: '/request',
-      image: location.pathname === '/request' ? bottomtabIcon.Request :bottomtabIcon.NRequest,
-      title: '요청하기',
-    },
-    {
       path: '/requestbox',
       image: location.pathname === '/requestbox' ? bottomtabIcon.RequestBox : bottomtabIcon.NRequestBox,
       title: '요청서함',
+    },
+    {
+      path: '/mypage',
+      image: location.pathname === '/mypage' ? bottomtabIcon.Mypage :bottomtabIcon.NMypage,
+      title: '마이페이지',
     },
   ];
 
