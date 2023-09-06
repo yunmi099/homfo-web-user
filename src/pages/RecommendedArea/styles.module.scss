@@ -1,13 +1,13 @@
+@import '/src/styles/utils/utils';
+$background-color:white;
 .container{
-    width: 100vw;
-    height: 100vh;
-    background-color:white;
-    display: flex;
-    flex-direction: column;
+    @include entireContainer($background-color);
 }
 .initialNotice{
-    font-size: 1.1em;
-    font-weight: 700;
+    font: {
+        font-size: 1.1em;
+        font-weight: 700;
+    }
     width: 100vw;
     position: absolute;
     bottom: 40vh;
@@ -20,15 +20,17 @@
     position: absolute;
     bottom: 20vh;
     width: 93.4vw;
-    margin-left: 3.3vw;
     height: 7vh;
+    margin-left: 3.3vw;
     background-color: #842CFF;
     border-radius: 48px;
     color:white;
     text-align: center;
     line-height: 7vh;
-    font-size: 18px;
-    font-weight: 700;
+    font: {
+        font-size: 18px;
+        font-weight: 700;
+    }
 }
 @keyframes slideIn {
     0% {

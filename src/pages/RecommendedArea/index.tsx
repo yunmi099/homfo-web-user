@@ -11,7 +11,7 @@ function RecommendedArea(){
     <InitialPage count={count} setCount={setCount}/>
     :<>
         <ProgressStepTracker count={count} totalCount={hompoQuestionList.length}/>
-        <SelectedHompoSurvey count={count} setCount={setCount} />
+        <SelectedHompoSurvey count={count} setCount={setCount} totalCount={hompoQuestionList.length}/>
     </>
     }    
     </div>)

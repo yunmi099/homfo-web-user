@@ -1,12 +1,8 @@
-@import '/src/utils/utils';
- 
+@import '/src/styles/utils/utils';
+$background-color:white;
 .container{
-    width: 100vw;
-    height: 100vh;
-    background-color:white;
-    display: flex;
+    @include entireContainer($background-color);
     align-items: center;
-    flex-direction: column;
 }
 
 .underline{
@@ -18,8 +14,10 @@
     margin: 5% 0px;
 }
 .key{
-    font-size: 18px;
-    font-weight: 700;
+    font: {
+        size:18px;
+        weight: 700;
+    }
 }
 .value{
     margin-top: 10px;

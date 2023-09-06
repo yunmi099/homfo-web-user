@@ -4,17 +4,20 @@
     top: 40px;
     left: 30px;
 }
-.coloredCircle{
-    background-color:#AC00FF;
-    width: 20px;
+.basicCircle{
+    background-color:#E4E4E4;
     height: 10px;
     border-radius: 100px;
     margin:1px;
 }
+
+.coloredCircle{
+    @extend .basicCircle;
+    background-color:#AC00FF;
+    width: 20px;
+}
 .circle{
+    @extend .basicCircle;
     background-color:#E4E4E4;
     width: 10px;
-    height: 10px;
-    margin:1px;
-    border-radius: 100px;
 }

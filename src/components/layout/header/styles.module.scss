@@ -1,9 +1,7 @@
+@import '/src/styles/utils/utils';
 .container{
     width: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
+    @include centerContainer;
     height: 10%;
     background-color: rgba(0,0,0,0);
     z-index: 99;
@@ -15,7 +13,9 @@
     height: 2.9vh;
 }
 .title{
-    font-weight: 700;
-    font-size: 1.25em;
+    font: {
+        size: 1.25em;
+        weight: 700;
+    }
     line-height: 3.3%;
 }

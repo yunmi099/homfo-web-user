@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 import Header from '../../../components/layout/header';
-import {fetchFromApi } from '../../../utils/axios';
+import { fetchFromApi } from '../../../utils/axios';
 import { useNavigate } from 'react-router-dom';
 import { useDebounce } from '../../../hooks/useDebounce';
 import useUserStore from '../../../store/context/useUserStore';

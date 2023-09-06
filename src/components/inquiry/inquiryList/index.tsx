@@ -5,6 +5,7 @@ import InquiryDetail from './inquiryDetail';
 import '../../../store/type/inquiry&faq/interface'
 import { fetchFromApi } from '../../../utils/axios';
 import { FilteredData, OriginalData } from '../../../store/type/inquiry&faq/interface';
+import ConfirmButton from '../../button/ConfirmButton';
   function InquiryList({ setMode, setModify ,setId }: { setMode: React.Dispatch<React.SetStateAction<boolean>>, setModify:React.Dispatch<React.SetStateAction<boolean>>,setId:React.Dispatch<React.SetStateAction<number>>  }) {
     const [data, setData] = useState<Array<FilteredData>|undefined>()
       function filterData(data: OriginalData[]): FilteredData[] {
@@ -34,7 +35,7 @@ import { FilteredData, OriginalData } from '../../../store/type/inquiry&faq/inte
     <div className={styles.container}>
         {data!==undefined ? data.map((content)=>{
             return (       
-            <div style={{margin: 20,backgroundColor:'white'}} key={content.errorId}>
+            <div  key={content.errorId}>
                 <div  style={{display:'flex', justifyContent:'space-between'}}>
                     <div>
                         {content.errorTitle}
@@ -59,7 +60,7 @@ import { FilteredData, OriginalData } from '../../../store/type/inquiry&faq/inte
                 <InquiryDetail errorId={content.errorId}/>
            </div>)
         }):null}
-        <button className={styles.button} onClick={()=>setMode(true)}>새 문의 작성하기</button>
+        <ConfirmButton title="새 문의 작성하기" auth={true} onClick={()=>setMode(true)}/>
     </div>);
 }
 

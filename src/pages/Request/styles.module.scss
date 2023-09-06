@@ -1,8 +1,7 @@
+@import '/src/styles/utils/utils';
+@import '/src/styles/common';
+$background-color:#F5F5F5;
 .container{
-    width: 100vw;
-    height: 100vh;
-    background-color:#F5F5F5;
-    display: flex;
+    @include entireContainer($background-color);
     align-items: center;
-    flex-direction: column;
 }

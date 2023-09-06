@@ -32,21 +32,20 @@ function Home() {
      <div className={styles.bottomContainer}>
         <div className={styles.news}></div>
         <div className={styles.newsTitle}></div>
-        <div>대자보</div>
-        {/* <div className={styles.locationContainer}>
+        <div className={styles.locationContainer}>
             <div>
-                <img src="assets/icons/home/areaLinker2.png"/>
+                <img src={homeIcon.areaLinker2}/>
                 <div>자취구역보기</div>
             </div>
             <div>
-                <img src="assets/icons/home/paperPlane.png"/>
+                <img src={homeIcon.paperplane}/>
                 <div>요청하기</div>
             </div>
             <div>
-                <img src="assets/icons/home/dictionary.png"/>
+                <img src={homeIcon.dictionary}/>
                 <div>부동산 상식</div>
             </div>
-        </div> */}
+        </div>
      </div> 
      <BottomTab/>
     </div>);

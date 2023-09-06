@@ -14,3 +14,4 @@ export const modifyPassword = loadable(() => import('./pages/Mypage/Modify/Passw
 export const modifyPhonenumber = loadable(() => import('./pages/Mypage/Modify/Phonenumber'));
 export const request = loadable(()=>import('./pages/Request'));
 export const hompoRecommendedArea = loadable(()=>import('./pages/RecommendedArea'))
+export const realEstateKnowledge= loadable(()=>import('./pages/RealEstateKnowledge'))

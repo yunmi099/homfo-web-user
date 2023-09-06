@@ -12,8 +12,6 @@ export function formatDate(dateTimeString: string): string {
     const year = dateTime.getFullYear();
     const month = dateTime.getMonth() + 1;
     const day = dateTime.getDate();
-    const hours = dateTime.getHours();
-    const minutes = dateTime.getMinutes();
     return `${year}년 ${month}월 ${day}일`;
   }
   

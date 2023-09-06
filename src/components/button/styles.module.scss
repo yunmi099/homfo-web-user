@@ -1,5 +1,8 @@
+@import '/src/styles/utils/utils';
+
 .button{
     position: absolute;
+    left:0;
     bottom: 0;
     width:100vw;
     height: 7.25vh;
@@ -10,9 +13,11 @@
     color: white;
 }
 .noneactive{
-    background-color: #767676;
+    @extend .button;
+    background-color: $nonactive-color;
 }
 
 .active{
-   background-color:#842CFF;
+    @extend .button;
+   background-color:$key-color;
 }
