@@ -1,5 +1,7 @@
 @import '/src/styles/utils/utils';
-$background-color:white;
-.container{
+
+$background-color: white;
+
+.container {
     @include entireContainer($background-color);
 }

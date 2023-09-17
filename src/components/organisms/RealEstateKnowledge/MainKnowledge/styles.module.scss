@@ -1,0 +1,17 @@
+.img {
+    width: 80%;
+    aspect-ratio: auto 1 / 1;
+    margin: 20px auto;
+    border-radius: 23px;
+    background-color: #d9d9d9;
+}
+
+.text {
+    margin: 30px 50px;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.highlight {
+    background: linear-gradient(to top, rgba(157, 17, 255, 0.21) 60%, transparent 50%);
+}
