@@ -9,9 +9,9 @@ export const getInquiryDetailToModify = async (
   try {
     const res = await fetchFromApi('GET', `/errors/${id}/detail`);
     const updates: Partial<InquiryFormData> = {
-        selectedCategory: res.question.errorType,
-        content: res.question.errorContent,
-        title: res.question.errorTitle,
+        selectedCategory: res.data.question.errorType,
+        content: res.data.question.errorContent,
+        title: res.data.question.errorTitle,
     };
     setFormData((prev) => updateFormData(prev, updates));
     console.log(res);

@@ -9,7 +9,7 @@ export const fetchFromApi = async (method: Method | undefined, url: string, data
         data,
     })
         .then((res) => {
-            return res.data;
+            return res;
         })
         .catch((err) => {
             console.log(err);

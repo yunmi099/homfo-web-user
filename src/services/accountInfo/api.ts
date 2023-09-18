@@ -2,9 +2,11 @@ import { NavigateFunction } from "react-router-dom";
 import { fetchFromApi } from "../../utils/axios";
 export const doubleCheck = async (nickname: string, setMessage:React.Dispatch<React.SetStateAction<string>>, setColor:React.Dispatch<React.SetStateAction<string>>): Promise<void> => {
     try {
-        await fetchFromApi('GET', `/users/auth/duplicate/nickname/${nickname}`);
-        setMessage("사용 가능한 닉네임입니다.");
-        setColor("green");
+        const res = await fetchFromApi('GET', `/users/auth/duplicate/nickname/${nickname}`);
+        if (res.status === 200){
+            setMessage("사용 가능한 닉네임입니다.");
+            setColor("green");
+        }
     } catch (e:any) {
         setMessage(e.response.data.message);
         setColor("red");
