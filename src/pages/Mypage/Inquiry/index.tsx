@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './styles.module.scss';
 import Header from '../../../components/layout/header';
-import * as inquiry from '../../../components/inquiry/routes'
+import * as inquiry from './inquiry/routes'
 
 function Inquiry() {
     const [mode, setMode] = useState<boolean>(false);

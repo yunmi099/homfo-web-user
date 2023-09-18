@@ -9,7 +9,6 @@ function Mypage() {
     const {userInfo} = useUserStore((state) => state);
     return(
     <div className={styles.container}>
-        <Header title="마이페이지"/>      
         <div className={styles.profileImg}></div>
         <div><span>{userInfo.nickName}</span>님의 슬기로운</div>
         <div>자취 생활을 늘 응원합니다!</div>

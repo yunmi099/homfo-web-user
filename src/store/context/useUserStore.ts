@@ -22,9 +22,7 @@ interface UserStoreState {
   fetch: async (id: number): Promise<void> => {
     try {
       const res = await fetchFromApi('GET',`/users/${id}/info`);
-      if (res.status === 200) {
-        set({ userInfo: res.data });
-      }
+      set({ userInfo: res});
     } catch (e) {
       console.log(e);
     }
@@ -32,7 +30,7 @@ interface UserStoreState {
   modify: async (id: number, newData: Partial<PersonalInfo>): Promise<void> => {
     try {
       const res = await fetchFromApi('PATCH',`/users/${id}/info`, newData);
-      set({ userInfo: res.data });
+      set({ userInfo: res});
     } catch (e: any) {
       console.log(e);
     }

@@ -1,24 +1,10 @@
 import React, { useState } from 'react';
 import styles from './styles.module.scss';
 import Header from '../../../components/layout/header';
-import { fetchFromApi } from '../../../utils/axios';
 import { useNavigate } from 'react-router-dom';
+import { handleWithdrawal } from '../../../services/accountInfo/api';
 function AppSetting() {
     const navigate = useNavigate();
-    const handleWithdrawal= async (userId: number)=>{
-        let id = 4;
-            try {
-               if (window.confirm('회원을 탈퇴 하시겠습니까?')) {
-               const res = await fetchFromApi('PATCH',`/users/${id}/withdrawal`);
-               console.log(res.data);
-               alert("회원이 탈퇴되었습니다.");
-               navigate('/')
-               
-               }
-              } catch (e:any) {
-                console.log(e);
-            }
-        }
     return(
     <div className={styles.container}>
         <Header title="설정" color={"white"}/>  
@@ -35,7 +21,7 @@ function AppSetting() {
             <div className={styles.title}>계정</div>    
             <div className={styles.content}>로그아웃</div>  
             <div className={styles.content} onClick={()=>{
-                handleWithdrawal(2) }}>탈퇴하기</div>  
+                handleWithdrawal(2, navigate) }}>탈퇴하기</div>  
         </div>
     </div>);
 }

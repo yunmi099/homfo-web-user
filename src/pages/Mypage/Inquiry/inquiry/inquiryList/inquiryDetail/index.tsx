@@ -1,25 +1,14 @@
 import React, { useState, useEffect} from 'react';
 import styles from './styles.module.scss';
-import opendetail from '../../../../assets/icons/inquiry/downarrow2.png'
-import closedetail from '../../../../assets/icons/inquiry/uparrow1.png'
-import { DETAIL } from '../../../../store/type/inquiry&faq/interface';
-import { fetchFromApi } from '../../../../utils/axios';
+import opendetail from '../../../../../../assets/icons/inquiry/downarrow2.png'
+import closedetail from '../../../../../../assets/icons/inquiry/uparrow1.png'
+import { DETAIL } from '../../../../../../store/type/inquiry&faq/interface';
+import { getInquiryDetail } from '../../../../../../services/inquiry/api';
 function InquiryDetail({errorId}: {errorId:number}) {
     const [openDetail,setOpenDetail]=useState<boolean>(false);
     const [detailContent, setDetailContent] =useState<DETAIL|undefined>();
-    const getInquiryDetail = async (id: number): Promise<void> => {
-        try {
-          const res= await fetchFromApi('GET',`/errors/${id}/detail`);
-          if (res.status === 200) {
-            setDetailContent(res.data);
-          }
-        } catch (e) {
-          console.log(e);
-        }
-      };
-      
     const handleInquiryDetail= ()=>{
-        getInquiryDetail(errorId);
+        getInquiryDetail(errorId, setDetailContent);
         setOpenDetail(!openDetail);
     }
     return(
