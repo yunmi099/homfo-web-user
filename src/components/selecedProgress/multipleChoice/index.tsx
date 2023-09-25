@@ -3,8 +3,10 @@ import styles from './styles.module.scss';
 import { HompoQuestion, HompoEditData } from '../../../store/type/hompoRecommend/interface';
 interface MultipleChoiceProps {
   currentQuestion: HompoQuestion;
-  data: HompoEditData;
-  setData: React.Dispatch<React.SetStateAction<HompoEditData>>;
+  // data: HompoEditData;
+  data: any;
+  // setData: React.Dispatch<React.SetStateAction<HompoEditData>>;
+  setData: React.Dispatch<React.SetStateAction<any>>;
 }
 
 const MultipleChoice: React.FC<MultipleChoiceProps> = ({ currentQuestion,data, setData }) => {
@@ -13,12 +15,11 @@ const MultipleChoice: React.FC<MultipleChoiceProps> = ({ currentQuestion,data, s
   const questionType = currentQuestion.question.type;
   const containerStyles: CSSProperties = {
     flexDirection: isRowMode ? 'row' : 'column',
-    justifyContent: isRowMode ? 'space-evenly' : 'flex-start',
-    marginLeft: isColumnMode ? '20px' : undefined,
+    marginLeft: isColumnMode ? '20px' : '5.5%',
   };
 
   const answerStyles: CSSProperties = {
-    width: isColumnMode ? '45vw' : '42vw',
+    width: isColumnMode ? '45%' : '42%',
   };
   const handleSelectAnswer = (answer: any)=>{
     if (currentQuestion.double){

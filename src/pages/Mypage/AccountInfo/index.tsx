@@ -1,31 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 import Header from '../../../components/layout/header';
-import { fetchFromApi } from '../../../utils/axios';
 import { useNavigate } from 'react-router-dom';
 import { useDebounce } from '../../../hooks/useDebounce';
 import useUserStore from '../../../store/context/useUserStore';
-
+import { doubleCheck } from '../../../services/accountInfo/api';
 function AccountInfoPage() {
   const navigate = useNavigate();
   const {userInfo, modify} = useUserStore((state)=>state);
   const [nickName, setNickname]= useState("");
   const [message, setMessage] = useState<string>("닉네임을 입력해주세요.\n 영문(대소문자가능),숫자,한글로 15글자이내로 입력해주세요.");
   const [color, setColor]= useState<string>('black');
-
-  const doubleCheck = async (nickname: string): Promise<void> => {
-    try {
-        const res = await fetchFromApi('GET', `/users/auth/duplicate/nickname/${nickname}`);
-        if (res.status === 200) {
-            setMessage("사용 가능한 닉네임입니다.");
-            setColor("green");
-        }
-    } catch (e:any) {
-        setMessage(e.response.data.message);
-        setColor("red");
-    }
-    
-};
 
  const regex = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\|]/;
  const debouncedNickname = useDebounce(nickName, 500);
@@ -38,7 +23,7 @@ function AccountInfoPage() {
       setMessage("영문(대소문자가능),숫자,한글로 15글자이내로 입력해주세요.");
       setColor("red");
     } else {
-      doubleCheck(debouncedNickname);
+      doubleCheck(debouncedNickname, setMessage, setColor);
     }
   }
  }, [debouncedNickname]);

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import styles from './styles.module.scss';
-import { formatDateTime } from '../../../utils/getDate';
+import { formatDateTime } from '../../../../../utils/getDate';
 import InquiryDetail from './inquiryDetail';
-import '../../../store/type/inquiry&faq/interface'
-import { fetchFromApi } from '../../../utils/axios';
-import { FilteredData, OriginalData } from '../../../store/type/inquiry&faq/interface';
-import ConfirmButton from '../../button/ConfirmButton';
+import '../../../../../store/type/inquiry&faq/interface'
+import { FilteredData, OriginalData } from '../../../../../store/type/inquiry&faq/interface';
+import ConfirmButton from '../../../../../components/button/ConfirmButton';
+import { getInquiryList } from '../../../../../services/inquiry/api';
   function InquiryList({ setMode, setModify ,setId }: { setMode: React.Dispatch<React.SetStateAction<boolean>>, setModify:React.Dispatch<React.SetStateAction<boolean>>,setId:React.Dispatch<React.SetStateAction<number>>  }) {
     const [data, setData] = useState<Array<FilteredData>|undefined>()
       function filterData(data: OriginalData[]): FilteredData[] {
@@ -17,20 +17,7 @@ import ConfirmButton from '../../button/ConfirmButton';
           updatedAt
         }));
       }
-      
-      const getInquiryList = async (): Promise<void> => {
-        const id = 2;
-        try {
-          const res = await fetchFromApi('GET',`/errors/users/${id}`);
-          if (res.status === 200) {
-            setData(filterData(res.data));
-          }
-        } catch (e:any) {
-          console.log(e);
-        }
-      };
-      
-      useEffect(()=>{getInquiryList()},[])
+    useEffect(()=>{getInquiryList(2, setData, filterData)},[])
     return(
     <div className={styles.container}>
         {data!==undefined ? data.map((content)=>{

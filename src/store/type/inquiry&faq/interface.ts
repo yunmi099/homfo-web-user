@@ -1,4 +1,4 @@
-export { type FAQLIST, type QUESTION, type ANSWER, type DETAIL, type OriginalData , type FilteredData, type ORIGIN_FAQ };
+export { type FAQLIST, type QUESTION, type ANSWER, type DETAIL, type OriginalData , type FilteredData, type ORIGIN_FAQ, type InquiryFormData };
 interface QUESTION{
     errorId: number;
     userId: number;
@@ -45,7 +45,7 @@ interface ORIGIN_FAQ {
     writerId: number;
     question: string;
     answer: string;
-    isPublic: number;
+    isPublic: string;
     status: string;
     createdAt: string;
     updatedAt: string;
@@ -54,5 +54,12 @@ interface FAQLIST {
     faqId: number;
     question: string;
     answer: string;
-    isPublic: number;
+    isPublic: string;
   }
+interface InquiryFormData {
+    categoryList: string[] | undefined;
+    selectedCategory: string | undefined;
+    openCategory: boolean;
+    title: string;
+    content: string;
+}
