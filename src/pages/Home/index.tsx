@@ -35,7 +35,7 @@ function Home() {
             </div>
             <div className={styles.locationBox}>
                 <img src={homeIcon.paperplane} width="37px"  style={{marginBottom:5}}/>
-                <div className={styles.locationFont}>요청하기</div>
+                <div className={styles.locationFont} onClick={()=>navigate('/request')}>요청하기</div>
             </div>
             <div className={styles.locationBox}>
                 <img width="52px" src={homeIcon.areaLinker2} style={{marginBottom:5}}/>

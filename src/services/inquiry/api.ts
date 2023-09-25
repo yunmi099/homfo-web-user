@@ -14,7 +14,6 @@ export const getInquiryDetailToModify = async (
         title: res.data.question.errorTitle,
     };
     setFormData((prev) => updateFormData(prev, updates));
-    console.log(res);
   } catch (e) {
     console.log(e);
   }
@@ -22,7 +21,7 @@ export const getInquiryDetailToModify = async (
 export const getInquiryDetail = async (errorId: number, setDetailContent:Dispatch<SetStateAction<DETAIL|undefined>>): Promise<void> => {
     try {
       const res= await fetchFromApi('GET',`/errors/${errorId}/detail`);
-      setDetailContent(res);
+      setDetailContent(res.data);
     } catch (e) {
       console.log(e);
     }
@@ -33,8 +32,8 @@ export const getCategoryList = async (
   try {
     const res = await fetchFromApi('GET', `/errors/type`);
       const updates: Partial<InquiryFormData> = {
-        categoryList: res.data,
-        selectedCategory: res.data[0],
+        categoryList: res.data.data,
+        selectedCategory: res.data.data[0],
       };
     setFormData((prev) => updateFormData(prev, updates));
   } catch (e) {
@@ -67,7 +66,7 @@ export const submitInquiry = async (
 export const getInquiryList = async (userId: number,setData:Dispatch<SetStateAction<FilteredData[] | undefined>>, filterData:any): Promise<void> => {
     try {
       const res = await fetchFromApi('GET',`/errors/users/${userId}`);
-      setData(filterData(res.data));
+      setData(filterData(res.data.data));
     } catch (e:any) {
       console.log(e);
     }

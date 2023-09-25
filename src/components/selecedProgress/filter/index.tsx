@@ -49,7 +49,9 @@ const Filter = ({onewayOption = false,title,min,max,unit,data,setData}:FilterPro
           {title}
         </div>
         <div className={styles.result}>
-          {rangeMaxValue}분 이내
+          {  rangeMaxValue / 10000 >= 1
+            ? `${Math.floor(rangeMaxValue / 10000)}억${rangeMaxValue % 10000 !== 0 ? ` ${rangeMaxValue % 10000}만원` : ''} 이내`
+            : `${rangeMaxValue}만원 이내`}
         </div>
       </div>
         <div className={styles.filterSlide}>

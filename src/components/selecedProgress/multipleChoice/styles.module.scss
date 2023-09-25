@@ -1,5 +1,5 @@
 .answerButton{
-    width: 45vw;
+    width: 45%;
     height: 40px;
     margin:5px;
     text-align: center;
@@ -19,7 +19,8 @@
 .answerContainer{
     display: flex;
     width: 100vw;
-    margin-top: 10%;
+    justify-content: flex-start;
+    margin-top: 15%;
     flex-wrap: wrap; 
 }
 
