@@ -1,0 +1,28 @@
+.title{
+    font-weight: 700;
+    font-size: 25px;
+    margin-top:30px;
+    color: #9D11FF;
+}
+.contents{
+    line-height: 27px;
+    margin-left: 10px;
+}
+.button{
+    position:absolute;
+    background-color: #842CFF;
+    border: 0px;
+    bottom :0;
+    color: white;
+    font-size:15px;
+    height: 50px;
+    &.todayClose {
+        left:0;
+        width: 70%;
+        
+    }
+    &.close {
+        left:70%;
+        width: 30%;
+    }
+}
