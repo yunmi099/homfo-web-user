@@ -41,7 +41,7 @@ export const getCategoryList = async (
   }
 };
 export const submitInquiry = async (
-  userId: number,
+  errorId: number,
   title: string,
   category: string,
   content: string,
@@ -55,7 +55,7 @@ export const submitInquiry = async (
   };
   try {
     if (modify) {
-      await fetchFromApi('PATCH', `/errors/${userId}`, data);
+      await fetchFromApi('PATCH', `/errors/${errorId}`, data);
     } else {
       await fetchFromApi('POST', `/errors`, data);
     }
