@@ -30,7 +30,6 @@ interface UserStoreState {
   modify: async (id: number, newData: Partial<PersonalInfo>): Promise<void> => {
     try {
       const res = await fetchFromApi('PATCH',`/users/${id}/info`, newData);
-      console.log(res);
       set({ userInfo: res.data});
     } catch (e: any) {
       console.log(e);
