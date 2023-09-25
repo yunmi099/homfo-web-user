@@ -36,7 +36,7 @@ function InquiryForm({
     } else if (content === '') {
       alert('내용을 작성해주세요');
     } else {
-      submitInquiry(2, title, selectedCategory!, content, modify);
+      submitInquiry(id, title, selectedCategory!, content, modify);
       setModify(false);
       setMode(false);
     }
