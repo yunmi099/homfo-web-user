@@ -1,0 +1,24 @@
+.optionSelector {
+    display: flex;
+    gap: 5px;
+    margin: 20px;
+}
+
+.active {
+    border-radius: 26px;
+    padding: 2px 10px;
+    background: conic-gradient(
+            from 180deg at 50% 50%,
+            rgba(144, 35, 255, 0.2) 0deg,
+            rgba(0, 88, 255, 0.2) 180deg,
+            rgba(132, 44, 255, 0.2) 354.375deg
+        ),
+        #d9d9d9;
+
+    color: white;
+}
+
+.nonactive {
+    padding: 2px 10px;
+    color: #8a8a8a;
+}
