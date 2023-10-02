@@ -5,9 +5,10 @@ import { getAreaInfo } from "../../../services/request/api";
 import styles from './styles.module.scss';
 import { Area } from "../../../store/type/hompoRecommend&request/interface";
 import check from '../../../assets/icons/request/checkBox.png';
+import nonecheck from '../../../assets/icons/request/noneCheckBox.png';
 import CustomModal from "./modal";
 import SelectArea from "./selectArea";
-import { getHompoArea } from "../../../services/hompoArea/api";
+import useHompoSurveyStore from "../../../store/context/useHompoSurveyStore";
 interface InitialPageProps{
     count: number;
     setCount: React.Dispatch<React.SetStateAction<number>>;
@@ -16,14 +17,16 @@ interface InitialPageProps{
 const ZoneSelectPage = (props: InitialPageProps)=>{
     const [areaInfo, setAreaInfo] = useState<Area[]|undefined>();
     const [selfChoice, setSelfChoice] = useState<boolean>(true);
-    const [selectedArea, setSelectedArea] =useState<Area[]|undefined>();
+    const [selectedArea, setSelectedArea] =useState<number[]>([]);
     const [modalIsOpen, setModalIsOpen] = useState(true);
+    const {result} = useHompoSurveyStore();
+    
     useEffect(()=>{
         getAreaInfo("단국대학교", "본교",setAreaInfo);
-        getHompoArea(2);
-    }    
-        ,[])
-
+        if (result !== null && result.length > 0) {
+            setSelectedArea(result.map((key)=>key.area.areaId));
+    }},[])
+          
 return(<>
         <Header title="요청하기" color="white"/>
         <div className={styles.container}>
@@ -32,13 +35,17 @@ return(<>
             {areaInfo!==undefined&&
             <>
             <div className={styles.checkBox} >
-                <img src={check} width={25} height={25} alt="checkBox"/>
+                <img 
+                src={selfChoice?check:nonecheck} 
+                width={25} 
+                height={25} alt="check"
+                onClick={()=>setSelfChoice(prev=>!prev)}
+                />
                 <div>제가 직접 고를게요</div>
             </div>
             {selfChoice&&
             <div className={styles.mapContainer}>
-                {/* <SelectArea areaInfo={areaInfo} /> */}
-                지도 넣기
+                <SelectArea areaInfo={areaInfo} setSelfChoice={setSelfChoice} selectedArea={selectedArea} setSelectedArea={setSelectedArea}/>
             </div>
             }
             </>}
