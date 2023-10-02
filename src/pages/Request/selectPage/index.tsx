@@ -8,6 +8,7 @@ import Question from '../../../components/selecedProgress/question';
 import {QuestionForm} from '../../../store/type/hompoRecommend&request/interface';
 import { RequestData } from '../../../store/type/hompoRecommend&request/interface';
 import useRequestStore from '../../../store/context/useRequestStore';
+import { useNavigate } from 'react-router-dom';
 interface SelectedProgressProps {
   count: number;
   setCount: React.Dispatch<React.SetStateAction<number>>;
@@ -30,6 +31,7 @@ const SelectedRequestSurvey = (props: SelectedProgressProps) => {
   const [filterValue,setFilterValue] = useState<{[key:string]:number[]}>({});
   const questionType = currentQuestion.question.type;
   const {postPropertyRequest} = useRequestStore();
+  const navigate = useNavigate();
   return (
     <div style={{marginTop:"10vh"}}>
       <Question question={currentQuestion.question.contents} />
@@ -70,12 +72,16 @@ const SelectedRequestSurvey = (props: SelectedProgressProps) => {
       {
         props.totalCount ===props.count?
         <ConfirmButton
-        title="완료"
-        onClick={() => {
-          postPropertyRequest(2,data,filterValue);
-        }}
-        auth={true}
-      />:
+          title="완료"
+          onClick={async () => {
+            const result = await postPropertyRequest(2, data, filterValue);
+            if (result.status === 201) {
+              navigate('/request-complete');
+            }
+          }}
+          auth={true}
+        />
+      :
       <ConfirmButton
         title="다음"
         onClick={() => {

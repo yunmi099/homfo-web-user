@@ -64,7 +64,7 @@ interface ResultDetail{
 interface RequestStore{
   areaId: []|number[];
   setAreaId: (data:number[])=>void;
-  postPropertyRequest: (id: number, data: RequestData, filterData:{[key:string]:number[]}) => Promise<void>;
+  postPropertyRequest: (id: number, data: RequestData, filterData:{[key:string]:number[]}) => Promise<any>;
 }
 interface RequestForm{
   userId: number;

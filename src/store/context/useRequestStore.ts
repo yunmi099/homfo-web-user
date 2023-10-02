@@ -8,7 +8,7 @@ const useRequestStore = create<RequestStore>((set)=>({
     setAreaId: (data:number[])=>set((state) => ({
        areaId: data
     })),
-    postPropertyRequest: async (id: number, data:RequestData, filterData: {[key:string]:number[]}): Promise<void> => {
+    postPropertyRequest: async (id: number, data:RequestData, filterData: {[key:string]:number[]}): Promise<any> => {
         try{
             let totalData:RequestForm=   
             {   userId: id,
@@ -56,9 +56,8 @@ const useRequestStore = create<RequestStore>((set)=>({
             }
             delete copyData.contractType;
             totalData = {...totalData, ...copyData};
-            console.log(totalData);
          const res = await fetchFromApi('post', `/requests`,totalData); 
-         console.log(res.data);
+         return res;
         } catch (e:any) {
             console.log(e);
         }

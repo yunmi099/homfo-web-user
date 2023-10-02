@@ -1,0 +1,22 @@
+.container{
+    width: 100%;
+    height: calc(100vh - 7.25vh);
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+.text{
+    margin-top:20px;
+    font: {
+        size: 1.5em;
+        weight: 400;
+    }
+    span {
+        font-weight: 800;
+        color:#842CFF;
+    }
+
+}
