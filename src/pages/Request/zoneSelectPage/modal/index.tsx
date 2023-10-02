@@ -34,7 +34,6 @@ const customStyles = {
   
     useEffect(() => {
       const today = new Date().toLocaleDateString();
-  
       const closeModalFlag = localStorage.getItem(`closeModal_${today}`);
       if (closeModalFlag) {
         setShouldShowModal(false);

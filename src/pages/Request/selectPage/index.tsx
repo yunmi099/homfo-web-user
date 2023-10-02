@@ -5,7 +5,8 @@ import ConfirmButton from '../../../components/button/ConfirmButton';
 import Filter from '../../../components/selecedProgress/filter';
 import MultipleChoice from '../../../components/selecedProgress/multipleChoice';
 import Question from '../../../components/selecedProgress/question';
-import { HompoQuestion} from '../../../store/type/hompoRecommend/interface';
+import {QuestionForm} from '../../../store/type/hompoRecommend&request/interface';
+import { RequestData } from '../../../store/type/hompoRecommend&request/interface';
 interface SelectedProgressProps {
   count: number;
   setCount: React.Dispatch<React.SetStateAction<number>>;
@@ -13,21 +14,21 @@ interface SelectedProgressProps {
 }
 
 const SelectedRequestSurvey = (props: SelectedProgressProps) => {
-  const currentQuestion: HompoQuestion = requestQuestionList[props.count - 1];
-  const [data, setData] = useState<any>({
-    "areaName": [],
+  const currentQuestion: QuestionForm = requestQuestionList[props.count - 1];
+  const [data, setData] = useState<RequestData>({
     "realEstateType": [],
     "contractType": [],
     "residencePeriod": [],
-    "maxDeposit": [],
-    "maxMontlyFee": [],
-    "loan":[],
-    "type":[],
+    "deposit": [],
+    "loanAvailablity":[],
+    "loanType":[],
     "moveInPeriod": [],
-    "wantedFacilities": [],
-    "additionalRequests":[],
+    "roomOption": [],
+    "otherRoomOption": "",
+    "additionalRequests":"",
   });
   const [filterValue,setFilterValue] = useState<{[key:string]:number[]}|undefined>();
+  const questionType = currentQuestion.question.type;
   return (
     <div style={{marginTop:"10vh"}}>
       <Question question={currentQuestion.question.contents} />
@@ -35,16 +36,17 @@ const SelectedRequestSurvey = (props: SelectedProgressProps) => {
         <MultipleChoice currentQuestion={currentQuestion} data={data} setData={setData}/>
       ) : (
         <>
-          {data[requestQuestionList[props.count-2].question.type].map((key:string, index:number) => {
+          {
+          data[requestQuestionList[props.count-2].question.type][0].map((key:string, index:number) => {
             const filterData = currentQuestion.filter!.data;
             return (
               <div key={index}>
                 <Filter
                   min={filterData[key][0][0]}
                   max={filterData[key][0][1]}
-                  unit={key}
-                  data={filterValue}
                   setData={setFilterValue}
+                  unit={key}
+                  mode={"price"}
                   title={filterData[key][2]}
                   onewayOption={false}
                 />
@@ -57,25 +59,37 @@ const SelectedRequestSurvey = (props: SelectedProgressProps) => {
                 </div>
               </div>
             );
-          })}
+          })
+          }
         </>
       )}
-      {currentQuestion.filter === null&&currentQuestion.answer===null?<div><input/></div>:null} 
+      {currentQuestion.filter === null&&currentQuestion.answer===null?<input value={data.additionalRequests} onChange={(e)=>setData((prev:RequestData)=>({...prev, otherRoomOption: e.target.value}))} className={styles.additionalRequests} placeholder='추가 요청사항을 입력해주세요 (최대 200자)'/>:null} 
+      {data.roomOption.includes('기타')&&props.count===props.totalCount-1?<input value={data.additionalRequests} onChange={(e)=>setData((prev:RequestData)=>({...prev, additionalRequest: e.target.value}))} className={styles.additionalFacilities} placeholder='추가 요청사항을 입력해주세요 (최대 15자)'/>:null} 
+      {
+        props.totalCount ===props.count?
+        <ConfirmButton
+        title="완료"
+        onClick={() => {
+          console.log(data);
+          console.log(filterValue);
+          alert("api를 기다리는 중 입니다 !")
+        }}
+        auth={true}
+      />:
       <ConfirmButton
         title="다음"
         onClick={() => {
-          if(props.count===5&&data[currentQuestion.question.type][0]===false){
+          if(props.count===5&&data[questionType][0]==="아니오"){
             props.setCount(props.count+2);
-          } else if(props.totalCount ===props.count) {
-            alert("api 기다리는 중 ~ 기다리세용");
           } else{
             if (props.count < requestQuestionList.length) {
               props.setCount(props.count + 1);
             }
           }
         }}
-        auth={currentQuestion.filter === null?data[currentQuestion.question.type].length?true:false:true}
+        auth={currentQuestion.filter === null?data[questionType].length?true:false:true}
       />
+    }
     </div>
   );
 };

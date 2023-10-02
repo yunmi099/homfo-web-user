@@ -4,12 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import BottomTab from '../../components/layout/bottomtabs';
 import SearchBar from './searchBar';
 import * as homeIcon from '../../assets/icons/home/homeIcon';
-import useUserStore from '../../store/context/useUserStore';
+import useFetchHompoInitialData from '../../hooks/useFetchInitialData';
+import useHompoSurveyStore from '../../store/context/useHompoSurveyStore';
 function Home() {
     const navigate = useNavigate();
-    const { fetch } = useUserStore();
-  
-    useEffect(()=>{fetch(2)},[fetch])
+    const {result} = useHompoSurveyStore();
+    useFetchHompoInitialData();
     return(
     <div className={styles.container}>
      <div className={styles.topContainer}>
@@ -35,7 +35,7 @@ function Home() {
             </div>
             <div className={styles.locationBox}>
                 <img src={homeIcon.paperplane} width="37px"  style={{marginBottom:5}}/>
-                <div className={styles.locationFont} onClick={()=>navigate('/request')}>요청하기</div>
+                <div className={styles.locationFont} onClick={()=>{result===null?alert("홈포 추천 구역을 먼저 검사해보세요!"):navigate('/request')}}>요청하기</div>
             </div>
             <div className={styles.locationBox}>
                 <img width="52px" src={homeIcon.areaLinker2} style={{marginBottom:5}}/>

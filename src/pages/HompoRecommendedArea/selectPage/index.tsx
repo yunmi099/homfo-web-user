@@ -6,14 +6,16 @@ import Filter from '../../../components/selecedProgress/filter';
 import MultipleChoice from '../../../components/selecedProgress/multipleChoice';
 import Question from '../../../components/selecedProgress/question';
 import useHompoSurveyStore from '../../../store/context/useHompoSurveyStore';
-import { HompoQuestion,HompoEditData } from '../../../store/type/hompoRecommend/interface';
+import { QuestionForm,HompoEditData } from '../../../store/type/hompoRecommend&request/interface';
+import { useNavigate } from 'react-router-dom';
 interface SelectedProgressProps {
   count: number;
   setCount: React.Dispatch<React.SetStateAction<number>>;
   totalCount: number;
 }
 const SelectedHompoSurvey = (props: SelectedProgressProps) => {
-  const currentQuestion: HompoQuestion = hompoQuestionList[props.count - 1];
+  const navigate = useNavigate();
+  const currentQuestion: QuestionForm = hompoQuestionList[props.count - 1];
   const [data, setData] = useState<HompoEditData>({
     universityPeople: [],
     transports: [],
@@ -37,7 +39,7 @@ const SelectedHompoSurvey = (props: SelectedProgressProps) => {
                   min={filterData[key][0][0]}
                   max={filterData[key][0][1]}
                   unit={key}
-                  data={filterValue}
+                  mode={"time"}
                   setData={setFilterValue}
                   title={filterData[key][2]}
                   onewayOption={true}
@@ -60,6 +62,7 @@ const SelectedHompoSurvey = (props: SelectedProgressProps) => {
           if(props.count===1&&data[currentQuestion.question.type][0]===false){
             props.setCount(props.count+3);
           } else if(props.totalCount ===props.count) {
+            navigate('/mypage/hompo-recommended-result');
             postHompoRecommendInfo(2, data, filterValue);
           } else{
             if (props.count < hompoQuestionList.length) {

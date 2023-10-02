@@ -1,17 +1,16 @@
 import React,{useState, useEffect, useMemo} from "react";
 import styles from './styles.module.scss'
+import FilterInfo from "./filterInfo";
 interface FilterProps{
    onewayOption?: boolean;
    title: string;
    unit: string;
    min: number;
-   data:{[key:string]:number[]}|undefined;
-   setData:React.Dispatch<React.SetStateAction<{[key: string]: number[];
-} | undefined>>
+   setData:React.Dispatch<React.SetStateAction<{[key: string]: number[]}|undefined>>
    max:number;
-   mode?: string;
+   mode: string;
 }
-const Filter = ({onewayOption = false,title,min,max,unit,data,setData}:FilterProps)=>{
+const Filter = ({onewayOption = false,title,min,max,unit,mode,setData}:FilterProps)=>{
     let fixedMinValue = min;
     let fixedMaxValue = max;
     const [rangeMinValue, setRangeMinValue] = useState(fixedMinValue); 
@@ -23,7 +22,7 @@ const Filter = ({onewayOption = false,title,min,max,unit,data,setData}:FilterPro
       gap=1
     }
     const minValueHandler = (e:any) => { 
-        {onewayOption!==true&&setRangeMinValue(parseInt(e.target.value))};
+        {onewayOption===false&&setRangeMinValue(parseInt(e.target.value))};
       };
       
       const maxValueHandler = (e:any) => {
@@ -44,21 +43,12 @@ const Filter = ({onewayOption = false,title,min,max,unit,data,setData}:FilterPro
       const rangeMaxPercent = useMemo(() => ((fixedMaxValue-rangeMaxValue)/(fixedMaxValue-fixedMinValue))*100, [rangeMaxValue, fixedMaxValue, fixedMinValue]);
       return(
     <div className={styles.container}>
-      <div className={styles.filterInfo}>
-        <div className={styles.title}>
-          {title}
-        </div>
-        <div className={styles.result}>
-          {  rangeMaxValue / 10000 >= 1
-            ? `${Math.floor(rangeMaxValue / 10000)}억${rangeMaxValue % 10000 !== 0 ? ` ${rangeMaxValue % 10000}만원` : ''} 이내`
-            : `${rangeMaxValue}만원 이내`}
-        </div>
-      </div>
+        <FilterInfo title={title} mode={mode} min={rangeMinValue} max={rangeMaxValue}/>
         <div className={styles.filterSlide}>
             <div className={styles.filterSlideInner} style={{left:`${rangeMinPercent}%`,right:`${rangeMaxPercent}%`}}>
             </div>
             <div className={styles.filterRangeWrap}>
-                    <input className={styles.filterRangeMin}   
+                    <input className={onewayOption?styles.filterRangeMin:styles.filterRangeMax}   
                     type="range"
                     min={fixedMinValue}
                     max={fixedMaxValue - gap}

@@ -1,61 +1,24 @@
 import {create} from 'zustand';
-import { HompoEditData } from '../type/hompoRecommend/interface';
+import { HompoEditData, HompoStoreState, Result,ResultDetail } from '../type/hompoRecommend&request/interface';
 import { fetchFromApi } from '../../utils/axios';
-type AreaType = {
-  areaId: number;
-  name: string;
-  type: string;
-  radius: number;
-  lat: number;
-  lng: number;
-}
-type ScoreType = number;
-const getHompoRecommendResult= async (area_id: number, area_type: string): Promise<void> => {
-  try {
-     const res = await fetchFromApi('GET', `/real-estate/area/detail?areaId=${area_id}&areaType=${area_type}`);
-     return res.data;
-  } catch (e: any) {
-     throw e;
-  }
-}
-
-interface HompoStoreState {
-    postHompoRecommendInfo: (id: number, data: HompoEditData, filterData:{[key:string]:number[]}|undefined) => Promise<void>;
-    result:
-    [{
-        area: {
-            areaId: null|number,
-            name:null|string,
-            type:null|string,
-            radius:null|number,
-            lat: null|number,
-            lng: null|number,
-        },
-        score: null|number,
-    }]
-    resultDetail: [
-      {
-        name: null|string,
-        type: null|string,
-        avgMonthlyDeposit: null|number,
-        avgMonthlyFee: null|number,
-        avgJeonseDeposit: null|number,
-        avgExclusiveArea:null|number,
-        avgBuiltYear:null|number,
-        avgWalkingTotalDistance: null|number,
-        avgWalkingSeconds: null|number,
-        avgBikeSeconds: null|number,
-        avgTransportSeconds: null|number,
-      }
-    ];
-} 
+import { getAreaDetailResult } from '../../services/hompoArea/api';
 const useHompoSurveyStore = create<HompoStoreState>((set)=>({
+    result: null,
+    resultDetail:null,
+    setResult: (data:Result[])=>set((state) => ({
+      ...state,
+      result: data
+    })),  
+    setResultDetail: (data:ResultDetail[])=>set((state) => ({
+      ...state,
+      resultDetail: data
+    })),  
     postHompoRecommendInfo: async (id: number, data:HompoEditData, filterData: {[key:string]:number[]}|undefined): Promise<void> => {
       try {
         let totalData={};
         totalData = Object.keys(data).reduce((obj:any, index:any)=>{
           if (data[index].length === 1) {
-            obj[index] = data[index][0];
+            obj[index] = data[index][0]; 
           } else {
             obj[index] = data[index];
           }
@@ -68,56 +31,25 @@ const useHompoSurveyStore = create<HompoStoreState>((set)=>({
           }));
           totalData = {...totalData, "transports": transportsData}
         }
-        const res = await fetchFromApi('POST', `/users/${id}/recommended-area`,totalData);
-        const resultArray = res.data.data.map((item: any) => {
-          const area: AreaType = item.area;
-          const score: ScoreType = item.score;
-          const detailResult = getHompoRecommendResult(area.areaId,area.type);
-          return {
-            area,
-            score,
-            detailResult
-          };
-        });
-          set((state) => ({
-            ...state,
-            result: resultArray,
-            resultDetail: resultArray.map((item:any) => item.detailResult),
-          }));
-          
+        const storeState = useHompoSurveyStore.getState();
+        const requestType = storeState.result===null?'post':'patch';
+        const res = await fetchFromApi(requestType, `/users/${id}/recommended-area`,totalData); 
+        storeState.setResult(res.data.data);
+        const resultArray:ResultDetail[] = await Promise.all(
+          res.data.data.map(async (item: any) => {
+            const areaId: number = item.area.areaId;
+            const detail = await getAreaDetailResult(areaId);
+            return {
+              areaId,
+              detail
+            };
+          })
+        );
+       storeState.setResultDetail(resultArray);
         } catch (e: any) {
           console.log(e);
         }
     },
-    result: [
-            {
-                area: {
-                    areaId: null,
-                    name:null,
-                    type:null,
-                    radius:null,
-                    lat: null,
-                    lng: null,
-                },
-                score: null,
-            },
-        ],
-    resultDetail: [
-      {
-        name: null,
-        type: null,
-        avgMonthlyDeposit: null,
-        avgMonthlyFee: null,
-        avgJeonseDeposit: null,
-        avgExclusiveArea: null,
-        avgBuiltYear: null,
-        avgWalkingTotalDistance: null,
-        avgWalkingSeconds: null,
-        avgBikeSeconds: null,
-        avgTransportSeconds: null
-      }
-    ]
-
  }))     
 
 
