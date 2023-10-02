@@ -60,7 +60,7 @@ export default function SelectArea({
           </div>
         ))}
       </div>
-      <div className={styles.overlay} onClick={()=> {setSelfChoice(prev=>!prev)}}></div>
+      <div className={styles.overlay} onClick={(e)=> {setSelfChoice(prev=>!prev)}}></div>
     </>
   );
 }

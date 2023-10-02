@@ -1,4 +1,4 @@
-export {type QuestionForm, type HompoEditData,type Area, type RequestData, type HompoStoreState, type Result, type ResultDetail };
+export {type QuestionForm, type HompoEditData,type Area, type RequestData, type HompoStoreState, type Result, type ResultDetail, type RequestStore, type RequestForm};
 interface HompoStoreState {
   setResult: (data: Result[])=>void;
   setResultDetail: (data: ResultDetail[])=>void;
@@ -37,8 +37,7 @@ interface RequestData{
   realEstateType: string[];
   contractType: string[],
   residencePeriod: string[];
-  deposit: string[];
-  loanAvailablity:string[];
+  loanAvailability:string[];
   loanType:string[];
   moveInPeriod: string[];
   roomOption: string[];
@@ -61,4 +60,23 @@ interface ResultDetail{
     avgBikeSeconds: null | number;
     avgTransportSeconds: null | number;
   }[];
+}
+interface RequestStore{
+  areaId: []|number[];
+  setAreaId: (data:number[])=>void;
+  postPropertyRequest: (id: number, data: RequestData, filterData:{[key:string]:number[]}) => Promise<void>;
+}
+interface RequestForm{
+  userId: number;
+  areaId: number[];
+  realEstateType: string[];
+  contractType: string;
+  residencePeriod:string[];
+  deposit:{[key: string]: number[]};
+  moveInPeriod:string;
+  loanAvailability: string;
+  loanType: string|null;
+  roomOption: string[];
+  otherRoomOption: string|null;
+  additionalRequests: string|null;
 }

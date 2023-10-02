@@ -6,7 +6,7 @@ interface FilterProps{
    title: string;
    unit: string;
    min: number;
-   setData:React.Dispatch<React.SetStateAction<{[key: string]: number[]}|undefined>>
+   setData:React.Dispatch<React.SetStateAction<{[key: string]: number[]}>>
    max:number;
    mode: string;
 }

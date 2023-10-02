@@ -22,7 +22,7 @@ const SelectedHompoSurvey = (props: SelectedProgressProps) => {
     hobbyInHome: [],
     facilities: [],
   });
-  const [filterValue,setFilterValue] = useState<{[key:string]:number[]}|undefined>();
+  const [filterValue,setFilterValue] = useState<{[key:string]:number[]}>({});
   const {postHompoRecommendInfo} = useHompoSurveyStore();
   return (
     <div style={{marginTop:"10vh"}}>

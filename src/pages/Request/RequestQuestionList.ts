@@ -9,14 +9,14 @@ export const requestQuestionList = [
      },
      {
         "question":{"contents":`<span>🏠 희망 거주기간</span>은\n 어떻게 되나요??`,"type":"residencePeriod"},
-        "answer":[{"title":"6개월 이내", "value":"6개월 이내"}, {"title":"6개월~1년","value":"6개월~1년",} ,{"title":"1년~2년", "value":"1년~2년"} ,{"title":"2년", "value":"2년"} ,{"title":"집주인과 상의", "value":"집주인과상의"}],
+        "answer":[{"title":"6개월 이내", "value":"6개월 이내"}, {"title":"6개월~1년","value":"6개월~1년",} ,{"title":"1년~2년", "value":"1년~2년"} ,{"title":"2년", "value":"2년"} ,{"title":"집주인과 상의", "value":"집주인과 상의"}],
         "mode":"row",
         "double":false,
         "filter":null,
      },
      {
         "question":{"contents":`구하는 <span>계약형태</span>는\n어떻게 되나요?`,"type":"contractType"},
-        "answer":[ {"title":"월세", "value":["deposit", "montlyRent"]}, {"title":"전세","value":["jeonseDeposit"],},{"title":"상관없음","value":["deposit", "montlyRent","jeonseDeposit"],}],
+        "answer":[ {"title":"월세", "value":["deposit", "monthlyRent"]}, {"title":"전세","value":["jeonseDeposit"],},{"title":"상관없음","value":["deposit", "monthlyRent","jeonseDeposit"],}],
         "mode":"column",
         "double":false,
         "filter":null,
@@ -30,7 +30,7 @@ export const requestQuestionList = [
         "filter": {
             "data": {
               "deposit": [[500, 10000], ["500만원","1억 이상"], "월세 보증금"],
-              "montlyRent": [[25, 150], ["25만원","150만원"], "월세"],
+              "monthlyRent": [[25, 150], ["25만원","150만원"], "월세"],
               "jeonseDeposit": [[500, 30000], ["500만원", "3억"], "전세 보증금"]
             } 
           }as {
@@ -40,8 +40,8 @@ export const requestQuestionList = [
           },
     },
     {
-        "question":{"contents":`💵 <span>대출 유/무</span> 확인`,"type":"loanAvailablity"},
-        "answer":[{"title":"O", "value":"네"}, {"title":"x","value":"아니오",}],
+        "question":{"contents":`💵 <span>대출 유/무</span> 확인`,"type":"loanAvailability"},
+        "answer":[{"title":"O", "value":"예"}, {"title":"x","value":"아니오",}],
         "mode":"column",
         "double":false,
         "filter":null,
