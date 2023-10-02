@@ -1,0 +1,25 @@
+@import '/src/styles/utils/utils';
+$width: 85vw;
+.commonAttributes{
+    font: {
+        size: 1.25em;
+        weight: 700;
+    }
+    margin:0 5px;
+}
+.title{
+    @extend .commonAttributes;
+    color: #0E1315;
+}
+.result{
+    @extend .commonAttributes;
+    color:#842CFF;
+    font-size: 15px;
+}
+.filterInfo{
+    display: flex;
+    justify-content: space-between;
+    width: $width;
+    margin:20px;
+}
+

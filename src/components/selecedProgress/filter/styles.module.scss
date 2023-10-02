@@ -30,6 +30,10 @@ $width: 85vw;
     margin: 0px;
     position:absolute;
     top:-8px;
+    position: absolute;
+    top: -6px;
+    background: none;
+        -webkit-appearance: none;
     background: none;
         -webkit-appearance: none;
 
@@ -46,7 +50,6 @@ $width: 85vw;
         z-index:99;
     }
       pointer-events: none;
-
       &::-webkit-slider-thumb {
           pointer-events: auto;
     }
@@ -73,26 +76,4 @@ $width: 85vw;
     &::-webkit-slider-thumb {
         pointer-events: auto;
   }
-}
-.filterInfo{
-    display: flex;
-    justify-content: space-between;
-    width: $width;
-    margin:20px;
-}
-
-.commonAttributes{
-    font: {
-        size: 1.25em;
-        weight: 700;
-    }
-    margin:0 5px;
-}
-.title{
-    @extend .commonAttributes;
-    color: #0E1315;
-}
-.result{
-    @extend .commonAttributes;
-    color:#842CFF;
 }

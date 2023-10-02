@@ -1,12 +1,12 @@
 import React, {useState, CSSProperties, useEffect} from 'react';
 import styles from './styles.module.scss';
-import { HompoQuestion, HompoEditData } from '../../../store/type/hompoRecommend/interface';
+import { QuestionForm, HompoEditData } from '../../../store/type/hompoRecommend&request/interface';
+import { RequestData } from '../../../store/type/hompoRecommend&request/interface';
+import { Dispatch, SetStateAction } from 'react';
 interface MultipleChoiceProps {
-  currentQuestion: HompoQuestion;
-  // data: HompoEditData;
-  data: any;
-  // setData: React.Dispatch<React.SetStateAction<HompoEditData>>;
-  setData: React.Dispatch<React.SetStateAction<any>>;
+  currentQuestion: QuestionForm;
+  data: HompoEditData|RequestData;
+  setData: Dispatch<SetStateAction<HompoEditData>>|Dispatch<SetStateAction<|RequestData>>;
 }
 
 const MultipleChoice: React.FC<MultipleChoiceProps> = ({ currentQuestion,data, setData }) => {

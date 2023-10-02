@@ -1,12 +1,9 @@
 import React from 'react';
 import { Routes, Route,} from 'react-router-dom';
 import * as router from './routes';
-import { QueryClient, QueryClientProvider } from "react-query";
-const queryClient = new QueryClient();
 function App() {
     return (
         <> 
-        <QueryClientProvider client={queryClient}>
             <Routes>
                 <Route path="/" Component={router.home} />
                 <Route path="/hbti" Component={router.hbti} />
@@ -22,8 +19,8 @@ function App() {
                 <Route path="/user/phonenumber" Component={router.modifyPhonenumber} />
                 <Route path="/mypage/hompo-recommendedArea" Component={router.hompoRecommendedArea} />
                 <Route path="/real-estate-knowledge" Component={router.realEstateKnowledge} />
+                <Route path="/mypage/hompo-recommended-result" Component={router.hompoRecommendResult} />
             </Routes>
-        </QueryClientProvider>
         </>
     );
 }

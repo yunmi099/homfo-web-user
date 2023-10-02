@@ -9,3 +9,29 @@
   width: 90vw;
   margin-left:5vw;
 }
+.additional{
+  border: 1px solid;
+  border-color: rgba(126, 126, 126, 0.32);
+  border-radius: 12px;
+  color: rgba(112, 112, 112, 1);
+  margin-left: 6%;
+
+  &::placeholder {
+    white-space:pre-line;
+    
+  }
+}
+.additionalRequests {
+  @extend .additional;
+  width: 88%;
+  height: 63.4vh;
+}
+
+.additionalFacilities {
+  @extend .additional;
+  width: 88%;
+  height: 30vh;
+  margin-top: 10px;
+}
+
+
