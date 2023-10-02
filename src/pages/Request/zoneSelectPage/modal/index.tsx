@@ -14,6 +14,7 @@ const customStyles = {
       borderColor:'transperant',
       borderRadius: '0px',
       boxShadow: '0px 3px 6px 0px rgba(0, 0, 0, 0.161)',
+      zIndex:100,
     },
     overlay: {
       width: '100vw',

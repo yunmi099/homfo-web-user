@@ -9,7 +9,7 @@ function Request(){
     const [count, setCount] = useState(0);
     return (<div className={styles.container}>
     {count===0?
-    <ZoneSelectPage count={count} setCount={setCount}/>
+    <ZoneSelectPage count={count} setCount={setCount} />
     :<>
         <ProgressStepTracker count={count} totalCount={requestQuestionList.length}/>
         <SelectedRequestSurvey count={count} setCount={setCount} totalCount={requestQuestionList.length}/>

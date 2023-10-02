@@ -9,6 +9,7 @@ import nonecheck from '../../../assets/icons/request/noneCheckBox.png';
 import CustomModal from "./modal";
 import SelectArea from "./selectArea";
 import useHompoSurveyStore from "../../../store/context/useHompoSurveyStore";
+import useRequestStore from "../../../store/context/useRequestStore";
 interface InitialPageProps{
     count: number;
     setCount: React.Dispatch<React.SetStateAction<number>>;
@@ -20,12 +21,13 @@ const ZoneSelectPage = (props: InitialPageProps)=>{
     const [selectedArea, setSelectedArea] =useState<number[]>([]);
     const [modalIsOpen, setModalIsOpen] = useState(true);
     const {result} = useHompoSurveyStore();
-    
+    const {setAreaId} = useRequestStore();
     useEffect(()=>{
         getAreaInfo("단국대학교", "본교",setAreaInfo);
         if (result !== null && result.length > 0) {
             setSelectedArea(result.map((key)=>key.area.areaId));
-    }},[])
+        }
+    },[])
           
 return(<>
         <Header title="요청하기" color="white"/>
@@ -51,7 +53,7 @@ return(<>
             </>}
 
         </div>
-        <ConfirmButton onClick={()=>props.setCount(props.count+1)} auth={true} title="다음"/>
+        <ConfirmButton onClick={()=>{props.setCount(props.count+1); setAreaId(selectedArea) }} auth={true} title="다음"/>
 </>);
 }
 export default ZoneSelectPage;
