@@ -19,7 +19,7 @@ function BottomTab() {
       title: '지도',
     },
     {
-      path: '/requestbox',
+      path: '/request-box',
       image: location.pathname === '/requestbox' ? bottomtabIcon.RequestBox : bottomtabIcon.NRequestBox,
       title: '요청서함',
     },
