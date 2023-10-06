@@ -3,9 +3,9 @@ $background-color: #F5F5F5;
 .container{
     width: 100vw;
     height: 100vh;
+    overflow: hidden;
     display: block;
     flex-direction: column;
-    overflow-y:hidden;
     background-color: $background-color;
 }
 .cardContainer{
