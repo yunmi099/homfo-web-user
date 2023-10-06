@@ -49,7 +49,6 @@ interface ResultDetail{
   areaId: number;
   detail:{
     name: null | string;
-    type: null | string;
     avgMonthlyDeposit: null | number;
     avgMonthlyFee: null | number;
     avgJeonseDeposit: null | number;
