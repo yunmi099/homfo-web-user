@@ -20,7 +20,7 @@ function BottomTab() {
     },
     {
       path: '/request-box',
-      image: location.pathname === '/requestbox' ? bottomtabIcon.RequestBox : bottomtabIcon.NRequestBox,
+      image: location.pathname === '/request-box' ? bottomtabIcon.RequestBox : bottomtabIcon.NRequestBox,
       title: '요청서함',
     },
     {
@@ -38,7 +38,7 @@ function BottomTab() {
     <div className={styles.wrapper}>
       {tabData.map((tab) => (
         <div className={styles.tab} onClick={() => handleClick(tab.path)} key={tab.path}>
-          <img src={tab.image}/>
+          <img src={tab.image} style={{width: 25}}/>
           <div className={styles.title} style={{ color: location.pathname === tab.path ? '#9C12FF' : '#707070' }}>
             {tab.title}
           </div>
