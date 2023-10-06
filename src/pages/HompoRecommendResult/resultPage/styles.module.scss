@@ -1,0 +1,10 @@
+@import 'slick-carousel/slick/slick.css';
+@import 'slick-carousel/slick/slick-theme.css';
+.container{
+    height: 100vh;
+    overflow-y: hidden;
+}
+
+.slideContainer{
+    overflow-x: visible;
+}
