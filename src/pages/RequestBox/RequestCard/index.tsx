@@ -2,12 +2,14 @@ import React from 'react'
 import styles from './styles.module.scss'
 import { RequestList } from '../../../store/type/requestBox/interface'
 import { formatDate } from '../../../utils/getDate'
+import { useNavigate } from 'react-router-dom';
 const StatusEnum = {
   APPLICATION_COMPLETED: '신청 완료',
   SALES_IN_PROGRESS: '매물 파악 중',
   SALES_COMPLETED: '매물 파악 완료'
 };
-export default function RequestCard({data}: {data: RequestList}) {
+function RequestCard({data}: {data: RequestList}) {
+  const navigate = useNavigate();
   let statusColor;
   switch (data.matchStatus) {
     case StatusEnum.APPLICATION_COMPLETED:
@@ -24,7 +26,11 @@ export default function RequestCard({data}: {data: RequestList}) {
       break;
   }
   return (
-    <div className={styles.container}>
+    <div className={styles.container} onClick={()=>{
+      if (StatusEnum.APPLICATION_COMPLETED === data.matchStatus){
+        navigate('/request-box/modify-request',{state: data.requestId})
+      }
+    }}>
         <div className={styles.areaContainer}>
           <div className={styles.areaName}>{data.areaName}</div>
           <div className={styles.university}>단국대학교</div>
@@ -45,3 +51,4 @@ export default function RequestCard({data}: {data: RequestList}) {
     </div>
   )
 }
+export default RequestCard;

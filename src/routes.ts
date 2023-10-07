@@ -15,6 +15,7 @@ export const modifyPhonenumber = loadable(() => import('./pages/Mypage/Modify/Ph
 export const request = loadable(()=>import('./pages/Request'));
 export const requestComplete = loadable(()=>import('./pages/RequestComplete'));
 export const requestBox = loadable(()=>import('./pages/RequestBox'));
+export const modifyRequest = loadable(()=>import('./pages/ModifyRequest'));
 export const hompoRecommendedArea = loadable(()=>import('./pages/HompoRecommendedArea'));
 export const hompoRecommendResult = loadable(()=>import('./pages/HompoRecommendResult'));
 export const realEstateKnowledge= loadable(()=>import('./pages/RealEstateKnowledge'));

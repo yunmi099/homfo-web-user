@@ -17,6 +17,7 @@ function App() {
                 <Route path="/request" Component={router.request} />
                 <Route path="/request-complete" Component={router.requestComplete} />
                 <Route path="/request-box" Component={router.requestBox} />
+                <Route path="/request-box/modify-request" Component={router.modifyRequest} />
                 <Route path="/user/password" Component={router.modifyPassword} />
                 <Route path="/user/phonenumber" Component={router.modifyPhonenumber} />
                 <Route path="/mypage/hompo-recommendedArea" Component={router.hompoRecommendedArea} />

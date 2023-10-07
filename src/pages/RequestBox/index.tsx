@@ -6,7 +6,7 @@ import { RequestList } from '../../store/type/requestBox/interface';
 import RequestCard from './RequestCard';
 import BottomTab from '../../components/layout/bottomtabs';
 
-export default function RequestBox() {
+function RequestBox() {
   const [data, setData] = useState<RequestList[]>();
   useEffect(()=>{
     getUsersRequestList(2, setData);
@@ -22,8 +22,8 @@ export default function RequestBox() {
         }
         <div className={styles.emptySpace}></div>
       </div>
-
       <BottomTab/>
     </div>
   )
 }
+export default RequestBox;
