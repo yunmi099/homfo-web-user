@@ -4,6 +4,7 @@ import closeArrow from '../../../assets/icons/requestBox/closeArrow.png'
 import styles from './styles.module.scss'
 import { requestQuestionList } from "../../Request/RequestQuestionList";
 import Question from "../../../components/selecedProgress/question";
+import MultipleChoice from "../../../components/selecedProgress/multipleChoice";
 interface ModifyElementProps{
     title: string;
     index: number;
@@ -27,6 +28,7 @@ const ModifyElement = ({title, index}:ModifyElementProps)=>{
                 <>
                     <div className={styles.underline}></div>
                     <Question question={requestQuestionList[index-1].question.contents} />
+
                 </>
                 :null
             }
