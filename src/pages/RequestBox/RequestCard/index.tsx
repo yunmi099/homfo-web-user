@@ -2,16 +2,21 @@ import React from 'react'
 import styles from './styles.module.scss'
 import { RequestList } from '../../../store/type/requestBox/interface'
 import { formatDate } from '../../../utils/getDate'
+const StatusEnum = {
+  APPLICATION_COMPLETED: '신청 완료',
+  SALES_IN_PROGRESS: '매물 파악 중',
+  SALES_COMPLETED: '매물 파악 완료'
+};
 export default function RequestCard({data}: {data: RequestList}) {
   let statusColor;
   switch (data.matchStatus) {
-    case '신청 완료':
+    case StatusEnum.APPLICATION_COMPLETED:
       statusColor = '#27A779'
       break;
-    case '매물 파악 중':
+    case StatusEnum.SALES_IN_PROGRESS:
       statusColor = '#707070';
       break;
-    case '매물 파악 완료':
+    case StatusEnum.SALES_COMPLETED:
       statusColor = '#1C72F3';
       break;
     default:
@@ -33,7 +38,7 @@ export default function RequestCard({data}: {data: RequestList}) {
             {data.matchStatus}</span>
           </div>
           <div className={styles.contents}>담당 중개사: {data.realtorName===null?'미정':data.realtorName}</div>
-          {data.matchStatus==="신청 완료"?<div className={styles.modifyStatus}>
+          {data.matchStatus===StatusEnum.APPLICATION_COMPLETED?<div className={styles.modifyStatus}>
             <div className={styles.circle}></div>수정가능
           </div>:null}
         </div>
