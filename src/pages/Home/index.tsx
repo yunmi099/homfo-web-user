@@ -29,7 +29,7 @@ function Home() {
         <div className={styles.news}></div>
         <div className={styles.newsTitle}></div>
         <div className={styles.locationContainer}>
-            <div className={styles.locationBox}>
+            <div className={styles.locationBox} >
                 <img src={homeIcon.dictionary} height="33px"  style={{marginBottom:5}}/>
                 <div className={styles.locationFont} onClick={()=>navigate('/real-estate-knowledge')}>부동산 상식</div>
             </div>

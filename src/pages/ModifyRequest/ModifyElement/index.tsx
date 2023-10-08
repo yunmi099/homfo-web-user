@@ -25,10 +25,12 @@ const ModifyElement = ({title, index}:ModifyElementProps)=>{
 
             {
                 open&&index>0?
-                <>
+                <>           
                     <div className={styles.underline}></div>
-                    <Question question={requestQuestionList[index-1].question.contents} />
-
+                    <div style={{transform:'scale(0.6)', transformOrigin: 'top left'}}>
+                        <Question question={requestQuestionList[index-1].question.contents} />
+                        
+                    </div>
                 </>
                 :null
             }
