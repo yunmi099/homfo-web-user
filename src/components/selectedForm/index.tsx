@@ -19,7 +19,7 @@ const SelectedForm = ({currentQuestion, previousQuestion,mode,data, setData, set
       {currentQuestion.filter === null ? (
         <MultipleChoice currentQuestion={currentQuestion} data={data} setData={setData} />
       ) : (
-        <div style={{ marginTop: '10%' }}>
+        <div>
           {data[previousQuestion.question.type][0].map((key:string, index:number) => {
             const filterData = currentQuestion.filter!.data;
             return (

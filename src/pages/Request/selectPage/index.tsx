@@ -1,10 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState,} from 'react';
 import { requestQuestionList } from '../RequestQuestionList';
 import styles from './styles.module.scss';
 import ConfirmButton from '../../../components/button/ConfirmButton';
-import Filter from '../../../components/selecedProgress/filter';
-import MultipleChoice from '../../../components/selecedProgress/multipleChoice';
-import Question from '../../../components/selecedProgress/question';
 import {QuestionForm} from '../../../store/type/hompoRecommend&request/interface';
 import { RequestData } from '../../../store/type/hompoRecommend&request/interface';
 import useRequestStore from '../../../store/context/useRequestStore';
@@ -37,8 +34,14 @@ const SelectedRequestSurvey = (props: SelectedProgressProps) => {
   return (
     <div style={{marginTop:"10vh"}}>
       <SelectedForm currentQuestion={currentQuestion} previousQuestion={previousQuestion} mode={"price"} data={data} setData={setData} setFilterValue={setFilterValue}/>
-      {currentQuestion.filter === null&&currentQuestion.answer===null?<input value={data.additionalRequests} onChange={(e)=>setData((prev:RequestData)=>({...prev, additionalRequests: e.target.value}))} className={styles.additionalRequests} placeholder='추가 요청사항을 입력해주세요 (최대 200자)'/>:null} 
-      {data.roomOption.includes('기타')&&props.count===props.totalCount-1?<input value={data.otherRoomOption} onChange={(e)=>setData((prev:RequestData)=>({...prev, otherRoomOption: e.target.value}))} className={styles.additionalFacilities} placeholder='추가 요청사항을 입력해주세요 (최대 15자)'/>:null} 
+      {currentQuestion.filter === null&&currentQuestion.answer===null?
+      <input value={data.additionalRequests} 
+      onChange={(e)=>setData((prev:RequestData)=>({...prev, additionalRequests: e.target.value}))} 
+      className={styles.additionalRequests} placeholder='추가 요청사항을 입력해주세요 (최대 200자)'/>:null} 
+      {data.roomOption.includes('기타')&&props.count===props.totalCount-1?
+      <input value={data.otherRoomOption} 
+      onChange={(e)=>setData((prev:RequestData)=>({...prev, otherRoomOption: e.target.value}))}
+      className={styles.additionalFacilities} placeholder='추가 요청사항을 입력해주세요 (최대 15자)'/>:null} 
       {
         props.totalCount ===props.count?
         <ConfirmButton
