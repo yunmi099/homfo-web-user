@@ -14,7 +14,7 @@ interface RequestFormUserResponded{
     areaId: number[];
     realEstateType: string[];
     contractType: string;
-    residencePeriod:string[];
+    residencePeriod:string;
     deposit:{[key: string]: number[]};
     moveInPeriod:string;
     loanAvailability: string;

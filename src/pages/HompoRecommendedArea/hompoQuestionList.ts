@@ -8,7 +8,7 @@ export const hompoQuestionList = [
  },
  {
     "question":{"contents":`🚐 선호하는 <span>통학수단은</span>\n무엇인가요?<b>(복수선택 가능)</b>`,"type":"transports"},
-    "answer":[ {"title":"도보 🚶", "value":"WALKING"}, {"title":"자전거(킥보드) 🚲","value":"BIKE",},{"title":"버스 🚌","value":"BUS",}],
+    "answer":[ {"title":"도보 🚶", "value":["WALKING"]}, {"title":"자전거(킥보드) 🚲","value":["BIKE"],},{"title":"버스 🚌","value":["BUS"],}],
     "mode":"column",
     "double":true,
     "filter":null,

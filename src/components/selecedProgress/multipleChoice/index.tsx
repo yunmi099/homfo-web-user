@@ -47,8 +47,12 @@ const MultipleChoice: React.FC<MultipleChoiceProps> = ({ currentQuestion,data, s
           key={key.title}
           onClick={() => {
             if (data[questionType].includes(key.value)){
+              console.log(data[questionType])
+              console.log(key.value)
               handleCancelAnswer(key.value);
             } else {
+              console.log(data[questionType])
+              console.log(key.value)
               handleSelectAnswer(key.value);
             }
           }}
