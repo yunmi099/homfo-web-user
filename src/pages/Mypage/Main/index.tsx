@@ -4,7 +4,7 @@ import Header from '../../../components/layout/header';
 import { useNavigate } from 'react-router-dom';
 import useUserStore from '../../../store/context/useUserStore';
 import BottomTab from '../../../components/layout/bottomtabs';
-import useHompoSurveyStore from '../../../store/context/useHompoSurveyStore';
+import useHompoSurveyStore from '../../../store/context/useHomfoSurveyStore';
 
 function Mypage() {
     const navigate = useNavigate();

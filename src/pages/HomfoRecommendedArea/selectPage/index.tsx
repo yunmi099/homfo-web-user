@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { hompoQuestionList } from '../hompoQuestionList';
+import { hompoQuestionList } from '../homfoQuestionList';
 import ConfirmButton from '../../../components/button/ConfirmButton';
-import useHompoSurveyStore from '../../../store/context/useHompoSurveyStore';
-import { QuestionForm,HompoEditData } from '../../../store/type/hompoRecommend&request/interface';
+import useHompoSurveyStore from '../../../store/context/useHomfoSurveyStore';
+import { QuestionForm,HompoEditData } from '../../../store/type/homfoRecommend&request/interface';
 import { useNavigate } from 'react-router-dom';
 import SelectedForm from '../../../components/selectedForm';
 interface SelectedProgressProps {

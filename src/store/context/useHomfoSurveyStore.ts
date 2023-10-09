@@ -1,5 +1,5 @@
 import {create} from 'zustand';
-import { HompoEditData, HompoStoreState, Result,ResultDetail } from '../type/hompoRecommend&request/interface';
+import { HompoEditData, HompoStoreState, Result,ResultDetail } from '../type/homfoRecommend&request/interface';
 import { fetchFromApi } from '../../utils/axios';
 import { getAreaDetailResult } from '../../services/hompoArea/api';
 const useHompoSurveyStore = create<HompoStoreState>((set)=>({

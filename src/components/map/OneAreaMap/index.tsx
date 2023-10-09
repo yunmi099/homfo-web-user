@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Map, MarkerClusterer, MapMarker, CustomOverlayMap, Circle } from 'react-kakao-maps-sdk';
 import { getAreaInfo } from '../../../services/area/api';
-import { Area } from '../../../store/type/hompoRecommend&request/interface';
+import { Area } from '../../../store/type/homfoRecommend&request/interface';
 function OneAreaMap({areaId}:{areaId:number}) {
     const [areaInfo, setAreaInfo] = useState<Area[]|undefined>();
     useEffect(()=>{

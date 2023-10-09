@@ -1,4 +1,4 @@
-import { Area } from "../../store/type/hompoRecommend&request/interface";
+import { Area } from "../../store/type/homfoRecommend&request/interface";
 import { fetchFromApi } from "../../utils/axios";
 export const getAreaInfo= async (university_name:string,university_branch:string, setAreaInfo: React.Dispatch<React.SetStateAction<Area[] | undefined>>,areaId?:number): Promise<void> => {
     try {

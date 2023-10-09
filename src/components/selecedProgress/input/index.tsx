@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react'
 import styles from './styles.module.scss'
-import { RequestData } from '../../../store/type/hompoRecommend&request/interface';
+import { RequestData } from '../../../store/type/homfoRecommend&request/interface';
 import { ExtendedRequestData } from '../../../store/type/requestBox/interface';
 interface AdditionalInputProps{
     data: RequestData|ExtendedRequestData;

@@ -1,6 +1,6 @@
 import React,{Dispatch, SetStateAction} from "react";
 import styles from './styles.module.scss'
-import { HompoEditData, QuestionForm, RequestData } from "../../store/type/hompoRecommend&request/interface";
+import { HompoEditData, QuestionForm, RequestData } from "../../store/type/homfoRecommend&request/interface";
 import Filter from "../selecedProgress/filter";
 import MultipleChoice from "../selecedProgress/multipleChoice";
 import Question from "../selecedProgress/question";

@@ -3,7 +3,7 @@ import openArrow from '../../../assets/icons/requestBox/openArrow.png'
 import closeArrow from '../../../assets/icons/requestBox/closeArrow.png'
 import styles from './styles.module.scss'
 import { requestQuestionList } from "../../Request/RequestQuestionList";
-import { QuestionForm } from "../../../store/type/hompoRecommend&request/interface";
+import { QuestionForm } from "../../../store/type/homfoRecommend&request/interface";
 import SelectedForm from "../../../components/selectedForm";
 import AdditionalInput from "../../../components/selecedProgress/input";
 import { ExtendedRequestData } from "../../../store/type/requestBox/interface";

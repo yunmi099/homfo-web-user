@@ -3,12 +3,12 @@ import ConfirmButton from "../../../components/button/ConfirmButton";
 import Header from "../../../components/layout/header";
 import { getAreaInfo } from "../../../services/area/api";
 import styles from './styles.module.scss';
-import { Area } from "../../../store/type/hompoRecommend&request/interface";
+import { Area } from "../../../store/type/homfoRecommend&request/interface";
 import check from '../../../assets/icons/request/checkBox.png';
 import nonecheck from '../../../assets/icons/request/noneCheckBox.png';
 import CustomModal from "./modal";
 import SelectArea from "./selectArea";
-import useHompoSurveyStore from "../../../store/context/useHompoSurveyStore";
+import useHompoSurveyStore from "../../../store/context/useHomfoSurveyStore";
 import useRequestStore from "../../../store/context/useRequestStore";
 interface InitialPageProps{
     count: number;

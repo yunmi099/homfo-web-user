@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Map, MarkerClusterer, MapMarker, CustomOverlayMap, Circle } from 'react-kakao-maps-sdk';
 import AreaInfoOverlay from './\bAreaInfoOverlay';
 import { getAreaInfo } from '../../../services/area/api';
-import { Area } from '../../../store/type/hompoRecommend&request/interface';
+import { Area } from '../../../store/type/homfoRecommend&request/interface';
 function AllAreaMap() {
     const [isOpen, setIsOpen] = useState(false);
     const [areaInfo, setAreaInfo] = useState<Area[]|undefined>();

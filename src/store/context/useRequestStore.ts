@@ -1,8 +1,8 @@
 import {create} from 'zustand';
-import { RequestStore } from '../type/hompoRecommend&request/interface';
-import { RequestData } from '../type/hompoRecommend&request/interface';
+import { RequestStore } from '../type/homfoRecommend&request/interface';
+import { RequestData } from '../type/homfoRecommend&request/interface';
 import { fetchFromApi } from '../../utils/axios';
-import { RequestForm } from '../type/hompoRecommend&request/interface';
+import { RequestForm } from '../type/homfoRecommend&request/interface';
 const useRequestStore = create<RequestStore>((set)=>({
     areaId: [],
     setAreaId: (data:number[])=>set((state) => ({

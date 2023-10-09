@@ -1,5 +1,5 @@
 import React from 'react';
-import { ResultDetail } from '../../../../store/type/hompoRecommend&request/interface';
+import { ResultDetail } from '../../../../store/type/homfoRecommend&request/interface';
 import styles from './styles.module.scss';
 
 const formatNumber = (value:number|null) => {

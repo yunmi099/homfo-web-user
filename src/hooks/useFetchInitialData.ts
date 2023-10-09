@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { getHompoArea, getAreaDetailResult } from '../services/hompoArea/api';
-import useHompoSurveyStore from '../store/context/useHompoSurveyStore';
+import useHompoSurveyStore from '../store/context/useHomfoSurveyStore';
 import useUserStore from '../store/context/useUserStore';
-import { Result } from '../store/type/hompoRecommend&request/interface';
+import { Result } from '../store/type/homfoRecommend&request/interface';
 
 
 function useFetchHompoInitialData() {

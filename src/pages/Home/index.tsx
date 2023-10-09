@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import BottomTab from '../../components/layout/bottomtabs';
 import * as homeIcon from '../../assets/icons/home/homeIcon';
 import useFetchHompoInitialData from '../../hooks/useFetchInitialData';
-import useHompoSurveyStore from '../../store/context/useHompoSurveyStore';
+import useHompoSurveyStore from '../../store/context/useHomfoSurveyStore';
 function Home() {
     const navigate = useNavigate();
     const {result} = useHompoSurveyStore();

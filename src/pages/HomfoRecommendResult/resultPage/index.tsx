@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
-import useHompoSurveyStore from '../../../store/context/useHompoSurveyStore';
+import useHompoSurveyStore from '../../../store/context/useHomfoSurveyStore';
 import styles from './styles.module.scss'
 import Slider from 'react-slick'
 import HompoResultCardSlider from './HompoResultCardSlider'; 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { ResultDetail } from '../../../store/type/hompoRecommend&request/interface';
+import { ResultDetail } from '../../../store/type/homfoRecommend&request/interface';
 import ConfirmButton from '../../../components/button/ConfirmButton';
 export default function HompoResult() {  
   const settings = {

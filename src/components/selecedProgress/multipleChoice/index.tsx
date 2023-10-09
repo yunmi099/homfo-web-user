@@ -1,7 +1,7 @@
 import React, {useState, CSSProperties, useEffect} from 'react';
 import styles from './styles.module.scss';
-import { QuestionForm, HompoEditData } from '../../../store/type/hompoRecommend&request/interface';
-import { RequestData } from '../../../store/type/hompoRecommend&request/interface';
+import { QuestionForm, HompoEditData } from '../../../store/type/homfoRecommend&request/interface';
+import { RequestData } from '../../../store/type/homfoRecommend&request/interface';
 import { Dispatch, SetStateAction } from 'react';
 import { ExtendedRequestData } from '../../../store/type/requestBox/interface';
 interface MultipleChoiceProps {
