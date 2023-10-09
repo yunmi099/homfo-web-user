@@ -75,7 +75,7 @@ interface RequestForm{
   deposit:{[key: string]: number[]};
   moveInPeriod:string;
   loanAvailability: string;
-  loanType: string;
+  loanType: string|null;
   roomOption: string[];
   otherRoomOption: string|null;
   additionalRequests: string|null;
