@@ -35,16 +35,17 @@ interface Result{
 }
 interface RequestData{
   realEstateType: string[];
-  contractType: string[],
+  contractType: string[][],
   residencePeriod: string[];
   loanAvailability:string[];
-  loanType:string[];
+  loanType:string[]|null;
   moveInPeriod: string[];
   roomOption: string[];
   otherRoomOption: string;
   additionalRequests:string;  
   [key: string]: any; 
 } 
+
 interface ResultDetail{
   areaId: number;
   detail:{
@@ -74,7 +75,7 @@ interface RequestForm{
   deposit:{[key: string]: number[]};
   moveInPeriod:string;
   loanAvailability: string;
-  loanType: string|null;
+  loanType: string;
   roomOption: string[];
   otherRoomOption: string|null;
   additionalRequests: string|null;

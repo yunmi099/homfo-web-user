@@ -29,13 +29,13 @@ function Home() {
         <div className={styles.news}></div>
         <div className={styles.newsTitle}></div>
         <div className={styles.locationContainer}>
-            <div className={styles.locationBox} >
+            <div className={styles.locationBox} onClick={()=>navigate('/real-estate-knowledge')}>
                 <img src={homeIcon.dictionary} height="33px"  style={{marginBottom:5}}/>
-                <div className={styles.locationFont} onClick={()=>navigate('/real-estate-knowledge')}>부동산 상식</div>
+                <div className={styles.locationFont}>부동산 상식</div>
             </div>
-            <div className={styles.locationBox}>
+            <div className={styles.locationBox} onClick={()=>{result===null?alert("홈포 추천 구역을 먼저 검사해보세요!"):navigate('/request')}}>
                 <img src={homeIcon.paperplane} width="37px"  style={{marginBottom:5}}/>
-                <div className={styles.locationFont} onClick={()=>{result===null?alert("홈포 추천 구역을 먼저 검사해보세요!"):navigate('/request')}}>요청하기</div>
+                <div className={styles.locationFont}>요청하기</div>
             </div>
             <div className={styles.locationBox}>
                 <img width="52px" src={homeIcon.areaLinker2} style={{marginBottom:5}}/>

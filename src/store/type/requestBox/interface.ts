@@ -1,4 +1,5 @@
-export { type RequestList, type RequestFormUserResponded}
+import { RequestData } from "../hompoRecommend&request/interface";
+export { type RequestList, type RequestFormUserResponded, type ExtendedRequestData}
 interface RequestList{
     agencyName: null|string;
     areaName: string;
@@ -11,7 +12,7 @@ interface RequestList{
 };
 interface RequestFormUserResponded{
     requestId: number;
-    areaId: number[];
+    areaId: number;
     realEstateType: string[];
     contractType: string;
     residencePeriod:string;
@@ -23,3 +24,6 @@ interface RequestFormUserResponded{
     otherRoomOption: string|null;
     additionalRequests: string|null;
 }
+interface ExtendedRequestData extends RequestData {
+    areaId: number;
+} 

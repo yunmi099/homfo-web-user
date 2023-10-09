@@ -3,10 +3,11 @@ import styles from './styles.module.scss';
 import { QuestionForm, HompoEditData } from '../../../store/type/hompoRecommend&request/interface';
 import { RequestData } from '../../../store/type/hompoRecommend&request/interface';
 import { Dispatch, SetStateAction } from 'react';
+import { ExtendedRequestData } from '../../../store/type/requestBox/interface';
 interface MultipleChoiceProps {
   currentQuestion: QuestionForm;
-  data: HompoEditData|RequestData;
-  setData: Dispatch<SetStateAction<HompoEditData>>|Dispatch<SetStateAction<|RequestData>>;
+  data: HompoEditData|RequestData|ExtendedRequestData;
+  setData:Dispatch<SetStateAction<HompoEditData>>|Dispatch<SetStateAction<RequestData>>|Dispatch<SetStateAction<ExtendedRequestData>>;
 }
 
 const MultipleChoice: React.FC<MultipleChoiceProps> = ({ currentQuestion,data, setData }) => {
