@@ -18,7 +18,8 @@ function PersonalInfoPage() {
  
   const handleModifyJob = ()=>{
     if (job === '기타'){
-      modify(2,{"job":detailJob})
+      modify(2,{"job":detailJob});
+      setDetailJob("");
     } else {
       modify(2, {"job":job})
     }

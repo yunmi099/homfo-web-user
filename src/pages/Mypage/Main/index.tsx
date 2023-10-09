@@ -21,7 +21,7 @@ function Mypage() {
             <div onClick={()=>navigate('/mypage/personalinfo')}>개인정보 및 수정</div> 
             <div onClick={()=>navigate('/mypage/accountinfo')}>계정정보 및 수정</div>
             <div onClick={()=>navigate('/')}>즐겨찾기</div>
-            <div onClick={()=>navigate('/')}>요청서 확인</div>
+            <div onClick={()=>navigate('/request-box')}>요청서 확인</div>
             <div onClick={()=>navigate('/mypage/setting')}>앱 설정</div>
             <div onClick={()=>navigate('/inquiry')}>문의하기</div>
             <div onClick={()=>navigate('/faq')}>FAQ</div>
