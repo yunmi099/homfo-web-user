@@ -4,18 +4,16 @@ import styles from './styles.module.scss'
 import ConfirmButton from '../../components/button/ConfirmButton';
 import { useLocation } from 'react-router-dom';
 import { getRequestDocumentDetail } from '../../services/requestBox/api';
-import { RequestFormUserResponded } from '../../store/type/requestBox/interface';
 import ModifyElement from './ModifyElement';
 import useRequestStore from '../../store/context/useRequestStore';
-import { QuestionForm, RequestData } from '../../store/type/hompoRecommend&request/interface';
+import { ExtendedRequestData } from '../../store/type/requestBox/interface';
 
 const LIST_ARRAY = ["1. 구역위치", "2. 매물 유형","3. 희망 거주 기간","4. 계약 형태","5. 금액대", "6. 대출 유무", "7. 대출 유형", "8. 예상 입주 시기", "9. 옵션", "10. 추가 요청사항"]
 function ModifyRequest() {
   const location = useLocation();
   const requestId = location.state;
-  const [userResponse, setUserResponse]=useState();
-  const [data, setData] = useState({
-    "areaId":[],
+  const [data, setData] = useState<ExtendedRequestData>({
+    "areaId":0,
     "realEstateType": [],
     "contractType": [],
     "residencePeriod": [],

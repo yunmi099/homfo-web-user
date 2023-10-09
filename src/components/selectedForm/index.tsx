@@ -4,11 +4,12 @@ import { HompoEditData, QuestionForm, RequestData } from "../../store/type/hompo
 import Filter from "../selecedProgress/filter";
 import MultipleChoice from "../selecedProgress/multipleChoice";
 import Question from "../selecedProgress/question";
+import { ExtendedRequestData } from "../../store/type/requestBox/interface";
 interface SelectedFormProps {
     currentQuestion: QuestionForm;
     previousQuestion: QuestionForm;
-    data: HompoEditData|RequestData;
-    setData:Dispatch<SetStateAction<HompoEditData>>|Dispatch<SetStateAction<RequestData>>;
+    data: HompoEditData|RequestData|ExtendedRequestData;
+    setData:Dispatch<SetStateAction<HompoEditData>>|Dispatch<SetStateAction<RequestData>>|Dispatch<SetStateAction<ExtendedRequestData>>;
     setFilterValue: Dispatch<SetStateAction<{[key: string]: number[];}>>;
     mode: string;
 }

@@ -1,16 +1,18 @@
-import React,{useState, useEffect} from "react";
+import React,{useState, useEffect, Dispatch, SetStateAction} from "react";
 import openArrow from '../../../assets/icons/requestBox/openArrow.png'
 import closeArrow from '../../../assets/icons/requestBox/closeArrow.png'
 import styles from './styles.module.scss'
 import { requestQuestionList } from "../../Request/RequestQuestionList";
 import { QuestionForm } from "../../../store/type/hompoRecommend&request/interface";
 import SelectedForm from "../../../components/selectedForm";
+import AdditionalInput from "../../../components/selecedProgress/input";
+import { ExtendedRequestData } from "../../../store/type/requestBox/interface";
 interface ModifyElementProps{
     title: string;
     index: number;
-    data:any;
-    setData:any;
-    setFilterValue:any;
+    data:ExtendedRequestData;
+    setData: Dispatch<SetStateAction<ExtendedRequestData>>
+    setFilterValue:  React.Dispatch<React.SetStateAction<{[key: string]: number[];}>>
 }
 
 const ModifyElement = ({title, index,data,setData,setFilterValue}:ModifyElementProps)=>{
@@ -28,6 +30,17 @@ const ModifyElement = ({title, index,data,setData,setFilterValue}:ModifyElementP
                 width="15px"
                 height="8px"/>
             </div>
+            {open&&index===0?
+                <>
+                  <div className={styles.underline}></div>               
+                  <div style={{fontSize: '0.8em', color: '#FF6666', marginLeft: '5%'}}>✅ 구역은 변경하실 수 없습니다.</div>
+                  <div className = {styles.mapContainer}>
+                    map
+                  </div>
+                </>
+                :null
+            
+            }
             {
                 open&&index>0?
                 <>        
@@ -41,14 +54,10 @@ const ModifyElement = ({title, index,data,setData,setFilterValue}:ModifyElementP
                             setData={setData}
                             setFilterValue={setFilterValue}
                     />
-                    {currentQuestion.filter === null&&currentQuestion.answer===null?
-                    <input value={data.additionalRequest} 
-                    onChange={(e)=>setData((prev:any)=>({...prev, additionalRequests: e.target.value}))} 
-                    className={styles.additionalRequests} placeholder='추가 요청사항을 입력해주세요 (최대 200자)'/>:null} 
                     {data.roomOption.includes('기타')&&index===8?
-                    <input value={data.otherRoomOption} 
-                    onChange={(e)=>setData((prev:any)=>({...prev, otherRoomOption: e.target.value}))}
-                    className={styles.additionalFacilities} placeholder='추가 요청사항을 입력해주세요 (최대 15자)'/>:null} 
+                    <AdditionalInput data={data} setData={setData} objectKey={"otherRoomOption"}/>:null} 
+                    {currentQuestion.filter === null&&currentQuestion.answer===null?
+                    <AdditionalInput data={data} setData={setData} objectKey={"additionalFacilities"}/>:null} 
                     </div>
                 </>
                 :null
