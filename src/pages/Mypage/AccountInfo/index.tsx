@@ -43,7 +43,7 @@ function AccountInfoPage() {
               <div className={styles.key}>닉네임</div>
               <div style={{display:'flex', justifyContent:'space-between'}}>
                 <input className={styles.value} type="text" maxLength={15} placeholder={userInfo.nickName} value={nickName} onChange={(e)=>setNickname(e.target.value)}/>
-                <button onClick={()=>modify(2,{"nickName": nickName})} style={{ backgroundColor: color === 'green' ? "purple" : "white" }}>수정</button>
+                <button onClick={()=>{modify(2,{"nickName": nickName});setNickname("")}} style={{ backgroundColor: color === 'green' ? "purple" : "white" }}>수정</button>
 
               </div>
               <div className={styles.underline}></div>
