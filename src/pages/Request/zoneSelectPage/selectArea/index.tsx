@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './styles.module.scss';
-import { Area } from '../../../../store/type/hompoRecommend&request/interface';
+import { Area } from '../../../../store/type/homfoRecommend&request/interface';
 import closeArrow from '../../../../assets/icons/request/closeArrow.png';
 
 interface SelectedAreaProps {

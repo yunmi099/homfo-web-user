@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react'
-import useHompoSurveyStore from '../../../store/context/useHompoSurveyStore';
+import useHomfoSurveyStore from '../../../store/context/useHomfoSurveyStore';
 import styles from './styles.module.scss'
 import Slider from 'react-slick'
-import HompoResultCardSlider from './HompoResultCardSlider'; 
+import HomfoResultCardSlider from './HomfoResultCardSlider'; 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { ResultDetail } from '../../../store/type/hompoRecommend&request/interface';
+import { ResultDetail } from '../../../store/type/homfoRecommend&request/interface';
 import ConfirmButton from '../../../components/button/ConfirmButton';
-export default function HompoResult() {  
+export default function HomfoResult() {  
   const settings = {
     centerMode: true,
     dots: true,
@@ -16,7 +16,7 @@ export default function HompoResult() {
     slidesToScroll: 1,
     arrows: false,
   };
-  const {resultDetail} = useHompoSurveyStore();
+  const {resultDetail} = useHomfoSurveyStore();
   return (
     <>
       <div className={styles.container}>
@@ -25,7 +25,7 @@ export default function HompoResult() {
         <div className={styles.slideContainer}>
           <Slider {...settings}>
             {resultDetail!==null&&resultDetail.map((key: ResultDetail,index:number)=>
-            <HompoResultCardSlider key={index} data={key.detail}/>)}
+            <HomfoResultCardSlider key={index} data={key.detail}/>)}
           </Slider>
         </div>
       </div>  

@@ -1,8 +1,8 @@
 import {create} from 'zustand';
-import { HompoEditData, HompoStoreState, Result,ResultDetail } from '../type/hompoRecommend&request/interface';
+import { HomfoEditData, HomfoStoreState, Result,ResultDetail } from '../type/homfoRecommend&request/interface';
 import { fetchFromApi } from '../../utils/axios';
-import { getAreaDetailResult } from '../../services/hompoArea/api';
-const useHompoSurveyStore = create<HompoStoreState>((set)=>({
+import { getAreaDetailResult } from '../../services/homfoArea/api';
+const useHomfoSurveyStore = create<HomfoStoreState>((set)=>({
     result: null,
     resultDetail:null,
     setResult: (data:Result[])=>set((state) => ({
@@ -13,7 +13,7 @@ const useHompoSurveyStore = create<HompoStoreState>((set)=>({
       ...state,
       resultDetail: data
     })),  
-    postHompoRecommendInfo: async (id: number, data:HompoEditData, filterData: {[key:string]:number[]}|undefined): Promise<void> => {
+    postHomfoRecommendInfo: async (id: number, data:HomfoEditData, filterData: {[key:string]:number[]}|undefined): Promise<void> => {
       try {
         let totalData={};
         totalData = Object.keys(data).reduce((obj:any, index:any)=>{
@@ -31,7 +31,7 @@ const useHompoSurveyStore = create<HompoStoreState>((set)=>({
           }));
           totalData = {...totalData, "transports": transportsData}
         }
-        const storeState = useHompoSurveyStore.getState();
+        const storeState = useHomfoSurveyStore.getState();
         const requestType = storeState.result===null?'post':'patch';
         const res = await fetchFromApi(requestType, `/users/${id}/recommended-area`,totalData); 
         storeState.setResult(res.data.data);
@@ -53,4 +53,4 @@ const useHompoSurveyStore = create<HompoStoreState>((set)=>({
  }))     
 
 
- export default useHompoSurveyStore;
+ export default useHomfoSurveyStore;

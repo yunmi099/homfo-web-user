@@ -7,6 +7,7 @@ function App() {
             <Routes>
                 <Route path="/" Component={router.home} />
                 <Route path="/hbti" Component={router.hbti} />
+                <Route path="/homfo-notice" Component={router.notice} />
                 <Route path="/residence-area-map"Component={router.residenceArea} />
                 <Route path="/mypage"Component={router.mypage} />
                 <Route path="/mypage/setting" Component={router.setting} />
@@ -20,9 +21,9 @@ function App() {
                 <Route path="/request-box/modify-request" Component={router.modifyRequest} />
                 <Route path="/user/password" Component={router.modifyPassword} />
                 <Route path="/user/phonenumber" Component={router.modifyPhonenumber} />
-                <Route path="/mypage/hompo-recommendedArea" Component={router.hompoRecommendedArea} />
+                <Route path="/mypage/homfo-recommendedArea" Component={router.homfoRecommendedArea} />
                 <Route path="/real-estate-knowledge" Component={router.realEstateKnowledge} />
-                <Route path="/mypage/hompo-recommended-result" Component={router.hompoRecommendResult} />
+                <Route path="/mypage/homfo-recommended-result" Component={router.homfoRecommendResult} />
             </Routes>
         </>
     );

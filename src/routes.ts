@@ -3,6 +3,7 @@ import loadable from '@loadable/component'
 
 export const home = loadable(() => import('./pages/Home'));
 export const hbti  = loadable(() => import('./pages/Hbti'));
+export const notice  = loadable(() => import('./pages/HomfoNotice'));
 export const residenceArea  = loadable(() => import('./pages/ResidenceArea'));
 export const mypage = loadable(() => import('./pages/Mypage/Main'));
 export const setting = loadable(() => import('./pages/Mypage/AppSetting'));
@@ -16,6 +17,6 @@ export const request = loadable(()=>import('./pages/Request'));
 export const requestComplete = loadable(()=>import('./pages/RequestComplete'));
 export const requestBox = loadable(()=>import('./pages/RequestBox'));
 export const modifyRequest = loadable(()=>import('./pages/ModifyRequest'));
-export const hompoRecommendedArea = loadable(()=>import('./pages/HompoRecommendedArea'));
-export const hompoRecommendResult = loadable(()=>import('./pages/HompoRecommendResult'));
+export const homfoRecommendedArea = loadable(()=>import('./pages/HomfoRecommendedArea'));
+export const homfoRecommendResult = loadable(()=>import('./pages/HomfoRecommendResult'));
 export const realEstateKnowledge= loadable(()=>import('./pages/RealEstateKnowledge'));

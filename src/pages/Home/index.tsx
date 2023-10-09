@@ -3,12 +3,12 @@ import styles from './styles.module.scss';
 import { useNavigate } from 'react-router-dom';
 import BottomTab from '../../components/layout/bottomtabs';
 import * as homeIcon from '../../assets/icons/home/homeIcon';
-import useFetchHompoInitialData from '../../hooks/useFetchInitialData';
-import useHompoSurveyStore from '../../store/context/useHompoSurveyStore';
+import useFetchHomfoInitialData from '../../hooks/useFetchInitialData';
+import useHomfoSurveyStore from '../../store/context/useHomfoSurveyStore';
 function Home() {
     const navigate = useNavigate();
-    const {result} = useHompoSurveyStore();
-    useFetchHompoInitialData(); // 홈포 추천 결과 및 유저 정보를 불러오는 부분 
+    const {result} = useHomfoSurveyStore();
+    useFetchHomfoInitialData(); // 홈포 추천 결과 및 유저 정보를 불러오는 부분 
     return(
     <div className={styles.container}>
      <div className={styles.topContainer}>

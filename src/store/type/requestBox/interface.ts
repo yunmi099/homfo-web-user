@@ -1,4 +1,4 @@
-import { RequestData } from "../hompoRecommend&request/interface";
+import { RequestData } from "../homfoRecommend&request/interface";
 export { type RequestList, type RequestFormUserResponded, type ExtendedRequestData}
 interface RequestList{
     agencyName: null|string;
