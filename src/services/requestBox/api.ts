@@ -1,7 +1,8 @@
 import { ExtendedRequestData, RequestList } from "../../store/type/requestBox/interface";
 import { fetchFromApi } from "../../utils/axios";
 import { RequestFormUserResponded } from "../../store/type/requestBox/interface";
-export const getUsersRequestList= async (userId: number, setData:React.Dispatch<React.SetStateAction<RequestList[] | undefined>>): Promise<void> => {
+import { Dispatch, SetStateAction } from "react";
+export const getUsersRequestList= async (userId: number, setData:Dispatch<SetStateAction<RequestList[] | undefined>>): Promise<void> => {
     try {
       const res= await fetchFromApi('GET',`/users/${userId}/requests`);
       setData(res.data.data);
@@ -9,7 +10,7 @@ export const getUsersRequestList= async (userId: number, setData:React.Dispatch<
       console.log(e);
     }
 };
-export const getRequestDocumentDetail= async (requestId: number, setUserResponse:React.Dispatch<React.SetStateAction<ExtendedRequestData>>): Promise<void> => {
+export const getRequestDocumentDetail= async (requestId: number, setUserResponse:Dispatch<SetStateAction<ExtendedRequestData>>): Promise<void> => {
     try {
       const res = await fetchFromApi('GET',`/requests/${requestId}/detail`);
       const userResponse : RequestFormUserResponded= res.data;

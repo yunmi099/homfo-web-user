@@ -22,7 +22,7 @@ const formatTime = (walk:number, bike:number, transport:number) => {
   return `🚶 ${Math.round(walk / 60)}분 🚲 ${Math.round(bike / 60)}분 🚌 ${Math.round(transport / 60)}분`;
 };
 
-const HompoResultCardSlider = ({ data }: { data: ResultDetail['detail'] | any }) => {
+const HomfoResultCardSlider = ({ data }: { data: ResultDetail['detail'] | any }) => {
   const {
     name,
     avgMonthlyFee,
@@ -64,4 +64,4 @@ const HompoResultCardSlider = ({ data }: { data: ResultDetail['detail'] | any })
   );
 };
 
-export default HompoResultCardSlider;
+export default HomfoResultCardSlider;

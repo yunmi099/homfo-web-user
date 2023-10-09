@@ -1,4 +1,4 @@
-export const hompoQuestionList = [
+export const homfoQuestionList = [
 {
     "question":{"contents":`단국대학교에 <span>재학 또는\n 재직</span> 중이신가요?`,"type":"universityPeople"},
     "answer":[{"title":"예", "value":true}, {"title":"아니오","value":false,}],

@@ -1,22 +1,22 @@
 import { useEffect } from 'react';
-import { getHompoArea, getAreaDetailResult } from '../services/hompoArea/api';
-import useHompoSurveyStore from '../store/context/useHomfoSurveyStore';
+import { getHomfoArea, getAreaDetailResult } from '../services/homfoArea/api';
+import useHomfoSurveyStore from '../store/context/useHomfoSurveyStore';
 import useUserStore from '../store/context/useUserStore';
 import { Result } from '../store/type/homfoRecommend&request/interface';
 
 
-function useFetchHompoInitialData() {
+function useFetchHomfoInitialData() {
   const { fetch } = useUserStore();
-  const { setResult, setResultDetail } = useHompoSurveyStore();
+  const { setResult, setResultDetail } = useHomfoSurveyStore();
   useEffect(() => {
     fetch(2);
-    const fetchHompoRecommendData = async () => {
+    const fetchHomfoRecommendData = async () => {
       try {
-        const hompoInfo:Result[]= await getHompoArea(2);
-        if (hompoInfo.length !== 0){
-          setResult(hompoInfo);
+        const homfoInfo:Result[]= await getHomfoArea(2);
+        if (homfoInfo.length !== 0){
+          setResult(homfoInfo);
           const resultArray = await Promise.all(
-              hompoInfo.map(async (item:Result) => {
+              homfoInfo.map(async (item:Result) => {
                 const areaId = item.area.areaId;
                 const detail = await getAreaDetailResult(areaId);
                 return {
@@ -31,9 +31,9 @@ function useFetchHompoInitialData() {
         console.log(e);
       }
     };
-    fetchHompoRecommendData(); 
+    fetchHomfoRecommendData(); 
   }, []);
 
 }
 
-export default useFetchHompoInitialData;
+export default useFetchHomfoInitialData;

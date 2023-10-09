@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react'
 import Rendering from './renderingPage';
-import HompoResult from './resultPage';
-import useHompoSurveyStore from '../../store/context/useHomfoSurveyStore';
+import HomfoResult from './resultPage';
+import useHomfoSurveyStore from '../../store/context/useHomfoSurveyStore';
 
 export default function HompoRecommendResult() {
-    const {resultDetail} = useHompoSurveyStore();
+    const {resultDetail} = useHomfoSurveyStore();
   return (
-    <div>{resultDetail!=null?<HompoResult/>:<Rendering/>}</div>
+    <div>{resultDetail!=null?<HomfoResult/>:<Rendering/>}</div>
   )
 }

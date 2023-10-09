@@ -1,8 +1,8 @@
-export {type QuestionForm, type HompoEditData,type Area, type RequestData, type HompoStoreState, type Result, type ResultDetail, type RequestStore, type RequestForm};
-interface HompoStoreState {
+export {type QuestionForm, type HomfoEditData,type Area, type RequestData, type HomfoStoreState, type Result, type ResultDetail, type RequestStore, type RequestForm};
+interface HomfoStoreState {
   setResult: (data: Result[])=>void;
   setResultDetail: (data: ResultDetail[])=>void;
-  postHompoRecommendInfo: (id: number, data: HompoEditData, filterData:{[key:string]:number[]}|undefined) => Promise<void>;
+  postHomfoRecommendInfo: (id: number, data: HomfoEditData, filterData:{[key:string]:number[]}|undefined) => Promise<void>;
   result:null|Result[];
   resultDetail: null|ResultDetail[];
 } 
@@ -15,7 +15,7 @@ interface QuestionForm {
     data: { [key: string]: [number[], string[], string] };
   };
 }
-interface HompoEditData {
+interface HomfoEditData {
   [key: string]: any;
   universityPeople:boolean[];
   transports:string[];

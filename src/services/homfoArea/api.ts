@@ -1,6 +1,6 @@
 import { fetchFromApi } from "../../utils/axios";
 import { Result, ResultDetail } from "../../store/type/homfoRecommend&request/interface";
-export const getHompoArea= async (user_id:number): Promise<Result[]> => {
+export const getHomfoArea= async (user_id:number): Promise<Result[]> => {
     try {
       const res = await fetchFromApi('GET', `/users/${user_id}/recommended-area`);
       return res.data.data;

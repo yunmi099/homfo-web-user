@@ -1,6 +1,6 @@
 import React,{Dispatch, SetStateAction} from "react";
 import styles from './styles.module.scss'
-import { HompoEditData, QuestionForm, RequestData } from "../../store/type/homfoRecommend&request/interface";
+import { HomfoEditData, QuestionForm, RequestData } from "../../store/type/homfoRecommend&request/interface";
 import Filter from "../selecedProgress/filter";
 import MultipleChoice from "../selecedProgress/multipleChoice";
 import Question from "../selecedProgress/question";
@@ -8,8 +8,8 @@ import { ExtendedRequestData } from "../../store/type/requestBox/interface";
 interface SelectedFormProps {
     currentQuestion: QuestionForm;
     previousQuestion: QuestionForm;
-    data: HompoEditData|RequestData|ExtendedRequestData;
-    setData:Dispatch<SetStateAction<HompoEditData>>|Dispatch<SetStateAction<RequestData>>|Dispatch<SetStateAction<ExtendedRequestData>>;
+    data: HomfoEditData|RequestData|ExtendedRequestData;
+    setData:Dispatch<SetStateAction<HomfoEditData>>|Dispatch<SetStateAction<RequestData>>|Dispatch<SetStateAction<ExtendedRequestData>>;
     setFilterValue: Dispatch<SetStateAction<{[key: string]: number[];}>>;
     mode: string;
 }

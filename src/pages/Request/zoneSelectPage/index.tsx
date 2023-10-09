@@ -8,7 +8,7 @@ import check from '../../../assets/icons/request/checkBox.png';
 import nonecheck from '../../../assets/icons/request/noneCheckBox.png';
 import CustomModal from "./modal";
 import SelectArea from "./selectArea";
-import useHompoSurveyStore from "../../../store/context/useHomfoSurveyStore";
+import useHomfoSurveyStore from "../../../store/context/useHomfoSurveyStore";
 import useRequestStore from "../../../store/context/useRequestStore";
 interface InitialPageProps{
     count: number;
@@ -20,7 +20,7 @@ const ZoneSelectPage = (props: InitialPageProps)=>{
     const [selfChoice, setSelfChoice] = useState<boolean>(true);
     const [selectedArea, setSelectedArea] =useState<number[]>([]);
     const [modalIsOpen, setModalIsOpen] = useState(true);
-    const {result} = useHompoSurveyStore();
+    const {result} = useHomfoSurveyStore();
     const {setAreaId} = useRequestStore();
     useEffect(()=>{
         getAreaInfo("단국대학교", "본교",setAreaInfo);
