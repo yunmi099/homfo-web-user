@@ -7,7 +7,7 @@ function App() {
             <Routes>
                 <Route path="/" Component={router.home} />
                 <Route path="/hbti" Component={router.hbti} />
-                <Route path="/map"Component={router.kakaomap} />
+                <Route path="/residence-area-map"Component={router.residenceArea} />
                 <Route path="/mypage"Component={router.mypage} />
                 <Route path="/mypage/setting" Component={router.setting} />
                 <Route path="/mypage/personalinfo" Component={router.personalInfo} />

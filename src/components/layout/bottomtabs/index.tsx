@@ -14,8 +14,8 @@ function BottomTab() {
       title: '홈',
     },
     {
-      path: '/map',
-      image: location.pathname === '/map' ? bottomtabIcon.Map : bottomtabIcon.NMap,
+      path: '/residence-area-map',
+      image: location.pathname === '/residence-area-map' ? bottomtabIcon.Map : bottomtabIcon.NMap,
       title: '지도',
     },
     {

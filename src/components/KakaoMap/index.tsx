@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Map, MarkerClusterer, MapMarker, CustomOverlayMap } from 'react-kakao-maps-sdk';
 import AreaInfoOverlay from './\bAreaInfoOverlay';
 import clusterPositionsData from './clusterPositionsData.json';
-import BottomTab from '../../components/layout/bottomtabs';
-import Header from '../../components/layout/header';
+import BottomTab from '../layout/bottomtabs';
+import Header from '../layout/header';
 function KakaoMap() {
     const [isOpen, setIsOpen] = useState(false);
 
