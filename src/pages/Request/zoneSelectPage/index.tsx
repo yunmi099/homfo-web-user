@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ConfirmButton from "../../../components/button/ConfirmButton";
 import Header from "../../../components/layout/header";
-import { getAreaInfo } from "../../../services/request/api";
+import { getAreaInfo } from "../../../services/area/api";
 import styles from './styles.module.scss';
 import { Area } from "../../../store/type/hompoRecommend&request/interface";
 import check from '../../../assets/icons/request/checkBox.png';

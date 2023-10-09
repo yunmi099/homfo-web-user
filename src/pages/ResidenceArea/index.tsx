@@ -1,7 +1,8 @@
 import React from "react";
-import KakaoMap from "../../components/KakaoMap";
+import AllAreaMap from "../../components/map/AllAreaMap";
+import OneAreaMap from "../../components/map/OneAreaMap";
 
 function ResidenceArea(){
-    return(<div><KakaoMap/></div>)
+    return(<div style={{width: "100vw", height: '100vh'}}><OneAreaMap areaId={2}/></div>)
 }
 export default ResidenceArea;
