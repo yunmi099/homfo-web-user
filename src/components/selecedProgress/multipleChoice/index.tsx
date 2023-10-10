@@ -42,18 +42,14 @@ const MultipleChoice: React.FC<MultipleChoiceProps> = ({ currentQuestion,data, s
       {currentQuestion.answer!==null&&currentQuestion.answer.map((key) => (
         <div
           className={`${
-            data[questionType].includes(key.value) ? styles.activeAnswerButton : styles.nonactiveAnswerButton
+            JSON.stringify(data[questionType]).includes(JSON.stringify(key.value)) ? styles.activeAnswerButton : styles.nonactiveAnswerButton
           }`}
           style={answerStyles}
           key={key.title}
           onClick={() => {
-            if (data[questionType].includes(key.value)){
-              console.log(data[questionType])
-              console.log(key.value)
+            if (JSON.stringify(data[questionType]).includes(JSON.stringify(key.value))){
               handleCancelAnswer(key.value);
             } else {
-              console.log(data[questionType])
-              console.log(key.value)
               handleSelectAnswer(key.value);
             }
           }}
