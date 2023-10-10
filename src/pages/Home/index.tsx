@@ -5,16 +5,13 @@ import BottomTab from '../../components/layout/bottomtabs';
 import * as homeIcon from '../../assets/icons/home/homeIcon';
 import useFetchHomfoInitialData from '../../hooks/useFetchInitialData';
 import useHomfoSurveyStore from '../../store/context/useHomfoSurveyStore';
-import useUserStore from '../../store/context/useUserStore';
 import noticeIcon from '../../assets/icons/home/notice_icon.png';
 
 function Home() {
     const navigate = useNavigate();
-    const { fetch } = useUserStore();
+    const { result } = useHomfoSurveyStore();
+    useFetchHomfoInitialData(); // 홈포 추천 결과 및 유저 정보를 불러오는 부분
 
-    useEffect(() => {
-        fetch(2);
-    }, [fetch]);
     return (
         <div className={styles.container}>
             <div className={styles.topContainer}>
@@ -53,7 +50,15 @@ function Home() {
                         <img src={homeIcon.paperplane} width="37px" style={{ marginBottom: 5 }} />
                         <div className={styles.locationFont}>요청하기</div>
                     </div>
-                    <div className={styles.locationBox}>
+                    <div
+                        className={styles.locationBox}
+                        onClick={() => {
+                            result === null
+                                ? alert('홈포 추천 구역을 먼저 검사해보세요!')
+                                : navigate('/request');
+                        }}
+                    >
+                        {/* alert => 모달로 대체될 예정  */}
                         <img width="52px" src={homeIcon.areaLinker2} style={{ marginBottom: 5 }} />
                         <div className={styles.locationFont}>자취구역보기</div>
                     </div>
