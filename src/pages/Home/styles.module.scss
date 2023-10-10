@@ -1,55 +1,57 @@
 @import '/src/styles/utils/utils';
-.container{
-    width:100vw;
+
+.container {
+    width: 100vw;
     height: 100vh;
     overflow: hidden;
     position: relative;
+    background: linear-gradient(124.1deg, #842cff 7.96%, #b247ff 79.94%);
 }
-.topContainer{
+.topContainer {
     position: absolute;
     display: flex;
     flex-direction: column;
     width: 100%;
     height: 35%;
     left: 0;
-    background: linear-gradient(124.1deg, #842CFF 7.96%, #B247FF 79.94%);
+    background: linear-gradient(124.1deg, #842cff 7.96%, #b247ff 79.94%);
     z-index: 1;
 }
-.bottomContainer{
+
+.bottomContainer {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 70%;
+    height: 65%;
     left: 0;
-    background: #FFFFFF;
+    background: #ffffff;
     box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.05);
     border-radius: 20px;
     z-index: 80;
     display: flex;
     flex-direction: column;
-
 }
-.message{
+.message {
     font: {
         size: 1.7em;
         weight: 400;
     }
-    color:white;
+    color: white;
     margin: 5%;
 }
 
-.customTitle{
+.customTitle {
     font-weight: 700;
 }
-.areaBox{
-    display:flex;
+.areaBox {
+    display: flex;
     width: 55vw;
     height: 4.83vh;
     background-color: white;
     align-items: center;
     justify-content: center;
     border-radius: 40px;
-    color: #842CFF;
+    color: #842cff;
     font-size: 1.1em;
     margin-left: 5vw;
     :first-child {
@@ -59,28 +61,57 @@
     }
 }
 
-.locationContainer{
-    transform: translateY(45vh); 
+.locationContainer {
+    // transform: translateY(45vh);
     display: flex;
     justify-content: space-evenly;
 }
-.locationBox{
+.locationBox {
     @include centerContainer;
     flex-direction: column;
-    margin:5px;
-    background-color:white;
+    margin: 5px;
+    background-color: white;
     border: 1px solid;
     border: {
         radius: 10px;
-        color:white;
+        color: white;
     }
     width: 25vw;
     height: 25vw;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
 }
 
-.locationFont{
+.locationFont {
     font: {
         size: 11px;
+    }
+}
+
+.news {
+    margin: 60px 30px;
+    border-radius: 20px;
+    background: linear-gradient(90deg, #7f31ff 0%, #c89fff 103.88%);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    padding: 20px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .title {
+        font-size: 1.1em;
+        font-weight: 500;
+        margin-bottom: 6px;
+    }
+
+    .content {
+        font-size: 1.2em;
+        font-weight: 800;
+    }
+
+    img {
+        width: 3.5em;
+        height: 3.5em;
+        transform: rotate(21.163deg);
     }
 }
