@@ -46,10 +46,6 @@ function Home() {
                         <img src={homeIcon.dictionary} height="33px" style={{ marginBottom: 5 }} />
                         <div className={styles.locationFont}>부동산 상식</div>
                     </div>
-                    <div className={styles.locationBox} onClick={() => navigate('/request')}>
-                        <img src={homeIcon.paperplane} width="37px" style={{ marginBottom: 5 }} />
-                        <div className={styles.locationFont}>요청하기</div>
-                    </div>
                     <div
                         className={styles.locationBox}
                         onClick={() => {
@@ -59,6 +55,13 @@ function Home() {
                         }}
                     >
                         {/* alert => 모달로 대체될 예정  */}
+                        <img src={homeIcon.paperplane} width="37px" style={{ marginBottom: 5 }} />
+                        <div className={styles.locationFont}>요청하기</div>
+                    </div>
+                    <div
+                        className={styles.locationBox}
+                        onClick={() => navigate('/residence-area-map')}
+                    >
                         <img width="52px" src={homeIcon.areaLinker2} style={{ marginBottom: 5 }} />
                         <div className={styles.locationFont}>자취구역보기</div>
                     </div>
