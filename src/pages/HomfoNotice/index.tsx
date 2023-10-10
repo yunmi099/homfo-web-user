@@ -4,7 +4,8 @@ import styles from './styles.module.scss'
 function HomfoNotice(){
     return(
         <div className={styles.container}>
-         <Header title="부동산 상식" color='white'/>
+         <Header title="공지사항" color='white'/>
+         
         </div>
     );
 }
