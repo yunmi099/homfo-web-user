@@ -28,7 +28,7 @@ function Home() {
                 </div>
             </div>
             <div className={styles.bottomContainer}>
-                <div className={styles.news}>
+                <div className={styles.news} onClick={() => navigate('/notice')}>
                     <div className={styles.left}>
                         <div className={styles.title}>Notice</div>
                         <div className={styles.content}>최신 공지사항</div>
