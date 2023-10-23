@@ -1,0 +1,25 @@
+@import '/src/styles/utils/utils';
+
+.container {
+    padding: 18px 25px;
+    border-bottom: 1px solid #d7d7d7;
+
+    .info {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+
+        img {
+            width: 1em;
+            height: 1em;
+        }
+
+        .new {
+            border-radius: 9px;
+            background: #842cff;
+            color: white;
+            font-size: 0.7em;
+            padding: 1px 6px;
+        }
+    }
+}
