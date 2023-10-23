@@ -5,7 +5,7 @@ import BottomTab from '../../components/layout/bottomtabs';
 import * as homeIcon from '../../assets/icons/home/homeIcon';
 import useFetchHomfoInitialData from '../../hooks/useFetchInitialData';
 import useHomfoSurveyStore from '../../store/context/useHomfoSurveyStore';
-import noticeIcon from '../../assets/icons/home/notice_icon.png';
+import noticeIcon from '../../assets/icons/home/notice_icon.svg';
 
 function Home() {
     const navigate = useNavigate();
