@@ -6,6 +6,7 @@ import notice_icon from '../../assets/icons/home/notice_icon.svg';
 
 import styles from './styles.module.scss';
 import NoticeBlock from '../../components/molecules/Notice/NoticeBlock';
+import { fetchFromApi } from '../../utils/axios';
 
 const DUMMY_NOTICE = [
     { title: '[공지] 제목제목제목', date: '0000-00-00', isNew: false, isPinned: false },
@@ -15,6 +16,16 @@ const DUMMY_NOTICE = [
 ];
 
 function HomfoNotice() {
+    useEffect(() => {
+        const getNoticeList = async () => {
+            try {
+                const noticeList = await fetchFromApi('GET', '/notices');
+            } catch (e) {
+                console.error(e);
+                alert(e.response.message);
+            }
+        };
+    }, []);
     return (
         <div className={styles.container}>
             <Header title="공지사항" color="white" />
