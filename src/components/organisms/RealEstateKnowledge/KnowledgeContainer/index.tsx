@@ -7,8 +7,11 @@ import { fetchFromApi } from '../../../../utils/axios';
 import { IKnowledge } from '../../../../@types/knowledge';
 
 import styles from './styles.module.scss';
+import { useNavigate } from 'react-router-dom';
 
 export default function KnowledgeContainer() {
+    const navigate = useNavigate();
+
     const [option, setOption] = useState<string>('recent');
     const [knowledgeList, setKnowledgeList] = useState<any>([]);
 
@@ -32,7 +35,10 @@ export default function KnowledgeContainer() {
             <div className={styles.knowledgeContainer}>
                 {knowledgeList.map((item: IKnowledge) => (
                     <>
-                        <div className={styles.image}></div>
+                        <div
+                            className={styles.image}
+                            onClick={() => navigate(`/real-estate-knowledge/${item.senseId}`)}
+                        ></div>
                     </>
                 ))}
             </div>
