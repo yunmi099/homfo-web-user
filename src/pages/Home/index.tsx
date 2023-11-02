@@ -5,7 +5,7 @@ import BottomTab from '../../components/layout/bottomtabs';
 import * as homeIcon from '../../assets/icons/home/homeIcon';
 import useFetchHomfoInitialData from '../../hooks/useFetchInitialData';
 import useHomfoSurveyStore from '../../store/context/useHomfoSurveyStore';
-import noticeIcon from '../../assets/icons/home/notice_icon.png';
+import noticeIcon from '../../assets/icons/home/notice_icon.svg';
 
 function Home() {
     const navigate = useNavigate();
@@ -28,7 +28,7 @@ function Home() {
                 </div>
             </div>
             <div className={styles.bottomContainer}>
-                <div className={styles.news}>
+                <div className={styles.news} onClick={() => navigate('/notice')}>
                     <div className={styles.left}>
                         <div className={styles.title}>Notice</div>
                         <div className={styles.content}>최신 공지사항</div>
