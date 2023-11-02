@@ -2,22 +2,32 @@ import React from 'react';
 
 import pin_icon from '../../../../assets/icons/notice/pin_icon.svg';
 
+import { INotice } from '../../../../@types/notice';
+
 import styles from './styles.module.scss';
 
 interface Props {
-    notice: { title: string; date: string; isNew: boolean; isPinned: boolean };
+    notice: INotice;
 }
 
+const ONE_WEEK = 1000 * 60 * 60 * 24 * 7;
+
 export default function NoticeBlock({ notice }: Props) {
+    const currentDate = new Date();
+    const noticeDate = new Date(notice.createAt);
+    const differenceDate = currentDate.getTime() - noticeDate.getTime();
+
+    const isNew = differenceDate < ONE_WEEK;
+
     return (
         <div className={styles.container}>
             <div>
                 <div className={styles.info}>
-                    {notice.isPinned && <img src={pin_icon} alt="고정" />}
-                    {notice.isNew && <div className={styles.new}>NEW</div>}
+                    {notice.isFixed === 'Y' && <img src={pin_icon} alt="고정" />}
+                    {isNew && <div className={styles.new}>NEW</div>}
                 </div>
-                <div>{notice.title}</div>
-                <div>{notice.date}</div>
+                <div>{notice.name}</div>
+                <div>{notice.createAt}</div>
             </div>
         </div>
     );

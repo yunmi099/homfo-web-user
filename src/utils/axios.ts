@@ -1,6 +1,6 @@
 import axios, { AxiosResponse, Method } from 'axios';
 
-const SERVER_DEPOLY_URL = 'https://dev.ajou-only-five.shop/api';
+const SERVER_DEPOLY_URL = 'https://dev-server.homfo.co.kr/api';
 
 export const fetchFromApi = async (
     method: Method | undefined,
