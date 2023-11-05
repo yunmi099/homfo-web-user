@@ -35,10 +35,12 @@ export default function KnowledgeContainer() {
             <div className={styles.knowledgeContainer}>
                 {knowledgeList.map((item: IKnowledge) => (
                     <>
-                        <div
+                        <img
                             className={styles.image}
                             onClick={() => navigate(`/real-estate-knowledge/${item.senseId}`)}
-                        ></div>
+                            src={item.mainImage}
+                            alt={item.title}
+                        />
                     </>
                 ))}
             </div>
