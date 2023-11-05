@@ -1,10 +1,23 @@
-@import 'slick-carousel/slick/slick.css';
-@import 'slick-carousel/slick/slick-theme.css';
 .container{
-    height: 100vh;
-    overflow-y: hidden;
+    overflow: hidden;
+    height: 92.75%;
 }
 
-.slideContainer{
-    overflow-x: visible;
+.titleContainer{
+    margin: 10vh 0 0 6vw;
+}
+.title{
+    font: {
+        size: 1.6em;
+        weight: 700;
+    }
+    span {
+        color: #9D11FF;
+    }
+}
+.subTitle{
+    font: {
+        size: 1.2em;
+        weight: 400;
+    }
 }

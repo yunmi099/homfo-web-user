@@ -1,0 +1,102 @@
+@import '/src/styles/utils/utils';
+.container{
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+.backButton{
+    position: absolute;
+    top: 25px;
+    left: 15px;
+    z-index: 100;
+    width: 50px;
+}
+.amenitiesButton{
+    position: absolute;
+    top: 79px;
+    right: 20px;
+    z-index: 100;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: white;
+    @include centerContainer;
+    flex-direction: column;
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.16));
+    :first-child{
+        width: 32px;
+        margin-top: 5px;
+    }
+
+    :nth-child(2){
+        color: #BC00FF;
+        font-size: 10.5px;
+        margin-top: 4.5px;
+        font-weight: 400;
+    }
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+}
+.slideIn {
+    animation-name: slideIn;
+    animation-timing-function: ease-in-out;
+}
+
+.show {
+    animation-name: show;
+    animation-timing-function: ease-in-out;
+}
+
+.amenitiesView{
+    position: absolute;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    top: 80px;
+    left: 10px;
+    z-index: 100;
+    width: 65%;
+    height: 68px;
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.15);
+    border-radius: 7px;
+    // overflow-x: hidden;
+    // white-space: nowrap;
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+}
+// .amenitiesView::-webkit-scrollbar {
+//     width: 100%;
+//   }
+// .amenitiesView::-webkit-scrollbar-track {
+//     background-color: rgba(255, 255, 255, 0.95);
+//     border-radius: 7px;
+//   }
+// .amenitiesView::-webkit-scrollbar-thumb {
+//     background: rgba(132, 44, 255, 0.29);
+//     height: 3px;
+//     border: 6px solid;
+//     border-radius: 7px;
+//     border-color:  rgba(255, 255, 255, 0.95);     
+// }
+
+
+
+@keyframes slideIn {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(14px);
+    }
+}
+
+@keyframes show {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 76%;
+    }
+}
+

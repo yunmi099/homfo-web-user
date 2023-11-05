@@ -1,0 +1,5 @@
+@import '/src/styles/utils/utils';
+.container{
+    @include entireContainer;
+    overflow-y: auto;
+}

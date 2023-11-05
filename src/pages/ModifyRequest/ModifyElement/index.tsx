@@ -7,6 +7,7 @@ import { QuestionForm } from "../../../store/type/homfoRecommend&request/interfa
 import SelectedForm from "../../../components/selectedForm";
 import AdditionalInput from "../../../components/selecedProgress/input";
 import { ExtendedRequestData } from "../../../store/type/requestBox/interface";
+import OneAreaMap from "../../../components/map/OneAreaMap";
 interface ModifyElementProps{
     title: string;
     index: number;
@@ -35,7 +36,7 @@ const ModifyElement = ({title, index,data,setData,setFilterValue}:ModifyElementP
                   <div className={styles.underline}></div>               
                   <div style={{fontSize: '0.8em', color: '#FF6666', marginLeft: '5%'}}>✅ 구역은 변경하실 수 없습니다.</div>
                   <div className = {styles.mapContainer}>
-                    map
+                    <OneAreaMap areaId={data.areaId}/>
                   </div>
                 </>
                 :null

@@ -1,15 +1,49 @@
 import React, { useEffect, useState } from 'react';
-import { Map, MarkerClusterer, MapMarker, CustomOverlayMap, Circle } from 'react-kakao-maps-sdk';
-import AreaInfoOverlay from './\bAreaInfoOverlay';
+import { Map} from 'react-kakao-maps-sdk';
 import { getAreaInfo } from '../../../services/area/api';
 import { Area } from '../../../store/type/homfoRecommend&request/interface';
-function AllAreaMap() {
-    const [isOpen, setIsOpen] = useState(false);
+import styles from './styles.module.scss'
+import CustomOverlay from '../CustomOverlayMap';
+import { useNavigate } from 'react-router-dom';
+
+interface AllAreaMapProps {
+    basicZoomLevel? : number,
+    renderingDetailPage?: boolean
+}
+
+function AllAreaMap({basicZoomLevel = 7, renderingDetailPage = false} : AllAreaMapProps) {
     const [areaInfo, setAreaInfo] = useState<Area[]|undefined>();
+    const [mapInstance, setMapInstance] = useState<any>(null);
+    const [showAreaName, setShowAreaName] = useState<boolean>(false);
     const [averageCoordinates, setAverageCoordinates] = useState({ lat: 37.323160599999994, lng: 127.12145301818182});
+    const [currentLevel, setCurrentLevel] = useState<number>(basicZoomLevel);
+    const navigate = useNavigate();
+
     useEffect(()=>{
-        getAreaInfo("단국대학교", "본교",setAreaInfo);
+        getAreaInfo("단국대학교", "본교", setAreaInfo);
     },[])
+
+    const handleMapLoad = (map: any) => {
+        setMapInstance(map); 
+    };
+
+    const handleOverlayClick = (item : Area)=>{
+        navigate('/residence-area-map/detail',{state: item});
+    }
+
+    const handleZoomChange = () => {
+        if (mapInstance) {
+            const currentZoomLevel = mapInstance.getLevel();
+            setCurrentLevel(currentZoomLevel);
+            if (currentZoomLevel < 6) {
+                setShowAreaName(true);
+
+            } else {
+                setShowAreaName(false);
+            }
+        }
+    };
+
     useEffect(() => {
         if (areaInfo) {
           let locationSum = areaInfo.reduce(
@@ -24,41 +58,30 @@ function AllAreaMap() {
           setAverageCoordinates({lat: locationSum.lat/areaInfo.length, lng:locationSum.lng/areaInfo.length});
         }
 
-      }, [areaInfo]);
-    const onClickCluster = () => {
-        setIsOpen(true);
+    }, [areaInfo]);
 
-    };
     return (
         <>
             <Map
                 center={averageCoordinates}
-                style={{ width: '100%', height: '100%' }}
-                level={7}
+                className={styles.mapContainer}
+                level={basicZoomLevel}
+                onCreate={handleMapLoad}
+                onZoomChanged={handleZoomChange}
             >{
-                areaInfo?.map((key, index)=>{return<>
-                <Circle
-                    key={index} // 고유한 키를 지정
-                    center={{ lat: key.lat, lng: key.lng }}
-                    radius={key.radius}
-                    fillColor="rgba(162, 32, 255, 1)"
-                    strokeColor="rgba(162, 32, 255, 1)" // 테두리 색상 설정
-                    strokeWeight={1} // 테두리 두께 설정
-                    fillOpacity={0.4}
-                />
-                <CustomOverlayMap
-                    // content={key.name}
-                    position={{ lat: key.lat, lng: key.lng }}
-                    yAnchor={1.5} // 구역 이름 위치 조절
-                />   
-                </>})
+                areaInfo?.map((item, index)=>{
+                return (
+                    <CustomOverlay
+                        onClick = {renderingDetailPage?()=>handleOverlayClick(item):undefined}
+                        key = {item.name}
+                        item={item}
+                        order={index}
+                        showAreaName={showAreaName}
+                        currentLevel={currentLevel} 
+                    />
+                )})
             }
             </Map>
-            {isOpen && (
-                <div>
-                    <AreaInfoOverlay setIsOpen={setIsOpen} />
-                </div>
-            )}
         </>
     );
 }

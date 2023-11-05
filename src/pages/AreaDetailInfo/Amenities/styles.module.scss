@@ -1,0 +1,38 @@
+@import '/src/styles/utils/utils';
+.optionContainer{
+    @include centerContainer;
+    flex-direction: column;
+    text-align: center;
+    font-size: 10px; 
+    margin-top: 10px;
+}
+
+.optionImageContainer{
+    width: 70px;
+    position: relative;
+    :first-child{
+        z-index: 1;
+        width: 24px;
+        margin-bottom: 3px;
+    }
+}
+
+.optionCountContainer{
+    position: absolute;
+    transform: translate(35px, -38px);
+    width: 28px;
+    height: 28px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: white;
+    span {
+        background: linear-gradient(180deg, #FF4040 0%, #842CFF 100%);
+        background-clip: text;
+        font-weight: 800;
+        font-size: 15px;
+        color: transparent;
+        -webkit-background-clip: text;
+    }
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}

@@ -15,8 +15,10 @@ export const modifyPassword = loadable(() => import('./pages/Mypage/Modify/Passw
 export const modifyPhonenumber = loadable(() => import('./pages/Mypage/Modify/Phonenumber'));
 export const request = loadable(()=>import('./pages/Request'));
 export const requestComplete = loadable(()=>import('./pages/RequestComplete'));
+export const areaDetailInfo = loadable(()=>import('./pages/AreaDetailInfo'));
 export const requestBox = loadable(()=>import('./pages/RequestBox'));
 export const modifyRequest = loadable(()=>import('./pages/ModifyRequest'));
+export const requestDocument = loadable(()=>import('./pages/RequestDocument'));
 export const homfoRecommendedArea = loadable(()=>import('./pages/HomfoRecommendedArea'));
 export const homfoRecommendResult = loadable(()=>import('./pages/HomfoRecommendResult'));
 export const realEstateKnowledge= loadable(()=>import('./pages/RealEstateKnowledge'));

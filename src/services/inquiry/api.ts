@@ -18,6 +18,7 @@ export const getInquiryDetailToModify = async (
     console.log(e);
   }
 };
+
 export const getInquiryDetail = async (errorId: number, setDetailContent:Dispatch<SetStateAction<DETAIL|undefined>>): Promise<void> => {
     try {
       const res= await fetchFromApi('GET',`/errors/${errorId}/detail`);
@@ -26,6 +27,7 @@ export const getInquiryDetail = async (errorId: number, setDetailContent:Dispatc
       console.log(e);
     }
   };
+
 export const getCategoryList = async (
   setFormData: Dispatch<SetStateAction<InquiryFormData>>
 ): Promise<void> => {
@@ -40,6 +42,7 @@ export const getCategoryList = async (
     console.log(e);
   }
 };
+
 export const submitInquiry = async (
   errorId: number,
   title: string,
@@ -63,6 +66,7 @@ export const submitInquiry = async (
     console.log(e);
   }
 };
+
 export const getInquiryList = async (userId: number,setData:Dispatch<SetStateAction<FilteredData[] | undefined>>, filterData:any): Promise<void> => {
     try {
       const res = await fetchFromApi('GET',`/errors/users/${userId}`);
@@ -72,3 +76,12 @@ export const getInquiryList = async (userId: number,setData:Dispatch<SetStateAct
     }
 };
   
+export const deleteInquiryList = async (errorId: number): Promise<void> => {
+  try {
+    if (window.confirm("정말 삭제하시겠습니까?")){
+      const res = await fetchFromApi('PATCH',`/errors/${errorId}/delete`);
+    }
+  } catch (e:any) {
+    console.log(e);
+  }
+};

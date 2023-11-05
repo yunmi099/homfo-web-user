@@ -5,7 +5,7 @@ import InquiryDetail from './inquiryDetail';
 import '../../../../../store/type/inquiry&faq/interface'
 import { FilteredData, OriginalData } from '../../../../../store/type/inquiry&faq/interface';
 import ConfirmButton from '../../../../../components/button/ConfirmButton';
-import { getInquiryList } from '../../../../../services/inquiry/api';
+import { deleteInquiryList, getInquiryList } from '../../../../../services/inquiry/api';
   function InquiryList({ setMode, setModify ,setId }: { setMode: React.Dispatch<React.SetStateAction<boolean>>, setModify:React.Dispatch<React.SetStateAction<boolean>>,setId:React.Dispatch<React.SetStateAction<number>>  }) {
     const [data, setData] = useState<Array<FilteredData>|undefined>()
       function filterData(data: OriginalData[]): FilteredData[] {
@@ -17,7 +17,7 @@ import { getInquiryList } from '../../../../../services/inquiry/api';
           updatedAt
         }));
       }
-    useEffect(()=>{getInquiryList(2, setData, filterData)},[])
+    useEffect(()=>{getInquiryList(2, setData, filterData)},[data])
     return(
     <div className={styles.container}>
         {data!==undefined ? data.map((content)=>{
@@ -29,7 +29,7 @@ import { getInquiryList } from '../../../../../services/inquiry/api';
                     </div>
                     {content.isAnswered===0?<div>
                         <span onClick={()=>{setMode(true);setModify(true);setId(content.errorId)}}>수정 | </span>
-                        <span>삭제</span>
+                        <span onClick={()=>{deleteInquiryList(content.errorId);getInquiryList(2, setData, filterData);}}>삭제</span>
                     </div>:null}
                 </div>
                 <div>
