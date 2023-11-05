@@ -10,6 +10,8 @@ function App() {
                 <Route path="/notice" Component={router.notice} />
                 <Route path="/residence-area-map" Component={router.residenceArea} />
                 <Route path="/mypage" Component={router.mypage} />
+                <Route path="/residence-area-map/detail"Component={router.areaDetailInfo} />
+                <Route path="/mypage"Component={router.mypage} />
                 <Route path="/mypage/setting" Component={router.setting} />
                 <Route path="/mypage/personalinfo" Component={router.personalInfo} />
                 <Route path="/mypage/accountinfo" Component={router.accountInfo} />
@@ -19,6 +21,7 @@ function App() {
                 <Route path="/request-complete" Component={router.requestComplete} />
                 <Route path="/request-box" Component={router.requestBox} />
                 <Route path="/request-box/modify-request" Component={router.modifyRequest} />
+                <Route path="/request-box/request-document" Component={router.requestDocument} />
                 <Route path="/user/password" Component={router.modifyPassword} />
                 <Route path="/user/phonenumber" Component={router.modifyPhonenumber} />
                 <Route

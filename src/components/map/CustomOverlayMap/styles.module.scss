@@ -1,0 +1,16 @@
+@import '/src/styles/utils/utils';
+.circle{
+    transform: translate(-50%, -50%);
+    @include centerContainer;
+    border-radius: 50%;
+    border:0px solid transperant;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    opacity: 0.9;
+    
+    &:last-child{
+        color:white;
+        font-weight: 700;
+        font-size: 1em;
+    }
+}
+

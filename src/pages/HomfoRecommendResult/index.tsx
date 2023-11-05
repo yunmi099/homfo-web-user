@@ -6,6 +6,7 @@ import useHomfoSurveyStore from '../../store/context/useHomfoSurveyStore';
 export default function HompoRecommendResult() {
     const {resultDetail} = useHomfoSurveyStore();
   return (
-    <div>{resultDetail!=null?<HomfoResult/>:<Rendering/>}</div>
+    // <div>{resultDetail!=null?<HomfoResult/>:<Rendering/>}</div>
+      <div><HomfoResult/></div>
   )
 }

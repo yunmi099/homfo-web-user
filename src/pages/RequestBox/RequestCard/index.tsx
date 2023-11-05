@@ -7,7 +7,10 @@ const StatusEnum = {
   APPLICATION_COMPLETED: '신청 완료',
   SALES_IN_PROGRESS: '매물 파악 중',
   SALES_COMPLETED: '매물 파악 완료'
-};
+} as const;
+
+type StatusEnum = typeof StatusEnum[keyof typeof StatusEnum];
+
 function RequestCard({data}: {data: RequestList}) {
   const navigate = useNavigate();
   let statusColor;
@@ -29,6 +32,8 @@ function RequestCard({data}: {data: RequestList}) {
     <div className={styles.container} onClick={()=>{
       if (StatusEnum.APPLICATION_COMPLETED === data.matchStatus){
         navigate('/request-box/modify-request',{state: data.requestId})
+      } else if (StatusEnum.SALES_COMPLETED ===  data.matchStatus){
+        navigate('/request-box/request-document',{state: data.requestId})
       }
     }}>
         <div className={styles.areaContainer}>
@@ -44,7 +49,8 @@ function RequestCard({data}: {data: RequestList}) {
             {data.matchStatus}</span>
           </div>
           <div className={styles.contents}>담당 중개사: {data.realtorName===null?'미정':data.realtorName}</div>
-          {data.matchStatus===StatusEnum.APPLICATION_COMPLETED?<div className={styles.modifyStatus}>
+          {data.matchStatus===StatusEnum.APPLICATION_COMPLETED?
+          <div className={styles.modifyStatus}>
             <div className={styles.circle}></div>수정가능
           </div>:null}
         </div>
