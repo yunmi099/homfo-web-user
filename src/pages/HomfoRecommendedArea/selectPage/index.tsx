@@ -24,7 +24,14 @@ const SelectedHomfoSurvey = (props: SelectedProgressProps) => {
   const {postHomfoRecommendInfo} = useHomfoSurveyStore();
   return (
     <div style={{marginTop:"10vh"}}>
-      <SelectedForm currentQuestion={currentQuestion} previousQuestion={previousQuestion} mode={"time"} data={data} setData={setData} setFilterValue={setFilterValue}/>
+      <SelectedForm 
+        currentQuestion={currentQuestion}
+        previousQuestion={previousQuestion}
+        mode={"time"}
+        data={data}
+        setData={setData}
+        setFilterValue={setFilterValue}/>
+        
       <ConfirmButton
         title="다음"
         onClick={() => {

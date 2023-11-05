@@ -10,6 +10,7 @@ import CustomModal from "./modal";
 import SelectArea from "./selectArea";
 import useHomfoSurveyStore from "../../../store/context/useHomfoSurveyStore";
 import useRequestStore from "../../../store/context/useRequestStore";
+import AllAreaMap from "../../../components/map/AllAreaMap";
 interface InitialPageProps{
     count: number;
     setCount: React.Dispatch<React.SetStateAction<number>>;
@@ -45,11 +46,13 @@ return(<>
                 />
                 <div>제가 직접 고를게요</div>
             </div>
-            {selfChoice&&
             <div className={styles.mapContainer}>
+                <AllAreaMap basicZoomLevel={8}/>
+            {selfChoice&&
                 <SelectArea areaInfo={areaInfo} setSelfChoice={setSelfChoice} selectedArea={selectedArea} setSelectedArea={setSelectedArea}/>
+            }      
             </div>
-            }
+
             </>}
 
         </div>

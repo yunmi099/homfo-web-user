@@ -22,3 +22,5 @@ export const realEstateKnowledge = loadable(() => import('./pages/RealEstateKnow
 export const realEstateKnowledgeDetail = loadable(
     () => import('./pages/RealEstateKnowledge/Detail')
 );
+export const areaDetailInfo = loadable(()=>import('./pages/AreaDetailInfo'));
+export const requestDocument = loadable(()=>import('./pages/RequestDocument'));

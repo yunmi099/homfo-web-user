@@ -49,7 +49,7 @@ function ModifyRequest() {
         }
         </div>
     </div>       
-    <ConfirmButton title="수정하기"/>
+    <ConfirmButton title="수정하기" auth={true}/>
     </>
   )
 }

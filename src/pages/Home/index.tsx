@@ -11,7 +11,6 @@ function Home() {
     const navigate = useNavigate();
     const { result } = useHomfoSurveyStore();
     useFetchHomfoInitialData(); // 홈포 추천 결과 및 유저 정보를 불러오는 부분
-
     return (
         <div className={styles.container}>
             <div className={styles.topContainer}>
@@ -24,7 +23,10 @@ function Home() {
                 </div>
                 <div className={styles.areaBox}>
                     <img src={homeIcon.areaLinker} />
-                    <div>홈포가 추천하는 구역</div>
+                    <div 
+                    onClick={()=>navigate(result===null?'/mypage/homfo-recommendedArea'
+                    :'/mypage/homfo-recommended-result')}>
+                    홈포가 추천하는 구역</div>
                 </div>
             </div>
             <div className={styles.bottomContainer}>
