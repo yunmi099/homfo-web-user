@@ -3,6 +3,6 @@ export interface IKnowledge {
     title: string;
     likeCount: number;
     favoriteCount: number;
-    mainPicture: string;
+    mainImage: string;
     status: string;
 }
