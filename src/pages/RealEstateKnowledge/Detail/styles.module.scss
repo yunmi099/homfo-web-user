@@ -1,0 +1,29 @@
+@import '/src/styles/utils/utils';
+
+$background-color: white;
+
+.container {
+    @include entireContainer($background-color);
+}
+
+.detailContainer {
+    padding: 20px;
+}
+
+.title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.imageContainer {
+    width: 100%;
+    aspect-ratio: auto 1/1;
+    background-color: gray;
+    border-radius: 23px;
+    margin-bottom: 20px;
+}
+
+.detailInfo {
+    margin-bottom: 20px;
+}

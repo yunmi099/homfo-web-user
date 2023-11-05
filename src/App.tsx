@@ -30,6 +30,10 @@ function App() {
                 />
                 <Route path="/real-estate-knowledge" Component={router.realEstateKnowledge} />
                 <Route
+                    path="/real-estate-knowledge/:id"
+                    Component={router.realEstateKnowledgeDetail}
+                />
+                <Route
                     path="/mypage/homfo-recommended-result"
                     Component={router.homfoRecommendResult}
                 />
