@@ -9,21 +9,17 @@ import NoticeBlock from '../../components/molecules/Notice/NoticeBlock';
 import { fetchFromApi } from '../../utils/axios';
 import { INotice } from '../../@types/notice';
 
-const DUMMY_NOTICE: INotice[] = [
-    { noticeId: 0, name: '[공지] 제목제목제목', createAt: '0000-00-00', isFixed: 'N' },
-    { noticeId: 1, name: '[공지] 제목제목제목', createAt: '0000-00-00', isFixed: 'N' },
-    { noticeId: 2, name: '[공지] 제목제목제목', createAt: '0000-00-00', isFixed: 'Y' },
-    { noticeId: 3, name: '[공지] 제목제목제목', createAt: '0000-00-00', isFixed: 'Y' },
-];
-
 function HomfoNotice() {
     const [noticeList, setNoticeList] = useState<INotice[]>([]);
     useEffect(() => {
         const getNoticeList = async () => {
             try {
-                const noticeList = await fetchFromApi('GET', '/notices?page=0&size=1');
+                const noticeList = await fetchFromApi(
+                    'GET',
+                    '/notices?page=0&size=15&firstView=true'
+                );
 
-                setNoticeList(noticeList.data);
+                setNoticeList(noticeList.data.data);
             } catch (e: any) {
                 console.error(e);
             }
@@ -47,8 +43,8 @@ function HomfoNotice() {
                 </div>
             </div>
             <div>
-                {DUMMY_NOTICE.map((notice) => (
-                    <NoticeBlock key={notice.noticeId} notice={notice} />
+                {noticeList.map((notice) => (
+                    <NoticeBlock key={notice.id} notice={notice} />
                 ))}
             </div>
         </div>
