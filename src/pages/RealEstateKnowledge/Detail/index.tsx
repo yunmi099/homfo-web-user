@@ -44,7 +44,6 @@ export default function KnowledgeDetail() {
             try {
                 const response = await fetchFromApi('GET', `/senses/${id}/detail`);
 
-                console.log(response);
                 setData(response.data);
             } catch (err) {
                 console.log(err);
@@ -70,13 +69,13 @@ export default function KnowledgeDetail() {
                 {/* image */}
                 <div className={styles.imageContainer}>
                     <Slider {...settings}>
-                        {data.images.map((item) => (
-                            // <div>{item}</div>
-                            <img src={item} alt={data.title} />
+                        {data.images.map((item: string) => (
+                            <div className={styles.img}>
+                                <img src={item} alt={data.title} />
+                            </div>
                         ))}
                     </Slider>
                 </div>
-                <img src={data.mainImage} alt={data.title} />
                 <div className={styles.detailInfo}>
                     <div>좋아요 {data.likeCount}개</div>
                     <div>즐겨찾기 {data.favoriteCount}개</div>
