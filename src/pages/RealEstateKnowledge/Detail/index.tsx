@@ -10,6 +10,11 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import styles from './styles.module.scss';
 
+import emptyHeart from '../../../assets/icons/senses/empty_heart.svg';
+import emptyScrap from '../../../assets/icons/senses/empty_scrap.svg';
+import fillHeart from '../../../assets/icons/senses/fill_heart.svg';
+import fillScrap from '../../../assets/icons/senses/fill_scrap.svg';
+
 interface ISensesDetail {
     senseId: number;
     writerId: number;
@@ -76,6 +81,7 @@ export default function KnowledgeDetail() {
                         ))}
                     </Slider>
                 </div>
+                <div></div>
                 <div className={styles.detailInfo}>
                     <div>좋아요 {data.likeCount}개</div>
                     <div>즐겨찾기 {data.favoriteCount}개</div>

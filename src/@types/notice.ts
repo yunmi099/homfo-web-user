@@ -5,6 +5,7 @@ export interface INotice {
     writer: IWriter;
     createdAt: string;
     updatedAt: string;
+    isFixed: string;
 }
 
 export interface IWriter {
