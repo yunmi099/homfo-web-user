@@ -79,8 +79,12 @@ const DetailContainer = ({ data }: { data: ISensesDetail }) => {
                         </div>
                     ))}
                 </Slider>
+                <div className={styles.imgInfo}>
+                    <img src={emptyHeart} alt="조아용" />
+                    <img src={emptyScrap} alt="조아용" />
+                </div>
             </div>
-            <div></div>
+
             <div className={styles.detailInfo}>
                 <div>좋아요 {data.likeCount}개</div>
                 <div>즐겨찾기 {data.favoriteCount}개</div>

@@ -39,6 +39,15 @@ $background-color: white;
             height: 100%;
         }
     }
+
+    .imgInfo {
+        display: flex;
+        justify-content: space-between;
+        img {
+            width: 25px;
+            height: 25px;
+        }
+    }
 }
 
 .detailInfo {
