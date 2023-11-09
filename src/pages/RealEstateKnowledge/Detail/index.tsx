@@ -28,10 +28,6 @@ interface ISensesDetail {
     createdAt: string;
 }
 
-interface Props {
-    dataList: ISensesDetail[];
-}
-
 export default function KnowledgeDetail() {
     const { id } = useParams();
 
