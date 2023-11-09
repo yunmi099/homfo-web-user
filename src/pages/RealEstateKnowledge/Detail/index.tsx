@@ -28,36 +28,42 @@ interface ISensesDetail {
     createdAt: string;
 }
 
+interface Props {
+    dataList: ISensesDetail[];
+}
+
 export default function KnowledgeDetail() {
     const { id } = useParams();
 
-    const [data, setData] = useState<ISensesDetail>({
-        senseId: 0,
-        writerId: 0,
-        title: '',
-        content: '',
-        images: [],
-        mainImage: '',
-        likeCount: 0,
-        favoriteCount: 0,
-        status: '',
-        createdAt: '',
-    });
+    const [knowledgeList, setKnowledgeList] = useState<ISensesDetail[]>([]);
 
     useEffect(() => {
-        const fetchData = async () => {
+        const getKnowledgeList = async () => {
             try {
-                const response = await fetchFromApi('GET', `/senses/${id}/detail`);
+                const res = await fetchFromApi('GET', `/senses?order=recent`);
 
-                setData(response.data);
-            } catch (err) {
-                console.log(err);
+                setKnowledgeList(res.data.data);
+            } catch (e) {
+                console.error(e);
             }
         };
 
-        fetchData();
-    }, [id]); // id 값이 바뀔 때마다 useEffect가 실행됩니다.
+        getKnowledgeList();
+    }, []);
 
+    return (
+        <div className={styles.container}>
+            <Header title="부동산 상식" color="white" />
+            <div className={styles.content}>
+                {knowledgeList?.map((item) => (
+                    <DetailContainer key={item.senseId} data={item} />
+                ))}
+            </div>
+        </div>
+    );
+}
+
+const DetailContainer = ({ data }: { data: ISensesDetail }) => {
     const settings = {
         dots: true,
         infinite: true,
@@ -67,27 +73,23 @@ export default function KnowledgeDetail() {
     };
 
     return (
-        <div className={styles.container}>
-            <Header title="부동산 상식" color="white" />
-            <div className={styles.detailContainer}>
-                <div className={styles.title}>{data.title}</div>
-                {/* image */}
-                <div className={styles.imageContainer}>
-                    <Slider {...settings}>
-                        {data.images.map((item: string) => (
-                            <div className={styles.img}>
-                                <img src={item} alt={data.title} />
-                            </div>
-                        ))}
-                    </Slider>
-                </div>
-                <div></div>
-                <div className={styles.detailInfo}>
-                    <div>좋아요 {data.likeCount}개</div>
-                    <div>즐겨찾기 {data.favoriteCount}개</div>
-                </div>
-                <div className={styles.detailText}>{data.content}</div>
+        <div className={styles.detailContainer}>
+            <div className={styles.title}>{data.title}</div>
+            <div className={styles.imageContainer}>
+                <Slider {...settings}>
+                    {data?.images?.map((item: string) => (
+                        <div className={styles.img}>
+                            <img src={item} alt={data.title} />
+                        </div>
+                    ))}
+                </Slider>
             </div>
+            <div></div>
+            <div className={styles.detailInfo}>
+                <div>좋아요 {data.likeCount}개</div>
+                <div>즐겨찾기 {data.favoriteCount}개</div>
+            </div>
+            <div className={styles.detailText}>{data.content}</div>
         </div>
     );
-}
+};
