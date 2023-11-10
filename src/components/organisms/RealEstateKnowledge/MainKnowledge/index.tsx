@@ -1,12 +1,18 @@
 import React from 'react';
 
 import styles from './styles.module.scss';
+import { IKnowledge } from '../../../../@types/knowledge';
 
-export default function MainKnowledge() {
+interface Props {
+    mainKnowledge: IKnowledge;
+}
+
+export default function MainKnowledge({ mainKnowledge }: Props) {
     return (
         <div>
-            {/* <img /> */}
-            <div className={styles.img}></div>
+            <div className={styles.img}>
+                <img src={mainKnowledge?.mainImage} alt={mainKnowledge?.title} />
+            </div>
             <div className={styles.text}>
                 <span>대학 사회 초년생 집중 👏</span>
                 <br />

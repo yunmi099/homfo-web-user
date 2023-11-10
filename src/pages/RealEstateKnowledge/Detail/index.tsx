@@ -10,6 +10,11 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import styles from './styles.module.scss';
 
+import emptyHeart from '../../../assets/icons/senses/empty_heart.svg';
+import emptyScrap from '../../../assets/icons/senses/empty_scrap.svg';
+import fillHeart from '../../../assets/icons/senses/fill_heart.svg';
+import fillScrap from '../../../assets/icons/senses/fill_scrap.svg';
+
 interface ISensesDetail {
     senseId: number;
     writerId: number;
@@ -26,34 +31,35 @@ interface ISensesDetail {
 export default function KnowledgeDetail() {
     const { id } = useParams();
 
-    const [data, setData] = useState<ISensesDetail>({
-        senseId: 0,
-        writerId: 0,
-        title: '',
-        content: '',
-        images: [],
-        mainImage: '',
-        likeCount: 0,
-        favoriteCount: 0,
-        status: '',
-        createdAt: '',
-    });
+    const [knowledgeList, setKnowledgeList] = useState<ISensesDetail[]>([]);
 
     useEffect(() => {
-        const fetchData = async () => {
+        const getKnowledgeList = async () => {
             try {
-                const response = await fetchFromApi('GET', `/senses/${id}/detail`);
+                const res = await fetchFromApi('GET', `/senses?order=recent`);
 
-                console.log(response);
-                setData(response.data);
-            } catch (err) {
-                console.log(err);
+                setKnowledgeList(res.data.data);
+            } catch (e) {
+                console.error(e);
             }
         };
 
-        fetchData();
-    }, [id]); // id 값이 바뀔 때마다 useEffect가 실행됩니다.
+        getKnowledgeList();
+    }, []);
 
+    return (
+        <div className={styles.container}>
+            <Header title="부동산 상식" color="white" />
+            <div className={styles.content}>
+                {knowledgeList?.map((item) => (
+                    <DetailContainer key={item.senseId} data={item} />
+                ))}
+            </div>
+        </div>
+    );
+}
+
+const DetailContainer = ({ data }: { data: ISensesDetail }) => {
     const settings = {
         dots: true,
         infinite: true,
@@ -63,26 +69,27 @@ export default function KnowledgeDetail() {
     };
 
     return (
-        <div className={styles.container}>
-            <Header title="부동산 상식" color="white" />
-            <div className={styles.detailContainer}>
-                <div className={styles.title}>{data.title}</div>
-                {/* image */}
-                <div className={styles.imageContainer}>
-                    <Slider {...settings}>
-                        {data.images.map((item) => (
-                            // <div>{item}</div>
+        <div className={styles.detailContainer}>
+            <div className={styles.title}>{data.title}</div>
+            <div className={styles.imageContainer}>
+                <Slider {...settings}>
+                    {data?.images?.map((item: string) => (
+                        <div className={styles.img}>
                             <img src={item} alt={data.title} />
-                        ))}
-                    </Slider>
+                        </div>
+                    ))}
+                </Slider>
+                <div className={styles.imgInfo}>
+                    <img src={emptyHeart} alt="조아용" />
+                    <img src={emptyScrap} alt="조아용" />
                 </div>
-                <img src={data.mainImage} alt={data.title} />
-                <div className={styles.detailInfo}>
-                    <div>좋아요 {data.likeCount}개</div>
-                    <div>즐겨찾기 {data.favoriteCount}개</div>
-                </div>
-                <div className={styles.detailText}>{data.content}</div>
             </div>
+
+            <div className={styles.detailInfo}>
+                <div>좋아요 {data.likeCount}개</div>
+                <div>즐겨찾기 {data.favoriteCount}개</div>
+            </div>
+            <div className={styles.detailText}>{data.content}</div>
         </div>
     );
-}
+};

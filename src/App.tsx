@@ -8,10 +8,11 @@ function App() {
                 <Route path="/" Component={router.home} />
                 <Route path="/hbti" Component={router.hbti} />
                 <Route path="/notice" Component={router.notice} />
+                <Route path="/notice/detail/:id" Component={router.noticeDetail} />?
                 <Route path="/residence-area-map" Component={router.residenceArea} />
                 <Route path="/mypage" Component={router.mypage} />
-                <Route path="/residence-area-map/detail"Component={router.areaDetailInfo} />
-                <Route path="/mypage"Component={router.mypage} />
+                <Route path="/residence-area-map/detail" Component={router.areaDetailInfo} />
+                <Route path="/mypage" Component={router.mypage} />
                 <Route path="/mypage/setting" Component={router.setting} />
                 <Route path="/mypage/personalinfo" Component={router.personalInfo} />
                 <Route path="/mypage/accountinfo" Component={router.accountInfo} />

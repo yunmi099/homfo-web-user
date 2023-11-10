@@ -3,6 +3,7 @@ import loadable from '@loadable/component';
 export const home = loadable(() => import('./pages/Home'));
 export const hbti = loadable(() => import('./pages/Hbti'));
 export const notice = loadable(() => import('./pages/HomfoNotice'));
+export const noticeDetail = loadable(() => import('./pages/HomfoNotice/Detail'));
 export const residenceArea = loadable(() => import('./pages/ResidenceArea'));
 export const mypage = loadable(() => import('./pages/Mypage/Main'));
 export const setting = loadable(() => import('./pages/Mypage/AppSetting'));
@@ -22,5 +23,5 @@ export const realEstateKnowledge = loadable(() => import('./pages/RealEstateKnow
 export const realEstateKnowledgeDetail = loadable(
     () => import('./pages/RealEstateKnowledge/Detail')
 );
-export const areaDetailInfo = loadable(()=>import('./pages/AreaDetailInfo'));
-export const requestDocument = loadable(()=>import('./pages/RequestDocument'));
+export const areaDetailInfo = loadable(() => import('./pages/AreaDetailInfo'));
+export const requestDocument = loadable(() => import('./pages/RequestDocument'));
