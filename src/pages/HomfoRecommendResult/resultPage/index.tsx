@@ -7,7 +7,10 @@ import "./internal-modules-scss/slick-theme.scss";
 import "./internal-modules-scss/slick.scss"
 import { ResultDetail } from '../../../store/type/homfoRecommend&request/interface';
 import ConfirmButton from '../../../components/button/ConfirmButton';
+import { useNavigate } from 'react-router-dom';
+
 export default function HomfoResult() {  
+  const navigate = useNavigate();
   const settings = {
     centerMode: true,
     dots: true,
@@ -29,7 +32,9 @@ export default function HomfoResult() {
             <HomfoResultCardSlider key={index} data={key.detail} areaId={key.areaId}/>)}
           </Slider>
       </div>  
-      <ConfirmButton title="다음" auth={true}/>  
+      <ConfirmButton title="다음" auth={true} onClick={()=>{
+          navigate('/mypage/homfo-recommended-result/routing')
+      }}/>  
     </>
 
   )

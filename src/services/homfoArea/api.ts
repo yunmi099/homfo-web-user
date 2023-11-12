@@ -10,7 +10,7 @@ export const getHomfoArea= async (user_id:number): Promise<Result[]> => {
     }
 };
 
-export const getAreaDetailResult= async (area_id: number): Promise<ResultDetail["detail"]> => {
+export const getAreaDetailResult = async (area_id: number): Promise<ResultDetail["detail"]> => {
   try {
      const res = await fetchFromApi('GET', `/transports/${area_id}/area/detail`);
      return res.data;

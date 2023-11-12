@@ -2,6 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import * as router from './routes';
 function App() {
+
     return (
         <>
             <Routes>
@@ -37,6 +38,10 @@ function App() {
                 <Route
                     path="/mypage/homfo-recommended-result"
                     Component={router.homfoRecommendResult}
+                />
+                <Route
+                    path="/mypage/homfo-recommended-result/routing"
+                    Component={router.homfoResultRouting}
                 />
             </Routes>
         </>

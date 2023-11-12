@@ -4,12 +4,14 @@ import styles from '../styles.module.scss'
 import { useNavigate } from "react-router-dom";
 import { fetchFromApi } from "../../../../utils/axios";
 import useTimerStore from "../../../../store/context/useTimerStore";
+import useUserStore from "../../../../store/context/useUserStore";
 const ModifyPhonenumber = ()=>{
     const [open, setOpen] = useState<boolean>(false)
     const [phonenumber, setPhonenumber] = useState<string>("") 
     const [verifyNumber, setVerifyNumber] = useState<string>("")
     const [count, setCount] = useState<number>(0); 
     const navigate = useNavigate();
+    const {userInfo, modify} = useUserStore((state)=>state);
     
     const [errorMessage, setErrorMessage]=useState<boolean>(false);
     const { isRunning, remainingTime, startTimer, resetTimer} = useTimerStore();
@@ -28,6 +30,7 @@ const ModifyPhonenumber = ()=>{
         }
         
     };
+
     const authenticationVerify = async (): Promise<void> => {
         let data = {
             "userPhoneNum":phonenumber,
@@ -36,17 +39,26 @@ const ModifyPhonenumber = ()=>{
         try {
             const res = await fetchFromApi('POST', `/users/sms-auth/verify`,data);
             if (res.status === 200) {
-                alert("전화번호가 변경되었습니다.");
                 resetTimer();
-                setOpen(false);
-                setPhonenumber("");               
-                setVerifyNumber("");
             }
         } catch (e:any) {
             alert(e.response.data.message);
         }
         
     };
+
+
+    const handleChangePhoneNumber =  async ()=>{
+        if (await modify(2,{"userPhoneNum":phonenumber})){
+            setOpen(false);
+            setPhonenumber("");               
+            setVerifyNumber("");
+            alert("전화번호를 변경했습니다.")
+        } else {
+            alert("다시 시도해주세요.")
+        }
+    
+    }
     const formatTime = (timeInSeconds:number) => {
         const minutes = Math.floor(timeInSeconds / 60);
         const seconds = timeInSeconds % 60;
@@ -113,9 +125,9 @@ const ModifyPhonenumber = ()=>{
                 <button className={styles.verifyButton} onClick={()=>handleVerifySubmit()}>인증 확인</button>
                 </div>}
             </div>
-       {isRunning&&<p style={{color:'red'}}>{formatTime(remainingTime)}</p>}
+        {isRunning&&<p style={{color:'red'}}>{formatTime(remainingTime)}</p>}
         {errorMessage&&<div style={{color:'red'}}>인증 번호는 4자리 입니다.</div>}
-            <button className={styles.button}>전화번호 변경</button>
+            <button className={styles.button} onClick={()=>handleChangePhoneNumber()}>전화번호 변경</button>
         <div className={styles.textButton} onClick={()=>navigate(-1)}>다음에 변경하기</div>
 
     </div>)

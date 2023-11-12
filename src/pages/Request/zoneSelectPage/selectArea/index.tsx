@@ -37,14 +37,6 @@ export default function SelectArea({
               </span>
             ))}
           </div>
-          <img
-            src={closeArrow}
-            width="10px"
-            height="6px"
-            style={{ margin: '15px 10px' }}
-            alt={"x"}
-            onClick={()=>setSelfChoice((prev)=>!prev)}
-          />
         </div>
         {areaInfo.map((item) => (
           <div

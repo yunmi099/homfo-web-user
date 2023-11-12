@@ -44,7 +44,7 @@ return(<>
                 height={25} alt="check"
                 onClick={()=>setSelfChoice(prev=>!prev)}
                 />
-                <div>제가 직접 고를게요</div>
+                <div>자취구역 목록보기</div>
             </div>
             <div className={styles.mapContainer}>
                 <AllAreaMap basicZoomLevel={8}/>

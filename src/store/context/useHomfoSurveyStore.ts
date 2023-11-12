@@ -32,8 +32,7 @@ const useHomfoSurveyStore = create<HomfoStoreState>((set)=>({
           totalData = {...totalData, "transports": transportsData}
         }
         const storeState = useHomfoSurveyStore.getState();
-        const requestType = storeState.result===null?'post':'patch';
-        const res = await fetchFromApi(requestType, `/users/${id}/recommended-area`,totalData); 
+        const res = await fetchFromApi("POST", `/users/${id}/recommended-area`,totalData); 
         storeState.setResult(res.data.data);
         const resultArray:ResultDetail[] = await Promise.all(
           res.data.data.map(async (item: any) => {
