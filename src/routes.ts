@@ -25,3 +25,4 @@ export const realEstateKnowledgeDetail = loadable(
 );
 export const areaDetailInfo = loadable(() => import('./pages/AreaDetailInfo'));
 export const requestDocument = loadable(() => import('./pages/RequestDocument'));
+export const homfoResultRouting = loadable(() => import('./pages/HomfoRecommendResult/RoutePage'));

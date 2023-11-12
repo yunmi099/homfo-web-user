@@ -22,9 +22,11 @@ function AmenitiesMap({item, storeType}:{item: Area, storeType: string|undefined
             getAmenitiesCoordinates(item.areaId, storeType, setAmenitiesBasicData);
         }
     },[storeType])
+
     const handleMapLoad = (map: kakao.maps.Map) => {
         setMapInstance(map); 
     };
+
     const handleZoomChange = () => {
         if (mapInstance) {
             const currentZoomLevel = mapInstance.getLevel();

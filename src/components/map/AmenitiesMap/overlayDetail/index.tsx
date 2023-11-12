@@ -7,8 +7,8 @@ interface OverlayDetailProps {
     currentIndex: number;
     setCurrentIndex: React.Dispatch<React.SetStateAction<number>>;
     setCurrentPin: React.Dispatch<React.SetStateAction<amenitiesBasicInfo[] | null>>;
-
 }  
+
 export const OverlayDetail = ({storeDetail, currentIndex, setCurrentIndex, setCurrentPin} : OverlayDetailProps)=>{
     return(
     <>

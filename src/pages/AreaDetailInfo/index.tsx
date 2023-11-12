@@ -12,6 +12,7 @@ export default function AreaDetailInfo() {
     const [touchUpEvent, setTouchUpEvent] = useState(true);
     const [touchDownEvent, setTouchDownEvent] = useState(false);
     const [selectedAmenities, setSelectedAmenities] = useState<string|undefined>();
+
     const [AmenitiesInfo, setAmenitiesInfo] = useState({
         "FOOD" :  { 
             "name": "음식점 및 키페",
@@ -35,13 +36,16 @@ export default function AreaDetailInfo() {
             "image": [mapIcon.study, mapIcon.coloredStudy],
             "count": 0,
         },
-});
+    });
+
     const navigate = useNavigate();
     const location = useLocation();
     const receivedData = location.state;
+
     useEffect(()=>{
         getAmenities(receivedData.areaId, setAmenitiesInfo)
     },[receivedData.areaId])
+
   return (
     <div className={styles.container}>
         <img 
@@ -79,11 +83,11 @@ export default function AreaDetailInfo() {
             </div>:null
         }
         <OverlayInfo 
+            areaId ={receivedData.areaId}
             touchUpEvent={touchUpEvent} 
             setTouchUpEvent={setTouchUpEvent} 
             touchDownEvent={touchDownEvent} 
             setTouchDownEvent={setTouchDownEvent}
-            selectedAmenities = {selectedAmenities}
         />
         <AmenitiesMap item={receivedData} storeType={selectedAmenities}/>
     </div>)

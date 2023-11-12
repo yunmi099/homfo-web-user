@@ -5,7 +5,7 @@ import { PersonalInfo } from '../type/memberInfo/interface';
 interface UserStoreState {
   userInfo: PersonalInfo;
   fetch: (id: number) => Promise<void>;
-  modify: (id: number, newData: Partial<PersonalInfo>) => Promise<void>;
+  modify: (id: number, newData: Partial<PersonalInfo>) => Promise<boolean>;
 }
 
  const useUserStore = create<UserStoreState>((set) => ({
@@ -27,12 +27,15 @@ interface UserStoreState {
       console.log(e);
     }
   },
-  modify: async (id: number, newData: Partial<PersonalInfo>): Promise<void> => {
+  modify: async (id: number, newData: Partial<PersonalInfo>): Promise<boolean> => {
     try {
+      console.log(newData)
       const res = await fetchFromApi('PATCH',`/users/${id}/info`, newData);
       set({ userInfo: res.data});
+      return true;
     } catch (e: any) {
       console.log(e);
+      return false;
     }
   },
 }));

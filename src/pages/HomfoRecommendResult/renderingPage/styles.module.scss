@@ -1,0 +1,44 @@
+@import '/src/styles/utils/utils';
+.container {
+    @include entireContainer();
+    background-color:#EDEEF1;
+    align-items: center;
+}
+
+.contents{
+    color: #0D1315;
+    font-family: Inter;
+    font-size: 1.5em;
+    font-weight: 400;
+    width: 90%;
+    margin-top: 20%;
+    line-height: normal;
+    span {
+        color: #842CFF;
+    }
+}
+
+.smallContents{
+    width: 90%;
+    color: #0D1315;
+    font-family: Inter;
+    font-size: 1.2em;
+    font-weight: 400;
+    margin: 4% 0;
+    line-height: normal;
+}
+
+.image{
+    animation: blink 1s infinite;
+    margin-top: 15%;
+    width: 80%;
+    
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  
