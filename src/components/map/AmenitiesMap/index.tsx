@@ -5,13 +5,18 @@ import styles from './styles.module.scss'
 import { getAmenitiesCoordinates, getStoreDetail } from '../../../services/amenities/api';
 import { FilteredAmenitiesBasicInfo, StoreDetail, amenitiesBasicInfo } from '../../../store/type/amenities/interface';
 import * as pinIcon from '../../../assets/icons/map/icon/mapIcon'
+import { OverlayDetail } from './overlayDetail';
 function AmenitiesMap({item, storeType}:{item: Area, storeType: string|undefined}) {
     const [mapInstance, setMapInstance] = useState<kakao.maps.Map|null>(null);
     const [currentLevel, setCurrentLevel] = useState<number>(4);
-    const [currentPin, setCurrentPin] = useState<string|null>(null);
+    const [currentPin, setCurrentPin] = useState<amenitiesBasicInfo[]|null>(null);
     const [currentIndex, setCurrentIndex] = useState<number>(0);
     const [amenitiesBasicData, setAmenitiesBasicData] = useState<FilteredAmenitiesBasicInfo>();
     const [storeDetail, setStoreDetail] = useState<StoreDetail[]|null>(null);
+    const [center, setCenter] = useState({
+        lat: item.lat,
+        lng:item.lng,
+    })
     useEffect(()=>{
         if (storeType!==undefined){
             getAmenitiesCoordinates(item.areaId, storeType, setAmenitiesBasicData);
@@ -20,9 +25,6 @@ function AmenitiesMap({item, storeType}:{item: Area, storeType: string|undefined
     const handleMapLoad = (map: kakao.maps.Map) => {
         setMapInstance(map); 
     };
-    useEffect(()=>{
-
-    },[currentPin])
     const handleZoomChange = () => {
         if (mapInstance) {
             const currentZoomLevel = mapInstance.getLevel();
@@ -30,16 +32,20 @@ function AmenitiesMap({item, storeType}:{item: Area, storeType: string|undefined
         }
     };
     const handleOnClickMapMarker =  (item: amenitiesBasicInfo[])=>{
-        setCurrentPin(item[0].name);
-        item.map((store)=> (
-            getStoreDetail(store.storeId, setStoreDetail)
-        ))
+        setCurrentPin(item);
     }
-
+    useEffect(()=>{
+        setCurrentIndex(0);
+        currentPin?.map((store)=> 
+            {
+                getStoreDetail(store.storeId, setStoreDetail)
+            }
+        )
+    },[currentPin])
     return (
         <>
             <Map
-                center={{ lat: item.lat, lng: item.lng }}
+                center={center}
                 className={styles.mapContainer}
                 level={3}
                 onCreate={handleMapLoad}
@@ -61,10 +67,10 @@ function AmenitiesMap({item, storeType}:{item: Area, storeType: string|undefined
                 >
                     <MapMarker 
                         image = {{ 
-                            src: currentPin === item[0].name ? pinIcon.selectedPin : pinIcon.pin,
+                            src: JSON.stringify(currentPin) === JSON.stringify(item)? pinIcon.selectedPin : pinIcon.pin,
                             size : {
-                                width: currentPin === item[0].name ? 19 : 15,
-                                height: currentPin === item[0].name ? 27 : 22,
+                                width: JSON.stringify(currentPin) === JSON.stringify(item) ? 19 : 15,
+                                height: JSON.stringify(currentPin) === JSON.stringify(item) ? 27 : 22,
                             }
                             
                         }}
@@ -75,14 +81,21 @@ function AmenitiesMap({item, storeType}:{item: Area, storeType: string|undefined
                         onClick={()=>handleOnClickMapMarker(item)}
                     />
                     {
-                        currentPin === item[0].name ?
+                        JSON.stringify(currentPin) === JSON.stringify(item) ?
                         <CustomOverlayMap
                             position={{ lat: item[0].lat, lng: item[0].lng }}
                             xAnchor={0}
                             yAnchor={0}
                         >
                             <div className={styles.overlayContainer}>
-                                <div className = {styles.storeName}>{storeDetail!==null&&storeDetail[currentIndex].name}</div>
+                            {storeDetail!==null&&
+                                <OverlayDetail 
+                                    storeDetail={storeDetail} 
+                                    currentIndex={currentIndex}
+                                    setCurrentPin = {setCurrentPin}
+                                    setCurrentIndex={setCurrentIndex}
+                                />
+                            }
                             </div>
                         </CustomOverlayMap>: null
                     }
