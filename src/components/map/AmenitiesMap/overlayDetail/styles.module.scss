@@ -1,3 +1,80 @@
-.container{
-    
+.headerContainer{
+    display: flex;
+    justify-content: space-between;
+    height: 5.5vh;
+    width:100%;
+    position: relative;
+}
+
+.header{
+    width:80%;
+    display: flex;
+}
+.storeName{
+    font-size: 1.3em;
+    height: 5.5vh;
+    line-height: 5.5vh;
+    padding:5px 8px 0 15px;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    max-width: 50vw;
+}
+
+.storeBranch{
+    font-size: 0.9em;
+    color: #6394D8;
+    height: 5.7vh;
+    line-height: 5.8vh;
+}
+
+.xButton{
+    width: 12px;
+    height: 12px;
+    padding: 15px 13px 0px 10px;
+}
+
+.address{
+    color: #6F7070;
+    // overflow: hidden;
+    white-space: normal; 
+    max-width: 95%;
+    flex-wrap: wrap;
+    font-family: Inter;
+    font-size: 0.9em;
+    font-style: normal;
+    font-weight: 500;
+    padding-left: 10px;
+    margin-top: 10px;
+    line-height: normal;
+}
+
+.bottomLine{
+    display: flex;
+    justify-content: space-between;
+}
+
+.prev{
+    width: 8px;
+    position: absolute;
+    bottom:10px;
+    right: 40px;
+}
+.next{
+    width: 8px;
+    position: absolute;
+    bottom:10px;
+    right: 10px;
+}
+
+.storeType{
+    color: #8C8C8C;
+    position: absolute;
+    bottom:10px;
+    left: 11px;
+    font-family: Inter;
+    font-size: 0.85em;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
 }

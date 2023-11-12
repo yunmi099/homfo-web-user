@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './styles.module.scss'
 import { StoreDetail, amenitiesBasicInfo } from '../../../../store/type/amenities/interface';
 import * as pinIcon from '../../../../assets/icons/map/icon/mapIcon';
@@ -10,27 +10,38 @@ interface OverlayDetailProps {
 }  
 
 export const OverlayDetail = ({storeDetail, currentIndex, setCurrentIndex, setCurrentPin} : OverlayDetailProps)=>{
-    return(
-    <>
-        <div className = {styles.storeName}>{storeDetail[currentIndex].name}</div>
-        <div className = {styles.storeName}>{storeDetail[currentIndex].branch}</div>
-        <img src={pinIcon.naverSearch} alt='naver' />
-        <img 
-            src={pinIcon.xButton}
-            alt='x'
-            onClick = {()=>setCurrentPin(null)}
-        />
-        <div style={{width: '90%', height:1, backgroundColor:"#E8E8E8"}}></div>
-        <div className = {styles.storeName}>
-            {storeDetail[currentIndex].roadAddress}
-            {storeDetail[currentIndex].jibunAddress}
-            {storeDetail[currentIndex].buildingName}
-            {storeDetail[currentIndex].floor}
+
+    return (<>
+        <div className={styles.headerContainer}>
+            <div className={styles.header}>
+                <div className={styles.storeName}>{storeDetail[currentIndex].name}</div>
+                <div className={styles.storeBranch}>{storeDetail[currentIndex].branch}</div>
+            </div>
+            <div>
+                {/* <img src={pinIcon.naverSearch} alt='naver' /> */}
+                <img
+                    className={styles.xButton}
+                    src={pinIcon.xButton}
+                    alt='x'
+                    onClick={() => setCurrentPin(null)}
+                />
+            </div>
+        </div>
+        <div style={{ width: '70%', height: 1, backgroundColor: "#E8E8E8", marginLeft:20 }}></div>
+        <div className={styles.address}>
+            {storeDetail[currentIndex].roadAddress}&nbsp;
+            {storeDetail[currentIndex].buildingName}&nbsp;
+            {storeDetail[currentIndex].floor!== null&&`${storeDetail[currentIndex].floor}(층)`}
         </div>
         <div>
-            <div>{storeDetail[currentIndex].storeTypeName}</div>
-            <img src={pinIcon.prev} alt='이전' onClick={()=>currentIndex>0&&setCurrentIndex((prev)=>prev-1)}/>
-            <img src={pinIcon.next} alt='다음' onClick={()=>currentIndex<storeDetail.length-1&&setCurrentIndex((prev)=>prev+1)} />
+            <div className={styles.storeType}>{storeDetail[currentIndex].storeTypeName}</div>
+            <div>
+                {
+                    currentIndex > 0 && <img className={styles.prev} src={pinIcon.prev} alt='이전' onClick={() => setCurrentIndex((prev) => prev - 1)} />
+                }
+                {
+                    currentIndex < storeDetail.length - 1  &&  <img className={styles.next} src={pinIcon.next} alt='다음' onClick={() => setCurrentIndex((prev) => prev +1)} />
+                }
+            </div>
         </div>
-    </>)
-}
+    </>)}

@@ -12,7 +12,7 @@ function AmenitiesMap({item, storeType}:{item: Area, storeType: string|undefined
     const [currentPin, setCurrentPin] = useState<amenitiesBasicInfo[]|null>(null);
     const [currentIndex, setCurrentIndex] = useState<number>(0);
     const [amenitiesBasicData, setAmenitiesBasicData] = useState<FilteredAmenitiesBasicInfo>();
-    const [storeDetail, setStoreDetail] = useState<StoreDetail[]|null>(null);
+    const [storeDetail, setStoreDetail] = useState<StoreDetail[]|[]>([]);
     const [center, setCenter] = useState({
         lat: item.lat,
         lng:item.lng,
@@ -22,6 +22,7 @@ function AmenitiesMap({item, storeType}:{item: Area, storeType: string|undefined
             getAmenitiesCoordinates(item.areaId, storeType, setAmenitiesBasicData);
         }
     },[storeType])
+
 
     const handleMapLoad = (map: kakao.maps.Map) => {
         setMapInstance(map); 
@@ -33,17 +34,24 @@ function AmenitiesMap({item, storeType}:{item: Area, storeType: string|undefined
             setCurrentLevel(currentZoomLevel);
         }
     };
-    const handleOnClickMapMarker =  (item: amenitiesBasicInfo[])=>{
+    const handleOnClickMapMarker =  async (item: amenitiesBasicInfo[])=>{
         setCurrentPin(item);
     }
-    useEffect(()=>{
+
+    const handleCurrentPin = ()=>{
         setCurrentIndex(0);
-        currentPin?.map((store)=> 
+        setStoreDetail([]);
+        currentPin?.map((store) => 
             {
                 getStoreDetail(store.storeId, setStoreDetail)
             }
         )
+    }
+    useEffect(()=>{
+        handleCurrentPin()
     },[currentPin])
+
+
     return (
         <>
             <Map
@@ -65,7 +73,7 @@ function AmenitiesMap({item, storeType}:{item: Area, storeType: string|undefined
                 amenitiesBasicData!==undefined?
                 Object.values(amenitiesBasicData).map((item)=>
                 <div
-                    key={item[currentIndex].storeId}
+                    key={item[0].storeId}
                 >
                     <MapMarker 
                         image = {{ 
@@ -90,7 +98,7 @@ function AmenitiesMap({item, storeType}:{item: Area, storeType: string|undefined
                             yAnchor={0}
                         >
                             <div className={styles.overlayContainer}>
-                            {storeDetail!==null&&
+                            {storeDetail?.length !== 0&&
                                 <OverlayDetail 
                                     storeDetail={storeDetail} 
                                     currentIndex={currentIndex}

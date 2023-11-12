@@ -39,7 +39,7 @@ export const getAmenitiesCoordinates = async (areaId: number, storeType:string, 
 }
 
 
-export const getStoreDetail = async (storeId: string, setStoreDetail: React.Dispatch<React.SetStateAction<StoreDetail[] | null>>): Promise<void> => {
+export const getStoreDetail = async (storeId: string, setStoreDetail: React.Dispatch<React.SetStateAction<StoreDetail[]>>): Promise<void> => {
   try {        
       const res = await fetchFromApi('GET',`/store/${storeId}/detail`);
       setStoreDetail((prev: StoreDetail[] | null) => {
