@@ -18,6 +18,15 @@ import { deleteInquiryList, getInquiryList } from '../../../../../services/inqui
         }));
       }
     useEffect(()=>{getInquiryList(2, setData, filterData)},[data])
+    const handleModifyAction = (content: FilteredData)=>{
+        setMode(true);
+        setModify(true);
+        setId(content.errorId)
+    }
+    const handleDeleteAction = (content: FilteredData)=>{
+        deleteInquiryList(content.errorId);
+        getInquiryList(2, setData, filterData);
+    }
     return(
     <div className={styles.container}>
         {data!==undefined ? data.map((content)=>{
@@ -28,8 +37,8 @@ import { deleteInquiryList, getInquiryList } from '../../../../../services/inqui
                         {content.errorTitle}
                     </div>
                     {content.isAnswered===0?<div>
-                        <span onClick={()=>{setMode(true);setModify(true);setId(content.errorId)}}>수정 | </span>
-                        <span onClick={()=>{deleteInquiryList(content.errorId);getInquiryList(2, setData, filterData);}}>삭제</span>
+                        <span onClick={()=>{handleModifyAction(content)}}>수정 | </span>
+                        <span onClick={()=>{handleDeleteAction(content)}}>삭제</span>
                     </div>:null}
                 </div>
                 <div>
