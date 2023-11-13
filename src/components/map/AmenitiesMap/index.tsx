@@ -40,7 +40,7 @@ function AmenitiesMap({item, storeType}:{item: Area, storeType: string|undefined
 
     const handleCurrentPin = ()=>{
         setCurrentIndex(0);
-        setStoreDetail([]);
+        setStoreDetail([]); // currentPin이 바뀌었을 때 초기화 해주지 않으면, 값이 누적되어 오류발생
         currentPin?.map((store) => 
             {
                 getStoreDetail(store.storeId, setStoreDetail)
