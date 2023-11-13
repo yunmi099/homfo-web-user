@@ -1,6 +1,7 @@
 export {type QuestionForm, type HomfoEditData,type Area, type RequestData, type HomfoStoreState, type Result, type ResultDetail, type RequestStore, type RequestForm};
 interface HomfoStoreState {
   setResult: (data: Result[])=>void;
+  reset: ()=>void;
   setResultDetail: (data: ResultDetail[])=>void;
   postHomfoRecommendInfo: (id: number, data: HomfoEditData, filterData:{[key:string]:number[]}|undefined) => Promise<void>;
   result:null|Result[];
