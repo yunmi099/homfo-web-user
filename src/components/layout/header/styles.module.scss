@@ -2,7 +2,7 @@
 .container{
     width: 100vw;
     @include centerContainer;
-    height: 10%;
+    height: 10vh;
     background-color: rgba(0,0,0,0);
     z-index: 99;
 }
