@@ -5,14 +5,17 @@ import { getAreaDetailResult } from '../../services/homfoArea/api';
 const useHomfoSurveyStore = create<HomfoStoreState>((set)=>({
     result: null,
     resultDetail:null,
-    setResult: (data:Result[])=>set((state) => ({
-      ...state,
-      result: data
-    })),  
-    setResultDetail: (data:ResultDetail[])=>set((state) => ({
-      ...state,
-      resultDetail: data
-    })),  
+
+    setResult: (data:Result[])=> set((state) => (
+      { ...state, result: data })),
+
+    setResultDetail: (data:ResultDetail[])=> set((state) => (
+    { ...state, resultDetail: data })),
+
+    reset: () => set((state)=>({
+      result: null,
+      resultDetail:null
+    })),
     postHomfoRecommendInfo: async (id: number, data:HomfoEditData, filterData: {[key:string]:number[]}|undefined): Promise<void> => {
       try {
         let totalData={};
@@ -32,7 +35,10 @@ const useHomfoSurveyStore = create<HomfoStoreState>((set)=>({
           totalData = {...totalData, "transports": transportsData}
         }
         const storeState = useHomfoSurveyStore.getState();
-        const res = await fetchFromApi("POST", `/users/${id}/recommended-area`,totalData); 
+        if (storeState.result !== null){
+          storeState.reset();
+        }
+        const res = await fetchFromApi("POST", `/users/${id}/recommended-area`,totalData);
         storeState.setResult(res.data.data);
         const resultArray:ResultDetail[] = await Promise.all(
           res.data.data.map(async (item: any) => {

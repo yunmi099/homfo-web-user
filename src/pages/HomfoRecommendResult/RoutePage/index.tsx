@@ -2,8 +2,10 @@ import React,{useEffect, useState} from 'react'
 import styles from './styles.module.scss'
 import homfoResultImage from '../../../assets/hippo/homfoResult.png'
 import { useNavigate } from 'react-router-dom';
+import useHomfoSurveyStore from '../../../store/context/useHomfoSurveyStore';
 export default function HomfoResultRouting() {
   const navigate = useNavigate();
+  const { setResultDetail} = useHomfoSurveyStore();
   return (
     <div className={styles.container}>
         <div className={styles.contents}>히포가 당신에게<br/>
@@ -20,7 +22,9 @@ export default function HomfoResultRouting() {
             단국대 구역 보러가기</button>
           <button
             className={styles.puppleButton}
-            onClick={()=>navigate('/mypage/homfo-recommendedArea')}
+            onClick={()=>{
+              navigate('/mypage/homfo-recommendedArea')
+            }}
           >
             다시 검사해보기</button>
           <button className={styles.greyButton}
