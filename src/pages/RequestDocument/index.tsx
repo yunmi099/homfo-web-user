@@ -15,53 +15,81 @@ function RequestDocument(){
     return(
     <div className={styles.container}>
         <Header title="요청서함"/>
-        <div className={styles.university}>단국대학교</div>
-        {/* <div className={styles.title}>{}</div> */}
-        <div>
-            이미지, 중개사 이름
-        </div>
-        <div className={styles.horizontalLine}></div>
-        <div className={styles.box}>
-            <div className={styles.phone}>
-                <img 
-                    src={offerIcon.call}
-                    width='15rem'
-                    height='15rem'
-                    alt="전화"
-                />
-                <a className={styles.atag} href="tel://010-5135-8136">전화하기</a>   
-            </div> 
-            <div className={styles.verticalLine}></div>
-            <div className={styles.phone}>
-                <img 
-                    src={offerIcon.message}
-                    width='17rem'
-                    height='15rem'
-                    alt="문자"
-                />
-                <a className={styles.atag} href="sms://010-5135-8136">문자하기</a>  
+        <div className={styles.offerContainer}>
+            <div className={styles.university}>단국대학교</div>
+            {/* <div className={styles.title}>{}</div> */}
+            <div className={styles.offerName}>
+                {data?.name}
             </div>
-        </div>
-        <div className={styles.horizontalLine}></div>
-        <div>
-            <div className={styles.title}>방 사진</div>
-            
-        </div>
-        <div className={styles.horizontalLine}></div>
-        <div className={styles.title}>기본정보</div>
-        <div className={styles.squareBox}>
-
-        </div>
-        <div>
-            <div className={styles.title}>옵션</div>
-            <div className={styles.title}>기타 전달사항</div>
-            <div className={styles.title}>위치</div> 
-
+            <div className={styles.agencyInfo}>
+                <div>
+                    {data?.realtor.agencyThumbnailDto.name}
+                </div>
+                <div>
+                    {data?.realtor.agencyThumbnailDto.type}&nbsp;{data?.agencyItem.agency.chairmanName}
+                </div>
+                <div>
+                    {data?.agencyItem.agency.lotAddress}
+                </div>
+            </div>
+            <div className={styles.horizontalLine}></div>
+            <div className={styles.box}>
+                <div className={styles.phone}>
+                    <img 
+                        src={offerIcon.call}
+                        width='15rem'
+                        height='15rem'
+                        alt="전화"
+                    />
+                    <a className={styles.atag} href={`tel://${data?.agencyItem.agency.phoneNumber}`}>전화하기</a> 
+                    {/* <a className={styles.atag} href="tel://010-5135-8136">전화하기</a>    */}
+                </div> 
+                <div className={styles.verticalLine}></div>
+                <div className={styles.phone}>
+                    <img 
+                        src={offerIcon.message}
+                        width='17rem'
+                        height='15rem'
+                        alt="문자"
+                    />
+                    <a className={styles.atag} href={`sms://${data?.agencyItem.agency.phoneNumber}`}>문자하기</a>  
+                </div>
+            </div>
+            <div className={styles.horizontalLine}></div>
+            <div>
+                <div className={styles.title}>방 사진</div>
+                <img
+                    src={data?.agencyItem.item.images.data[0].url}
+                    alt={data?.agencyItem.item.images.data[0].attachment}
+                    className={styles.image}
+                />
+                
+            </div>
+            <div className={styles.horizontalLine}></div>
+            <div className={styles.title}>기본정보</div>
+            <div className={styles.itemInfo}>
+            <div style={{fontSize:'1.1em', marginTop: 5}}>{data?.agencyItem.item.name}</div>
+                <div>매물 유형  {data?.agencyItem.itemType}</div>
+            </div>
             <div className={styles.squareBox}>
-            
+                <div  className={styles.agencyInfo}>
+                    <div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div className={styles.title}>옵션</div>
+                <div className={styles.title}>기타 전달사항</div>
+                <div className={styles.title}>위치</div> 
+
+                <div className={styles.squareBox}>
+                
+                </div>
+
+                <div className={styles.title}>도로명 주소</div>
             </div>
 
-            <div className={styles.title}>도로명 주소</div>
         </div>
     </div>);
     
