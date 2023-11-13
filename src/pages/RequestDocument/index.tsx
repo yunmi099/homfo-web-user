@@ -8,10 +8,24 @@ import { OfferDocument } from "../../store/type/offerDocument/interface";
 function RequestDocument(){
     const location = useLocation()
     const requestId = location.state;
+    const [isCopied, setIsCopied] = useState(false);
     const [data, setData] = useState<OfferDocument|null>(null);
     useEffect(()=>{
         getOfferDocument(Number(requestId), setData)
     },[])
+    const handleCopyClick = (textToCopy:string) => {
+        // 텍스트를 클립보드에 복사하는 로직
+        navigator.clipboard.writeText(textToCopy)
+          .then(() => {
+            alert("주소가 복사되었습니다")
+            setIsCopied(true);
+            setTimeout(() => setIsCopied(false), 1500); // 1.5초 후에 메시지를 숨깁니다.
+          })
+          .catch((err) => {
+            console.error('클립보드 복사 실패:', err);
+          });
+      };
+    
     return(
     <div className={styles.container}>
         <Header title="요청서함"/>
@@ -34,6 +48,11 @@ function RequestDocument(){
                 <div>
                     {data?.agencyItem.agency.lotAddress}
                 </div>
+                <button onClick={()=>{
+                    if (data!==null){
+                        handleCopyClick(data.agencyItem.agency.lotAddress)
+                    }
+                }}>클립보드</button>
             </div>
             <div className={styles.horizontalLine}></div>
             <div className={styles.box}>
@@ -110,6 +129,12 @@ function RequestDocument(){
                         {data?.agencyItem.item.roadAddress} &nbsp;
                         {data?.agencyItem.item.floor}(층)
                     </div>
+                    <button
+                    onClick={()=>{
+                        if (data!==null){
+                            handleCopyClick(`${data?.agencyItem.item.roadAddress} &nbsp;${data?.agencyItem.item.floor}(층)`)
+                    }}}
+                    >클립보드</button>
                 </div>
             </div>
 
