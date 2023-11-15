@@ -63,7 +63,7 @@ export default function KnowledgeDetail() {
     );
 }
 
-const DetailContainer = ({ data }: { data: ISensesDetail }) => {
+export const DetailContainer = ({ data }: { data: ISensesDetail }) => {
     const settings = {
         dots: true,
         infinite: true,
@@ -73,7 +73,7 @@ const DetailContainer = ({ data }: { data: ISensesDetail }) => {
     };
 
     const [isLike, setIsLike] = useState(data.isLike);
-    const [isFavorite, setIsFavorite] = useState(data.isLike);
+    const [isFavorite, setIsFavorite] = useState(data.isFavorite);
     const [likeCount, setLikeCount] = useState(data.likeCount);
     const [favoriteCount, setFavoriteCount] = useState(data.favoriteCount);
 

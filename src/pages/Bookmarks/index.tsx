@@ -3,7 +3,7 @@ import Header from '../../components/layout/header';
 
 import styles from './styles.module.scss';
 import { fetchFromApi } from '../../utils/axios';
-import AreaContainer from '../../components/organisms/bookmarks/areaContainer';
+
 import SenseContainer from '../../components/organisms/bookmarks/SenseContainer';
 
 interface ISense {
@@ -19,6 +19,7 @@ export default function Bookmarks() {
     const userid = 2;
     const [isArea, setIsArea] = useState<Boolean>(true);
 
+    const [areaData, setAreaData] = useState([]);
     const [senseData, setSenseData] = useState<ISense[]>([]);
 
     useEffect(() => {
@@ -27,7 +28,12 @@ export default function Bookmarks() {
             setSenseData(res.data.data);
         };
 
-        isArea ? console.log('area') : getSenseData();
+        const getAreaData = async () => {
+            const res = await fetchFromApi('GET', `/users/${userid}/areaBookmarks`);
+            setAreaData(res.data.data);
+        };
+
+        isArea ? getAreaData() : getSenseData();
     }, [isArea]);
 
     return (
@@ -48,7 +54,7 @@ export default function Bookmarks() {
                         관심 상식
                     </div>
                 </div>
-                {isArea ? <AreaContainer /> : <SenseContainer senseData={senseData} />}
+                {isArea ? <div>areaContainer</div> : <SenseContainer senseData={senseData} />}
             </div>
         </div>
     );
