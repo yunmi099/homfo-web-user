@@ -1,5 +1,13 @@
 @import '/src/styles/utils/utils';
 
+.box {
+    position: relative;
+}
+
+.deleted {
+    display: none;
+}
+
 .senseBox {
     display: flex;
     gap: 20px;
@@ -14,18 +22,29 @@
 }
 
 .swiped {
-    right: 60px; // Adjust as needed to place the button on-screen
+    right: 130px; // Adjust as needed to place the button on-screen
 }
 
 .deleteButton {
     position: absolute;
-    right: -50px; // Adjust as needed to place the button off-screen
+    right: 0; // Adjust as needed to place the button off-screen
     top: 50%;
     transform: translateY(-50%);
     background-color: blue;
     color: white;
     border: none;
-    // ... other styles for the button
+    // z-index: -1;
+    height: 140px;
+    width: 140px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        width: 25px;
+        height: 25px;
+    }
 }
 
 .img {
