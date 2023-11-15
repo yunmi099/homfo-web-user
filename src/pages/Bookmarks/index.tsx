@@ -1,10 +1,34 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../../components/layout/header';
 
 import styles from './styles.module.scss';
+import { fetchFromApi } from '../../utils/axios';
+import AreaContainer from '../../components/organisms/bookmarks/areaContainer';
+import SenseContainer from '../../components/organisms/bookmarks/SenseContainer';
+
+interface ISense {
+    senseId: number;
+    title: string;
+    likeCount: number;
+    favoriteCount: number;
+    mainImage: string;
+    status: string;
+}
 
 export default function Bookmarks() {
+    const userid = 2;
     const [isArea, setIsArea] = useState<Boolean>(true);
+
+    const [senseData, setSenseData] = useState<ISense[]>([]);
+
+    useEffect(() => {
+        const getSenseData = async () => {
+            const res = await fetchFromApi('GET', `/users/${userid}/senseFavoriteList`);
+            setSenseData(res.data.data);
+        };
+
+        isArea ? console.log('area') : getSenseData();
+    }, [isArea]);
 
     return (
         <div>
@@ -24,6 +48,7 @@ export default function Bookmarks() {
                         관심 상식
                     </div>
                 </div>
+                {isArea ? <AreaContainer /> : <SenseContainer senseData={senseData} />}
             </div>
         </div>
     );
