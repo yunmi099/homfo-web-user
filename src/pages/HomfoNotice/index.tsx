@@ -33,7 +33,7 @@ function HomfoNotice() {
             <Header title="공지사항" color="white" />
             <div className={styles.banner}>
                 <div className={styles.left}>
-                    <div>Hompo에서</div>
+                    <div>Homfo에서</div>
                     <div className={styles.strong}>
                         <strong>최신 공지사항 알려드립니다.</strong>
                     </div>
