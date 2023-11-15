@@ -8,6 +8,24 @@
     padding: 20px;
 
     box-shadow: 0px 1px 0px 1px rgba(0, 0, 0, 0.15);
+
+    position: relative;
+    overflow: hidden;
+}
+
+.swiped {
+    right: 60px; // Adjust as needed to place the button on-screen
+}
+
+.deleteButton {
+    position: absolute;
+    right: -50px; // Adjust as needed to place the button off-screen
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: blue;
+    color: white;
+    border: none;
+    // ... other styles for the button
 }
 
 .img {

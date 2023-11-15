@@ -3,7 +3,7 @@ import Header from '../../components/layout/header';
 
 import styles from './styles.module.scss';
 import { fetchFromApi } from '../../utils/axios';
-import AreaContainer from '../../components/organisms/bookmarks/AreaContainer';
+
 import SenseContainer from '../../components/organisms/bookmarks/SenseContainer';
 
 interface ISense {
@@ -54,7 +54,7 @@ export default function Bookmarks() {
                         관심 상식
                     </div>
                 </div>
-                {isArea ? <AreaContainer /> : <SenseContainer senseData={senseData} />}
+                {isArea ? <div>areaContainer</div> : <SenseContainer senseData={senseData} />}
             </div>
         </div>
     );
