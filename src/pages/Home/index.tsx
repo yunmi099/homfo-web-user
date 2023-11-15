@@ -6,16 +6,18 @@ import * as homeIcon from '../../assets/icons/home/homeIcon';
 import useFetchHomfoInitialData from '../../hooks/useFetchInitialData';
 import useHomfoSurveyStore from '../../store/context/useHomfoSurveyStore';
 import noticeIcon from '../../assets/icons/home/notice_icon.svg';
+import Banner from '../../components/organisms/Home/Banner';
 
 function Home() {
     const navigate = useNavigate();
     const { result } = useHomfoSurveyStore();
     useFetchHomfoInitialData(); // 홈포 추천 결과 및 유저 정보를 불러오는 부분
+
     return (
         <div className={styles.container}>
             <div className={styles.topContainer}>
                 <div className={styles.message}>
-                    <div style={{ marginTop: '13vh' }}>
+                    <div style={{ marginTop: '8vh' }}>
                         🏠<span className={styles.customTitle}>홈포로 </span>
                         <span>간편하게</span>
                     </div>
@@ -23,10 +25,17 @@ function Home() {
                 </div>
                 <div className={styles.areaBox}>
                     <img src={homeIcon.areaLinker} />
-                    <div 
-                    onClick={()=>navigate(result===null?'/mypage/homfo-recommendedArea'
-                    :'/mypage/homfo-recommended-result')}>
-                    홈포가 추천하는 구역</div>
+                    <div
+                        onClick={() =>
+                            navigate(
+                                result === null
+                                    ? '/mypage/homfo-recommendedArea'
+                                    : '/mypage/homfo-recommended-result'
+                            )
+                        }
+                    >
+                        홈포가 추천하는 구역
+                    </div>
                 </div>
             </div>
             <div className={styles.bottomContainer}>
@@ -39,7 +48,7 @@ function Home() {
                         <img src={noticeIcon} />
                     </div>
                 </div>
-                <div className={styles.newsTitle}></div>
+                <Banner />
                 <div className={styles.locationContainer}>
                     <div
                         className={styles.locationBox}

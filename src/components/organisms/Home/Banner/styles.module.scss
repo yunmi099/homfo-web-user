@@ -1,0 +1,17 @@
+@import '/src/styles/utils/utils';
+
+.banner {
+    margin: 20px;
+}
+
+.imgContainer {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+
+    img {
+        height: 200px;
+        border-radius: 20px;
+    }
+}

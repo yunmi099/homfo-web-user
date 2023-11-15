@@ -2,7 +2,6 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import * as router from './routes';
 function App() {
-
     return (
         <>
             <Routes>
@@ -43,6 +42,7 @@ function App() {
                     path="/mypage/homfo-recommended-result/routing"
                     Component={router.homfoResultRouting}
                 />
+                <Route path="/mypage/bookmarks" Component={router.Bookmarks} />
             </Routes>
         </>
     );

@@ -1,0 +1,22 @@
+@import '/src/styles/utils/utils';
+
+.selector {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-align: center;
+
+    .active {
+        width: 50%;
+        padding-bottom: 20px;
+        border-bottom: 2px solid black;
+    }
+
+    .nonactive {
+        width: 50%;
+        padding-bottom: 20px;
+        color: #b5b3b3;
+    }
+}
