@@ -43,6 +43,7 @@ function App() {
                     Component={router.homfoResultRouting}
                 />
                 <Route path="/mypage/bookmarks" Component={router.Bookmarks} />
+                <Route path="/mypage/bookmarks/sense/:id" Component={router.BookmarksSenseDetail} />
             </Routes>
         </>
     );

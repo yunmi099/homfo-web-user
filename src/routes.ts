@@ -27,3 +27,4 @@ export const areaDetailInfo = loadable(() => import('./pages/AreaDetailInfo'));
 export const requestDocument = loadable(() => import('./pages/RequestDocument'));
 export const homfoResultRouting = loadable(() => import('./pages/HomfoRecommendResult/RoutePage'));
 export const Bookmarks = loadable(() => import('./pages/Bookmarks'));
+export const BookmarksSenseDetail = loadable(() => import('./pages/Bookmarks/DetailSense'));

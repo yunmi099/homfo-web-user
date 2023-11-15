@@ -4,6 +4,7 @@ import emptyHeart from '../../../assets/icons/senses/empty_heart.svg';
 import emptyScrap from '../../../assets/icons/senses/empty_scrap.svg';
 
 import styles from './styles.module.scss';
+import { useNavigate } from 'react-router-dom';
 
 interface ISense {
     senseId: number;
@@ -29,8 +30,12 @@ export default function SenseContainer({ senseData }: Props) {
 }
 
 const SenseBox = ({ sense }: { sense: ISense }) => {
+    const navigate = useNavigate();
     return (
-        <div className={styles.senseBox}>
+        <div
+            className={styles.senseBox}
+            onClick={() => navigate(`/mypage/bookmarks/sense/${sense.senseId}`)}
+        >
             <img src={sense.mainImage} alt={sense.title} className={styles.img} />
             <div className={styles.info}>
                 <div className={styles.title}>{sense.title}</div>
