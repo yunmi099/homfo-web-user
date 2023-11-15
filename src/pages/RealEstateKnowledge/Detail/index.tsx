@@ -73,21 +73,37 @@ const DetailContainer = ({ data }: { data: ISensesDetail }) => {
     };
 
     const [isLike, setIsLike] = useState(data.isLike);
+    const [isFavorite, setIsFavorite] = useState(data.isLike);
     const [likeCount, setLikeCount] = useState(data.likeCount);
+    const [favoriteCount, setFavoriteCount] = useState(data.favoriteCount);
 
     const onClickLikeButton = async () => {
         const method = isLike === 'N' ? 'POST' : 'DELETE';
 
         try {
-            const res = await fetchFromApi(method, '/senses/like', {
+            await fetchFromApi(method, '/senses/like', {
                 senseId: data.senseId,
                 userId: 2,
             });
 
             setIsLike((prev) => (prev === 'N' ? 'Y' : 'N'));
             setLikeCount((prev) => (isLike === 'N' ? prev + 1 : prev - 1));
+        } catch (e) {
+            console.log(e);
+        }
+    };
 
-            console.log(res);
+    const onClickFavoriteButton = async () => {
+        const method = isFavorite === 'N' ? 'POST' : 'DELETE';
+
+        try {
+            await fetchFromApi(method, '/senses/favorite', {
+                senseId: data.senseId,
+                userId: 2,
+            });
+
+            setIsFavorite((prev) => (prev === 'N' ? 'Y' : 'N'));
+            setFavoriteCount((prev) => (isFavorite === 'N' ? prev + 1 : prev - 1));
         } catch (e) {
             console.log(e);
         }
@@ -110,17 +126,17 @@ const DetailContainer = ({ data }: { data: ISensesDetail }) => {
                     ) : (
                         <img src={fillHeart} alt="조아용" onClick={onClickLikeButton} />
                     )}
-                    {data.isFavorite === 'N' ? (
-                        <img src={emptyScrap} alt="조아용" />
+                    {isFavorite === 'N' ? (
+                        <img src={emptyScrap} alt="조아용" onClick={onClickFavoriteButton} />
                     ) : (
-                        <img src={fillScrap} alt="조아용" />
+                        <img src={fillScrap} alt="조아용" onClick={onClickFavoriteButton} />
                     )}
                 </div>
             </div>
 
             <div className={styles.detailInfo}>
                 <div>좋아요 {likeCount}개</div>
-                <div>즐겨찾기 {data.favoriteCount}개</div>
+                <div>즐겨찾기 {favoriteCount}개</div>
             </div>
             <div className={styles.detailText}>{data.content}</div>
         </div>
