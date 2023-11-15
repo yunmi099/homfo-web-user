@@ -31,12 +31,14 @@ interface ISensesDetail {
 export default function KnowledgeDetail() {
     const { id } = useParams();
 
+    const userId = 2;
+
     const [knowledgeList, setKnowledgeList] = useState<ISensesDetail[]>([]);
 
     useEffect(() => {
         const getKnowledgeList = async () => {
             try {
-                const res = await fetchFromApi('GET', `/senses?order=recent`);
+                const res = await fetchFromApi('GET', `/senses?order=recent&userId=${userId}`);
 
                 setKnowledgeList(res.data.data);
             } catch (e) {
