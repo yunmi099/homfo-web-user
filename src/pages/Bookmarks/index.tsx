@@ -17,7 +17,7 @@ interface ISense {
 
 export default function Bookmarks() {
     const userid = 2;
-    const [isArea, setIsArea] = useState<Boolean>(true);
+    const [isArea, setIsArea] = useState<Boolean>(false);
 
     const [areaData, setAreaData] = useState([]);
     const [senseData, setSenseData] = useState<ISense[]>([]);
