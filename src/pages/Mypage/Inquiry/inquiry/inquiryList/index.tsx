@@ -18,11 +18,13 @@ import { deleteInquiryList, getInquiryList } from '../../../../../services/inqui
         }));
       }
     useEffect(()=>{getInquiryList(2, setData, filterData)},[data])
+    
     const handleModifyAction = (content: FilteredData)=>{
         setMode(true);
         setModify(true);
         setId(content.errorId)
     }
+
     const handleDeleteAction = (content: FilteredData)=>{
         deleteInquiryList(content.errorId);
         getInquiryList(2, setData, filterData);
