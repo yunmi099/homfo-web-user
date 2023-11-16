@@ -15,18 +15,16 @@ export default function FilterInfo({title, mode, min, max}:FilterInfoProps) {
     }
   }  
   return (
-    <>
     <div className={styles.filterInfo}>
-        <div className={styles.title}>
+      <div className={styles.title}>
         {title}
-        </div>
-        <div className={styles.result}>
+      </div>
+      <div className={styles.timeResult}>
         {mode==='time'&&`${max}분 이내`}
       </div>
-      <div className={styles.result}>
+      <div className={styles.priceResult}>
         {mode==='price'&&`${formatValue(min)} 이상 ~ ${formatValue(max)} 이내`}
       </div>
     </div>
-    </>
   )
 }

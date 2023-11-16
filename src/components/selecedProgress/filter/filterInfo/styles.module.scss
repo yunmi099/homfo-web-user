@@ -10,16 +10,29 @@ $width: 85vw;
 .title{
     @extend .commonAttributes;
     color: #0E1315;
+
 }
-.result{
+.priceResult{
     @extend .commonAttributes;
     color:#842CFF;
-    font-size: 15px;
+    font-size: 0.9em;
+    position: absolute;
+    right: 0;
+    max-width: 42vw;
+}
+.timeResult{
+    @extend .commonAttributes;
+    color:#842CFF;
+    font-size: 0.9em;
+    position: absolute;
+    right: 0;
 }
 .filterInfo{
     display: flex;
     justify-content: space-between;
     width: $width;
+    position: relative;
     margin:20px;
+    flex-wrap: wrap; 
 }
 
