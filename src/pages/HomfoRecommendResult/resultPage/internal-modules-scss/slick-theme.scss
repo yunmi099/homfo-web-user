@@ -13,7 +13,7 @@ $slick-loader-path: "./" !default;
 $slick-dot-color:lightgrey;
 $slick-dot-color-active: #9D11FF !default;
 $slick-dot-character: "\2022" !default;
-$slick-dot-size: 30px !default;
+$slick-dot-size: 8px !default;
 $slick-opacity-default: 1 !default;
 $slick-opacity-on-hover: 1 !default;
 $slick-opacity-not-active: 1 !default;
@@ -60,8 +60,8 @@ $slick-opacity-not-active: 1 !default;
     li {
         position: relative;
         display: inline-block;
-        height: 20px;
-        width: 20px;
+        height: 13px;
+        width: 13px;
         padding: 0;
         cursor: pointer;
         button {
