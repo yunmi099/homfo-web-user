@@ -44,6 +44,7 @@ function App() {
                 />
                 <Route path="/mypage/bookmarks" Component={router.Bookmarks} />
                 <Route path="/mypage/bookmarks/sense/:id" Component={router.BookmarksSenseDetail} />
+                <Route path="/system/agreement-of-termsofuse" Component={router.agreementOfTermsOfUse} />
             </Routes>
         </>
     );

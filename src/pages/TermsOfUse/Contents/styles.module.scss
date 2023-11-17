@@ -1,0 +1,28 @@
+.container{
+    width: calc(90vw - 10px);
+    margin-left: 5%;
+    min-height: 25px;
+    padding: 13px 13px 10px 0;
+    max-height: 50vh;
+    overflow-y: scroll;
+    border-radius: 5px;
+    flex-wrap: wrap;
+    border: 1px solid;
+    border-color: #E5E5E5;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    img {
+        width: 13px;
+        height: 8px;
+        position: absolute;
+        right: 20px;
+    }
+    div {
+        margin-left: 20px;
+        color: #9E9D9D;
+        font-size: 15px;
+    }
+}

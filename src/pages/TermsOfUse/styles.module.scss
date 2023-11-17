@@ -1,0 +1,33 @@
+.container{
+    width: 100vw;
+    height: 100vh;
+}
+
+.title{
+    font: {
+        size: 2em;
+    }
+    margin-left: 20px;
+}
+
+.subTitle{    
+    margin: 20px 0px 40px 20px;
+    color: #646464;
+    
+}
+
+.agreement{
+    display: flex;
+    :last-child{
+        span {
+            color: #842CFF;
+        }
+    }
+    
+}
+.image{
+    width: 22px;
+    height: 15px;
+    margin: 2px 20px;
+}
+

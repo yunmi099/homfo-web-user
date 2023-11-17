@@ -12,7 +12,6 @@ interface HeaderProps {
 function Header(props: HeaderProps) {
     const navigate = useNavigate();
     const { back = true } = props;
-
     return (
         <div className={styles.container} style={{ backgroundColor: props.color }}>
             {back && <img src={backbutton} className={styles.image} onClick={() => navigate(-1)} />}
