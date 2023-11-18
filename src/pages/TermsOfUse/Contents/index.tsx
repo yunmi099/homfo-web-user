@@ -3,6 +3,7 @@ import styles from './styles.module.scss'
 import { Spread,CloseSpread } from '../../../assets/icons/agreement/icon';
 const Contents = () => {
     const [openDetail, setOpenDetail] = useState<boolean>(false);
+
     return(
         <div className={styles.container}>
             {openDetail?

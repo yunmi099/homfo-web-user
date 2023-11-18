@@ -6,9 +6,11 @@ import ConfirmButton from '../../components/button/ConfirmButton';
 import Contents from './Contents';
 const TermsOfUse = () => {
     const [userAgree, setUserAgree] = useState<boolean>(false);
+    const onClickAgreement = () => {
+        window.ReactNativeWebView.postMessage('register');
+    }
     return(
         <div className={styles.container}>
-            <Header title=""/>
             <div className={styles.title}>
                 이용 약관 동의<br/>
             </div>
@@ -30,7 +32,8 @@ const TermsOfUse = () => {
                 </div>
             </div>
             <Contents/>
-            <ConfirmButton title="확인" auth={userAgree}/>
+            <ConfirmButton title="확인" auth={userAgree} onClick={onClickAgreement}/>
         </div>
 );}
 export default TermsOfUse
+
