@@ -14,7 +14,7 @@ export const OverlayDetail = ({storeDetail, currentIndex, setCurrentIndex, setCu
         if (storeDetail[currentIndex].branch === null){
             window.ReactNativeWebView.postMessage(storeDetail[currentIndex].name);
         } else {
-            window.ReactNativeWebView.postMessage(`${storeDetail[currentIndex].name}+${storeDetail[currentIndex].branch}`);
+            window.ReactNativeWebView.postMessage(`${storeDetail[currentIndex].name} ${storeDetail[currentIndex].branch}`);
         }
     }
     return (<>
