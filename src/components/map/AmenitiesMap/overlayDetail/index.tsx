@@ -10,7 +10,9 @@ interface OverlayDetailProps {
 }  
 
 export const OverlayDetail = ({storeDetail, currentIndex, setCurrentIndex, setCurrentPin} : OverlayDetailProps)=>{
-
+    const onClickSearchEvent = ()=>{
+        window.ReactNativeWebView.postMessage(`${storeDetail[currentIndex].name}+${storeDetail[currentIndex].branch!==null&&storeDetail[currentIndex].branch}`);
+    }
     return (<>
         <div className={styles.headerContainer}>
             <div className={styles.header}>
@@ -18,7 +20,12 @@ export const OverlayDetail = ({storeDetail, currentIndex, setCurrentIndex, setCu
                 <div className={styles.storeBranch}>{storeDetail[currentIndex].branch}</div>
             </div>
             <div>
-                {/* <img src={pinIcon.naverSearch} alt='naver' /> */}
+                <img 
+                    src={pinIcon.naverSearch} 
+                    alt='naver'
+                    className={styles.naverButton}
+                    onClick={onClickSearchEvent}
+                />
                 <img
                     className={styles.xButton}
                     src={pinIcon.xButton}

@@ -1,6 +1,5 @@
 import React,{useEffect, useState} from 'react'
 import styles from './styles.module.scss'
-import Header from '../../components/layout/header';
 import * as icon from '../../assets/icons/agreement/icon'
 import ConfirmButton from '../../components/button/ConfirmButton';
 import Contents from './Contents';
