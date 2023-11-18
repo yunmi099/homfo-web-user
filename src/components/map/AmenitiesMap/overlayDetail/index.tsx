@@ -11,7 +11,11 @@ interface OverlayDetailProps {
 
 export const OverlayDetail = ({storeDetail, currentIndex, setCurrentIndex, setCurrentPin} : OverlayDetailProps)=>{
     const onClickSearchEvent = ()=>{
-        window.ReactNativeWebView.postMessage(`${storeDetail[currentIndex].name}+${storeDetail[currentIndex].branch!==null&&storeDetail[currentIndex].branch}`);
+        if (storeDetail[currentIndex].branch === null){
+            window.ReactNativeWebView.postMessage(storeDetail[currentIndex].name);
+        } else {
+            window.ReactNativeWebView.postMessage(`${storeDetail[currentIndex].name}+${storeDetail[currentIndex].branch}`);
+        }
     }
     return (<>
         <div className={styles.headerContainer}>
