@@ -1,18 +1,59 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 import { useNavigate } from 'react-router-dom';
 import BottomTab from '../../components/layout/bottomtabs';
 import * as homeIcon from '../../assets/icons/home/homeIcon';
-import useFetchHomfoInitialData from '../../hooks/useFetchInitialData';
 import useHomfoSurveyStore from '../../store/context/useHomfoSurveyStore';
 import noticeIcon from '../../assets/icons/home/notice_icon.svg';
 import Banner from '../../components/organisms/Home/Banner';
+import useUserStore from '../../store/context/useUserStore';
+import { userInfo } from 'os';
+import { Result } from '../../store/type/homfoRecommend&request/interface';
+import { getAreaDetailResult, getHomfoArea } from '../../services/homfoArea/api';
 
 function Home() {
     const navigate = useNavigate();
     const { result } = useHomfoSurveyStore();
-    useFetchHomfoInitialData(); // 홈포 추천 결과 및 유저 정보를 불러오는 부분
+    const { userInfo, setUserInfo } = useUserStore();
+    const { setResult, setResultDetail} = useHomfoSurveyStore();
+    const handleUserInfo = (e: any)=>{
+        let data = JSON.parse(e.data);
+        setUserInfo(e.data)
+        localStorage.setItem("token", data.token);
+    }
+    useEffect(()=>{
+        window.ReactNativeWebView.postMessage("onLoad");
+        window.addEventListener('message',(e) => handleUserInfo(e))
+        document.addEventListener('message',(e:any) => setUserInfo(e.data));
 
+    },[window.ReactNativeWebView])
+    useEffect(()=>{
+        if(typeof userInfo === 'string'){
+            setUserInfo(JSON.parse(userInfo))
+            const fetchHomfoRecommendData = async () => {
+                try {
+                  const homfoInfo:Result[]= await getHomfoArea(JSON.parse(userInfo).userI);
+                  if (homfoInfo.length !== 0){
+                    setResult(homfoInfo);
+                    const resultArray = await Promise.all(
+                        homfoInfo.map(async (item:Result) => {
+                          const areaId = item.area.areaId;
+                          const detail = await getAreaDetailResult(areaId);
+                          return {
+                            areaId,
+                            detail,
+                          };
+                        })
+                      );
+                    setResultDetail(resultArray);
+                  }
+                } catch (e) {
+                  console.log(e);
+                }
+              };
+            fetchHomfoRecommendData(); 
+        }
+    },[userInfo])
     return (
         <div className={styles.container}>
             <div className={styles.topContainer}>
@@ -45,7 +86,7 @@ function Home() {
                         <div className={styles.content}>최신 공지사항</div>
                     </div>
                     <div className={styles.right}>
-                        <img src={noticeIcon} />
+                        <img src={noticeIcon} alt="" />
                     </div>
                 </div>
                 <Banner />

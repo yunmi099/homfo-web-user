@@ -4,6 +4,7 @@ import { PersonalInfo } from '../type/memberInfo/interface';
 
 interface UserStoreState {
   userInfo: PersonalInfo;
+  setUserInfo: (info: PersonalInfo) => void;
   fetch: (id: number) => Promise<void>;
   modify: (id: number, newData: Partial<PersonalInfo>) => Promise<boolean>;
 }
@@ -18,6 +19,9 @@ interface UserStoreState {
     userAccount: '',
     userId: 0,
     userPhoneNum: 'string',
+  },
+  setUserInfo: (info: PersonalInfo) => {
+    set({ userInfo: info });
   },
   fetch: async (id: number): Promise<void> => {
     try {
