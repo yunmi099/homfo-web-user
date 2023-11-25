@@ -5,6 +5,7 @@ import styles from './styles.module.scss';
 import { fetchFromApi } from '../../utils/axios';
 
 import SenseContainer from '../../components/organisms/bookmarks/SenseContainer';
+import useUserStore from '../../store/context/useUserStore';
 
 interface ISense {
     senseId: number;
@@ -16,7 +17,8 @@ interface ISense {
 }
 
 export default function Bookmarks() {
-    const userid = 2;
+    const {userInfo} = useUserStore();
+    const userId = userInfo.userId;
     const [isArea, setIsArea] = useState<Boolean>(false);
 
     const [areaData, setAreaData] = useState([]);
@@ -24,12 +26,12 @@ export default function Bookmarks() {
 
     useEffect(() => {
         const getSenseData = async () => {
-            const res = await fetchFromApi('GET', `/users/${userid}/senseFavoriteList`);
+            const res = await fetchFromApi('GET', `/users/${userId}/senseFavoriteList`);
             setSenseData(res.data.data);
         };
 
         const getAreaData = async () => {
-            const res = await fetchFromApi('GET', `/users/${userid}/areaBookmarks`);
+            const res = await fetchFromApi('GET', `/users/${userId}/areaBookmarks`);
             setAreaData(res.data.data);
         };
 

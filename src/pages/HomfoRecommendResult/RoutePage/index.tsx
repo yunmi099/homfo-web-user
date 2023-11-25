@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import useHomfoSurveyStore from '../../../store/context/useHomfoSurveyStore';
 export default function HomfoResultRouting() {
   const navigate = useNavigate();
-  const { setResultDetail} = useHomfoSurveyStore();
   return (
     <div className={styles.container}>
         <div className={styles.contents}>히포가 당신에게<br/>

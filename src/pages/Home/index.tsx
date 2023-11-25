@@ -17,9 +17,8 @@ function Home() {
     const { setResult, setResultDetail} = useHomfoSurveyStore();
     const handleUserInfo = (e: any)=>{
         let data = JSON.parse(e.data);
-        alert(data)
-        setUserInfo(e.data)
         localStorage.setItem("token", data.token);
+        setUserInfo(data);
     }
     useEffect(()=>{
         window.ReactNativeWebView.postMessage("onLoad");
@@ -28,11 +27,9 @@ function Home() {
     },[window?.ReactNativeWebView])
     
     useEffect(()=>{
-        if(typeof userInfo === 'string'){
-            setUserInfo(JSON.parse(userInfo))
             const fetchHomfoRecommendData = async () => {
                 try {
-                  const homfoInfo:Result[]= await getHomfoArea(JSON.parse(userInfo).userI);
+                  const homfoInfo:Result[]= await getHomfoArea(userInfo.userId);
                   if (homfoInfo.length !== 0){
                     setResult(homfoInfo);
                     const resultArray = await Promise.all(
@@ -52,7 +49,6 @@ function Home() {
                 }
               };
             fetchHomfoRecommendData(); 
-        }
     },[userInfo])
     return (
         <div className={styles.container}>

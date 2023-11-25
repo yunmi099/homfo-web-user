@@ -14,6 +14,7 @@ import emptyHeart from '../../../assets/icons/senses/empty_heart.svg';
 import emptyScrap from '../../../assets/icons/senses/empty_scrap.svg';
 import fillHeart from '../../../assets/icons/senses/fill_heart.svg';
 import fillScrap from '../../../assets/icons/senses/fill_scrap.svg';
+import useUserStore from '../../../store/context/useUserStore';
 
 interface ISensesDetail {
     senseId: number;
@@ -33,14 +34,14 @@ interface ISensesDetail {
 export default function KnowledgeDetail() {
     const { id } = useParams();
 
-    const userId = 2;
+    const {userInfo} = useUserStore();
 
     const [knowledgeList, setKnowledgeList] = useState<ISensesDetail[]>([]);
 
     useEffect(() => {
         const getKnowledgeList = async () => {
             try {
-                const res = await fetchFromApi('GET', `/senses?order=recent&userId=${userId}`);
+                const res = await fetchFromApi('GET', `/senses?order=recent&userId=${userInfo.userId}`);
 
                 setKnowledgeList(res.data.data);
             } catch (e) {
@@ -76,14 +77,14 @@ export const DetailContainer = ({ data }: { data: ISensesDetail }) => {
     const [isFavorite, setIsFavorite] = useState(data.isFavorite);
     const [likeCount, setLikeCount] = useState(data.likeCount);
     const [favoriteCount, setFavoriteCount] = useState(data.favoriteCount);
-
+    const {userInfo} = useUserStore();
     const onClickLikeButton = async () => {
         const method = isLike === 'N' ? 'POST' : 'DELETE';
 
         try {
             await fetchFromApi(method, '/senses/like', {
                 senseId: data.senseId,
-                userId: 2,
+                userId: userInfo.userId,
             });
 
             setIsLike((prev) => (prev === 'N' ? 'Y' : 'N'));
@@ -99,7 +100,7 @@ export const DetailContainer = ({ data }: { data: ISensesDetail }) => {
         try {
             await fetchFromApi(method, '/senses/favorite', {
                 senseId: data.senseId,
-                userId: 2,
+                userId: userInfo.userId,
             });
 
             setIsFavorite((prev) => (prev === 'N' ? 'Y' : 'N'));

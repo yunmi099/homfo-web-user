@@ -6,6 +6,7 @@ import '../../../../../store/type/inquiry&faq/interface'
 import { FilteredData, OriginalData } from '../../../../../store/type/inquiry&faq/interface';
 import ConfirmButton from '../../../../../components/button/ConfirmButton';
 import { deleteInquiryList, getInquiryList } from '../../../../../services/inquiry/api';
+import useUserStore from '../../../../../store/context/useUserStore';
   function InquiryList({ setMode, setModify ,setId }: { setMode: React.Dispatch<React.SetStateAction<boolean>>, setModify:React.Dispatch<React.SetStateAction<boolean>>,setId:React.Dispatch<React.SetStateAction<number>>  }) {
     const [data, setData] = useState<Array<FilteredData>|undefined>()
       function filterData(data: OriginalData[]): FilteredData[] {
@@ -17,8 +18,8 @@ import { deleteInquiryList, getInquiryList } from '../../../../../services/inqui
           updatedAt
         }));
       }
-    useEffect(()=>{getInquiryList(2, setData, filterData)},[data])
-    
+    useEffect(()=>{getInquiryList(userInfo.userId, setData, filterData)},[data])
+    const {userInfo} = useUserStore();
     const handleModifyAction = (content: FilteredData)=>{
         setMode(true);
         setModify(true);
@@ -27,7 +28,7 @@ import { deleteInquiryList, getInquiryList } from '../../../../../services/inqui
 
     const handleDeleteAction = (content: FilteredData)=>{
         deleteInquiryList(content.errorId);
-        getInquiryList(2, setData, filterData);
+        getInquiryList(userInfo.userId, setData, filterData);
     }
     return(
     <div className={styles.container}>

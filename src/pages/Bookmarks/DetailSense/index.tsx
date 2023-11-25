@@ -3,6 +3,7 @@ import Header from '../../../components/layout/header';
 import { DetailContainer } from '../../RealEstateKnowledge/Detail';
 import { useParams } from 'react-router-dom';
 import { fetchFromApi } from '../../../utils/axios';
+import useUserStore from '../../../store/context/useUserStore';
 
 interface ISensesDetail {
     senseId: number;
@@ -20,8 +21,8 @@ interface ISensesDetail {
 }
 export default function DetailSense() {
     const { id } = useParams();
-
-    const userId = 2;
+    const {userInfo} = useUserStore();
+    const userId = userInfo.userId;
     const [sense, setSense] = useState<ISensesDetail>({
         senseId: 0,
         writerId: 0,

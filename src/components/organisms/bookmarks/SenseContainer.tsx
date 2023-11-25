@@ -8,6 +8,7 @@ import styles from './styles.module.scss';
 import { useNavigate } from 'react-router-dom';
 import { useSwipeable } from 'react-swipeable';
 import { fetchFromApi } from '../../../utils/axios';
+import useUserStore from '../../../store/context/useUserStore';
 
 interface ISense {
     senseId: number;
@@ -35,7 +36,7 @@ export default function SenseContainer({ senseData }: Props) {
 const SenseBox = ({ sense }: { sense: ISense }) => {
     const navigate = useNavigate();
 
-    const userId = 2;
+    const {userInfo} = useUserStore();
 
     const [isSwiped, setIsSwiped] = useState(false);
     const swipeHandlers = useSwipeable({
@@ -50,7 +51,7 @@ const SenseBox = ({ sense }: { sense: ISense }) => {
         // 'X' 버튼 클릭시 호출될 함수 구현
         await fetchFromApi('DELETE', `/senses/favorite`, {
             senseId: sense.senseId,
-            userId: userId,
+            userId: userInfo.userId,
         });
 
         setIsDeleted(true);

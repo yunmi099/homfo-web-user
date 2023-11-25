@@ -5,6 +5,7 @@ import useHomfoSurveyStore from '../../../store/context/useHomfoSurveyStore';
 import { QuestionForm,HomfoEditData } from '../../../store/type/homfoRecommend&request/interface';
 import { useNavigate } from 'react-router-dom';
 import SelectedForm from '../../../components/selectedForm';
+import useUserStore from '../../../store/context/useUserStore';
 interface SelectedProgressProps {
   count: number;
   setCount: React.Dispatch<React.SetStateAction<number>>;
@@ -22,6 +23,8 @@ const SelectedHomfoSurvey = (props: SelectedProgressProps) => {
   });
   const [filterValue,setFilterValue] = useState<{[key:string]:number[]}>({});
   const {postHomfoRecommendInfo} = useHomfoSurveyStore();
+  const {userInfo} = useUserStore();
+  const userId = userInfo.userId;
   return (
     <div style={{marginTop:"10vh"}}>
       <SelectedForm 
@@ -39,7 +42,7 @@ const SelectedHomfoSurvey = (props: SelectedProgressProps) => {
             props.setCount(props.count+3);
           } else if(props.totalCount ===props.count) {
             navigate('/mypage/homfo-recommended-result');
-            postHomfoRecommendInfo(2, data, filterValue);
+            postHomfoRecommendInfo(userId, data, filterValue);
           } else{
             if (props.count < homfoQuestionList.length) {
               props.setCount(props.count + 1);

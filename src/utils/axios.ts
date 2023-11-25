@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig, AxiosResponse, Method } from 'axios';
+import axios, { Method } from 'axios';
 
 const SERVER_DEPOLY_URL = 'https://dev-server.homfo.co.kr/api';
 axios.interceptors.request.use(
@@ -6,7 +6,7 @@ axios.interceptors.request.use(
       const token = localStorage.getItem("token");
       try {
         if (token) {
-          config.headers.Authorization = `Bearer ${token}`;
+          config.headers.Authorization = token;
         }
         return config;
       } catch (err) {
@@ -15,7 +15,6 @@ axios.interceptors.request.use(
       return config;
     },
     (error) => {
-      // 요청 에러 직전 호출됩니다.
       return Promise.reject(error);
     }
   );
@@ -38,3 +37,8 @@ export const fetchFromApi = async (
             throw err;
         });
 };
+
+// export const notUsedTokenAxios = axios.create({
+//     baseURL: SERVER_DEPOLY_URL,
+//   });
+  

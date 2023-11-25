@@ -7,6 +7,7 @@ import { RequestData } from '../../../store/type/homfoRecommend&request/interfac
 import useRequestStore from '../../../store/context/useRequestStore';
 import { useNavigate } from 'react-router-dom';
 import SelectedForm from '../../../components/selectedForm';
+import useUserStore from '../../../store/context/useUserStore';
 interface SelectedProgressProps {
   count: number;
   setCount: React.Dispatch<React.SetStateAction<number>>;
@@ -31,6 +32,7 @@ const SelectedRequestSurvey = (props: SelectedProgressProps) => {
   const questionType = currentQuestion.question.type;
   const {postPropertyRequest} = useRequestStore();
   const navigate = useNavigate();
+  const {userInfo} = useUserStore();
   return (
     <div style={{marginTop:"10vh"}}>
       <SelectedForm currentQuestion={currentQuestion} previousQuestion={previousQuestion} mode={"price"} data={data} setData={setData} setFilterValue={setFilterValue}/>
@@ -47,7 +49,7 @@ const SelectedRequestSurvey = (props: SelectedProgressProps) => {
         <ConfirmButton
           title="완료"
           onClick={async () => {
-            const result = await postPropertyRequest(2, data, filterValue);
+            const result = await postPropertyRequest(userInfo.userId, data, filterValue);
             if (result.status === 201) {
               navigate('/request-complete');
             }
