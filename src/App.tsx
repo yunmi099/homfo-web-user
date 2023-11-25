@@ -3,6 +3,16 @@ import { Routes, Route } from 'react-router-dom';
 import * as router from './routes';
 
 function App() {
+    // const [isReactNativeWebview, setIsReactNativeWebview] = useState(false);
+    // useEffect(()=>{
+    //     if (window?.ReactNativeWebView) setIsReactNativeWebview(true);
+    // },[])
+    
+    // useEffect(()=>{
+    //     window.ReactNativeWebView.postMessage("onLoad");
+    //     // alert("메세지 전송")
+
+    // },[isReactNativeWebview])
     return (
        <>
             <Routes>

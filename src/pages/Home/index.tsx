@@ -7,7 +7,6 @@ import useHomfoSurveyStore from '../../store/context/useHomfoSurveyStore';
 import noticeIcon from '../../assets/icons/home/notice_icon.svg';
 import Banner from '../../components/organisms/Home/Banner';
 import useUserStore from '../../store/context/useUserStore';
-import { userInfo } from 'os';
 import { Result } from '../../store/type/homfoRecommend&request/interface';
 import { getAreaDetailResult, getHomfoArea } from '../../services/homfoArea/api';
 
@@ -18,6 +17,7 @@ function Home() {
     const { setResult, setResultDetail} = useHomfoSurveyStore();
     const handleUserInfo = (e: any)=>{
         let data = JSON.parse(e.data);
+        alert(data)
         setUserInfo(e.data)
         localStorage.setItem("token", data.token);
     }
@@ -25,8 +25,8 @@ function Home() {
         window.ReactNativeWebView.postMessage("onLoad");
         window.addEventListener('message',(e) => handleUserInfo(e))
         document.addEventListener('message',(e:any) => setUserInfo(e.data));
-
-    },[window.ReactNativeWebView])
+    },[window?.ReactNativeWebView])
+    
     useEffect(()=>{
         if(typeof userInfo === 'string'){
             setUserInfo(JSON.parse(userInfo))
