@@ -27,7 +27,7 @@ const ModifyPassword = ()=>{
         } catch (e: any) {
           alert(e.response.data.message);
         }
-      }
+    }
       // 영문 대/소문자, 숫자, 특수 기호를 모두 포함하는 정규표현식
     const pattern = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/;
     useEffect(()=>{
