@@ -17,7 +17,7 @@ interface UserStoreState {
     nickName: '',
     status: '',
     userAccount: '',
-    userId: 37,
+    userId: 0,
     userPhoneNum: 'string',
   },
   setUserInfo: (info: PersonalInfo) => {
@@ -33,13 +33,10 @@ interface UserStoreState {
   },
   modify: async (id: number, newData: Partial<PersonalInfo>): Promise<boolean> => {
     try {
-      console.log(newData)
       const res = await fetchFromApi('PATCH',`/users/${id}/info`, newData);
       set({ userInfo: res.data});
       return true;
     } catch (e: any) {
-      console.log(e.config.headers.Authorization);
-      alert(window.location);
       return false;
     }
   },
