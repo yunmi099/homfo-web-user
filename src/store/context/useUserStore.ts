@@ -17,7 +17,7 @@ interface UserStoreState {
     nickName: '',
     status: '',
     userAccount: '',
-    userId: 0,
+    userId: 37,
     userPhoneNum: 'string',
   },
   setUserInfo: (info: PersonalInfo) => {
@@ -38,7 +38,8 @@ interface UserStoreState {
       set({ userInfo: res.data});
       return true;
     } catch (e: any) {
-      console.log(e);
+      console.log(e.config.headers.Authorization);
+      alert(window.location);
       return false;
     }
   },
