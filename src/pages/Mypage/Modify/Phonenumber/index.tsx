@@ -49,7 +49,7 @@ const ModifyPhonenumber = ()=>{
 
 
     const handleChangePhoneNumber =  async ()=>{
-        if (await modify(2,{"userPhoneNum":phonenumber})){
+        if (await modify(userInfo.userId,{"userPhoneNum":phonenumber})){
             setOpen(false);
             setPhonenumber("");               
             setVerifyNumber("");

@@ -11,7 +11,6 @@ function AccountInfoPage() {
   const [nickName, setNickname]= useState("");
   const [message, setMessage] = useState<string>("닉네임을 입력해주세요.\n 영문(대소문자가능),숫자,한글로 15글자이내로 입력해주세요.");
   const [color, setColor]= useState<string>('black');
-
  const regex = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\|]/;
  const debouncedNickname = useDebounce(nickName, 500);
  useEffect(() => {
@@ -43,7 +42,7 @@ function AccountInfoPage() {
               <div className={styles.key}>닉네임</div>
               <div style={{display:'flex', justifyContent:'space-between'}}>
                 <input className={styles.value} type="text" maxLength={15} placeholder={userInfo.nickName} value={nickName} onChange={(e)=>setNickname(e.target.value)}/>
-                <button onClick={()=>{modify(2,{"nickName": nickName});setNickname("")}} style={{ backgroundColor: color === 'green' ? "purple" : "white" }}>수정</button>
+                <button onClick={()=>{modify(userInfo.userId,{"nickName": nickName});setNickname("")}} style={{ backgroundColor: color === 'green' ? "purple" : "white" }}>수정</button>
 
               </div>
               <div className={styles.underline}></div>

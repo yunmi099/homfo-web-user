@@ -5,11 +5,13 @@ import { getUsersRequestList } from '../../services/requestBox/api'
 import { RequestList } from '../../store/type/requestBox/interface';
 import RequestCard from './RequestCard';
 import BottomTab from '../../components/layout/bottomtabs';
+import useUserStore from '../../store/context/useUserStore';
 
 function RequestBox() {
   const [data, setData] = useState<RequestList[]>();
+  const {userInfo} = useUserStore();
   useEffect(()=>{
-    getUsersRequestList(2, setData);
+    getUsersRequestList(userInfo.userId, setData);
   },[])
   return (
     <div className={styles.container}>

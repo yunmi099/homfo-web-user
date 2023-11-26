@@ -3,13 +3,14 @@ import Header from "../../../../components/layout/header";
 import styles from '../styles.module.scss'
 import { useNavigate } from "react-router-dom";
 import { fetchFromApi } from "../../../../utils/axios";
+import useUserStore from "../../../../store/context/useUserStore";
 const ModifyPassword = ()=>{
     const navigate = useNavigate();
     const [password, setPassword]=useState({currentPassword:"", newPassword:"", checkPassword:"",});
     const {currentPassword, newPassword, checkPassword} = password;
     const [message, setMessage] = useState({errorMessage:"",checkMessage:""});
     const [color,setColor] = useState<string>("black");
-
+    const {userInfo} = useUserStore();
     const onChangePassword = (key:string, value:string)=>{
         setPassword((prev)=>({...prev, [key]:value}))
     }
@@ -18,9 +19,8 @@ const ModifyPassword = ()=>{
     }
     const fetchModityInfo = async ()=>{
         try {
-          let id = 2;
           let data = {currentPassword: currentPassword, newPassword:newPassword}
-          const res = await fetchFromApi('PATCH',`/users/${id}/password`, data);
+          const res = await fetchFromApi('PATCH',`/users/${userInfo.userId}/password`, data);
           if (res.status === 200) {
             alert("비밀번호가 변경되었습니다.");
             navigate(-1);}

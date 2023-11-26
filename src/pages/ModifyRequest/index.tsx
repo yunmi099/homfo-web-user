@@ -25,7 +25,6 @@ function ModifyRequest() {
     "additionalRequests":"",
   });
   const [filterValue,setFilterValue] = useState<{[key:string]:number[]}>({});
-  const {postPropertyRequest} = useRequestStore();
   useEffect(()=>{
     getRequestDocumentDetail(requestId,setData);
 

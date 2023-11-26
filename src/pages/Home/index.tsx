@@ -7,7 +7,6 @@ import useHomfoSurveyStore from '../../store/context/useHomfoSurveyStore';
 import noticeIcon from '../../assets/icons/home/notice_icon.svg';
 import Banner from '../../components/organisms/Home/Banner';
 import useUserStore from '../../store/context/useUserStore';
-import { userInfo } from 'os';
 import { Result } from '../../store/type/homfoRecommend&request/interface';
 import { getAreaDetailResult, getHomfoArea } from '../../services/homfoArea/api';
 
@@ -18,21 +17,19 @@ function Home() {
     const { setResult, setResultDetail} = useHomfoSurveyStore();
     const handleUserInfo = (e: any)=>{
         let data = JSON.parse(e.data);
-        setUserInfo(e.data)
         localStorage.setItem("token", data.token);
+        setUserInfo(data);
     }
     useEffect(()=>{
         window.ReactNativeWebView.postMessage("onLoad");
         window.addEventListener('message',(e) => handleUserInfo(e))
         document.addEventListener('message',(e:any) => setUserInfo(e.data));
-
-    },[window.ReactNativeWebView])
+    },[window?.ReactNativeWebView])
+    
     useEffect(()=>{
-        if(typeof userInfo === 'string'){
-            setUserInfo(JSON.parse(userInfo))
             const fetchHomfoRecommendData = async () => {
                 try {
-                  const homfoInfo:Result[]= await getHomfoArea(JSON.parse(userInfo).userI);
+                  const homfoInfo:Result[]= await getHomfoArea(userInfo.userId);
                   if (homfoInfo.length !== 0){
                     setResult(homfoInfo);
                     const resultArray = await Promise.all(
@@ -52,7 +49,6 @@ function Home() {
                 }
               };
             fetchHomfoRecommendData(); 
-        }
     },[userInfo])
     return (
         <div className={styles.container}>
