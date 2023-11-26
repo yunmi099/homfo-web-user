@@ -71,6 +71,7 @@ export const getInquiryList = async (userId: number,setData:Dispatch<SetStateAct
     try {
       const res = await fetchFromApi('GET',`/errors/users/${userId}`);
       setData(filterData(res.data.data));
+      alert(res.data.data)
     } catch (e:any) {
       console.log(e);
     }
