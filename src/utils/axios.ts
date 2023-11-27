@@ -11,6 +11,7 @@ axios.interceptors.request.use(
       }
       return config;
     } catch (err) {
+      window.ReactNativeWebView.postMessage("TokenExpired");
       console.error("[_axios.interceptors.request] config : " + err);
     }
     return config;
