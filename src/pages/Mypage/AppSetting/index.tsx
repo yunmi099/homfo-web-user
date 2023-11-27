@@ -11,8 +11,8 @@ function AppSetting() {
         alert("로그아웃 되었습니다")
         window.ReactNativeWebView.postMessage("logout");
     }
-    const removeUserInfo = ()=>{
-        handleWithdrawal(userInfo.userId, navigate) 
+    const removeUserInfo = async ()=>{
+        await handleWithdrawal(userInfo.userId, navigate) 
         window.ReactNativeWebView.postMessage("withDrawal");
     }
     return(
