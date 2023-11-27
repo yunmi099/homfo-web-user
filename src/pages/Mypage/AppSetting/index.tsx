@@ -7,6 +7,14 @@ import useUserStore from '../../../store/context/useUserStore';
 function AppSetting() {
     const navigate = useNavigate();
     const {userInfo} = useUserStore();
+    const handleLogout = () =>{
+        alert("로그아웃 되었습니다")
+        window.ReactNativeWebView.postMessage("logout");
+    }
+    const removeUserInfo = ()=>{
+        handleWithdrawal(userInfo.userId, navigate) 
+        window.ReactNativeWebView.postMessage("withDrawal");
+    }
     return(
     <div className={styles.container}>
         <Header title="설정" color={"white"}/>  
@@ -21,9 +29,13 @@ function AppSetting() {
         </div>
         <div style={{height:"44%"}} className={styles.block}>
             <div className={styles.title}>계정</div>    
-            <div className={styles.content}>로그아웃</div>  
-            <div className={styles.content} onClick={()=>{
-                handleWithdrawal(userInfo.userId, navigate) }}>탈퇴하기</div>  
+            <div
+                className={styles.content}
+                onClick={handleLogout}
+            >
+                로그아웃
+            </div>  
+            <div className={styles.content} onClick={removeUserInfo}>탈퇴하기</div>  
         </div>
     </div>);
 }

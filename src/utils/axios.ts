@@ -4,19 +4,20 @@ const SERVER_PRODUCTION_URL = 'https://prod-server.homfo.co.kr/api';
 
 axios.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("token");
     try {
+      const token = localStorage.getItem("token");
       if (token) {
         config.headers.Authorization = token;
       }
       return config;
     } catch (err) {
-      window.ReactNativeWebView.postMessage("TokenExpired");
+      window.ReactNativeWebView.postMessage("tokenExpired"); 
       console.error("[_axios.interceptors.request] config : " + err);
     }
     return config;
   },
   (error) => {
+    window.ReactNativeWebView.postMessage("tokenExpired");
     return Promise.reject(error);
   }
 );
