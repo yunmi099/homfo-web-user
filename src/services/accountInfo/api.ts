@@ -18,9 +18,9 @@ export const handleWithdrawal= async (userId: number,navigate:NavigateFunction)=
            if (window.confirm('회원을 탈퇴 하시겠습니까?')) {
            await fetchFromApi('PATCH',`/users/${userId}/withdrawal`);
            alert("회원이 탈퇴되었습니다.");
-           navigate('/')
            }
           } catch (e:any) {
+            alert(e)
             console.log(e);
         }
 }
