@@ -18,7 +18,7 @@ import useUserStore from '../../../../../store/context/useUserStore';
           updatedAt
         }));
       }
-    useEffect(()=>{getInquiryList(userInfo.userId, setData, filterData)},[data])
+    useEffect(()=>{getInquiryList(userInfo.userId, setData, filterData)},[])
     const {userInfo} = useUserStore();
     const handleModifyAction = (content: FilteredData)=>{
         setMode(true);

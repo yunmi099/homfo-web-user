@@ -17,6 +17,7 @@ interface UserStoreState {
     nickName: '',
     status: '',
     userAccount: '',
+    // userId: 38,
     userId: 0,
     userPhoneNum: 'string',
   },

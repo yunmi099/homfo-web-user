@@ -9,10 +9,12 @@ function AppSetting() {
     const {userInfo} = useUserStore();
     const handleLogout = () =>{
         alert("로그아웃 되었습니다")
+        localStorage.removeItem("token");
         window.ReactNativeWebView.postMessage("logout");
     }
     const removeUserInfo = async ()=>{
         await handleWithdrawal(userInfo.userId, navigate) 
+        localStorage.removeItem("token");
         window.ReactNativeWebView.postMessage("withDrawal");
     }
     return(

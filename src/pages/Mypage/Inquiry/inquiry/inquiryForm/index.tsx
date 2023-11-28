@@ -4,6 +4,7 @@ import downarrow from '../../../../../assets/icons/inquiry/downarrow1.png'
 import { submitInquiry, getCategoryList, getInquiryDetailToModify } from '../../../../../services/inquiry/api';
 import { updateFormData } from '../../../../../utils/updateFormData';
 import { InquiryFormData } from '../../../../../store/type/inquiry&faq/interface';
+import useUserStore from '../../../../../store/context/useUserStore';
 
 function InquiryForm({
   setMode,
@@ -25,7 +26,7 @@ function InquiryForm({
   });
 
   const { categoryList, selectedCategory, openCategory, title, content } = formData;
-
+  const {userInfo} = useUserStore();
   const updateFormDataAndSetState = (updates: Partial<InquiryFormData>) => {
     setFormData((prevData) => updateFormData(prevData, updates));
   };
@@ -36,7 +37,7 @@ function InquiryForm({
     } else if (content === '') {
       alert('내용을 작성해주세요');
     } else {
-      submitInquiry(id, title, selectedCategory!, content, modify);
+      submitInquiry(userInfo.userId,id, title, selectedCategory!, content, modify);
       setModify(false);
       setMode(false);
     }

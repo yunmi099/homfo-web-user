@@ -56,7 +56,7 @@ export default function Bookmarks() {
                         관심 상식
                     </div>
                 </div>
-                {isArea ? <div>areaContainer</div> : <SenseContainer senseData={senseData} />}
+                {isArea ? <div></div> : <SenseContainer senseData={senseData} />}
             </div>
         </div>
     );
