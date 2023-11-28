@@ -5,7 +5,6 @@ const SERVER_PRODUCTION_URL = 'https://prod-server.homfo.co.kr/api';
 axios.interceptors.request.use(
   (config) => {
     try {
-      // config.headers.Authorization = 'Bearer eyJyZWdEYXRlIjoxNzAxMTQ0MTI3MjgwLCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiVVNFUiIsInVzZXJJZCI6MzgsImFjY291bnQiOiJhbnlvbmdhbiIsImlhdCI6MTcwMTE0NDEyNywiZXhwIjoxNzAyMzUzNzI3fQ.QrYgzvr-bwkik5k_b0uCFLDGSvgj1r7Y_Oxm280bdhQ'
       const token = localStorage.getItem("token");
       if (token) {
         config.headers.Authorization = token;
@@ -32,7 +31,8 @@ export const fetchFromApi = async (
     try {
       const response = await axios({
         method,
-        url: SERVER_PRODUCTION_URL + url,    
+        // url: SERVER_PRODUCTION_URL + url,    
+        url: SERVER_PRODUCTION_URL + url,
         data,
       });
       return (response);
