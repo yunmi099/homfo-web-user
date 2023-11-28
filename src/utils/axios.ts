@@ -7,7 +7,7 @@ axios.interceptors.request.use(
     try {
 
       // 배포 시 밑에 주석 해제해주세요
-      config.headers.Authorization = 'Bearer eyJyZWdEYXRlIjoxNzAxMTQ0MTI3MjgwLCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiVVNFUiIsInVzZXJJZCI6MzgsImFjY291bnQiOiJhbnlvbmdhbiIsImlhdCI6MTcwMTE0NDEyNywiZXhwIjoxNzAyMzUzNzI3fQ.QrYgzvr-bwkik5k_b0uCFLDGSvgj1r7Y_Oxm280bdhQ'
+      config.headers.Authorization = 'Bearer eyJyZWdEYXRlIjoxNzAxMTYxMjg0MzkzLCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiVVNFUiIsInVzZXJJZCI6MzcsImFjY291bnQiOiJ5dW5taTA5OSIsImlhdCI6MTcwMTE2MTI4NCwiZXhwIjoxNzAyMzcwODg0fQ.mwXSk-3hSjGkBN9-a2zcr6jgALL4DwGLVk4ZDJ4DI3A'
 
     
       // const token = localStorage.getItem("token");
