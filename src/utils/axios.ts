@@ -5,11 +5,15 @@ const SERVER_PRODUCTION_URL = 'https://prod-server.homfo.co.kr/api';
 axios.interceptors.request.use(
   (config) => {
     try {
-      // config.headers.Authorization = 'Bearer eyJyZWdEYXRlIjoxNzAxMTQ0MTI3MjgwLCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiVVNFUiIsInVzZXJJZCI6MzgsImFjY291bnQiOiJhbnlvbmdhbiIsImlhdCI6MTcwMTE0NDEyNywiZXhwIjoxNzAyMzUzNzI3fQ.QrYgzvr-bwkik5k_b0uCFLDGSvgj1r7Y_Oxm280bdhQ'
-      const token = localStorage.getItem("token");
-      if (token) {
-        config.headers.Authorization = token;
-      }
+
+      // 배포 시 밑에 주석 해제해주세요
+      config.headers.Authorization = 'Bearer eyJyZWdEYXRlIjoxNzAxMTQ0MTI3MjgwLCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiVVNFUiIsInVzZXJJZCI6MzgsImFjY291bnQiOiJhbnlvbmdhbiIsImlhdCI6MTcwMTE0NDEyNywiZXhwIjoxNzAyMzUzNzI3fQ.QrYgzvr-bwkik5k_b0uCFLDGSvgj1r7Y_Oxm280bdhQ'
+
+    
+      // const token = localStorage.getItem("token");
+      // if (token) {
+      //   config.headers.Authorization = token;
+      // }
       return config;
     } catch (err) {
       window.ReactNativeWebView.postMessage("tokenExpired"); 

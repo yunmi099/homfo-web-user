@@ -17,8 +17,9 @@ interface UserStoreState {
     nickName: '',
     status: '',
     userAccount: '',
-    // userId: 38,
-    userId: 0,
+          // 배포 시 밑에 주석 해제해주세요
+    userId: 38,
+    // userId: 0
     userPhoneNum: 'string',
   },
   setUserInfo: (info: PersonalInfo) => {
