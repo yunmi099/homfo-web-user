@@ -10,3 +10,13 @@ $background-color: white;
     background-color: #d9d9d9;
     height: 10px;
 }
+
+.content {
+    position: absolute;
+    width: 100vw;
+    top: 10vh;
+    height: 89vh;
+    margin-top: 1vh;
+    // overflow: auto;
+    overflow-x: hidden;
+}
