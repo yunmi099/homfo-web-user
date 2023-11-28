@@ -58,7 +58,7 @@ const ModifyElement = ({title, index,data,setData,setFilterValue}:ModifyElementP
                     {data.roomOption.includes('기타')&&index===8?
                     <AdditionalInput data={data} setData={setData} objectKey={"otherRoomOption"}/>:null} 
                     {currentQuestion.filter === null&&currentQuestion.answer===null?
-                    <AdditionalInput data={data} setData={setData} objectKey={"additionalFacilities"}/>:null} 
+                    <AdditionalInput data={data} setData={setData} objectKey={"additionalRequests"}/>:null} 
                     </div>
                 </>
                 :null
