@@ -44,6 +44,7 @@ export const getCategoryList = async (
 };
 
 export const submitInquiry = async (
+  userId:number,
   errorId: number,
   title: string,
   category: string,
@@ -51,7 +52,7 @@ export const submitInquiry = async (
   modify: boolean
 ): Promise<void> => {
   const data = {
-    userId: 2,
+    userId: userId,
     errorTitle: title,
     errorType: category,
     errorContent: content,
@@ -79,7 +80,7 @@ export const getInquiryList = async (userId: number,setData:Dispatch<SetStateAct
 export const deleteInquiryList = async (errorId: number): Promise<void> => {
   try {
     if (window.confirm("정말 삭제하시겠습니까?")){
-      const res = await fetchFromApi('PATCH',`/errors/${errorId}/delete`);
+      await fetchFromApi('PATCH',`/errors/${errorId}/delete`);
     }
   } catch (e:any) {
     console.log(e);
