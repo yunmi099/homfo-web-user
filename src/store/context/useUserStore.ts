@@ -17,8 +17,8 @@ const useUserStore = create<UserStoreState>((set) => ({
         nickName: '',
         status: '',
         userAccount: '',
-        userId: 39,
-        // userId: 0,
+        // userId: 39,
+        userId: 0,
         userPhoneNum: 'string',
     },
     setUserInfo: (info: PersonalInfo) => {
