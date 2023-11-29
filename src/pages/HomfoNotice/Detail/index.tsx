@@ -47,6 +47,10 @@ export default function NoticeDetail() {
         getNoticeDetailData();
     }, []);
 
+    function createMarkup(content: string | undefined) {
+        return { __html: content?.replace(/\n/g, '<br />') };
+    }
+
     return (
         <div className={styles.container}>
             <Header title="공지사항" color="white" />
@@ -60,7 +64,10 @@ export default function NoticeDetail() {
                     </div>
                 </div>
 
-                <div className={styles.noticeContent}>{detailNotice?.content}</div>
+                <div className={styles.noticeContent}>
+                    <div dangerouslySetInnerHTML={createMarkup(detailNotice?.content)} />
+                    {/* {detailNotice?.content} */}
+                </div>
             </div>
         </div>
     );
