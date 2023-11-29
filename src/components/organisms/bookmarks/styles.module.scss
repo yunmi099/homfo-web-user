@@ -30,13 +30,13 @@
     right: 0; // Adjust as needed to place the button off-screen
     top: 50%;
     transform: translateY(-50%);
-    background-color: blue;
+    background: linear-gradient(89deg, #2c4eff 0.63%, #842cff 77.13%);
     color: white;
     border: none;
     // z-index: -1;
     height: 140px;
     width: 140px;
-    border-radius: 5px;
+    border-radius: 14px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -85,4 +85,19 @@
 
 .divider {
     border: 0.5px solid gray;
+}
+
+.depositBox {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0px 1px 0px 1px rgba(0, 0, 0, 0.15);
+    padding: 10px;
+    gap: 15px;
+    text-align: center;
+}
+
+.deposit {
+    color: #842cff;
+    font-weight: 700;
 }

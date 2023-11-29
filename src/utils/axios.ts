@@ -14,29 +14,22 @@ axios.interceptors.request.use(
       window.ReactNativeWebView.postMessage("tokenExpired"); 
       console.error("[_axios.interceptors.request] config : " + err);
     }
-    return config;
-  },
-  (error) => {
-    window.ReactNativeWebView.postMessage("tokenExpired");
-    return Promise.reject(error);
-  }
 );
-
 
 export const fetchFromApi = async (
     method: Method | undefined,
     url: string,
-    data?: any,
-  ): Promise<any> => {
+    data?: any
+): Promise<any> => {
     try {
-      const response = await axios({
-        method,
-        // url: SERVER_PRODUCTION_URL + url,    
-        url: SERVER_PRODUCTION_URL + url,
-        data,
-      });
-      return (response);
+        const response = await axios({
+            method,
+            url: SERVER_PRODUCTION_URL + url,
+            // url: SERVER_DEPLOY_URL + url,
+            data,
+        });
+        return response;
     } catch (err) {
-      throw err;
+        throw err;
     }
-  };
+};

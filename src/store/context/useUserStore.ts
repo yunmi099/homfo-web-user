@@ -3,10 +3,10 @@ import { fetchFromApi } from '../../utils/axios';
 import { PersonalInfo } from '../type/memberInfo/interface';
 
 interface UserStoreState {
-  userInfo: PersonalInfo;
-  setUserInfo: (info: PersonalInfo) => void;
-  fetch: (id: number) => Promise<void>;
-  modify: (id: number, newData: Partial<PersonalInfo>) => Promise<boolean>;
+    userInfo: PersonalInfo;
+    setUserInfo: (info: PersonalInfo) => void;
+    fetch: (id: number) => Promise<void>;
+    modify: (id: number, newData: Partial<PersonalInfo>) => Promise<boolean>;
 }
 
  const useUserStore = create<UserStoreState>((set) => ({

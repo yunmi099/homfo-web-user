@@ -6,6 +6,7 @@ import { fetchFromApi } from '../../utils/axios';
 
 import SenseContainer from '../../components/organisms/bookmarks/SenseContainer';
 import useUserStore from '../../store/context/useUserStore';
+import AreaContainer from '../../components/organisms/bookmarks/AreaContainer';
 
 interface ISense {
     senseId: number;
@@ -16,12 +17,32 @@ interface ISense {
     status: string;
 }
 
-export default function Bookmarks() {
-    const {userInfo} = useUserStore();
-    const userId = userInfo.userId;
-    const [isArea, setIsArea] = useState<Boolean>(false);
+interface IArea {
+    id: number;
+    areaDetail: {
+        area: {
+            areaId: number;
+            name: string;
+        };
+        avgMonthlyDeposit: null;
+        avgMonthlyFee: null;
+        avgJeonseDeposit: null;
+        avgExclusiveArea: null;
+        avgBuiltYear: null;
+        avgWalkingTotalDistance: number;
+        avgWalkingSeconds: number;
+        avgBikeSeconds: number;
+        avgTransportSeconds: number;
+    };
+    createdAt: string;
+}
 
-    const [areaData, setAreaData] = useState([]);
+export default function Bookmarks() {
+    const { userInfo } = useUserStore();
+    const userId = userInfo.userId;
+    const [isArea, setIsArea] = useState<Boolean>(true);
+
+    const [areaData, setAreaData] = useState<IArea[]>([]);
     const [senseData, setSenseData] = useState<ISense[]>([]);
 
     useEffect(() => {
@@ -31,7 +52,10 @@ export default function Bookmarks() {
         };
 
         const getAreaData = async () => {
-            const res = await fetchFromApi('GET', `/users/${userId}/areaBookmarks`);
+            const res = await fetchFromApi(
+                'GET',
+                `/users/${userId}/areaBookmarks?size=15&page=0&firstView=true`
+            );
             setAreaData(res.data.data);
         };
 
@@ -56,7 +80,12 @@ export default function Bookmarks() {
                         관심 상식
                     </div>
                 </div>
-                {isArea ? <div></div> : <SenseContainer senseData={senseData} />}
+
+                {isArea ? (
+                    <AreaContainer areaData={areaData} />
+                ) : (
+                    <SenseContainer senseData={senseData} />
+                )}
             </div>
         </div>
     );
