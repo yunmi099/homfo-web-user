@@ -23,3 +23,13 @@ $background-color: white;
         height: 3.5em;
     }
 }
+
+.content {
+    position: absolute;
+    width: 100vw;
+    top: 10vh;
+    height: 89vh;
+    margin-top: 1vh;
+    // overflow: auto;
+    overflow-x: hidden;
+}

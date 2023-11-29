@@ -31,21 +31,23 @@ function HomfoNotice() {
     return (
         <div className={styles.container}>
             <Header title="공지사항" color="white" />
-            <div className={styles.banner}>
-                <div className={styles.left}>
-                    <div>Homfo에서</div>
-                    <div className={styles.strong}>
-                        <strong>최신 공지사항 알려드립니다.</strong>
+            <div className={styles.content}>
+                <div className={styles.banner}>
+                    <div className={styles.left}>
+                        <div>Homfo에서</div>
+                        <div className={styles.strong}>
+                            <strong>최신 공지사항 알려드립니다.</strong>
+                        </div>
+                    </div>
+                    <div className={styles.right}>
+                        <img src={notice_icon} alt="공지사항" />
                     </div>
                 </div>
-                <div className={styles.right}>
-                    <img src={notice_icon} alt="공지사항" />
+                <div>
+                    {noticeList.map((notice) => (
+                        <NoticeBlock key={notice.id} notice={notice} />
+                    ))}
                 </div>
-            </div>
-            <div>
-                {noticeList.map((notice) => (
-                    <NoticeBlock key={notice.id} notice={notice} />
-                ))}
             </div>
         </div>
     );

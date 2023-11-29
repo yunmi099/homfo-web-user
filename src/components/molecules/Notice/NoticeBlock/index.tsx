@@ -36,7 +36,7 @@ export default function NoticeBlock({ notice }: Props) {
                     {notice.isFixed === 'Y' && <img src={pin_icon} alt="고정" />}
                     {isNew && <div className={styles.new}>NEW</div>}
                 </div>
-                <div className={styles.content}>{notice.content}</div>
+                <div className={styles.content}>{notice.title}</div>
                 <div className={styles.date}>{formatDateWithComma(notice.createdAt)}</div>
             </div>
             <div>
