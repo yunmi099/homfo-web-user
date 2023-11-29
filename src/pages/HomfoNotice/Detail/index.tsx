@@ -47,7 +47,7 @@ export default function NoticeDetail() {
         getNoticeDetailData();
     }, []);
 
-    function createMarkup(content: string | undefined) {
+    function createMarkup(content: string) {
         return { __html: content?.replace(/\n/g, '<br />') };
     }
 
@@ -65,7 +65,9 @@ export default function NoticeDetail() {
                 </div>
 
                 <div className={styles.noticeContent}>
-                    <div dangerouslySetInnerHTML={createMarkup(detailNotice?.content)} />
+                    {detailNotice?.content && (
+                        <div dangerouslySetInnerHTML={createMarkup(detailNotice.content)} />
+                    )}
                     {/* {detailNotice?.content} */}
                 </div>
             </div>
