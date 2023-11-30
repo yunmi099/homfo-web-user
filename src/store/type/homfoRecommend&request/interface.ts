@@ -69,7 +69,7 @@ interface RequestStore{
 }
 interface RequestForm{
   userId: number;
-  areaId: number[];
+  areaId: number[]|number;
   realEstateType: string[];
   contractType: string;
   residencePeriod:string[];

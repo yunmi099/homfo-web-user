@@ -30,6 +30,7 @@ const TermsOfUse = () => {
                     개인정보 수집 이용동의<span>&nbsp;&nbsp;(필수)</span>
                 </div>
             </div>
+            <div className={styles.subSector}>성명, 주소, 전화번호, 이메일, 성별, 나이, 생년월일 및 직업</div>
             <Contents/>
             <ConfirmButton title="확인" auth={userAgree} onClick={onClickAgreement}/>
         </div>

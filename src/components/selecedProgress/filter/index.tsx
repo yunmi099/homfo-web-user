@@ -48,25 +48,27 @@ const Filter = ({onewayOption = false,title,min,max,unit,mode,setData}:FilterPro
             <div className={styles.filterSlideInner} style={{left:`${rangeMinPercent}%`,right:`${rangeMaxPercent}%`}}>
             </div>
             <div className={styles.filterRangeWrap}>
-                    <input className={onewayOption?styles.filterRangeNoneActive:styles.filterRangeActive}   
-                    type="range"
-                    min={fixedMinValue}
-                    max={fixedMaxValue - gap}
-                    step="1"
-                    value={rangeMinValue}
-                    onChange={(e:any) => {
-                       minValueHandler(e);
+                    <input 
+                      className={onewayOption?styles.filterRangeNoneActive:styles.filterRangeActive}   
+                      type="range"
+                      min={fixedMinValue}
+                      max={fixedMaxValue - gap}
+                      step="1"
+                      value={rangeMinValue}
+                      onChange={(e:any) => {
+                        minValueHandler(e);
                       }}
                     ></input>
-                    <input className={styles.filterRangeActive} 
-                    type="range"
-                    min={fixedMinValue + gap}
-                    max={fixedMaxValue}
-                    step="1"
-                    value={rangeMaxValue}
-                    onChange={(e:any) => {
-                     maxValueHandler(e);
-                    }}
+                    <input 
+                      className={styles.filterRangeActive} 
+                      type="range"
+                      min={fixedMinValue + gap}
+                      max={fixedMaxValue}
+                      step="1"
+                      value={rangeMaxValue}
+                      onChange={(e:any) => {
+                        maxValueHandler(e);
+                      }}
               ></input>
           </div>
         </div>
