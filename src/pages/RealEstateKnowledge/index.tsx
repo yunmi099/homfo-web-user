@@ -30,14 +30,15 @@ function RealEstateKnowlegde() {
             <Header title="부동산 상식" color="white" />
             <div className={styles.content}>
                 <MainKnowledge mainKnowledge={knowledgeList[0]} />
-            </div>
-            <div className={styles.divider}></div>
-            <div>
-                <KnowledgeContainer
-                    option={option}
-                    setOption={setOption}
-                    knowledgeList={knowledgeList}
-                />
+
+                <div className={styles.divider}></div>
+                <div>
+                    <KnowledgeContainer
+                        option={option}
+                        setOption={setOption}
+                        knowledgeList={knowledgeList}
+                    />
+                </div>
             </div>
         </div>
     );
