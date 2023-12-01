@@ -34,14 +34,17 @@ interface ISensesDetail {
 export default function KnowledgeDetail() {
     const { id } = useParams();
 
-    const {userInfo} = useUserStore();
+    const { userInfo } = useUserStore();
 
     const [knowledgeList, setKnowledgeList] = useState<ISensesDetail[]>([]);
 
     useEffect(() => {
         const getKnowledgeList = async () => {
             try {
-                const res = await fetchFromApi('GET', `/senses?order=recent&userId=${userInfo.userId}`);
+                const res = await fetchFromApi(
+                    'GET',
+                    `/senses?order=recent&userId=${userInfo.userId}`
+                );
 
                 setKnowledgeList(res.data.data);
             } catch (e) {
@@ -51,6 +54,20 @@ export default function KnowledgeDetail() {
 
         getKnowledgeList();
     }, []);
+
+    useEffect(() => {
+        const scrollToElement = () => {
+            if (id && knowledgeList.length > 0) {
+                const element = document.getElementById(id);
+
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        };
+
+        scrollToElement();
+    }, [id, knowledgeList]);
 
     return (
         <div className={styles.container}>
@@ -77,7 +94,7 @@ export const DetailContainer = ({ data }: { data: ISensesDetail }) => {
     const [isFavorite, setIsFavorite] = useState(data.isFavorite);
     const [likeCount, setLikeCount] = useState(data.likeCount);
     const [favoriteCount, setFavoriteCount] = useState(data.favoriteCount);
-    const {userInfo} = useUserStore();
+    const { userInfo } = useUserStore();
     const onClickLikeButton = async () => {
         const method = isLike === 'N' ? 'POST' : 'DELETE';
 
@@ -111,7 +128,7 @@ export const DetailContainer = ({ data }: { data: ISensesDetail }) => {
     };
 
     return (
-        <div className={styles.detailContainer}>
+        <div id={data.senseId.toString()} className={styles.detailContainer}>
             <div className={styles.title}>{data.title}</div>
             <div className={styles.imageContainer}>
                 <Slider {...settings}>
