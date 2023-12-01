@@ -28,7 +28,7 @@ function RealEstateKnowlegde() {
     return (
         <div className={styles.container}>
             <Header title="부동산 상식" color="white" />
-            <div>
+            <div className={styles.content}>
                 <MainKnowledge mainKnowledge={knowledgeList[0]} />
             </div>
             <div className={styles.divider}></div>
