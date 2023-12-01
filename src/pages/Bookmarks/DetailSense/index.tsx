@@ -4,6 +4,7 @@ import { DetailContainer } from '../../RealEstateKnowledge/Detail';
 import { useParams } from 'react-router-dom';
 import { fetchFromApi } from '../../../utils/axios';
 import useUserStore from '../../../store/context/useUserStore';
+import styles from './styles.module.scss';
 
 interface ISensesDetail {
     senseId: number;
@@ -21,7 +22,7 @@ interface ISensesDetail {
 }
 export default function DetailSense() {
     const { id } = useParams();
-    const {userInfo} = useUserStore();
+    const { userInfo } = useUserStore();
     const userId = userInfo.userId;
     const [sense, setSense] = useState<ISensesDetail>({
         senseId: 0,
@@ -54,7 +55,9 @@ export default function DetailSense() {
     return (
         <div>
             <Header title="즐겨찾기" color="white" />
-            {sense.senseId !== 0 && <DetailContainer data={sense} />}
+            <div className={styles.content}>
+                {sense.senseId !== 0 && <DetailContainer data={sense} />}
+            </div>
         </div>
     );
 }
