@@ -65,7 +65,7 @@ export default function Bookmarks() {
     return (
         <div>
             <Header title="즐겨찾기" color="white" />
-            <div className={styles.container}>
+            <div className={styles.content}>
                 <div className={styles.selector}>
                     <div
                         className={`${isArea ? styles.active : styles.nonactive}`}

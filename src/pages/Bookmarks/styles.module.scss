@@ -20,3 +20,13 @@
         color: #b5b3b3;
     }
 }
+
+.content {
+    position: absolute;
+    width: 100vw;
+    top: 10vh;
+    height: 89vh;
+    margin-top: 1vh;
+    // overflow: auto;
+    overflow-x: hidden;
+}
