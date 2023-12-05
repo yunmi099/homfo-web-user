@@ -1,7 +1,7 @@
 import React, { useState, Dispatch, SetStateAction, useEffect } from 'react';
 import styles from './styles.module.scss';
 import { AreaInfo } from '../../../components/areaInfo';
-import { getAreaDetailResult } from '../../../services/homfoArea/api';
+import { getAreaDetail, getAreaDetailResult } from '../../../services/homfoArea/api';
 import * as icon from '../../../assets/icons/areaInfo/icon';
 import { useNavigate } from 'react-router-dom';
 import useUserStore from '../../../store/context/useUserStore';
@@ -49,6 +49,7 @@ export const OverlayInfo = ({
     };
 
     useEffect(() => {
+        getAreaDetail(areaId)
         handleSetDetail();
     }, [areaId]);
 

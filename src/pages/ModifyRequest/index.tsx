@@ -31,11 +31,12 @@ function ModifyRequest() {
     getRequestDocumentDetail(requestId,setData,setFilterValue);
   },[])
   useEffect(()=>{
-   setFilterValue({});
    data.contractType[0]?.map((item:any)=>{
-    setFilterValue((prev)=>({
-      ...prev, [item] : requestQuestionList[3].filter?.data[item][0]
-    }));
+    if (filterValue[item] === null){
+      setFilterValue((prev)=>({
+        ...prev, [item] : requestQuestionList[3].filter?.data[item][0]
+      }));
+    }
    })
   },[data.contractType])
 

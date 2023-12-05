@@ -34,7 +34,6 @@ const useHomfoSurveyStore = create<HomfoStoreState>((set)=>({
           }));
           totalData = {...totalData, "transports": transportsData}
         }
-        console.log(totalData)
         const storeState = useHomfoSurveyStore.getState();
         if (storeState.result !== null){
           storeState.reset();

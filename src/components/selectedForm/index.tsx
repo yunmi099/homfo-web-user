@@ -1,4 +1,4 @@
-import React,{Dispatch, SetStateAction} from "react";
+import React,{Dispatch, SetStateAction, useEffect} from "react";
 import styles from './styles.module.scss'
 import { HomfoEditData, QuestionForm, RequestData } from "../../store/type/homfoRecommend&request/interface";
 import Filter from "../selectedProgress/filter";
@@ -31,7 +31,7 @@ const SelectedForm = ({currentQuestion, previousQuestion,filterValue,mode,data, 
                   max={filterData[item][0][1]}
                   unit={item}
                   mode={mode}
-                  // data={filterValue[item]}
+                  data={filterValue!==undefined?filterValue[item]:[undefined, undefined]}
                   setData={setFilterValue}
                   title={filterData[item][2]}
                   onewayOption={mode==="time"&&true}
