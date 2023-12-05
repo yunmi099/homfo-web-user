@@ -51,7 +51,7 @@ function Home() {
             fetchHomfoRecommendData(); 
     },[userInfo])
     return (
-        <div className={styles.container}>
+        <div className={styles.container} style={{paddingTop: `${userInfo.top/2}px`}}>
             <div className={styles.topContainer}>
                 <div className={styles.message}>
                     <div style={{ marginTop: '8vh' }}>

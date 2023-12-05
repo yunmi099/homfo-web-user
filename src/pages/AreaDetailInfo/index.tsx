@@ -6,13 +6,14 @@ import AmenitiesMap from "../../components/map/AmenitiesMap";
 import { getAmenities } from "../../services/amenities/api";
 import { Amenities } from "./Amenities";
 import { OverlayInfo } from "./overlayInfo";
+import useUserStore from "../../store/context/useUserStore";
 
 export default function AreaDetailInfo() {
     const [openAmenitiesScroll, setOpenAmenitiesScroll] = useState<boolean>(false);
     const [touchUpEvent, setTouchUpEvent] = useState(true);
     const [touchDownEvent, setTouchDownEvent] = useState(false);
     const [selectedAmenities, setSelectedAmenities] = useState<string|undefined>();
-
+    const {userInfo} = useUserStore();
     const [AmenitiesInfo, setAmenitiesInfo] = useState({
         "FOOD" :  { 
             "name": "음식점 및 키페",
@@ -47,7 +48,7 @@ export default function AreaDetailInfo() {
     },[receivedData.areaId])
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} style={{paddingTop: `${userInfo.top/2}px`}}>
         <img 
             alt="뒤로가기" 
             src={mapIcon.backButton}

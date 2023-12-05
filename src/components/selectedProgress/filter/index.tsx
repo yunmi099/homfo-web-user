@@ -6,15 +6,21 @@ interface FilterProps{
    title: string;
    unit: string;
    min: number;
+   data?:number[];
    setData:React.Dispatch<React.SetStateAction<{[key: string]: number[]}>>
    max:number;
    mode: string;
 }
-const Filter = ({onewayOption = false,title,min,max,unit,mode,setData}:FilterProps)=>{
+const Filter = ({onewayOption = false,title,min,data,max,unit,mode,setData}:FilterProps)=>{
     let fixedMinValue = min;
     let fixedMaxValue = max;
-    const [rangeMinValue, setRangeMinValue] = useState(fixedMinValue); 
-    const [rangeMaxValue, setRangeMaxValue] = useState(fixedMaxValue);
+    useEffect(()=>{
+      if (data!==undefined){
+        // setRangeMaxValue()
+      }
+    },[])
+    const [rangeMinValue, setRangeMinValue] = useState(min); 
+    const [rangeMaxValue, setRangeMaxValue] = useState(max);
     let gap=0;
     if (onewayOption){
       gap=0

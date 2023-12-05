@@ -4,8 +4,8 @@ import { AreaInfo } from '../../../components/areaInfo';
 import { getAreaDetailResult } from '../../../services/homfoArea/api';
 import * as icon from '../../../assets/icons/areaInfo/icon';
 import { useNavigate } from 'react-router-dom';
-import { fetchFromApi } from '../../../utils/axios';
 import useUserStore from '../../../store/context/useUserStore';
+import { deleteBookMarkLists, postBookMarkLists } from '../../../services/areaBookmarks/api';
 interface OverlayInfoProps {
     areaId: number;
     touchUpEvent: boolean;
@@ -71,11 +71,9 @@ export const OverlayInfo = ({
                                 className={styles.button}
                                 onClick={() => {
                                     setToggle(!toggle);
-                                    !toggle &&
-                                        fetchFromApi(
-                                            'POST',
-                                            `/users/${userInfo.userId}/areaBookmarks?areaId=${areaId}`
-                                        );
+                                    !toggle ?
+                                    postBookMarkLists(userInfo.userId, areaId):
+                                    deleteBookMarkLists(userInfo.userId, areaId)
                                 }}
                             >
                                 <img
@@ -83,6 +81,7 @@ export const OverlayInfo = ({
                                     height={'50%'}
                                     alt=""
                                     style={{ margin: '0 15px' }}
+                                    
                                 />
                                 관심구역
                             </div>

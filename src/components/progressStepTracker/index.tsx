@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './styles.module.scss';
+import useUserStore from '../../store/context/useUserStore';
 
 interface ProgressStepTrackerProps {
     count: number;

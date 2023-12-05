@@ -31,8 +31,8 @@ const ZoneSelectPage = (props: InitialPageProps)=>{
     },[])
           
 return(<>
-        <Header title="요청하기" color="white"/>
         <div className={styles.container}>
+        <Header title="요청하기" color="white"/>
             <CustomModal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} />
             <div className={styles.question}><span>어느 구역</span>을 찾으실 건가요?</div>
             {areaInfo!==undefined&&

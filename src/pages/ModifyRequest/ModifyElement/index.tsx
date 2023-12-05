@@ -5,18 +5,19 @@ import styles from './styles.module.scss'
 import { requestQuestionList } from "../../Request/RequestQuestionList";
 import { QuestionForm } from "../../../store/type/homfoRecommend&request/interface";
 import SelectedForm from "../../../components/selectedForm";
-import AdditionalInput from "../../../components/selecedProgress/input";
+import AdditionalInput from "../../../components/selectedProgress/input";
 import { ExtendedRequestData } from "../../../store/type/requestBox/interface";
 import OneAreaMap from "../../../components/map/OneAreaMap";
 interface ModifyElementProps{
     title: string;
     index: number;
     data:ExtendedRequestData;
-    setData: Dispatch<SetStateAction<ExtendedRequestData>>
+    setData: Dispatch<SetStateAction<ExtendedRequestData>>;
+    filterValue: {[key: string]: number[];};
     setFilterValue:  React.Dispatch<React.SetStateAction<{[key: string]: number[];}>>
 }
 
-const ModifyElement = ({title, index,data,setData,setFilterValue}:ModifyElementProps)=>{
+const ModifyElement = ({title, index,data,setData,filterValue,setFilterValue}:ModifyElementProps)=>{
     const [open, setOpen] =useState(false)
     const currentQuestion: QuestionForm = requestQuestionList[index-1];
     const previousQuestion: QuestionForm = requestQuestionList[index-2];
@@ -52,6 +53,7 @@ const ModifyElement = ({title, index,data,setData,setFilterValue}:ModifyElementP
                             previousQuestion={previousQuestion}
                             mode={"price"}
                             data={data}
+                            filterValue={filterValue}
                             setData={setData}
                             setFilterValue={setFilterValue}
                     />
