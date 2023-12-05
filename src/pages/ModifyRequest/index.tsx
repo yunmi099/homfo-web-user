@@ -7,11 +7,13 @@ import { getRequestDocumentDetail, modifyRequestDocument } from '../../services/
 import ModifyElement from './ModifyElement';
 import { ExtendedRequestData } from '../../store/type/requestBox/interface';
 import { requestQuestionList } from '../Request/RequestQuestionList';
+import useUserStore from '../../store/context/useUserStore';
 
 const LIST_ARRAY = ["1. 구역위치", "2. 매물 유형","3. 희망 거주 기간","4. 계약 형태","5. 금액대", "6. 대출 유무", "7. 대출 유형", "8. 예상 입주 시기", "9. 옵션", "10. 추가 요청사항"]
 function ModifyRequest() {
   const location = useLocation();
   const requestId = location.state;
+  const {userInfo} = useUserStore();
   const [data, setData] = useState<ExtendedRequestData>({
     "areaId":0,
     "realEstateType": [],
@@ -58,7 +60,7 @@ function ModifyRequest() {
         }
         </div>
     </div>       
-    <ConfirmButton title="수정하기" auth={true} onClick={()=>modifyRequestDocument(requestId, data, filterValue)}/>
+    <ConfirmButton title="수정하기" auth={true} onClick={()=>modifyRequestDocument(userInfo.userId, requestId, data, filterValue)}/>
     </>
   )
 }

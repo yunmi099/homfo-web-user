@@ -44,11 +44,11 @@ export const getOfferDocument = async (offerId: number, setData: React.Dispatch<
   }
 }
 
-export const modifyRequestDocument = async (id: number,data:RequestData, filterData: {[key:string]:number[]}): Promise<any> => {
+export const modifyRequestDocument = async (userId: number,id: number,data:RequestData, filterData: {[key:string]:number[]}): Promise<any> => {
     try{
         let totalData:any =   
         {   
-            userId: 37,
+            userId: userId,
             realEstateType: [],
             contractType: "",
             residencePeriod:[],
