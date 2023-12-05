@@ -5,7 +5,7 @@ import * as router from './routes';
 function App() {
     return (
        <>
-            <Routes>
+        <Routes>
                 <Route path="/" Component={router.home} />
                 <Route path="/hbti" Component={router.hbti} />
                 <Route path="/notice" Component={router.notice} />
@@ -46,7 +46,7 @@ function App() {
                 <Route path="/mypage/bookmarks" Component={router.Bookmarks} />
                 <Route path="/mypage/bookmarks/sense/:id" Component={router.BookmarksSenseDetail} />
                 <Route path="/system/agreement-of-termsofuse" Component={router.agreementOfTermsOfUse} />
-            </Routes>
+        </Routes>
         </>
     );
 }

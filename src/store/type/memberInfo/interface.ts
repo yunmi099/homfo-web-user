@@ -8,4 +8,6 @@ interface PersonalInfo  {
     userAccount: string;
     userId: number;
     userPhoneNum: string;
+    top:number;
+    bottom:number;
   }

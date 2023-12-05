@@ -26,7 +26,7 @@ const SelectedHomfoSurvey = (props: SelectedProgressProps) => {
   const {userInfo} = useUserStore();
   const userId = userInfo.userId;
   return (
-    <div style={{marginTop:"10vh"}}>
+    <div style={{marginTop:"20px"}}>
       <SelectedForm 
         currentQuestion={currentQuestion}
         previousQuestion={previousQuestion}

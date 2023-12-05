@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import deleteIcon from '../../../assets/icons/bookmarks/delete.svg';
 
 import styles from './styles.module.scss';
-import { useNavigate } from 'react-router-dom';
 import { useSwipeable } from 'react-swipeable';
 import { fetchFromApi } from '../../../utils/axios';
 import useUserStore from '../../../store/context/useUserStore';

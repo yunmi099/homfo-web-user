@@ -6,14 +6,14 @@
 }
 .backButton{
     position: absolute;
-    top: 25px;
+    top: calc(5% + 25px);
     left: 15px;
     z-index: 100;
     width: 50px;
 }
 .amenitiesButton{
     position: absolute;
-    top: 79px;
+    top: calc(5% + 79px);
     right: 20px;
     z-index: 100;
     width: 70px;
@@ -52,7 +52,7 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    top: 80px;
+    top: calc(5% + 80px);
     left: 10px;
     z-index: 100;
     width: 65%;

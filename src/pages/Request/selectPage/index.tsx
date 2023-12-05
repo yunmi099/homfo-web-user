@@ -34,7 +34,7 @@ const SelectedRequestSurvey = (props: SelectedProgressProps) => {
   const navigate = useNavigate();
   const {userInfo} = useUserStore();
   return (
-    <div style={{marginTop:"10vh"}}>
+    <div style={{marginTop:"20px"}}>
       <SelectedForm currentQuestion={currentQuestion} previousQuestion={previousQuestion} mode={"price"} data={data} setData={setData} setFilterValue={setFilterValue}/>
       {currentQuestion.filter === null&&currentQuestion.answer===null?
       <input value={data.additionalRequests} 

@@ -5,7 +5,6 @@ interface InitialPageProps{
     setCount: React.Dispatch<React.SetStateAction<number>>;
 }
 const InitialPage = (props: InitialPageProps)=>{
-
 return(<>
     <div className={styles.initialNotice}>
         <div style={{marginLeft:'10%'}}>히포가  <span>당신에게 어울리는 구역을</span></div>

@@ -3,12 +3,11 @@ import { fetchFromApi } from "../../utils/axios";
 import { RequestFormUserResponded } from "../../store/type/requestBox/interface";
 import { Dispatch, SetStateAction } from "react";
 import { OfferDocument } from "../../store/type/offerDocument/interface";
-import { RequestData, RequestForm } from "../../store/type/homfoRecommend&request/interface";
+import { RequestData} from "../../store/type/homfoRecommend&request/interface";
 export const getUsersRequestList= async (userId: number, setData:Dispatch<SetStateAction<RequestList[] | undefined>>): Promise<void> => {
     try {
       const res= await fetchFromApi('GET',`/users/${userId}/requests`);
       setData(res.data.data);
-      console.log(res.data.data)
     } catch (e) {
       console.log(e);
     }
@@ -49,7 +48,7 @@ export const modifyRequestDocument = async (id: number,data:RequestData, filterD
     try{
         let totalData:any =   
         {   
-            userId: id,
+            userId: 37,
             realEstateType: [],
             contractType: "",
             residencePeriod:[],
@@ -66,15 +65,16 @@ export const modifyRequestDocument = async (id: number,data:RequestData, filterD
             additionalRequests: null,
         }
         totalData = {...totalData, deposit: filterData}
+        console.log(data.contractType.length)
         switch (data.contractType.length) {
             case 3:
                 totalData.contractType = "상관없음";
                 break;
             case 2:
-                totalData.contractType = "전세";
+                totalData.contractType = "월세";
                 break;
             case 1:
-                totalData.contractType = "월세";
+                totalData.contractType = "전세";
                 break;
             default:
                 break;
@@ -93,9 +93,8 @@ export const modifyRequestDocument = async (id: number,data:RequestData, filterD
         }
         delete copyData.contractType;
         totalData = {...totalData, ...copyData};
-        console.log(totalData)
-    //  const res = await fetchFromApi('post', `/requests`,totalData); 
-    //  return res;
+      console.log(totalData)
+     const res = await fetchFromApi('PATCH', `/requests/${id}`,totalData); 
     } catch (e:any) {
         console.log(e);
     }

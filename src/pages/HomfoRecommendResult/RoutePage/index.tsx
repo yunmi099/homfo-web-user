@@ -2,11 +2,12 @@ import React,{useEffect, useState} from 'react'
 import styles from './styles.module.scss'
 import homfoResultImage from '../../../assets/hippo/homfoResult.png'
 import { useNavigate } from 'react-router-dom';
-import useHomfoSurveyStore from '../../../store/context/useHomfoSurveyStore';
+import useUserStore from '../../../store/context/useUserStore';
 export default function HomfoResultRouting() {
   const navigate = useNavigate();
+  const {userInfo} = useUserStore();
   return (
-    <div className={styles.container}>
+    <div className={styles.container} style={{paddingTop: userInfo.top/2}}>
         <div className={styles.contents}>히포가 당신에게<br/>
           <span>어울리는 방을 추천</span>해도 될까요?</div>
           <img

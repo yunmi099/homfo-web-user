@@ -29,15 +29,15 @@ const useRequestStore = create<RequestStore>((set)=>({
                 additionalRequests: null,
             }
             totalData = {...totalData, deposit: {...totalData.deposit,...filterData}}
-            switch (data.contractType.length) {
+            switch (data.contractType[0].length) {
                 case 3:
                     totalData.contractType = "상관없음";
                     break;
                 case 2:
-                    totalData.contractType = "전세";
+                    totalData.contractType = "월세";
                     break;
                 case 1:
-                    totalData.contractType = "월세";
+                    totalData.contractType = "전세";
                     break;
                 default:
                     break;
