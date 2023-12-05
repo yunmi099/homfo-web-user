@@ -7,12 +7,12 @@ axios.interceptors.request.use(
     try {
 
       // 배포 시 밑에 주석 해제해주세요
-      config.headers.Authorization = 
-      'Bearer eyJyZWdEYXRlIjoxNzAxNDEyODcxODkwLCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiVVNFUiIsInVzZXJJZCI6MzcsImFjY291bnQiOiJ5dW5taTA5OSIsImlhdCI6MTcwMTQxMjg3MSwiZXhwIjoxNzAyNjIyNDcxfQ.nvpZQGgdMg-JtoQxCgHg_lc2P7kWU_679tFCKIiqIi8'
-      // const token = localStorage.getItem("token");
-      // if (token) {
-      //   config.headers.Authorization = token;
-      // }
+      // config.headers.Authorization = 
+      // 'Bearer eyJyZWdEYXRlIjoxNzAxNDEyODcxODkwLCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiVVNFUiIsInVzZXJJZCI6MzcsImFjY291bnQiOiJ5dW5taTA5OSIsImlhdCI6MTcwMTQxMjg3MSwiZXhwIjoxNzAyNjIyNDcxfQ.nvpZQGgdMg-JtoQxCgHg_lc2P7kWU_679tFCKIiqIi8'
+      const token = localStorage.getItem("token");
+      if (token) {
+        config.headers.Authorization = token;
+      }
       return config;
     } catch (err) {
       window.ReactNativeWebView.postMessage("tokenExpired"); 
