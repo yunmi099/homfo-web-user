@@ -20,7 +20,7 @@ const useHomfoSurveyStore = create<HomfoStoreState>((set)=>({
       try {
         let totalData={};
         totalData = Object.keys(data).reduce((obj:any, index:any)=>{
-          if (data[index].length === 1) {
+          if (data[index].length === 1 && index!=='facilities') {
             obj[index] = data[index][0]; 
           } else {
             obj[index] = data[index];
@@ -34,6 +34,7 @@ const useHomfoSurveyStore = create<HomfoStoreState>((set)=>({
           }));
           totalData = {...totalData, "transports": transportsData}
         }
+        console.log(totalData)
         const storeState = useHomfoSurveyStore.getState();
         if (storeState.result !== null){
           storeState.reset();
@@ -52,6 +53,7 @@ const useHomfoSurveyStore = create<HomfoStoreState>((set)=>({
         );
        storeState.setResultDetail(resultArray);
         } catch (e: any) {
+          console.log('error')
           console.log(e);
         }
     },
