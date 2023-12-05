@@ -57,6 +57,7 @@ const useRequestStore = create<RequestStore>((set)=>({
             delete copyData.contractType;
             totalData = {...totalData, ...copyData};
          const res = await fetchFromApi('post', `/requests`,totalData); 
+         console.log(res.data)
          return res;
         } catch (e:any) {
             console.log(e);

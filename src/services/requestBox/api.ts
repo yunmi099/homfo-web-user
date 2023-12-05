@@ -19,7 +19,7 @@ export const getRequestDocumentDetail= async (requestId: number, setUserResponse
       const data = {
         "areaId":userResponse.areaId,
         "realEstateType": userResponse.realEstateType,
-        "contractType": [Object.keys(userResponse.deposit).filter((key:string)=>{return userResponse.deposit[key]!==null})],
+        "contractType": [Object.keys(userResponse.deposit).filter((key:string)=>{return userResponse.deposit[key]!==null&&userResponse.deposit[key].length!==0})],
         "residencePeriod": [userResponse.residencePeriod],
         "loanAvailability":[userResponse.loanAvailability],
         "loanType":userResponse.loanType===null?[]:[userResponse.loanType],
@@ -28,6 +28,7 @@ export const getRequestDocumentDetail= async (requestId: number, setUserResponse
         "otherRoomOption": userResponse.otherRoomOption===null?"":userResponse.otherRoomOption,
         "additionalRequests":userResponse.additionalRequests===null?"":userResponse.additionalRequests,
       };
+      console.log(res.data)
       setUserResponse(data)
       setFilterValue(res.data.deposit)
     } catch (e) {
