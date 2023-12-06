@@ -16,6 +16,7 @@ const useHomfoSurveyStore = create<HomfoStoreState>((set)=>({
       result: null,
       resultDetail:null
     })),
+
     postHomfoRecommendInfo: async (id: number, data:HomfoEditData, filterData: {[key:string]:number[]}|undefined): Promise<void> => {
       try {
         let totalData={};

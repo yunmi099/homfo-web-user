@@ -16,8 +16,6 @@ const Filter = ({onewayOption = false,title,min,data=[undefined, undefined],max,
     let fixedMaxValue = max;
     const [rangeMinValue, setRangeMinValue] = useState(data !== null && data[0] !== undefined ? data[0] : min);
     const [rangeMaxValue, setRangeMaxValue] = useState(data !== null && data[1] !== undefined ? data[1] : max);
-    
-
     let gap=0;
     if (onewayOption){
       gap=0
