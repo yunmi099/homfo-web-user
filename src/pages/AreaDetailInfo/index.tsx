@@ -47,7 +47,7 @@ export default function AreaDetailInfo() {
     },[receivedData.areaId])
 
   return (
-    <div className={styles.container} style={{paddingTop: `${userInfo.top/2}px`}}>
+    <div className={styles.container}>
         <img 
             alt="뒤로가기" 
             src={mapIcon.backButton}
