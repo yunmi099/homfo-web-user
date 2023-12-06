@@ -1,4 +1,4 @@
-import React,{Dispatch, SetStateAction} from "react";
+import React,{Dispatch, SetStateAction, useEffect} from "react";
 import styles from './styles.module.scss'
 import { HomfoEditData, QuestionForm, RequestData } from "../../store/type/homfoRecommend&request/interface";
 import Filter from "../selectedProgress/filter";
@@ -14,7 +14,7 @@ interface SelectedFormProps {
     setFilterValue: Dispatch<SetStateAction<{[item: string]: number[];}>>;
     mode: string;
 }
-const SelectedForm = ({currentQuestion, previousQuestion,filterValue,mode,data, setData, setFilterValue}:SelectedFormProps)=>{
+const SelectedForm = ({currentQuestion, previousQuestion, filterValue, mode, data, setData, setFilterValue}:SelectedFormProps)=>{
     return(
     <>
       <Question question={currentQuestion.question.contents} />
@@ -22,7 +22,9 @@ const SelectedForm = ({currentQuestion, previousQuestion,filterValue,mode,data, 
         <MultipleChoice currentQuestion={currentQuestion} data={data} setData={setData} />
       ) : (
         <div>
-          {data[previousQuestion.question.type][0]!==undefined&&data[previousQuestion.question.type][0].map((item:string, index:number) => {
+        {
+        mode==="price"?
+        data[previousQuestion.question.type][0]!==undefined&&data[previousQuestion.question.type][0].map((item:string, index:number) => {
             const filterData = currentQuestion.filter!.data;
             return (
               <div key={item}>
@@ -31,10 +33,33 @@ const SelectedForm = ({currentQuestion, previousQuestion,filterValue,mode,data, 
                   max={filterData[item][0][1]}
                   unit={item}
                   mode={mode}
-                  // data={filterValue[item]}
+                  data={filterValue!==undefined?filterValue[item]:[undefined, undefined]}
                   setData={setFilterValue}
                   title={filterData[item][2]}
-                  onewayOption={mode==="time"&&true}
+                />
+                <div className={styles.filterIntervalBox}>
+                  {filterData[item][1].map((info, idx) => (
+                    <div key={idx} className={styles.filterInterval}>
+                      {info}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          })
+          :
+          data[previousQuestion.question.type]!==undefined&&data[previousQuestion.question.type].map((item:string, index:number) => {
+            const filterData = currentQuestion.filter!.data;
+            return (
+              <div key={item}>
+                <Filter
+                  min={filterData[item][0][0]}
+                  max={filterData[item][0][1]}
+                  unit={item}
+                  mode={mode}
+                  setData={setFilterValue}
+                  title={filterData[item][2]}
+                  onewayOption={true}
                 />
                 <div className={styles.filterIntervalBox}>
                   {filterData[item][1].map((info, idx) => (

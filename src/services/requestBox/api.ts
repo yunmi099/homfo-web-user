@@ -19,7 +19,7 @@ export const getRequestDocumentDetail= async (requestId: number, setUserResponse
       const data = {
         "areaId":userResponse.areaId,
         "realEstateType": userResponse.realEstateType,
-        "contractType": [Object.keys(userResponse.deposit).filter((key:string)=>{return userResponse.deposit[key].length>0})],
+        "contractType": [Object.keys(userResponse.deposit).filter((key:string)=>{return userResponse.deposit[key]!==null&&userResponse.deposit[key].length!==0})],
         "residencePeriod": [userResponse.residencePeriod],
         "loanAvailability":[userResponse.loanAvailability],
         "loanType":userResponse.loanType===null?[]:[userResponse.loanType],
@@ -28,6 +28,7 @@ export const getRequestDocumentDetail= async (requestId: number, setUserResponse
         "otherRoomOption": userResponse.otherRoomOption===null?"":userResponse.otherRoomOption,
         "additionalRequests":userResponse.additionalRequests===null?"":userResponse.additionalRequests,
       };
+      console.log(res.data)
       setUserResponse(data)
       setFilterValue(res.data.deposit)
     } catch (e) {
@@ -64,9 +65,12 @@ export const modifyRequestDocument = async (userId: number,id: number,data:Reque
             otherRoomOption: null,
             additionalRequests: null,
         }
-        totalData = {...totalData, deposit: filterData}
-        console.log(data.contractType.length)
-        switch (data.contractType.length) {
+        let copyedFilterData = {}
+        data.contractType[0].map((item)=>{
+          copyedFilterData = ({...copyedFilterData,[item]: filterData[item]})
+        })
+        totalData = {...totalData, deposit: copyedFilterData}
+        switch (data.contractType[0].length) {
             case 3:
                 totalData.contractType = "상관없음";
                 break;
@@ -92,9 +96,11 @@ export const modifyRequestDocument = async (userId: number,id: number,data:Reque
             }     
         }
         delete copyData.contractType;
-        totalData = {...totalData, ...copyData};
-      console.log(totalData)
+      totalData = {...totalData, ...copyData};
      const res = await fetchFromApi('PATCH', `/requests/${id}`,totalData); 
+     if (res.status === 200){
+      alert('요청서가 수정되었습니다')
+     }
     } catch (e:any) {
         console.log(e);
     }
