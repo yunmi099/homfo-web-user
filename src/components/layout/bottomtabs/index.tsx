@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './styles.module.scss';
 import { useNavigate, useLocation } from 'react-router-dom';
 import * as bottomtabIcon from '../../../assets/icons/bottomtab/bottomtab';
+import useUserStore from '../../../store/context/useUserStore';
 
 function BottomTab() {
   const location = useLocation();
@@ -33,9 +34,9 @@ function BottomTab() {
   const handleClick = (path: string) => {
     navigate(path);
   };
-
+  const { userInfo } = useUserStore();
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} style={{paddingBottom: userInfo.bottom/2}}>
       {tabData.map((tab) => (
         <div className={styles.tab} onClick={() => handleClick(tab.path)} key={tab.path}>
           <img src={tab.image} style={{width: 25}}/>
