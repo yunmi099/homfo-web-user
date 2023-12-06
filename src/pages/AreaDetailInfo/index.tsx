@@ -7,7 +7,6 @@ import { getAmenities } from "../../services/amenities/api";
 import { Amenities } from "./Amenities";
 import { OverlayInfo } from "./overlayInfo";
 import useUserStore from "../../store/context/useUserStore";
-import { getAreaDetail } from "../../services/homfoArea/api";
 
 export default function AreaDetailInfo() {
     const [openAmenitiesScroll, setOpenAmenitiesScroll] = useState<boolean>(false);
