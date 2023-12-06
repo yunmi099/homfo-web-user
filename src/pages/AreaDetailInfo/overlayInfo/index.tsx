@@ -1,11 +1,11 @@
 import React, { useState, Dispatch, SetStateAction, useEffect } from 'react';
 import styles from './styles.module.scss';
 import { AreaInfo } from '../../../components/areaInfo';
-import { getAreaDetail, getAreaDetailResult } from '../../../services/homfoArea/api';
+import {  getAreaDetailResult } from '../../../services/homfoArea/api';
 import * as icon from '../../../assets/icons/areaInfo/icon';
 import { useNavigate } from 'react-router-dom';
 import useUserStore from '../../../store/context/useUserStore';
-import { deleteBookMarkLists, postBookMarkLists } from '../../../services/areaBookmarks/api';
+import { deleteBookMarkLists, getBookMarkList, postBookMarkLists } from '../../../services/areaBookmarks/api';
 interface OverlayInfoProps {
     areaId: number;
     touchUpEvent: boolean;
@@ -23,7 +23,7 @@ export const OverlayInfo = ({
 }: OverlayInfoProps) => {
     const [startY, setStartY] = useState<number | null>(null);
     const [detail, setDetail] = useState<any>();
-    const [toggle, setToggle] = useState(false);
+    const [toggle, setToggle] = useState<number|null>(null);
     const navigate = useNavigate();
     const handleOnTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
         setStartY(e.touches[0].clientY);
@@ -45,11 +45,20 @@ export const OverlayInfo = ({
     };
 
     const handleSetDetail = async () => {
+        getBookMarkList(areaId, setToggle)
         setDetail(await getAreaDetailResult(areaId));
     };
 
+    const handleToggleButton = ()=>{
+        if (typeof toggle === "number"){
+            deleteBookMarkLists(userInfo.userId, toggle)
+            setToggle(null);
+        } else {
+            postBookMarkLists(userInfo.userId, areaId, setToggle)
+        }
+    }
+
     useEffect(() => {
-        getAreaDetail(areaId)
         handleSetDetail();
     }, [areaId]);
 
@@ -70,12 +79,7 @@ export const OverlayInfo = ({
                         <div className={styles.buttonContainer}>
                             <div
                                 className={styles.button}
-                                onClick={() => {
-                                    setToggle(!toggle);
-                                    !toggle ?
-                                    postBookMarkLists(userInfo.userId, areaId):
-                                    deleteBookMarkLists(userInfo.userId, areaId)
-                                }}
+                                onClick={() => handleToggleButton()}
                             >
                                 <img
                                     src={toggle ? icon.Toggle : icon.CancelToggle}
