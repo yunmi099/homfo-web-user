@@ -23,7 +23,7 @@ function Home() {
     useEffect(()=>{
         window.ReactNativeWebView.postMessage("onLoad");
         window.addEventListener('message',(e) => handleUserInfo(e))
-        document.addEventListener('message',(e:any) => setUserInfo(e.data));
+        document.addEventListener('message',(e:any) => handleUserInfo(e));
     },[window?.ReactNativeWebView])
     
     useEffect(()=>{
