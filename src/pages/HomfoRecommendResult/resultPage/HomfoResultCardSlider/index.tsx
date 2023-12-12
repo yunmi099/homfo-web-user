@@ -12,7 +12,7 @@ const HomfoResultCardSlider = ({ data, areaId }: { data: ResultDetail['detail'] 
           <div className={styles.areaTitle}>{data.area.name === null ? '정보 미제공' : data.area.name}</div>
           <div className={styles.mapContainer}><OneAreaMap areaId={areaId}/></div>
           <div className={styles.infoContainer}>
-            <h1>구역 기본정보</h1>
+            <div style={{fontSize: '1.3em', fontWeight:'700', margin:'15px 0 0px 0'}}>구역 기본정보</div>
             <AreaInfo data={data}/>
           </div>
         </div>

@@ -2,12 +2,14 @@ import React,{ useState, useEffect } from 'react';
 import Modal from 'react-modal';
 import styles from './styles.module.scss';
 import noticeImage from '../../../assets/icons/areaNotice.png'
+import useUserStore from '../../../store/context/useUserStore';
 const customStyles = {
     content: {
       width:'100%',
       height:'100%',
-      top: 0,
-      left: 0,
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
       zIndex:100,
       padding:0,
     },
@@ -15,7 +17,7 @@ const customStyles = {
       width: '100vw',
       height: '100vh',
       zIndex:100,
-      padding:0,
+      overflow:'hidden',
     },
   };
   Modal.setAppElement('#root');
@@ -27,7 +29,7 @@ const customStyles = {
   
   const MapModal: React.FC<CustomModalProps> = ({ modalIsOpen, setModalIsOpen }) => {
     const [shouldShowModal, setShouldShowModal] = useState(true);
-  
+    const {userInfo} = useUserStore();
     useEffect(() => {
       const closeModalFlag = localStorage.getItem(`closeModal`);
       if (closeModalFlag) {
@@ -60,10 +62,15 @@ const customStyles = {
           id="todayClose"
           className={`${styles.button} ${styles.todayClose}`}
           onClick={handleTodayCloseClick}
+          style={{paddingBottom: userInfo.bottom}}
         >
           다시 보지 않기
         </button>
-        <button id="close" className={`${styles.button} ${styles.close}`} onClick={closeModal}>
+        <button 
+          id="close" 
+          className={`${styles.button} ${styles.close}`}
+          style={{paddingBottom: userInfo.bottom}}
+          onClick={closeModal}>
           닫기
         </button>
       </Modal>

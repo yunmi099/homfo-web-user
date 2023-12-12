@@ -8,6 +8,7 @@ import useRequestStore from '../../../store/context/useRequestStore';
 import { useNavigate } from 'react-router-dom';
 import SelectedForm from '../../../components/selectedForm';
 import useUserStore from '../../../store/context/useUserStore';
+import CustomModal from './modal';
 interface SelectedProgressProps {
   count: number;
   setCount: React.Dispatch<React.SetStateAction<number>>;
@@ -31,8 +32,8 @@ const SelectedRequestSurvey = (props: SelectedProgressProps) => {
   const [filterValue,setFilterValue] = useState<{[key:string]:number[]}>({});
   const questionType = currentQuestion.question.type;
   const {postPropertyRequest} = useRequestStore();
-  const navigate = useNavigate();
   const {userInfo} = useUserStore();
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   return (
     <div style={{marginTop:"20px"}}>
       <SelectedForm currentQuestion={currentQuestion} previousQuestion={previousQuestion} mode={"price"} data={data} setData={setData} setFilterValue={setFilterValue}/>
@@ -51,7 +52,7 @@ const SelectedRequestSurvey = (props: SelectedProgressProps) => {
           onClick={async () => {
             const result = await postPropertyRequest(userInfo.userId, data, filterValue);
             if (result.status === 201) {
-              navigate('/request-complete');
+              setModalIsOpen(true)
             }
           }}
           auth={true}
@@ -71,6 +72,7 @@ const SelectedRequestSurvey = (props: SelectedProgressProps) => {
         auth={currentQuestion.filter === null?data[questionType].length?true:false:true}
       />
     }
+      <CustomModal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen}/>
     </div>
   );
 };
