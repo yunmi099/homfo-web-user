@@ -72,6 +72,7 @@ export default function KnowledgeDetail() {
     return (
         <div className={styles.container}>
             <Header title="부동산 상식" color="white" />
+            <div className={styles.emptySpace}></div>
             <div className={styles.content}>
                 {knowledgeList?.map((item) => (
                     <DetailContainer key={item.senseId} data={item} />

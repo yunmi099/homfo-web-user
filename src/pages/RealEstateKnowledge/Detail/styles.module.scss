@@ -7,11 +7,12 @@ $background-color: white;
 }
 
 .content {
-    position: absolute;
+    // position: absolute;
     width: 100vw;
     top: 10vh;
     height: 89vh;
     margin-top: 1vh;
+    font-size: 0.95em;
     // overflow: auto;
     overflow-x: hidden;
 }
@@ -21,7 +22,7 @@ $background-color: white;
 }
 
 .title {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 20px;
 }
@@ -36,8 +37,10 @@ $background-color: white;
         width: 100%;
         aspect-ratio: auto 1/1;
         img {
-            width: 100%;
-            height: 100%;
+            width: 90vw;
+            margin: 0 5vw;
+            // height: 90vw;
+            // margin-bottom: 10px;
             border-radius: 23px;
         }
     }
@@ -55,4 +58,11 @@ $background-color: white;
 
 .detailInfo {
     margin-bottom: 20px;
+}
+
+.emptySpace{
+    width: 100vw;
+    background-color: white;
+    border-bottom: 2px solid;
+    border-color: #EBEBEB;
 }

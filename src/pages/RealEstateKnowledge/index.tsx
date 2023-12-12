@@ -6,11 +6,13 @@ import KnowledgeContainer from '../../components/organisms/RealEstateKnowledge/K
 
 import styles from './styles.module.scss';
 import { fetchFromApi } from '../../utils/axios';
+import { userInfo } from 'os';
+import useUserStore from '../../store/context/useUserStore';
 
 function RealEstateKnowlegde() {
     const [option, setOption] = useState<string>('recent');
     const [knowledgeList, setKnowledgeList] = useState<any>([]);
-
+    const {userInfo} = useUserStore()
     useEffect(() => {
         const getKnowledgeList = async () => {
             try {
@@ -28,7 +30,8 @@ function RealEstateKnowlegde() {
     return (
         <div className={styles.container}>
             <Header title="부동산 상식" color="white" />
-            <div className={styles.content}>
+            <div className={styles.emptySpace}></div>
+            <div className={styles.content} style={{marginTop: userInfo.top/2}}>
                 <MainKnowledge mainKnowledge={knowledgeList[0]} />
 
                 <div className={styles.divider}></div>
