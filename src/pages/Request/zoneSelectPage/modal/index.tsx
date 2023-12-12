@@ -71,6 +71,7 @@ const customStyles = {
           src={building}
           alt=""
           className={styles.image}
+          loading='eager'
         />
         <button
           id="todayClose"

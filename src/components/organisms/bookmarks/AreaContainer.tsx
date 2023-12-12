@@ -14,11 +14,11 @@ interface IArea {
             areaId: number;
             name: string;
         };
-        avgMonthlyDeposit: null;
-        avgMonthlyFee: null;
-        avgJeonseDeposit: null;
-        avgExclusiveArea: null;
-        avgBuiltYear: null;
+        avgMonthlyDeposit: null|number;
+        avgMonthlyFee: null|number;
+        avgJeonseDeposit: null|number;
+        avgExclusiveArea: null|number;
+        avgBuiltYear: null|number;
         avgWalkingTotalDistance: number;
         avgWalkingSeconds: number;
         avgBikeSeconds: number;
@@ -33,11 +33,17 @@ interface Props {
 
 export default function AreaContainer({ areaData }: Props) {
     return (
+        <>
+        <div className={styles.smallFont}>
+            정보 미제공의 경우, 홈포자체 추천구역으로 지역공인중개사의 매물추천이 있던 구역입니다.<br/>
+            구역분석이 진행되고 있는 구역으로 빠른시일내에 업데이트될 예정입니다.
+        </div>
         <div>
             {areaData.map((area) => (
                 <AreaBox area={area} />
             ))}
         </div>
+        </>
     );
 }
 
@@ -62,7 +68,7 @@ const AreaBox = ({ area }: { area: IArea }) => {
 
         setIsDeleted(true);
     };
-
+    const {avgMonthlyFee,avgMonthlyDeposit,avgJeonseDeposit} = area.areaDetail;
     return (
         <div className={`${styles.box} ${isDeleted && styles.deleted}`}>
             <div
@@ -75,17 +81,17 @@ const AreaBox = ({ area }: { area: IArea }) => {
                     <div className={styles.title}>{area.areaDetail.area.name}</div>
                     <div className={styles.depositBox}>
                         <div className={styles.depositContent}>
-                            <span>월세</span> <span className={styles.deposit}>평균 50만원</span>
+                            <span>월세</span> <span className={styles.deposit}>{avgMonthlyFee===null?"정보미제공":`평균 ${Math.round(avgMonthlyFee)} 만원`}</span>
                         </div>
                         <div className={styles.divider} />
                         <div className={styles.depositContent}>
                             <span>보증금</span>
-                            <span className={styles.deposit}>평균 1000만원</span>
+                            <span className={styles.deposit}>{avgMonthlyDeposit===null?"정보미제공":`평균 ${Math.round(avgMonthlyDeposit)} 만원`}</span>
                         </div>
                     </div>
                     <div className={styles.depositBox}>
                         <div className={styles.depositContent}>
-                            <span>전세</span> <span className={styles.deposit}>평균 1억원</span>
+                            <span>전세</span> <span className={styles.deposit}>{avgJeonseDeposit===null?"정보미제공":`평균 ${Math.round(avgJeonseDeposit)} 만원`}</span>
                         </div>
                     </div>
                 </div>

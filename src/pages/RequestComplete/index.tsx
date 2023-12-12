@@ -8,7 +8,7 @@ export default function ResultComplete() {
   return (
     <>
     <div className={styles.container}>
-      <img alt={"완료"} src={completeIcon} width="80px" height="80px"/> 
+      <img alt={"완료"} src={completeIcon} width="80px" height="80px" loading='eager'/> 
       <h1 className={styles.text}>
         <span>요청하기</span>가<br/>완료되었습니다.
       </h1>

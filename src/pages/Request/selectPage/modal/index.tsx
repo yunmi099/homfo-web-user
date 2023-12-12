@@ -53,6 +53,7 @@ const customStyles = {
             alt=""
             src={commentImage}  
             className={styles.image}
+            loading='eager'
           />
           <p className={styles.contents}>
             <span>2주 이내</span>로 예쁜 방을 찾아오겠습니다!

@@ -12,6 +12,7 @@ const customStyles = {
       transform: 'translate(-50%, -50%)',
       zIndex:100,
       padding:0,
+      overflow:'hidden',
     },
     overlay: {
       width: '100vw',
@@ -62,14 +63,14 @@ const customStyles = {
           id="todayClose"
           className={`${styles.button} ${styles.todayClose}`}
           onClick={handleTodayCloseClick}
-          style={{paddingBottom: userInfo.bottom}}
+          style={{height: 50+(userInfo.bottom/2)}}
         >
           다시 보지 않기
         </button>
         <button 
           id="close" 
           className={`${styles.button} ${styles.close}`}
-          style={{paddingBottom: userInfo.bottom}}
+          style={{height: 50+(userInfo.bottom/2)}}
           onClick={closeModal}>
           닫기
         </button>

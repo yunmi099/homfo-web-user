@@ -37,7 +37,7 @@ export const AreaInfo = ({data}:{ data: ResultDetail['detail']|any })=>{
     <>
         {(avgMonthlyFee===null||avgMonthlyDeposit===null||avgJeonseDeposit===null)?
         <div className={styles.smallFont}>
-            미제공인 경우 홈포자체 추천구역으로 지역공인중개사의 매물추천이 있던 구역입니다. <br/>
+            홈포자체 추천구역으로 지역공인중개사의 매물추천이 있던 구역입니다. <br/>
             구역분석이 진행되고 있는 구역으로 빠른시일내에 업데이트될 예정입니다.
         </div>:<div style={{marginBottom:30}}></div>}
         <div className={styles.info}>

@@ -9,6 +9,8 @@ import Banner from '../../components/organisms/Home/Banner';
 import useUserStore from '../../store/context/useUserStore';
 import { Result } from '../../store/type/homfoRecommend&request/interface';
 import { getAreaDetailResult, getHomfoArea } from '../../services/homfoArea/api';
+import '../../pages/HomfoRecommendResult/resultPage/internal-modules-scss/slick-theme.scss'
+import '../../pages/HomfoRecommendResult/resultPage/internal-modules-scss/slick.scss'
 
 function Home() {
     const navigate = useNavigate();
