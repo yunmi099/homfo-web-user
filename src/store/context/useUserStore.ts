@@ -18,8 +18,8 @@ interface UserStoreState {
     status: '',
     userAccount: '',
           // 배포 시 밑에 주석 해제해주세요
-    // userId: 51,
-    userId: 0,
+    userId: 51,
+    // userId: 0,
     userPhoneNum: 'string',
     top: 0,
     bottom: 0,
