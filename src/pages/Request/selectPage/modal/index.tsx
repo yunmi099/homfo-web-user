@@ -1,10 +1,12 @@
 import React,{ useState, useEffect } from 'react';
 import Modal from 'react-modal';
 import styles from './styles.module.scss';
+import commentImage from '../../../../assets/icons/commentImage.png'
+import { useNavigate } from 'react-router-dom';
 const customStyles = {
     content: {
       width:'72.3%',
-      height:'50%',
+      height:'25%',
       top: '50%',
       left: '50%',
       transform: 'translate(-50%, -50%)',
@@ -15,12 +17,13 @@ const customStyles = {
       borderRadius: '0px',
       boxShadow: '0px 3px 6px 0px rgba(0, 0, 0, 0.161)',
       zIndex:100,
+  
     },
     overlay: {
       width: '100vw',
       height: '100vh',
       zIndex:100,
-      backgroundColor: 'rgba(0, 0, 0, 0.4)',
+      backgroundColor: 'rgba(0, 0, 0, 0.9)',
     },
   };
   Modal.setAppElement('#root');
@@ -32,50 +35,37 @@ const customStyles = {
   
   const CustomModal: React.FC<CustomModalProps> = ({ modalIsOpen, setModalIsOpen }) => {
     const [shouldShowModal, setShouldShowModal] = useState(true);
-  
-    useEffect(() => {
-      const today = new Date().toLocaleDateString();
-      const closeModalFlag = localStorage.getItem(`closeModal_${today}`);
-      if (closeModalFlag) {
-        setShouldShowModal(false);
-      }
-    }, []);
+    const navigate = useNavigate();
     const closeModal = () => {
+      navigate('/request-complete');
       setModalIsOpen(false);
-    };
-  
-    const handleTodayCloseClick = () => {
-      const today = new Date().toLocaleDateString();
-  
-      localStorage.setItem(`closeModal_${today}`, 'true');
-  
-      closeModal();
     };
   
     return shouldShowModal ? (
       <Modal
+        style={customStyles}
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
-        style={customStyles}
         contentLabel="안내사항"
       >
-        <h2 className={styles.title}>📢 안내사항</h2>
-        <p className={styles.contents}>
-          확인 전에만 수정이 가능하기 때문에
-          <br />신중하게 골라주세요.<br />작성 완료 후 일주일 정도 걸린다는 점
-          <br />참고해주세요. 최대한 맞춰 드리려 합니다.<br />하지만 요청서와 다른 결과가 나올 수도
-          <br />있다는 점 양해 바랍니다.
-        </p>
-        <button
-          id="todayClose"
-          className={`${styles.button} ${styles.todayClose}`}
-          onClick={handleTodayCloseClick}
-        >
-          오늘 하루 보지 않기
-        </button>
-        <button id="close" className={`${styles.button} ${styles.close}`} onClick={closeModal}>
-          닫기
-        </button>
+        <div className={styles.container}>
+          <img 
+            alt=""
+            src={commentImage}  
+            className={styles.image}
+          />
+          <p className={styles.contents}>
+            <span>2주 이내</span>로 예쁜 방을 찾아오겠습니다!
+            <br />요청서 수정은 요청서함에서 가능합니다.
+          </p>
+          <button 
+            id="close" 
+            className={`${styles.button} ${styles.close}`} 
+            onClick={closeModal}
+          >
+            확인
+          </button>
+        </div>
       </Modal>
     ) : null;
   };

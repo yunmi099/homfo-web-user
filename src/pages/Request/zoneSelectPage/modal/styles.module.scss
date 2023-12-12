@@ -7,6 +7,9 @@
 .contents{
     line-height: 27px;
     margin-left: 10px;
+    span {
+        font-weight: 700;
+    }
 }
 .button{
     position:absolute;
@@ -25,4 +28,11 @@
         left:70%;
         width: 30%;
     }
+}
+.image{
+    width: 120px;
+    position: absolute;
+    right: 10px;
+    bottom: 80px;
+    z-index: -1;
 }

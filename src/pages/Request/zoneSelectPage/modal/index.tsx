@@ -1,6 +1,7 @@
 import React,{ useState, useEffect } from 'react';
 import Modal from 'react-modal';
 import styles from './styles.module.scss';
+import building from '../../../../assets/icons/buildingImage.png'
 const customStyles = {
     content: {
       width:'72.3%',
@@ -20,7 +21,7 @@ const customStyles = {
       width: '100vw',
       height: '100vh',
       zIndex:100,
-      backgroundColor: 'rgba(0, 0, 0, 0.4)',
+      backgroundColor: 'rgba(0, 0, 0, 0.90)',
     },
   };
   Modal.setAppElement('#root');
@@ -62,10 +63,15 @@ const customStyles = {
         <h2 className={styles.title}>📢 안내사항</h2>
         <p className={styles.contents}>
           확인 전에만 수정이 가능하기 때문에
-          <br />신중하게 골라주세요.<br />작성 완료 후 일주일 정도 걸린다는 점
-          <br />참고해주세요. 최대한 맞춰 드리려 합니다.<br />하지만 요청서와 다른 결과가 나올 수도
-          <br />있다는 점 양해 바랍니다.
+          <br />신중하게 골라주세요.<br /><span>작성 완료 후 일주일 정도 걸린다는 점</span>
+          <br />참고해주세요. 최대한 맞춰 드리려 합니다.<br />요청서와 다른 결과가 나올 수도
+           있다는 점<br /> 양해 바랍니다.
         </p>
+        <img 
+          src={building}
+          alt=""
+          className={styles.image}
+        />
         <button
           id="todayClose"
           className={`${styles.button} ${styles.todayClose}`}
