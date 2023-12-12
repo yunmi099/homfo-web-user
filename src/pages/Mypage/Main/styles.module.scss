@@ -5,17 +5,67 @@ $background-color:#F5F5F5;
     align-items: center;
 }
 .profileImg{
-    width: 16.2vh;
-    height: 16.2vh;
-    margin-top: 2vh;
+    width: 20vh;
+    height: 20vh;
+    margin: 0 0 10px 0;
     background-color: #d9d9d9;
     border-radius: 100px;
 }
 .menuBox{
     width: 87vw;
-    height: 54.83vh;
+    margin-top: 20px;
+    height: 48vh;
     background-color: white;
+    border-radius: 29px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+}
+
+.mention{
+    color: #0E1315;
+    font-family: Inter;
+    font-size: 1.3em;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    span {
+        color: #9D11FF;
+    }
+}
+
+.welcome{
+    color: #292D2F;
+    font-family: Inter;
+    font-size: 1.3em;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.purpleRouting{
+    color: #9023FF;
+    font-family: Inter;
+    font-size: 1em;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    padding-left: 23px;
+}
+
+.routing{
+    position: relative;
+    color: #252525;
+    font-family: Inter;
+    font-size: 1em;
+    font-style: normal;
+    padding-left: 23px;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.arrow{
+    width: 10px;
+    position: absolute;
+    right: 20px;
 }
