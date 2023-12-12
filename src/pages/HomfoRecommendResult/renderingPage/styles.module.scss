@@ -29,16 +29,6 @@
 }
 
 .image{
-    animation: blink 1s infinite;
     margin-top: 15%;
-    width: 80%;
-    
+    width: 80%;   
 }
-
-@keyframes blink {
-    0% { opacity: 1; }
-    50% { opacity: 0; }
-    100% { opacity: 1; }
-  }
-
-  
