@@ -8,9 +8,12 @@ import styles from './styles.module.scss';
 import NoticeBlock from '../../components/molecules/Notice/NoticeBlock';
 import { fetchFromApi } from '../../utils/axios';
 import { INotice } from '../../@types/notice';
+import { userInfo } from 'os';
+import useUserStore from '../../store/context/useUserStore';
 
 function HomfoNotice() {
     const [noticeList, setNoticeList] = useState<INotice[]>([]);
+    const {userInfo} = useUserStore()
     useEffect(() => {
         const getNoticeList = async () => {
             try {
@@ -31,7 +34,7 @@ function HomfoNotice() {
     return (
         <div className={styles.container}>
             <Header title="공지사항" color="white" />
-            <div className={styles.content}>
+            <div className={styles.content} style={{marginTop: userInfo.top/2}}>
                 <div className={styles.banner}>
                     <div className={styles.left}>
                         <div>Homfo에서</div>
