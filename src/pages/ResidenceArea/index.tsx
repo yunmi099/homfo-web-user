@@ -1,11 +1,13 @@
-import React from "react";
+import React,{useState} from "react";
 import AllAreaMap from "../../components/map/AllAreaMap";
 import backButton from '../../assets/icons/map/backButton.png'
 import requestButton from '../../assets/icons/map/request.png'
 import styles from './styles.module.scss'
 import useHomfoSurveyStore from "../../store/context/useHomfoSurveyStore";
 import { useNavigate } from "react-router-dom";
+import MapModal from "./modal";
 function ResidenceArea(){
+    const [modalIsOpen, setModalIsOpen] = useState(true);
     const navigate = useNavigate();
     const { result } = useHomfoSurveyStore();
     return(
@@ -27,6 +29,7 @@ function ResidenceArea(){
                 : navigate('/request');
             }}/>
         <AllAreaMap renderingDetailPage={true}/>
+        <MapModal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen}/>
     </div>)
 }
 export default ResidenceArea;
