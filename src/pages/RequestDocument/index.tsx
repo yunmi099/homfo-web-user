@@ -5,13 +5,20 @@ import { useLocation } from "react-router-dom";
 import { getOfferDocument } from "../../services/requestBox/api";
 import * as offerIcon from '../../assets/icons/offer/offerImage';
 import { OfferDocument } from "../../store/type/offerDocument/interface";
+
+enum ContractForm {
+    monthlyDeposit = "월세",
+    jeonseDeposit = "전세"
+}
+
 function RequestDocument(){
     const location = useLocation()
-    const requestId = location.state;
+    const offerId = location.state;
     const [isCopied, setIsCopied] = useState(false);
     const [data, setData] = useState<OfferDocument|null>(null);
+    const [imageIndex, setImageIndex] = useState<number>(1);
     useEffect(()=>{
-        getOfferDocument(Number(requestId), setData)
+        getOfferDocument(offerId, setData)
     },[])
     const handleCopyClick = (textToCopy:string) => {
         // 텍스트를 클립보드에 복사하는 로직
@@ -28,31 +35,31 @@ function RequestDocument(){
     
     return(
     <div className={styles.container}>
-        <Header title="요청서함"/>
+        <Header title=""/>
         <div className={styles.offerContainer}>
-            <div className={styles.university}>단국대학교</div>
-            {/* <div className={styles.title}>{}</div> */}
             <div className={styles.offerName}>
                 {data?.name}
             </div>
-            <div className={styles.agencyInfo}>
-                <div>
-                    {data?.realtor.agencyThumbnailDto.name}
+            <div className={styles.title}>
+                {data?.realtor.agencyThumbnailDto.name}
+            </div>
+            <div className={styles.addressContainer}>
+                <span>
+                {data?.agencyItem.agency.lotAddress}
+                </span>
+                <div
+                    className={styles.clipBoard} 
+                    onClick={()=>{
+                        if (data!==null){
+                            handleCopyClick(data.agencyItem.agency.lotAddress)
+                        }
+                    }}>
+                        <img 
+                            src={offerIcon.clipBoard}
+                            alt="클립보드"
+                            width="13px"
+                        />
                 </div>
-                <div>
-                    {data?.realtor.position !== null && `직책 : ${data?.realtor.position}`}
-                </div>
-                <div>
-                    {data?.realtor.agencyThumbnailDto.type}&nbsp;{data?.agencyItem.agency.chairmanName}
-                </div>
-                <div>
-                    {data?.agencyItem.agency.lotAddress}
-                </div>
-                <button onClick={()=>{
-                    if (data!==null){
-                        handleCopyClick(data.agencyItem.agency.lotAddress)
-                    }
-                }}>클립보드</button>
             </div>
             <div className={styles.horizontalLine}></div>
             <div className={styles.box}>
@@ -78,63 +85,154 @@ function RequestDocument(){
                 </div>
             </div>
             <div className={styles.horizontalLine}></div>
-            <div>
-                <div className={styles.title}>방 사진</div>
+            <div className={styles.imageContainer}>
                 <img
-                    src={data?.agencyItem.item.images.data[0].url}
-                    alt={data?.agencyItem.item.images.data[0].attachment}
+                    src={offerIcon.leftArrow}
+                    alt={"<"}
+                    onClick={()=>{
+                        if (imageIndex>0){
+                            setImageIndex((prev)=>prev-1)
+                        }
+                    }
+                    }
+                />
+                <img
+                    src={data?.agencyItem.item.images.data[imageIndex].url}
+                    alt={data?.agencyItem.item.images.data[imageIndex].attachment}
                     className={styles.image}
                 />
-                
+                <img
+                    src={offerIcon.rightArrow}
+                    alt={">"}
+                    onClick={()=>{
+                        if (data!==null && imageIndex < data.agencyItem.item.images.length -1){
+                            setImageIndex((prev)=>prev+1)
+                        }
+                    }
+                    }
+                />
             </div>
-            <div className={styles.horizontalLine}></div>
-            <div className={styles.title}>기본정보</div>
-            <div className={styles.squareBox}>
-                <div  className={styles.agencyInfo}>
-                    <div style={{fontSize:'1.15em', marginTop: 5,color:"black"}}>{data?.agencyItem.item.name}</div>
-                    <div>방 개수 : {data?.agencyItem.item.roomNumber}</div>
-                    <div>전용 면적: {data?.agencyItem.item.exclusiveArea}</div>
-                    <div>공급 면적: {data?.agencyItem.item.supplyArea}</div>
-                    <div>매물 유형 : {data?.agencyItem.itemType}</div>
-                    <div>계약 형태 : {data?.agencyItem.contractTypes.data}</div>
-                    <div>월세 보증금: {data?.agencyItem.monthlyDeposit}</div>
-                    <div>월세: {data?.agencyItem.monthlyFee}</div>
-                    <div>전세 보증금: {data?.agencyItem.jeonseDeposit}</div>
-                    <div>관리비: {data?.agencyItem.maintenanceCost}</div>
-                    <div>대출유무/유형 : Y/{data?.agencyItem.loanType}</div>
-                    <div>입주시기 : {data?.agencyItem.moveInPeriod}</div>
-                </div>
-                </div>
-            <div>
-                <div className={styles.title}>옵션</div>
+            <div className={styles.imageInfo}>
+                {imageIndex+1}/{data?.agencyItem.item.images.length}
+            </div>
+            <div className={styles.addressContainer}>
+                    <span>
+                        {data?.agencyItem.item.lotAddress}
+                        {data?.agencyItem.item.floor}(층)
+                    </span>   
+                    <div
+                        className={styles.clipBoard} 
+                        onClick={()=>{
+                             if (data!==null){
+                                handleCopyClick(`${data?.agencyItem.item.lotAddress}`)
+                            }
+                        }}>
+                        <img 
+                            src={offerIcon.clipBoard}
+                            alt="클립보드"
+                            width="13px"
+                        />
+                    </div>
+            </div>
+            <div className={styles.addressContainer}>
+                    <span>
+                        {data?.agencyItem.item.roadAddress}
+                        {data?.agencyItem.item.floor}(층)
+                    </span> 
+                    <div
+                        className={styles.clipBoard} 
+                        onClick={()=>{
+                             if (data!==null){
+                                handleCopyClick(`${data?.agencyItem.item.roadAddress} ${data?.agencyItem.item.floor}(층)`)
+                            }
+                        }}>
+                        <img 
+                            src={offerIcon.clipBoard}
+                            alt="클립보드"
+                            width="13px"
+                        />
+                    </div>
+            </div>
 
-                <div style={{width: '100vw', height: '10vh', marginTop: 20}}>
+            <div className={styles.title}>
+                {data?.agencyItem.contractTypes.data[0]}&nbsp;
+            {
+               data?.agencyItem.contractTypes.data[0] === ContractForm.monthlyDeposit ? 
+                <span>{data?.agencyItem.monthlyFee}/{data?.agencyItem.monthlyDeposit} (만원)</span>
+                :<span>{data?.agencyItem.jeonseDeposit} (만원)</span>
+            }
+            </div>
+            <div className={styles.addressContainer}>
+                관리비 {data?.agencyItem.maintenanceCost} 만원
+            </div>
+
+            <div className={styles.horizontalLine}></div>
+
+            <div  className={styles.agencyInfo}>
+                <div className={styles.entityContainer}>                  
+                    <img 
+                        src={offerIcon.square}
+                        width='17rem'
+                        height='17rem'
+                        alt=""
+                    />
+                    전용 {data?.agencyItem.item.exclusiveArea}m2
+                </div>
+                <div className={styles.entityContainer}>
+                    <img 
+                        src={offerIcon.square2}
+                        width='17rem'
+                        height='17rem'
+                        alt=""
+                    />
+                    {data?.agencyItem.itemType}
+                </div>
+                <div className={styles.entityContainer}>
+                    <img 
+                        src={offerIcon.square3}
+                        width='17rem'
+                        height='17rem'
+                        alt=""
+                    />
+                    {data?.agencyItem.item.floor}(층)
+                </div>
+                <div className={styles.entityContainer}>
+                    <img 
+                        src={offerIcon.calendar}
+                        width='17rem'
+                        height='17rem'
+                        alt=""
+                    />
+                    입주 가능 시기 {data?.agencyItem.moveInPeriod}
+                </div>
+                <div className={styles.entityContainer}>
+                    <img 
+                        src={offerIcon.option}
+                        width='17rem'
+                        height='17rem'
+                        alt=""
+                    />                    
                     {
-                        data?.agencyItem.itemOptions.data.map((item)=>{
-                            return(<div className={styles.university}>{item.name}</div>)
+                        data?.agencyItem.itemOptions.data.map((item, index, arr)=>{
+                            return(<span>{item.name}{index !== arr.length - 1 && ', '}</span>)
                         })
                     }
                 </div>
+            </div>
+        <div className={styles.horizontalLine}></div>
+        
+        <div className={styles.title}>관리비: {data?.agencyItem.maintenanceCost} 만원</div>
+        <div className={styles.addressContainer}>포함: {data?.agencyItem.includeMaintenance}</div>
+        <div className={styles.addressContainer}>별도: {data?.agencyItem.excludeMaintenance}</div>
 
+        <div className={styles.horizontalLine}></div>
+
+            <div>
                 <div className={styles.title}>기타 전달사항</div>
                 <div className={styles.squareBox}>
-                    <div  className={styles.agencyInfo}>
-                        {data?.agencyItem.note}
+                    <div  className={styles.addressContainer}>
+                        {data?.note}
                     </div>
-                </div>
-
-                <div className={styles.title}>도로명 주소</div>
-                <div style={{width: '100vw', height: '10vh', marginTop: 20, marginLeft:'5%'}}>
-                    <div  className={styles.adress}>
-                        {data?.agencyItem.item.roadAddress} &nbsp;
-                        {data?.agencyItem.item.floor}(층)
-                    </div>
-                    <button
-                    onClick={()=>{
-                        if (data!==null){
-                            handleCopyClick(`${data?.agencyItem.item.roadAddress} &nbsp;${data?.agencyItem.item.floor}(층)`)
-                    }}}
-                    >클립보드</button>
                 </div>
             </div>
 

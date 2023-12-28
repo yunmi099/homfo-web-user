@@ -33,7 +33,7 @@ function RequestCard({data}: {data: RequestList}) {
       if (StatusEnum.APPLICATION_COMPLETED === data.matchStatus){
         navigate('/request-box/modify-request',{state: data.requestId})
       } else if (StatusEnum.SALES_COMPLETED ===  data.matchStatus){
-        navigate('/request-box/request-document',{state: data.requestId})
+        navigate('/request-box/request-document',{state: data.offerId})
       }
     }}>
         <div className={styles.areaContainer}>

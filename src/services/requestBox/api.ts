@@ -7,6 +7,7 @@ import { RequestData} from "../../store/type/homfoRecommend&request/interface";
 export const getUsersRequestList= async (userId: number, setData:Dispatch<SetStateAction<RequestList[] | undefined>>): Promise<void> => {
     try {
       const res= await fetchFromApi('GET',`/users/${userId}/requests`);
+      console.log(res.data)
       setData(res.data.data);
     } catch (e) {
       console.log(e);
@@ -39,6 +40,7 @@ export const getRequestDocumentDetail= async (requestId: number, setUserResponse
 export const getOfferDocument = async (offerId: number, setData: React.Dispatch<React.SetStateAction<OfferDocument | null>>) =>{
   try {
     const res = await fetchFromApi('GET',`/offers/${offerId}/info`);
+    console.log(res.data)
     setData(res.data);
   } catch (e) {
     console.log(e)

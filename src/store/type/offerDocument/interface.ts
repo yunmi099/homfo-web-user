@@ -3,6 +3,7 @@ export {type OfferDocument};
 interface OfferDocument {
     id: number;
     name: string;
+    note:string;
     status: string;
     realtor: {
         id: number;
@@ -18,6 +19,8 @@ interface OfferDocument {
     };
     agencyItem: {
         id: number;
+        includeMaintenance:string;
+        excludeMaintenance:string;
         agency: {
         id: string;
         name: string;
