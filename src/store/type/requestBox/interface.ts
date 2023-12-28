@@ -7,6 +7,7 @@ interface RequestList{
     matchStatus: string;
     realtorName: null|string;
     requestId:number;
+    offerId?:number;
     status: string;
     university:string;
 };
