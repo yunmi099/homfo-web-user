@@ -53,7 +53,7 @@ function RequestDocument(){
     const offerId = location.state;
     const [isCopied, setIsCopied] = useState(false);
     const [data, setData] = useState<OfferDocument|null>(null);
-    const [imageIndex, setImageIndex] = useState<number>(1);
+    const [imageIndex, setImageIndex] = useState<number>(0);
     useEffect(()=>{
         getOfferDocument(offerId, setData)
     },[])
