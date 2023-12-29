@@ -11,6 +11,43 @@ enum ContractForm {
     jeonseDeposit = "전세"
 }
 
+const PhoneCallBox = ({data}: {data: OfferDocument}) => {
+    let phoneNumber: string|null;
+    if (data?.realtor.phoneNumber!==null){
+        phoneNumber = data?.realtor.phoneNumber;
+    } else {
+        if (data.agencyItem.agency.officePhoneNumber !== null){
+            phoneNumber = data.agencyItem.agency.officePhoneNumber
+        } else {
+            phoneNumber = null;
+        }
+    }
+    return(
+        phoneNumber!==null ? 
+            <div className={styles.box}>
+            <div className={styles.phone}>
+                <img 
+                    src={offerIcon.call}
+                    width='15rem'
+                    height='15rem'
+                    alt="전화"
+                />
+                <a className={styles.atag} href={`tel://${phoneNumber}`}>전화하기</a> 
+                {/* <a className={styles.atag} href="tel://010-5135-8136">전화하기</a>    */}
+            </div> 
+            <div className={styles.verticalLine}></div>
+            <div className={styles.phone}>
+                <img 
+                    src={offerIcon.message}
+                    width='17rem'
+                    height='15rem'
+                    alt="문자"
+                />
+                <a className={styles.atag} href={`sms://${phoneNumber}`}>문자하기</a>  
+            </div>
+        </div> : null
+        )
+}
 function RequestDocument(){
     const location = useLocation()
     const offerId = location.state;
@@ -62,28 +99,7 @@ function RequestDocument(){
                 </div>
             </div>
             <div className={styles.horizontalLine}></div>
-            <div className={styles.box}>
-                <div className={styles.phone}>
-                    <img 
-                        src={offerIcon.call}
-                        width='15rem'
-                        height='15rem'
-                        alt="전화"
-                    />
-                    <a className={styles.atag} href={`tel://${data?.agencyItem.agency.phoneNumber}`}>전화하기</a> 
-                    {/* <a className={styles.atag} href="tel://010-5135-8136">전화하기</a>    */}
-                </div> 
-                <div className={styles.verticalLine}></div>
-                <div className={styles.phone}>
-                    <img 
-                        src={offerIcon.message}
-                        width='17rem'
-                        height='15rem'
-                        alt="문자"
-                    />
-                    <a className={styles.atag} href={`sms://${data?.agencyItem.agency.phoneNumber}`}>문자하기</a>  
-                </div>
-            </div>
+            {data!==null&&<PhoneCallBox data={data}/>}
             <div className={styles.horizontalLine}></div>
             <div className={styles.imageContainer}>
                 <img
