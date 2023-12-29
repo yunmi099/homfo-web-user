@@ -16,6 +16,7 @@ interface OfferDocument {
         name: string;
         position: string | null;
         status: string;
+        phoneNumber: string;
     };
     agencyItem: {
         id: number;
