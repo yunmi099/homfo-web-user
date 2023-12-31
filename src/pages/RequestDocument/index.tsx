@@ -22,28 +22,48 @@ const PhoneCallBox = ({data}: {data: OfferDocument}) => {
             phoneNumber = null;
         }
     }
+    const handleCopyClick = (textToCopy:any) => {
+        // 텍스트를 클립보드에 복사하는 로직
+        navigator.clipboard.writeText(textToCopy)
+          .then(() => {
+            alert("전화번호가 복사되었습니다.(일주일 내로 기능이 업데이트 될 예정입니다)")
+          })
+          .catch((err) => {
+            console.error('클립보드 복사 실패:', err);
+          });
+      };
     return(
         phoneNumber!==null ? 
             <div className={styles.box}>
-            <div className={styles.phone}>
+            <div className={styles.phone}
+                onClick={()=>{
+                    handleCopyClick(phoneNumber)
+                }}
+            >
                 <img 
                     src={offerIcon.call}
                     width='15rem'
                     height='15rem'
                     alt="전화"
                 />
-                <a className={styles.atag} href={`tel://${phoneNumber}`}>전화하기</a> 
-                {/* <a className={styles.atag} href="tel://010-5135-8136">전화하기</a>    */}
+                {/* <a className={styles.atag} href={`tel://${phoneNumber}`}>전화하기</a>  */}
+                <span className={styles.atag}>전화하기</span>
             </div> 
             <div className={styles.verticalLine}></div>
-            <div className={styles.phone}>
+            <div 
+                className={styles.phone}
+                onClick={()=>{
+                    handleCopyClick(phoneNumber)
+                }}
+            >
                 <img 
                     src={offerIcon.message}
                     width='17rem'
                     height='15rem'
                     alt="문자"
                 />
-                <a className={styles.atag} href={`sms://${phoneNumber}`}>문자하기</a>  
+                <span className={styles.atag}>문자하기</span>
+                {/* <a className={styles.atag} href={`sms://${phoneNumber}`}>문자하기</a>   */}
             </div>
         </div> : null
         )
